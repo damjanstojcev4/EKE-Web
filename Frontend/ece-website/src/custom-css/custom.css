@@ -1,0 +1,70 @@
+/* custom.css */
+
+.custom-navbar {
+  background-color: #369ff4 !important;
+}
+
+.custom-navbar .navbar-brand,
+.custom-navbar .nav-link,
+.custom-navbar .navbar-toggler-icon {
+  color: white !important;
+}
+
+/* Hover and active link styles */
+.custom-navbar .nav-link:hover,
+.custom-navbar .nav-link.active {
+  color: #e2f2fd !important;
+  text-decoration: underline;
+}
+
+/* Optional: customize toggler icon if it’s not visible */
+.custom-navbar .navbar-toggler {
+  border-color: rgba(255, 255, 255, 0.5);
+}
+
+.custom-navbar .navbar-toggler-icon {
+  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='%23ffffff' viewBox='0 0 30 30'%3e%3cpath stroke='rgba(255,255,255,1)' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
+}
+
+/* Style the default toggler button */
+.custom-navbar .navbar-toggler {
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  transition: background-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Hover effect */
+.custom-navbar .navbar-toggler:hover {
+  background-color: rgba(255, 255, 255, 0.15);
+  box-shadow: 0 0 5px rgba(255, 255, 255, 0.4);
+  border-color: white;
+}
+
+/* Optional: color of the icon inside */
+.custom-navbar .navbar-toggler-icon {
+    filter: brightness(200%);
+}
+
+
+/* Make nav links block level with padding for full clickable area */
+.custom-navbar .nav-link {
+  display: block;           /* Full width */
+  padding: 0.5rem 1rem;     /* Comfortable padding */
+  color: white !important;
+  transition: background-color 0.3s ease, color 0.3s ease;
+  border-radius: 0.25rem;  /* Rounded edges on hover */
+}
+
+/* Hover effect on full nav-link area */
+.custom-navbar .nav-link:hover,
+.custom-navbar .nav-link:focus {
+  background-color: rgba(255, 255, 255, 0.15);
+  color: #e2f2fd !important;
+  text-decoration: none;
+}
+
+/* For mobile: nav links stack vertically by default, so padding + hover works fine */
+
+/* Optional: spacing between stacked nav items */
+.custom-navbar .navbar-collapse .nav-item:not(:last-child) {
+  margin-bottom: 0.5rem;
+}
