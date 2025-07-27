@@ -1,0 +1,20 @@
+package com.ece.ece_website.repository;
+
+import com.ece.ece_website.entity.Project;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
+
+import java.util.List;
+import java.util.Optional;
+
+@Repository
+public interface ProjectRepository extends JpaRepository<Project, Long> {
+    List<Project> findAll(); // list all projects
+
+    Optional<Project> findByProjectName(String name); // search by name
+
+    List<Project> addProject(Project project); // add project
+
+    // TODO: ADD MORE QUERIES IF NEEDED
+
+}
