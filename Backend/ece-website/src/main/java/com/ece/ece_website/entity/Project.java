@@ -32,5 +32,9 @@ public class Project {
         if (uuid == null) {
             uuid = UUID.randomUUID();
         }
+
+        if (date == null) {
+            date = LocalDate.now();
+        }
     }
 }
