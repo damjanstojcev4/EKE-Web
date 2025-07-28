@@ -1,18 +1,22 @@
 package com.ece.ece_website.entity;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import lombok.Data;
+import jakarta.persistence.*;
+import lombok.*;
 
 import java.time.LocalDate;
+import java.util.UUID;
 
-//@Entity
+@Entity
+@Table(name = "projects")
 @Data
 public class Project {
-    // @Id
-    // @GeneratedValue(strategy = GenerationType.IDENTITY)
+     @Id
+     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
+
+     @Column(nullable = false, unique = true, updatable = false)
+     private UUID uuid = UUID.randomUUID();
+
     private String title;
     private long budget;
     private String description;
@@ -22,4 +26,11 @@ public class Project {
 
 //    TODO: projectDuration, partners, members from other countries(nullable), startTime, place, coverImage
 //    TODO: activities, tags(nullable), contactOfResponsiblePerson
+
+    @PrePersist
+    protected void onCreate() {
+        if (uuid == null) {
+            uuid = UUID.randomUUID();
+        }
+    }
 }

@@ -18,9 +18,9 @@ public class ProjectService {
         return projectRepository.findAll();
     }
 
-    public Project findByName(String name) {
-        return projectRepository.findByProjectName(name)
-                .orElseThrow(() -> new RuntimeException("Project with name " + name + " not found"));
+    public Project findByName(String title) {
+        return projectRepository.findByTitle(title)
+                .orElseThrow(() -> new RuntimeException("Project with name " + title + " not found"));
 
         // use custom exception class
         // and DTO to throw error code and not crash the app

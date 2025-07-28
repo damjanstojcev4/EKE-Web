@@ -11,9 +11,7 @@ import java.util.Optional;
 public interface ProjectRepository extends JpaRepository<Project, Long> {
     List<Project> findAll(); // list all projects
 
-    Optional<Project> findByProjectName(String name); // search by name
-
-    List<Project> addProject(Project project); // add project
+    Optional<Project> findByTitle(String title); // search by name
 
     // TODO: ADD MORE QUERIES IF NEEDED
 

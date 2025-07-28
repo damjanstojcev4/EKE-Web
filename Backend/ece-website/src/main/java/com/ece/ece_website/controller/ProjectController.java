@@ -3,13 +3,13 @@ package com.ece.ece_website.controller;
 import com.ece.ece_website.entity.Project;
 import com.ece.ece_website.service.ProjectService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+@CrossOrigin("*")
 @RestController("/")
 public class ProjectController {
 
@@ -22,7 +22,8 @@ public class ProjectController {
     }
 
     @PostMapping()
-    Project addProject(@RequestBody Project project) {
-        return projectService.save(project);
+    public ResponseEntity<Project> addProject(@RequestBody Project project) {
+        Project savedProject = projectService.save(project);
+        return new ResponseEntity<>(savedProject, HttpStatus.CREATED); // 201
     }
 }
