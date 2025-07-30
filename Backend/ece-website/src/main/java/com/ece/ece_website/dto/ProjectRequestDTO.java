@@ -12,8 +12,5 @@ public class ProjectRequestDTO {
     private String description;
     private String quickSummary;
     private String durationDate;
-    private LocalDate date;
     List<String> partners;
-
-
 }
