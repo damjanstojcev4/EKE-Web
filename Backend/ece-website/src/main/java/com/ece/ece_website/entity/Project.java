@@ -4,6 +4,8 @@ import jakarta.persistence.*;
 import lombok.*;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.UUID;
 
 @Entity
@@ -22,9 +24,12 @@ public class Project {
     private String description;
     // pictures
     private String quickSummary;
-    private LocalDate date; // when was, when is, date added?
+    private String durationDate;
+    @ElementCollection
+    private List<String> partners = new ArrayList<>();
+    private LocalDate date;
 
-//    TODO: projectDuration, partners, members from other countries(nullable), startTime, place, coverImage
+//    TODO: partners place, coverImage
 //    TODO: activities, tags(nullable), contactOfResponsiblePerson
 
     @PrePersist

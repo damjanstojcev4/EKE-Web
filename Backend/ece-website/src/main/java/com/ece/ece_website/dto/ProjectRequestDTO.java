@@ -3,6 +3,7 @@ package com.ece.ece_website.dto;
 import lombok.Data;
 
 import java.time.LocalDate;
+import java.util.List;
 
 @Data
 public class ProjectRequestDTO {
@@ -10,7 +11,9 @@ public class ProjectRequestDTO {
     private long budget;
     private String description;
     private String quickSummary;
+    private String durationDate;
     private LocalDate date;
+    List<String> partners;
 
 
 }

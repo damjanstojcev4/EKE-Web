@@ -2,9 +2,9 @@ package com.ece.ece_website.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
-import lombok.RequiredArgsConstructor;
 
 import java.time.LocalDate;
+import java.util.List;
 import java.util.UUID;
 
 @Data
@@ -15,5 +15,7 @@ public class ProjectResponseDTO {
     private long budget;
     private String description;
     private String quickSummary;
+    private String durationDate;
     private LocalDate date;
+    List<String> partners;
 }

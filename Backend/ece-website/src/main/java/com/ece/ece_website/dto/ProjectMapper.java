@@ -11,7 +11,9 @@ public class ProjectMapper {
                 project.getBudget(),
                 project.getDescription(),
                 project.getQuickSummary(),
-                project.getDate()
+                project.getDurationDate(),
+                project.getDate(),
+                project.getPartners()
         );
     }
 
@@ -21,7 +23,9 @@ public class ProjectMapper {
         project.setBudget(dto.getBudget());
         project.setDescription(dto.getDescription());
         project.setQuickSummary(dto.getQuickSummary());
+        project.setDurationDate(dto.getDurationDate());
         project.setDate(dto.getDate());
+        project.setPartners(dto.getPartners());
         return project;
     }
 }
