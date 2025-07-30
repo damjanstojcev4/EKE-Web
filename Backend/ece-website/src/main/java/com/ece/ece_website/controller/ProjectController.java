@@ -11,6 +11,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.UUID;
 import java.util.stream.Collectors;
 
 @CrossOrigin("*")
@@ -34,5 +35,13 @@ public class ProjectController {
         Project saved = projectService.save(savedProject);
         ProjectResponseDTO responseDTO = ProjectMapper.toDTO(saved);
         return new ResponseEntity<>(responseDTO, HttpStatus.CREATED); // 201
+    }
+
+    @PutMapping("/{uuid}")
+    public ResponseEntity<ProjectResponseDTO> updateProject(@PathVariable UUID uuid,
+                                                            @RequestBody ProjectRequestDTO project) {
+        ProjectResponseDTO updatedProject = projectService.updateProject(uuid, project);
+
+        return new ResponseEntity<>(updatedProject, HttpStatus.OK);
     }
 }

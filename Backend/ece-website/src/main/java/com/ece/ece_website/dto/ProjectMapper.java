@@ -24,7 +24,6 @@ public class ProjectMapper {
         project.setDescription(dto.getDescription());
         project.setQuickSummary(dto.getQuickSummary());
         project.setDurationDate(dto.getDurationDate());
-        project.setDate(dto.getDate());
         project.setPartners(dto.getPartners());
         return project;
     }
