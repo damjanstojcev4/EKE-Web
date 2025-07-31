@@ -44,4 +44,11 @@ public class ProjectController {
 
         return new ResponseEntity<>(updatedProject, HttpStatus.OK);
     }
+
+    @DeleteMapping("{uuid}")
+    public ResponseEntity<Void> deleteProject(@PathVariable UUID uuid) {
+        projectService.deleteProject(uuid);
+
+        return ResponseEntity.noContent().build();
+    }
 }

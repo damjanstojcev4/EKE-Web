@@ -50,4 +50,11 @@ public class ProjectService {
 
         return ProjectMapper.toDTO(project);
     }
+
+    public void deleteProject(UUID uuid) {
+        Project project = projectRepository.findByUuid(uuid)
+                .orElseThrow(() -> new RuntimeException("Project with UUID " + uuid + " not found"));
+
+        projectRepository.delete(project);
+    }
 }
