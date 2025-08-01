@@ -1,12 +1,12 @@
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { BrowserRouter as Router } from 'react-router-dom';
 import Navbar from './components/Navbar.tsx';
-import Hero from './components/Hero.tsx';
+import Home from './components/Home.tsx';
 
 function App() {
   return (
     <Router>
       <Navbar />
-      <Hero />
+      <Home />
     </Router>
   );
 }
