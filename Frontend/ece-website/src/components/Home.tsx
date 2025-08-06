@@ -86,6 +86,7 @@ const Home = () => {
                 local community and abroad.
               </p>
             </div>
+            
           </div>
         </div>
       </section>

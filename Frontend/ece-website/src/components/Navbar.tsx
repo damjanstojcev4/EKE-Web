@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
-import logo from '../assets/logo-ece.png';
+import logo from '/src/assets/EKE_logo_no_background-gpt.png';
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -14,14 +14,14 @@ const Navbar = () => {
   ];
 
   return (
-    <nav className="backdrop-blur-md bg-blue-500/30 fixed w-full top-0 z-50 shadow-md border-b border-white/10">
+    <nav className="backdrop-blur-md bg-cyan-950/90 fixed w-full top-0 z-50 shadow-md border-b border-white/10">
       <div className="flex items-center justify-between px-6 py-4">
         {/* Logo and Title */}
         <div className="flex items-center space-x-3">
-          <img src={logo} alt="Logo" className="h-8 w-8 object-contain" />
-          <span className="text-white font-semibold text-lg">
-            European Cultural Epicentar
-          </span>
+          <img src={logo} alt="Logo" className="h-20 w-20 object-contain" />
+          {/* <span className="text-white font-semibold text-lg">
+            EKE Bitola
+          </span> */}
         </div>
 
         {/* Hamburger Button (shown below lg) */}
