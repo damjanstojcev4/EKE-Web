@@ -18,4 +18,5 @@ public class ProjectResponseDTO {
     private String durationDate;
     private LocalDate date;
     List<String> partners;
+    private String imageBase64;
 }

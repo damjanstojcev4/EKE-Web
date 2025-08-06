@@ -22,15 +22,15 @@ public class Project {
     private String title;
     private long budget;
     private String description;
-    // pictures
     private String quickSummary;
     private String durationDate;
     @ElementCollection
     private List<String> partners = new ArrayList<>();
     private LocalDate date;
 
-//    TODO: partners place, coverImage
-//    TODO: activities, tags(nullable), contactOfResponsiblePerson
+    @Lob
+    @Column(name = "image_date", columnDefinition = "BLOB")
+    private byte[] image;
 
     @PrePersist
     protected void onCreate() {

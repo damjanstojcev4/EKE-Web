@@ -1,11 +1,15 @@
 package com.ece.ece_website.dto;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.time.LocalDate;
 import java.util.List;
 
 @Data
+@NoArgsConstructor
+@AllArgsConstructor
 public class ProjectRequestDTO {
     private String title;
     private long budget;
