@@ -6,9 +6,9 @@ import org.apache.tomcat.util.codec.binary.Base64;
 public class ProjectMapper {
 
     public static ProjectResponseDTO toDTO(Project project) {
-        String imageBase64 = null;
-        if (project.getImage() != null) {
-            imageBase64 = Base64.encodeBase64String(project.getImage());
+        String imageUrl = null;
+        if (project.getImageFilePath() != null) {
+            imageUrl = "/images/" + project.getImageFilePath(); // static url ??
         }
 
         return new ProjectResponseDTO(
@@ -16,12 +16,11 @@ public class ProjectMapper {
                 project.getTitle(),
                 project.getBudget(),
                 project.getDescription(),
+                imageUrl,
                 project.getQuickSummary(),
                 project.getDurationDate(),
-                project.getDate(),
-                project.getPartners(),
-                imageBase64
-        );
+                project.getPartners()
+                );
     }
 
     public static Project fromDTO(ProjectRequestDTO dto) {

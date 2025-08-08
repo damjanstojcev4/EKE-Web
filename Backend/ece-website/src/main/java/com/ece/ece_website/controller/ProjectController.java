@@ -14,10 +14,12 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
+import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 import java.util.stream.Collectors;
@@ -25,6 +27,9 @@ import java.util.stream.Collectors;
 @CrossOrigin("*")
 @RestController("/")
 public class ProjectController {
+
+    private static final String UPLOAD_DIR = System.getProperty("user.dir") + "/uploads/images/";
+
 
     @Autowired
     private ProjectService projectService;
@@ -37,47 +42,6 @@ public class ProjectController {
                 .collect(Collectors.toList());
     }
 
-    @GetMapping("{uuid}/image")
-    public ResponseEntity<byte[]> getImage(@PathVariable String uuid) {
-        Project project = projectService.findByName(uuid); // throw 404 if not found
-
-        byte[] image = project.getImage();
-        if (image == null) {
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-        }
-
-        HttpHeaders headers = new HttpHeaders();
-        headers.setContentType(MediaType.IMAGE_PNG); // change to jpeg
-
-        return new ResponseEntity<>(image, headers, HttpStatus.OK);
-    }
-
-    @PostMapping(value = "/projects", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
-    public ResponseEntity<ProjectResponseDTO> addProject(
-            @RequestPart("project") String projectJson,
-            @RequestPart("image") MultipartFile imageFile) {
-
-        try {
-            // Convert JSON string to DTO
-            ObjectMapper mapper = new ObjectMapper();
-            ProjectRequestDTO dto = mapper.readValue(projectJson, ProjectRequestDTO.class);
-
-            // Convert DTO to Entity
-            Project project = ProjectMapper.fromDTO(dto);
-
-            // Store image as byte array
-            project.setImage(imageFile.getBytes());
-
-            Project saved = projectService.save(project);
-            ProjectResponseDTO response = ProjectMapper.toDTO(saved);
-
-            return ResponseEntity.status(HttpStatus.CREATED).body(response);
-
-        } catch (Exception e) {
-            e.printStackTrace();
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
-        }
-    }
 
     @PutMapping("/{uuid}")
     public ResponseEntity<ProjectResponseDTO> updateProject(@PathVariable UUID uuid,
@@ -93,4 +57,44 @@ public class ProjectController {
 
         return ResponseEntity.noContent().build();
     }
+
+    @PostMapping("/projects")
+    public ResponseEntity<ProjectResponseDTO> addProject(
+            @RequestParam("title") String title,
+            @RequestParam("budget") long budget,
+            @RequestParam("description") String description,
+            @RequestParam("quickSummary") String quickSummary,
+            @RequestParam("durationDate") String durationDate,
+            @RequestParam("partners") List<String> partners,
+            @RequestParam("image") MultipartFile imageFile) throws IOException {
+
+        // Make sure folder exists
+        File uploadDir = new File(UPLOAD_DIR);
+        if (!uploadDir.exists()) {
+            uploadDir.mkdirs();
+        }
+
+        // Create unique file name
+        String fileName = UUID.randomUUID() + "_" + imageFile.getOriginalFilename();
+        String filePath = UPLOAD_DIR + fileName;
+
+        // Save file to disk
+        imageFile.transferTo(new File(filePath));
+
+        // Save project data in DB
+        Project project = new Project();
+        project.setTitle(title);
+        project.setBudget(budget);
+        project.setDescription(description);
+        project.setQuickSummary(quickSummary);
+        project.setDurationDate(durationDate);
+        project.setPartners(partners);
+        project.setImageFilePath(fileName); // public path
+
+        Project saved = projectService.save(project);
+
+        return ResponseEntity.ok(ProjectMapper.toDTO(saved));
+    }
+
 }
+

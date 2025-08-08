@@ -14,9 +14,8 @@ public class ProjectResponseDTO {
     private String title;
     private long budget;
     private String description;
+    private String image;
     private String quickSummary;
     private String durationDate;
-    private LocalDate date;
     List<String> partners;
-    private String imageBase64;
 }
