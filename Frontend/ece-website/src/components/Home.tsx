@@ -2,6 +2,7 @@ import heroImage from '../assets/hero-background.jpg';
 import { motion } from 'framer-motion';
 import { FaCheckCircle } from 'react-icons/fa';
 import { Eye, Zap } from 'lucide-react';
+import Partners from './Partners';
 
 const Home = () => {
   const aims = [
@@ -144,6 +145,9 @@ const Home = () => {
           </div>
         </div>
       </section>
+
+      {/* Partners Section */}
+      <Partners/>
     </>
   );
 };
