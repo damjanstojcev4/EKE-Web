@@ -19,7 +19,8 @@ public class ProjectMapper {
                 imageUrl,
                 project.getQuickSummary(),
                 project.getDurationDate(),
-                project.getPartners()
+                project.getPartners(),
+                project.getStatus()
                 );
     }
 
@@ -31,6 +32,11 @@ public class ProjectMapper {
         project.setQuickSummary(dto.getQuickSummary());
         project.setDurationDate(dto.getDurationDate());
         project.setPartners(dto.getPartners());
+
+        if (dto.getStatus() != null) {
+            project.setStatus(dto.getStatus());
+        }
+
         return project;
     }
 }

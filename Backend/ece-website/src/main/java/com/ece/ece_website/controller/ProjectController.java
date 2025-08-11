@@ -3,7 +3,9 @@ package com.ece.ece_website.controller;
 import com.ece.ece_website.dto.ProjectMapper;
 import com.ece.ece_website.dto.ProjectRequestDTO;
 import com.ece.ece_website.dto.ProjectResponseDTO;
+import com.ece.ece_website.dto.ProjectUpdateRequestDTO;
 import com.ece.ece_website.entity.Project;
+import com.ece.ece_website.entity.ProjectStatus;
 import com.ece.ece_website.service.ProjectService;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,6 +21,7 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.nio.file.StandardCopyOption;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
@@ -42,13 +45,40 @@ public class ProjectController {
                 .collect(Collectors.toList());
     }
 
+    @PutMapping(value = "/{uuid}", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
+    public ResponseEntity<ProjectResponseDTO> updateProject(
+            @PathVariable UUID uuid,
+            @RequestParam("title") String title,
+            @RequestParam("budget") int budget,
+            @RequestParam("description") String description,
+            @RequestParam("quickSummary") String quickSummary,
+            @RequestParam("durationDate") String durationDate,
+            @RequestParam("partners") List<String> partners,
+            @RequestParam("status") ProjectStatus status,
+            @RequestParam(value = "image", required = false) MultipartFile imageFile) throws IOException {
 
-    @PutMapping("/{uuid}")
-    public ResponseEntity<ProjectResponseDTO> updateProject(@PathVariable UUID uuid,
-                                                            @RequestBody ProjectRequestDTO project) {
-        ProjectResponseDTO updatedProject = projectService.updateProject(uuid, project);
+        Project existing = projectService.findByUuid(uuid);
 
-        return new ResponseEntity<>(updatedProject, HttpStatus.OK);
+        existing.setTitle(title);
+        existing.setBudget(budget);
+        existing.setDescription(description);
+        existing.setQuickSummary(quickSummary);
+        existing.setDurationDate(durationDate);
+        existing.setPartners(partners);
+        existing.setStatus(status);
+
+        // If image is uploaded → replace, else keep the old one
+        if (imageFile != null && !imageFile.isEmpty()) {
+            String fileName = UUID.randomUUID() + "_" + imageFile.getOriginalFilename();
+            Path imagePath = Paths.get(UPLOAD_DIR + fileName);
+            Files.createDirectories(imagePath.getParent());
+            Files.copy(imageFile.getInputStream(), imagePath, StandardCopyOption.REPLACE_EXISTING);
+            existing.setImageFilePath(fileName);
+        }
+
+        Project updated = projectService.save(existing);
+
+        return ResponseEntity.ok(ProjectMapper.toDTO(updated));
     }
 
     @DeleteMapping("{uuid}")
@@ -66,7 +96,8 @@ public class ProjectController {
             @RequestParam("quickSummary") String quickSummary,
             @RequestParam("durationDate") String durationDate,
             @RequestParam("partners") List<String> partners,
-            @RequestParam("image") MultipartFile imageFile) throws IOException {
+            @RequestParam("image") MultipartFile imageFile,
+            @RequestParam(value = "status", required = false, defaultValue = "ON GOING")String statusStr) throws IOException {
 
         // Make sure folder exists
         File uploadDir = new File(UPLOAD_DIR);
@@ -80,6 +111,14 @@ public class ProjectController {
 
         // Save file to disk
         imageFile.transferTo(new File(filePath));
+
+        // Map status string to enum, default to ONGOING if invalid
+        ProjectStatus status;
+        try {
+            status = ProjectStatus.valueOf(statusStr.toUpperCase());
+        } catch (IllegalArgumentException e) {
+            status = ProjectStatus.ON_GOING;
+        }
 
         // Save project data in DB
         Project project = new Project();

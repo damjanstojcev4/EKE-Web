@@ -28,6 +28,8 @@ public class Project {
     @ElementCollection
     private List<String> partners = new ArrayList<>();
     private LocalDate date;
+    @Enumerated(EnumType.STRING)
+    private ProjectStatus status;
 
     @PrePersist
     protected void onCreate() {
@@ -37,6 +39,10 @@ public class Project {
 
         if (date == null) {
             date = LocalDate.now();
+        }
+
+        if (status == null) {
+            status = ProjectStatus.ON_GOING; // default setting for creating project
         }
     }
 }

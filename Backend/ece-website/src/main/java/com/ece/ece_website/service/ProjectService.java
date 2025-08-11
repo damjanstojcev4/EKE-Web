@@ -30,6 +30,11 @@ public class ProjectService {
         // and DTO to throw error code and not crash the app
     }
 
+    public Project findByUuid(UUID uuid) {
+        return projectRepository.findByUuid(uuid)
+                .orElseThrow(() -> new RuntimeException("Project with uuid " + uuid + " not found"));
+    }
+
     public Project save(Project project) {
         return projectRepository.save(project);
     }
@@ -38,7 +43,6 @@ public class ProjectService {
         Project project = projectRepository.findByUuid(uuid)
                 .orElseThrow(() -> new RuntimeException("Project with UUID " + uuid + " not found"));
 
-        // update fields
         project.setTitle(dto.getTitle());
         project.setBudget(dto.getBudget());
         project.setDescription(dto.getDescription());
@@ -46,9 +50,14 @@ public class ProjectService {
         project.setDurationDate(dto.getDurationDate());
         project.setPartners(dto.getPartners());
 
-        project = projectRepository.save(project);
+        if (dto.getStatus() != null) {
+            project.setStatus(dto.getStatus());
+        }
+        // If status not sent in DTO, keep current status as is
 
-        return ProjectMapper.toDTO(project);
+        Project updatedProject = projectRepository.save(project);
+
+        return ProjectMapper.toDTO(updatedProject);
     }
 
     public void deleteProject(UUID uuid) {

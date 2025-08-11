@@ -1,5 +1,6 @@
 package com.ece.ece_website.dto;
 
+import com.ece.ece_website.entity.ProjectStatus;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -17,4 +18,5 @@ public class ProjectRequestDTO {
     private String quickSummary;
     private String durationDate;
     List<String> partners;
+    private ProjectStatus status;
 }
