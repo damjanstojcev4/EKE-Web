@@ -19,9 +19,10 @@ const Navbar = () => {
         {/* Logo and Title */}
         <div className="flex items-center space-x-3">
           <img src={logo} alt="Logo" className="h-20 w-20 object-contain" />
-          {/* <span className="text-white font-semibold text-lg">
+          {/* ECE text only on lg and above */}
+          <span className="hidden lg:inline text-white font-semibold text-lg">
             EKE Bitola
-          </span> */}
+          </span>
         </div>
 
         {/* Hamburger Button (shown below lg) */}
