@@ -18,6 +18,7 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
 import java.util.List;
+import java.util.Optional;
 import java.util.UUID;
 import java.util.stream.Collectors;
 
@@ -39,7 +40,12 @@ public class ProjectController {
                 .collect(Collectors.toList());
     }
 
-    @PutMapping(value = "/{uuid}", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
+    @GetMapping(value = "{title}")
+    public Project getProjectByTitle(@PathVariable String title) {
+        return projectService.findByName(title);
+    }
+
+    @PutMapping(value = "{uuid}", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
     public ResponseEntity<ProjectResponseDTO> updateProject(
             @PathVariable UUID uuid,
             @RequestParam("title") String title,
