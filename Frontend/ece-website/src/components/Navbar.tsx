@@ -18,7 +18,7 @@ const Navbar = () => {
       <div className="flex items-center justify-between px-6 py-4">
         {/* Logo and Title */}
         <div className="flex items-center space-x-3">
-          <img src={logo} alt="Logo" className="h-20 w-20 object-contain" />
+          <Link to="/"><img src={logo} alt="Logo" className="h-20 w-20 object-contain" /></Link>
           {/* ECE text only on lg and above */}
           <span className="hidden lg:inline text-white font-semibold text-lg">
             EKE Bitola
