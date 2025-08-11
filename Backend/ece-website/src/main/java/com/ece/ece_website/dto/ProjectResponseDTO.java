@@ -20,4 +20,5 @@ public class ProjectResponseDTO {
     private String durationDate;
     List<String> partners;
     private ProjectStatus status;
+    private String pdfUrl;
 }

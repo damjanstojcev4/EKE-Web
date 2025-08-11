@@ -1,7 +1,6 @@
 package com.ece.ece_website.dto;
 
 import com.ece.ece_website.entity.Project;
-import org.apache.tomcat.util.codec.binary.Base64;
 
 public class ProjectMapper {
 
@@ -9,6 +8,11 @@ public class ProjectMapper {
         String imageUrl = null;
         if (project.getImageFilePath() != null) {
             imageUrl = "/images/" + project.getImageFilePath(); // static url ??
+        }
+
+        String pdfFileUrl = null;
+        if (project.getPdfFilePath() != null) {
+            pdfFileUrl = "/pdfs/" + project.getPdfFilePath();
         }
 
         return new ProjectResponseDTO(
@@ -20,7 +24,8 @@ public class ProjectMapper {
                 project.getQuickSummary(),
                 project.getDurationDate(),
                 project.getPartners(),
-                project.getStatus()
+                project.getStatus(),
+                pdfFileUrl
                 );
     }
 

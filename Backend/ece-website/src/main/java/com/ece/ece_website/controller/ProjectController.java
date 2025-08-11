@@ -1,16 +1,11 @@
 package com.ece.ece_website.controller;
 
 import com.ece.ece_website.dto.ProjectMapper;
-import com.ece.ece_website.dto.ProjectRequestDTO;
 import com.ece.ece_website.dto.ProjectResponseDTO;
-import com.ece.ece_website.dto.ProjectUpdateRequestDTO;
 import com.ece.ece_website.entity.Project;
 import com.ece.ece_website.entity.ProjectStatus;
 import com.ece.ece_website.service.ProjectService;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpHeaders;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -22,7 +17,6 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 import java.util.stream.Collectors;
@@ -55,10 +49,12 @@ public class ProjectController {
             @RequestParam("durationDate") String durationDate,
             @RequestParam("partners") List<String> partners,
             @RequestParam("status") ProjectStatus status,
-            @RequestParam(value = "image", required = false) MultipartFile imageFile) throws IOException {
+            @RequestParam(value = "image", required = false) MultipartFile imageFile,
+            @RequestParam(value = "pdf", required = false) MultipartFile pdfFile) throws IOException {
 
         Project existing = projectService.findByUuid(uuid);
 
+        // Update fields
         existing.setTitle(title);
         existing.setBudget(budget);
         existing.setDescription(description);
@@ -67,13 +63,22 @@ public class ProjectController {
         existing.setPartners(partners);
         existing.setStatus(status);
 
-        // If image is uploaded → replace, else keep the old one
+        // Handle image upload if present
         if (imageFile != null && !imageFile.isEmpty()) {
-            String fileName = UUID.randomUUID() + "_" + imageFile.getOriginalFilename();
-            Path imagePath = Paths.get(UPLOAD_DIR + fileName);
+            String imageFileName = UUID.randomUUID() + "_" + imageFile.getOriginalFilename();
+            Path imagePath = Paths.get(UPLOAD_DIR, imageFileName);
             Files.createDirectories(imagePath.getParent());
             Files.copy(imageFile.getInputStream(), imagePath, StandardCopyOption.REPLACE_EXISTING);
-            existing.setImageFilePath(fileName);
+            existing.setImageFilePath(imageFileName);
+        }
+
+        // Handle PDF upload if present
+        if (pdfFile != null && !pdfFile.isEmpty()) {
+            String pdfFileName = UUID.randomUUID() + "_" + pdfFile.getOriginalFilename();
+            Path pdfPath = Paths.get(UPLOAD_DIR, pdfFileName);
+            Files.createDirectories(pdfPath.getParent());
+            Files.copy(pdfFile.getInputStream(), pdfPath, StandardCopyOption.REPLACE_EXISTING);
+            existing.setPdfFilePath(pdfFileName);
         }
 
         Project updated = projectService.save(existing);
@@ -97,30 +102,43 @@ public class ProjectController {
             @RequestParam("durationDate") String durationDate,
             @RequestParam("partners") List<String> partners,
             @RequestParam("image") MultipartFile imageFile,
+            @RequestParam(value = "pdf", required = false) MultipartFile pdfFile,
             @RequestParam(value = "status", required = false, defaultValue = "ON GOING")String statusStr) throws IOException {
 
-        // Make sure folder exists
-        File uploadDir = new File(UPLOAD_DIR);
-        if (!uploadDir.exists()) {
-            uploadDir.mkdirs();
+        // Make sure folders exist
+        File imageDir = new File(UPLOAD_DIR);
+        if (!imageDir.exists()) {
+            imageDir.mkdirs();
         }
 
-        // Create unique file name
-        String fileName = UUID.randomUUID() + "_" + imageFile.getOriginalFilename();
-        String filePath = UPLOAD_DIR + fileName;
+        // Check if folder exists
+        File pdfDir = new File(UPLOAD_DIR + "pdf/");
+        if (!pdfDir.exists()) {
+            pdfDir.mkdirs();
+        }
 
-        // Save file to disk
-        imageFile.transferTo(new File(filePath));
+        // Save image
+        String imageFileName = UUID.randomUUID() + "_" + imageFile.getOriginalFilename();
+        String imageFilePath = UPLOAD_DIR + imageFileName;
+        imageFile.transferTo(new File(imageFilePath));
 
-        // Map status string to enum, default to ONGOING if invalid
+        // Save PDF if provided
+        String pdfFileName = null;
+        if (pdfFile != null && !pdfFile.isEmpty()) {
+            pdfFileName = UUID.randomUUID() + "_" + pdfFile.getOriginalFilename();
+            String pdfFilePath = pdfDir.getAbsolutePath() + File.separator + pdfFileName;
+            pdfFile.transferTo(new File(pdfFilePath));
+        }
+
+        // Map status string to enum
         ProjectStatus status;
         try {
-            status = ProjectStatus.valueOf(statusStr.toUpperCase());
+            status = ProjectStatus.valueOf(statusStr.toUpperCase().replace(" ", "_"));
         } catch (IllegalArgumentException e) {
             status = ProjectStatus.ON_GOING;
         }
 
-        // Save project data in DB
+        // Save to DB
         Project project = new Project();
         project.setTitle(title);
         project.setBudget(budget);
@@ -128,7 +146,9 @@ public class ProjectController {
         project.setQuickSummary(quickSummary);
         project.setDurationDate(durationDate);
         project.setPartners(partners);
-        project.setImageFilePath(fileName); // public path
+        project.setImageFilePath(imageFileName);
+        project.setPdfFilePath(pdfFileName); // store PDF path in DB
+        project.setStatus(status);
 
         Project saved = projectService.save(project);
 

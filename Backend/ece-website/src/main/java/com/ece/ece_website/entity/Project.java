@@ -30,6 +30,7 @@ public class Project {
     private LocalDate date;
     @Enumerated(EnumType.STRING)
     private ProjectStatus status;
+    private String pdfFilePath;
 
     @PrePersist
     protected void onCreate() {
