@@ -35,6 +35,10 @@ public class ProjectService {
                 .orElseThrow(() -> new RuntimeException("Project with uuid " + uuid + " not found"));
     }
 
+    public List<Project> latestProject() {
+        return projectRepository.findLatestProjects();
+    }
+
     public Project save(Project project) {
         return projectRepository.save(project);
     }

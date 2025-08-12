@@ -45,6 +45,14 @@ public class ProjectController {
         return projectService.findByName(title);
     }
 
+    @GetMapping("recent/")
+    public List<ProjectResponseDTO> getRecentProjects() {
+        return projectService.latestProject()
+                .stream()
+                .map(ProjectMapper::toDTO)
+                .collect(Collectors.toList());
+    }
+
     @PutMapping(value = "{uuid}", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
     public ResponseEntity<ProjectResponseDTO> updateProject(
             @PathVariable UUID uuid,

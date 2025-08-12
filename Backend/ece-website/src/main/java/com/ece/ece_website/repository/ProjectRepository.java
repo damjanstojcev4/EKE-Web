@@ -2,6 +2,7 @@ package com.ece.ece_website.repository;
 
 import com.ece.ece_website.entity.Project;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -16,6 +17,10 @@ public interface ProjectRepository extends JpaRepository<Project, Long> {
 
     // Search for Admin
     Optional<Project> findByUuid(UUID uuid);
+
+    // Recent Projects Search
+    @Query(value = "SELECT * FROM projects ORDER BY date DESC LIMIT 3", nativeQuery = true)
+    List<Project> findLatestProjects();
 
     // TODO: ADD MORE QUERIES IF NEEDED
 
