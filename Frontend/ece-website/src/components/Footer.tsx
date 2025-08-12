@@ -97,91 +97,56 @@ const Footer = () => {
           </div>
 
           {/* Follow Us Section */}
-          <div className="flex flex-col space-y-6">
-            <h3 className="text-xl font-semibold mb-2">Follow Us</h3>
-            <div className="flex space-x-4">
-              <a
-                href="#"
-                className="p-3 bg-slate-700 rounded-full hover:bg-orange-400 transition-colors duration-200"
-              >
-                {/* Facebook Icon */}
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="20"
-                  height="20"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="white"
-                  strokeWidth="2"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                >
-                  <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z" />
-                </svg>
-              </a>
-              <a
-                href="#"
-                className="p-3 bg-slate-700 rounded-full hover:bg-orange-400 transition-colors duration-200"
-              >
-                {/* Twitter Icon */}
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="20"
-                  height="20"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="white"
-                  strokeWidth="2"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                >
-                  <path d="M22 4s-.7 2.1-2 3.4c1.6 10-9.4 11.4-14.7 10.4 3.7.6 7.6-.4 9.4-1.9-3.4-.6-6.5-3.1-7.5-7.7.8.1 1.5.1 2.4-.1-3.6-.8-6.4-4-7-7.9 1.1.5 2.2.8 3.5.8C4.5 7.7 3.3 5.3 3.6 2.3c3.7 3.9 7.6 6 11.9 6.2-.3-2.6 1-5 2.7-6.5C20.6 2.5 22 2 22 4z" />
-                </svg>
-              </a>
-              <a
-                href="#"
-                className="p-3 bg-slate-700 rounded-full hover:bg-orange-400 transition-colors duration-200"
-              >
-                {/* Instagram Icon */}
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="20"
-                  height="20"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="white"
-                  strokeWidth="2"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                >
-                  <rect width="20" height="20" x="2" y="2" rx="5" ry="5" />
-                  <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" />
-                  <line x1="17.5" x2="17.5" y1="6.5" y2="6.5" />
-                </svg>
-              </a>
-              <a
-                href="#"
-                className="p-3 bg-slate-700 rounded-full hover:bg-orange-400 transition-colors duration-200"
-              >
-                {/* Linkedin Icon */}
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="20"
-                  height="20"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="white"
-                  strokeWidth="2"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                >
-                  <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z" />
-                  <rect width="4" height="12" x="2" y="9" />
-                  <circle cx="4" cy="4" r="2" />
-                </svg>
-              </a>
-            </div>
-          </div>
+<div className="flex flex-col space-y-6">
+  <h3 className="text-xl font-semibold mb-2">Follow Us</h3>
+  <div className="flex space-x-4">
+    {/* Facebook */}
+    <a
+      href="https://www.facebook.com/EKEBitola"
+      target="_blank"
+      rel="noopener noreferrer"
+      className="p-3 bg-slate-700 rounded-full hover:bg-orange-400 transition-colors duration-200"
+    >
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        width="20"
+        height="20"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="white"
+        strokeWidth="2"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      >
+        <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z" />
+      </svg>
+    </a>
+
+    {/* Instagram */}
+    <a
+      href="https://www.instagram.com/eke.bitola/"
+      target="_blank"
+      rel="noopener noreferrer"
+      className="p-3 bg-slate-700 rounded-full hover:bg-orange-400 transition-colors duration-200"
+    >
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        width="20"
+        height="20"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="white"
+        strokeWidth="2"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      >
+        <rect width="20" height="20" x="2" y="2" rx="5" ry="5" />
+        <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" />
+        <line x1="17.5" x2="17.5" y1="6.5" y2="6.5" />
+      </svg>
+    </a>
+  </div>
+</div>
 
           {/* Where Are We? Section */}
           <div className="flex flex-col space-y-6">
