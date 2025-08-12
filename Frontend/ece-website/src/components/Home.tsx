@@ -3,6 +3,7 @@ import { motion } from 'framer-motion';
 import { FaCheckCircle } from 'react-icons/fa';
 import { Eye, Zap } from 'lucide-react';
 import Partners from './Partners';
+import Footer from './Footer';
 
 const Home = () => {
   const aims = [
@@ -148,6 +149,7 @@ const Home = () => {
 
       {/* Partners Section */}
       <Partners/>
+      <Footer/>
     </>
   );
 };

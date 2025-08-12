@@ -6,8 +6,6 @@ import partner5 from "../assets/logo-black-white.png";
 import partner6 from "../assets/logo-black-white.png";
 
 
-
-
 const Partners = () => {
 const partners = [
   { name: "EduCompass", logo: partner1 },
