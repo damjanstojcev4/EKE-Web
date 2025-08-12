@@ -14,6 +14,9 @@
 GET /
 ```
 ```
+GET/recent/
+```
+```
 GET/ {TITLE}
 ```
 ```
