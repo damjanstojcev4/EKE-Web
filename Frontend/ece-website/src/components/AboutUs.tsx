@@ -1,5 +1,6 @@
 import Footer from "./Footer";
 import Navbar from "./Navbar";
+import OurTeam from "./OurTeam";
 
 const AboutUs = () => {
      return (
@@ -46,13 +47,13 @@ const AboutUs = () => {
             <div className="p-8 rounded-2xl shadow-xl transition-all duration-300 transform hover:scale-105 bg-white/5 backdrop-blur-xl border border-gray-600/50">
               <h3 className="text-xl font-bold text-orange-400 mb-2">Our Team and Hub</h3>
               <p className="text-sm sm:text-base leading-relaxed text-gray-200">
-                Our team consists of four regular staff members and four to six dedicated volunteers, with additional experts hired as needed. Located in the heart of Bitola, our 200 $m^2$ office is a vibrant hub where we implement our activities and provide a valuable space for civic initiatives from the local community.
+                Our team consists of four regular staff members and four to six dedicated volunteers, with additional experts hired as needed. Located in the heart of Bitola, our 200m<sup>2</sup> office is a vibrant hub where we implement our activities and provide a valuable space for civic initiatives from the local community.
               </p>
             </div>
           </div>
         </div>
       </div>
-      
+      <OurTeam/>
       <Footer />
     </div>
   );
