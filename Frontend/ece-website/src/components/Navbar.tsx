@@ -76,7 +76,7 @@ const Navbar = () => {
 
       {/* Mobile Menu */}
       {isOpen && (
-        <ul className="lg:hidden flex flex-col px-6 pb-4 space-y-2 bg-blue-300/20">
+        <ul className="lg:hidden flex flex-col px-6 pb-4 space-y-2 bg-cyan-900/20">
           {navItems.map((item) => (
             <li key={item.label}>
               <Link
