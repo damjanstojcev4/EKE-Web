@@ -1,6 +1,6 @@
 import Footer from "./Footer";
 import Navbar from "./Navbar";
-import OurTeam from "./utils/OurTeam";
+import OurTeam from "./OurTeam";
 
 const AboutUs = () => {
      return (

@@ -2,10 +2,10 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Navbar from './components/Navbar.tsx';
 import Home from './components/Home.tsx';
 import AboutUs from './components/AboutUs.tsx';
-import BackToTopButton from './components/BackToTopButton.tsx';
+import BackToTopButton from './components/utils/BackToTopButton.tsx';
 import Contact from './components/Contact.tsx'
 import Admin from './components/Admin.tsx'
-import ScrollToTop from './components/ScrollToTop.tsx';
+import ScrollToTop from './components/utils/ScrollToTop.tsx';
 
 function App() {
   return (
