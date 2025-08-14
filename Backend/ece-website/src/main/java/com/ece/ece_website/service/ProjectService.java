@@ -30,7 +30,14 @@ public class ProjectService {
         // and DTO to throw error code and not crash the app
     }
 
-    public Project findByUuid(UUID uuid) {
+    public ProjectResponseDTO findByUuid(UUID uuid) {
+        Project project = projectRepository.findByUuid(uuid)
+                .orElseThrow(() -> new RuntimeException("Project with uuid " + uuid + " not found"));
+
+        return ProjectMapper.toDTO(project);
+    }
+
+    public Project findEntityByUuid(UUID uuid) {
         return projectRepository.findByUuid(uuid)
                 .orElseThrow(() -> new RuntimeException("Project with uuid " + uuid + " not found"));
     }

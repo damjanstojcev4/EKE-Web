@@ -53,6 +53,12 @@ public class ProjectController {
                 .collect(Collectors.toList());
     }
 
+    @GetMapping("get/{uuid}")
+    public ResponseEntity<ProjectResponseDTO> getProjectByUuid(@PathVariable UUID uuid) {
+        ProjectResponseDTO projectResponseDTO = projectService.findByUuid(uuid);
+        return ResponseEntity.ok(projectResponseDTO);
+    }
+
     @PutMapping(value = "{uuid}", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
     public ResponseEntity<ProjectResponseDTO> updateProject(
             @PathVariable UUID uuid,
@@ -66,7 +72,7 @@ public class ProjectController {
             @RequestParam(value = "image", required = false) MultipartFile imageFile,
             @RequestParam(value = "pdf", required = false) MultipartFile pdfFile) throws IOException {
 
-        Project existing = projectService.findByUuid(uuid);
+        Project existing = projectService.findEntityByUuid(uuid);
 
         // Update fields
         existing.setTitle(title);

@@ -15,7 +15,6 @@ public interface ProjectRepository extends JpaRepository<Project, Long> {
 
     Optional<Project> findByTitle(String title); // search by name
 
-    // Search for Admin
     Optional<Project> findByUuid(UUID uuid);
 
     // Recent Projects Search
