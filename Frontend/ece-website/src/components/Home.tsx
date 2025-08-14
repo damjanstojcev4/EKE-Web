@@ -1,45 +1,42 @@
-import heroImage from '../assets/hero-background.jpg';
-import { motion } from 'framer-motion';
-import { FaCheckCircle } from 'react-icons/fa';
-import { Eye, Zap } from 'lucide-react';
-import Partners from './Partners';
-import Footer from './Footer';
+import { useState, useEffect } from "react";
+import heroImage from "../assets/hero-background.jpg";
+import { motion } from "framer-motion";
+import { FaCheckCircle } from "react-icons/fa";
+import { Eye, Zap } from "lucide-react";
+import Partners from "./Partners";
+import Footer from "./Footer";
+import type { FC } from "react";
+import ProjectCard from "./ProjectCard"; // ✅ Correct import
 
-const Home = () => {
+interface Project {
+  uuid: string;
+  title: string;
+  quickSummary: string;
+  durationDate: string;
+  image: string;
+  status: "ON_GOING" | "PAST";
+}
+
+const Home: FC = () => {
   const aims = [
-    'Personal and professional development',
-    'Promoting mobility within the country and abroad',
-    'Promote entrepreneurship',
-    'Digital literacy, digital skills and digital transformation',
+    "Personal and professional development",
+    "Promoting mobility within the country and abroad",
+    "Promote entrepreneurship",
+    "Digital literacy, digital skills and digital transformation",
     'Sustainable development and the "green agenda"',
-    'Promote a healthy lifestyle through sports and sports activities',
-    'Advocate for human rights and empowerment of vulnerable and marginalized groups',
-    'Stand for democratic values and standards'
+    "Promote a healthy lifestyle through sports and sports activities",
+    "Advocate for human rights and empowerment of vulnerable and marginalized groups",
+    "Stand for democratic values and standards"
   ];
 
-  const projects = [
-    {
-      title: 'Youth Cultural Exchange 2025',
-      summary: 'A cultural exchange program uniting young creatives across Europe.',
-      date: 'June 12, 2025',
-      location: 'Skopje, North Macedonia',
-      image: 'src/assets/youth-cul-exchange-2025-1.jpg'
-    },
-    {
-      title: 'Green Living Workshop',
-      summary: 'Workshops on sustainability and eco-activism for young people.',
-      date: 'May 20, 2025',
-      location: 'Bitola, North Macedonia',
-      image: 'src/assets/green-living-wh-2.jpg'
-    },
-    {
-      title: 'Digital Skills Bootcamp',
-      summary: 'Digital literacy bootcamp focused on coding, design and online safety.',
-      date: 'April 10, 2025',
-      location: 'Ohrid, North Macedonia',
-      image: 'src/assets/digital-skills-bootcamp.jpg'
-    }
-  ];
+  const [projects, setProjects] = useState<Project[]>([]);
+
+  useEffect(() => {
+    fetch("http://localhost:8080/recent/")
+      .then((res) => res.json())
+      .then((data) => setProjects(data))
+      .catch((err) => console.error(err));
+  }, []);
 
   return (
     <>
@@ -53,10 +50,10 @@ const Home = () => {
           className="relative z-10 text-center px-4"
           initial={{ opacity: 0, y: 50 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 1.4, ease: 'easeOut' }}
+          transition={{ duration: 1.4, ease: "easeOut" }}
         >
           <h1 className="text-4xl md:text-6xl font-bold text-white leading-tight">
-            Celebrating Europe&apos;s Rich{' '}
+            Celebrating Europe&apos;s Rich{" "}
             <span className="text-yellow-400">Cultural Heritage</span>
           </h1>
         </motion.div>
@@ -73,7 +70,8 @@ const Home = () => {
               </div>
               <h3 className="text-lg font-semibold mb-2">Vision</h3>
               <p className="text-gray-600 max-w-md">
-                High quality education that offers equal educational opportunities for all.
+                High quality education that offers equal educational
+                opportunities for all.
               </p>
             </div>
 
@@ -83,12 +81,12 @@ const Home = () => {
               </div>
               <h3 className="text-lg font-semibold mb-2">Mission</h3>
               <p className="text-gray-600 max-w-md">
-                The main aim of the association is to provide high quality non-formal educational
-                programs to promote personal and professional development for the citizens from the
-                local community and abroad.
+                The main aim of the association is to provide high quality
+                non-formal educational programs to promote personal and
+                professional development for the citizens from the local
+                community and abroad.
               </p>
             </div>
-            
           </div>
         </div>
       </section>
@@ -98,7 +96,8 @@ const Home = () => {
         <div className="container mx-auto px-4 text-center">
           <h2 className="text-3xl font-semibold mb-4">Our Aims</h2>
           <p className="text-gray-600 mb-10 max-w-2xl mx-auto">
-            We are committed to achieving these key objectives through our programs and initiatives.
+            We are committed to achieving these key objectives through our
+            programs and initiatives.
           </p>
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 max-w-4xl mx-auto">
             {aims.map((aim, index) => (
@@ -115,41 +114,26 @@ const Home = () => {
       </section>
 
       {/* Recent Projects */}
-      <section className="bg-white py-16">
-        <div className="container mx-auto px-4 text-center">
-          <h2 className="text-3xl font-semibold mb-4">Recent Projects</h2>
-          <p className="text-gray-600 mb-10 max-w-2xl mx-auto">
-            Explore some of our most recent initiatives and events.
-          </p>
-
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
-            {projects.map((project, index) => (
-              <div
-                key={index}
-                className="bg-gray-100 rounded-xl overflow-hidden shadow-md text-left"
-              >
-                <img
-                  src={project.image}
-                  alt={project.title}
-                  className="w-full h-48 object-cover"
-                />
-                <div className="p-5">
-                  <h3 className="text-xl font-semibold mb-2">{project.title}</h3>
-                  <p className="text-gray-700 mb-3">{project.summary}</p>
-                  <div className="text-sm text-gray-500">
-                    <p>{project.date}</p>
-                    <p>{project.location}</p>
-                  </div>
-                </div>
-              </div>
-            ))}
-          </div>
+      <div className="py-16 px-4 max-w-7xl mx-auto">
+        <h2 className="text-3xl font-bold mb-8">Recent Projects</h2>
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+          {projects.map((project) => (
+            <ProjectCard
+              key={project.uuid}
+              uuid={project.uuid}
+              title={project.title}
+              quickSummary={project.quickSummary}
+              durationDate={project.durationDate}
+              image={`http://localhost:8080${project.image}`}
+              status={project.status}
+            />
+          ))}
         </div>
-      </section>
+      </div>
 
       {/* Partners Section */}
-      <Partners/>
-      <Footer/>
+      <Partners />
+      <Footer />
     </>
   );
 };
