@@ -6,6 +6,8 @@ import BackToTopButton from './components/utils/BackToTopButton.tsx';
 import Contact from './components/Contact.tsx'
 import Admin from './components/Admin.tsx'
 import ScrollToTop from './components/utils/ScrollToTop.tsx';
+import ProjectDetail from './components/ProjectDetail.tsx';
+import Projects from './components/Projects.tsx';
 
 function App() {
   return (
@@ -16,7 +18,9 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route path="/about-us" element={<AboutUs />} />
         <Route path="/contact" element={<Contact />} />
+        <Route path="/projects" element={<Projects />} />
         <Route path="/admin" element={<Admin />} />
+        <Route path="/project/:uuid" element={<ProjectDetail />} />
       </Routes>
       <BackToTopButton/>
     </Router>
