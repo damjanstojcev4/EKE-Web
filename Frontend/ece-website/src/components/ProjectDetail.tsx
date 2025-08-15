@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { useParams} from "react-router-dom";
+import { Link } from "react-router-dom";
 
 interface ProjectDetailData {
   uuid: string;
@@ -38,6 +39,13 @@ const ProjectDetail: React.FC = () => {
   return (
     <div className="bg-gray-50 min-h-screen pt-20">
       <div className="max-w-6xl mx-auto px-4 py-12">
+        {/* Back Button */}
+        <Link
+          to="/projects"
+          className="inline-flex items-center text-blue-600 hover:underline mb-6"
+        >
+          ← Back to Projects
+        </Link>
 
         {/* Title */}
         <h1 className="text-4xl font-bold mb-3 text-gray-900">{project.title}</h1>
@@ -76,16 +84,16 @@ const ProjectDetail: React.FC = () => {
         </div>
 
         {/* Description */}
-        <div className="bg-white rounded-lg p-8 shadow mb-12">
+        <div className="bg-stone-200 rounded-lg p-8 shadow mb-12">
           <h2 className="text-2xl font-bold mb-4">Project Description</h2>
           <p className="text-gray-700 leading-relaxed">{project.description}</p>
         </div>
 
         {/* Partners */}
         {project.partners.length > 0 && (
-          <div className="bg-white rounded-lg p-8 shadow mb-12">
+          <div className="bg-stone-200 rounded-lg p-8 shadow mb-12">
             <h2 className="text-2xl font-bold mb-4">Partners</h2>
-            <ul className="list-disc pl-5 space-y-2 text-gray-700">
+            <ul className="pl-5 space-y-2 text-gray-700">
               {project.partners.map((partner, index) => (
                 <li key={index}>{partner}</li>
               ))}
