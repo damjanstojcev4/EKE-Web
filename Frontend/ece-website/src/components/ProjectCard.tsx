@@ -1,4 +1,3 @@
-import type { FC, } from "react";
 import { Link } from "react-router-dom";
 
 interface ProjectCardProps {
@@ -10,45 +9,30 @@ interface ProjectCardProps {
   status: "ON_GOING" | "PAST";
 }
 
-const ProjectCard: FC<ProjectCardProps> = ({
+const ProjectCard: React.FC<ProjectCardProps> = ({
   uuid,
   title,
   quickSummary,
   durationDate,
   image,
-  status
+  status,
 }) => {
-  const ribbonColor =
-    status === "ON_GOING"
-      ? "bg-green-700"
-      : status === "PAST"
-      ? "bg-yellow-500"
-      : "bg-gray-400";
-
   return (
-    <Link
-      to={`/projects/${uuid}`}
-      className="relative block bg-white rounded-lg shadow-md hover:shadow-lg transition overflow-hidden"
-    >
-      {/* Status Ribbon */}
-      <div
-        className={`absolute top-0 right-0 ${ribbonColor} text-white text-base font-semibold px-3 py-1 rounded-br-lg`}
-      >
-        {status.replace("_", " ")}
-      </div>
-
-      {/* Image */}
-      <img
-        src={image}
-        alt={title}
-        className="w-full h-48 object-cover"
-      />
-
-      {/* Content */}
-      <div className="p-4">
-        <h3 className="text-lg font-bold mb-2">{title}</h3>
-        <p className="text-sm text-gray-600 mb-2">{quickSummary}</p>
-        <p className="text-xs text-gray-500">{durationDate}</p>
+    <Link to={`/project/${uuid}`} className="block">
+      <div className="bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition">
+        <img src={image} alt={title} className="w-full h-48 object-cover" />
+        <div className="p-4">
+          <h3 className="text-xl font-bold mb-2">{title}</h3>
+          <p className="text-gray-600 mb-2">{quickSummary}</p>
+          <p className="text-sm text-gray-500">Duration: {durationDate}</p>
+          <span
+            className={`inline-block mt-2 px-5 py-2 text-sm rounded ${
+              status === "ON_GOING" ? "bg-green-100 text-green-700" : "bg-red-600/80 text-white"
+            }`}
+          >
+            {status === "ON_GOING" ? "Ongoing" : "Past"}
+          </span>
+        </div>
       </div>
     </Link>
   );
