@@ -23,7 +23,7 @@ import java.util.UUID;
 import java.util.stream.Collectors;
 
 @CrossOrigin("*")
-@RestController("/")
+@RestController("/projects")
 public class ProjectController {
 
     private static final String UPLOAD_DIR = System.getProperty("user.dir") + "/uploads/images/";
