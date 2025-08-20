@@ -23,7 +23,8 @@ import java.util.UUID;
 import java.util.stream.Collectors;
 
 @CrossOrigin("*")
-@RestController("/projects")
+@RestController
+@RequestMapping("/projects")
 public class ProjectController {
 
     private static final String UPLOAD_DIR = System.getProperty("user.dir") + "/uploads/images/";
@@ -32,7 +33,7 @@ public class ProjectController {
     @Autowired
     private ProjectService projectService;
 
-    @GetMapping
+    @GetMapping("/")
     List<ProjectResponseDTO> getAllProjects() {
         return projectService.findAll()
                 .stream()
@@ -40,12 +41,12 @@ public class ProjectController {
                 .collect(Collectors.toList());
     }
 
-    @GetMapping(value = "{title}")
+    @GetMapping(value = "/{title}")
     public Project getProjectByTitle(@PathVariable String title) {
         return projectService.findByName(title);
     }
 
-    @GetMapping("recent/")
+    @GetMapping("/recent")
     public List<ProjectResponseDTO> getRecentProjects() {
         return projectService.latestProject()
                 .stream()
@@ -53,13 +54,13 @@ public class ProjectController {
                 .collect(Collectors.toList());
     }
 
-    @GetMapping("get/{uuid}")
+    @GetMapping("/get/{uuid}")
     public ResponseEntity<ProjectResponseDTO> getProjectByUuid(@PathVariable UUID uuid) {
         ProjectResponseDTO projectResponseDTO = projectService.findByUuid(uuid);
         return ResponseEntity.ok(projectResponseDTO);
     }
 
-    @PutMapping(value = "{uuid}", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
+    @PutMapping(value = "/{uuid}", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
     public ResponseEntity<ProjectResponseDTO> updateProject(
             @PathVariable UUID uuid,
             @RequestParam("title") String title,
@@ -106,14 +107,14 @@ public class ProjectController {
         return ResponseEntity.ok(ProjectMapper.toDTO(updated));
     }
 
-    @DeleteMapping("{uuid}")
+    @DeleteMapping("/{uuid}")
     public ResponseEntity<Void> deleteProject(@PathVariable UUID uuid) {
         projectService.deleteProject(uuid);
 
         return ResponseEntity.noContent().build();
     }
 
-    @PostMapping("/projects")
+    @PostMapping
     public ResponseEntity<ProjectResponseDTO> addProject(
             @RequestParam("title") String title,
             @RequestParam("budget") long budget,
