@@ -7,6 +7,7 @@ import Partners from "./Partners";
 import Footer from "./Footer";
 import type { FC } from "react";
 import ProjectCard from "./ProjectCard"; // ✅ Correct import
+import RecentProjects from "./RecentProjects";
 
 interface Project {
   uuid: string;
@@ -32,7 +33,7 @@ const Home: FC = () => {
   const [projects, setProjects] = useState<Project[]>([]);
 
   useEffect(() => {
-    fetch("http://localhost:8080/recent/")
+    fetch("/api/projects/recent")
       .then((res) => res.json())
       .then((data) => setProjects(data))
       .catch((err) => console.error(err));
@@ -92,7 +93,7 @@ const Home: FC = () => {
       </section>
 
       {/* Our Aims */}
-      <section className="bg-yellow-200 py-16">
+      <section className="bg-gray-200 py-16">
         <div className="container mx-auto px-4 text-center">
           <h2 className="text-3xl font-semibold mb-4">Our Aims</h2>
           <p className="text-gray-600 mb-10 max-w-2xl mx-auto">
@@ -115,21 +116,9 @@ const Home: FC = () => {
 
       {/* Recent Projects */}
       <div className="py-16 px-4 max-w-7xl mx-auto">
-        <h2 className="text-3xl font-bold mb-8 text-center">Recent Projects</h2>
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
-          {projects.map((project) => (
-            <ProjectCard
-              key={project.uuid}
-              uuid={project.uuid}
-              title={project.title}
-              quickSummary={project.quickSummary}
-              durationDate={project.durationDate}
-              image={`http://localhost:8080${project.image}`}
-              status={project.status}
-            />
-          ))}
-        </div>
+        <RecentProjects/>
       </div>
+      
 
       {/* Partners Section */}
       <Partners />

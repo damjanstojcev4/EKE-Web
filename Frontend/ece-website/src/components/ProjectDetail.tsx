@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { useParams} from "react-router-dom";
 import { Link } from "react-router-dom";
+import SkeletonLoader from "./utils/SkeletonLoader";
 
 interface ProjectDetailData {
   uuid: string;
@@ -21,7 +22,7 @@ const ProjectDetail: React.FC = () => {
 
   useEffect(() => {
     if (!uuid) return;
-    fetch(`http://localhost:8080/get/${uuid}`)
+    fetch(`http://localhost:8080/api/projects/get/${uuid}`)
       .then((res) => res.json())
       .then((data) => setProject(data))
       .catch((err) => console.error(err));
@@ -30,9 +31,7 @@ const ProjectDetail: React.FC = () => {
 
   if (!project) {
     return (
-      <div className="flex justify-center items-center h-[50vh] text-lg text-gray-500">
-        Loading project details...
-      </div>
+      <SkeletonLoader/>
     );
   }
 
