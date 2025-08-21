@@ -13,21 +13,17 @@ import org.springframework.web.multipart.MultipartFile;
 
 import java.io.File;
 import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
-import java.nio.file.StandardCopyOption;
 import java.util.List;
-import java.util.Optional;
 import java.util.UUID;
 import java.util.stream.Collectors;
 
-@CrossOrigin("*")
 @RestController
 @RequestMapping("/projects")
 public class ProjectController {
 
-    private static final String UPLOAD_DIR = System.getProperty("user.dir") + "/uploads/images/";
+    private static final String IMAGE_UPLOAD_DIR = System.getProperty("user.dir") + "/uploads/images/";
+    private static final String PDF_UPLOAD_DIR = System.getProperty("user.dir") + "/uploads/pdf/";
+
 
 
     @Autowired
@@ -60,7 +56,7 @@ public class ProjectController {
         return ResponseEntity.ok(projectResponseDTO);
     }
 
-    @PutMapping(value = "/{uuid}", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
+    @PutMapping(value = "{uuid}", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
     public ResponseEntity<ProjectResponseDTO> updateProject(
             @PathVariable UUID uuid,
             @RequestParam("title") String title,
@@ -75,7 +71,6 @@ public class ProjectController {
 
         Project existing = projectService.findEntityByUuid(uuid);
 
-        // Update fields
         existing.setTitle(title);
         existing.setBudget(budget);
         existing.setDescription(description);
@@ -84,21 +79,20 @@ public class ProjectController {
         existing.setPartners(partners);
         existing.setStatus(status);
 
-        // Handle image upload if present
+        new File(IMAGE_UPLOAD_DIR).mkdirs();
+        new File(PDF_UPLOAD_DIR).mkdirs();
+
         if (imageFile != null && !imageFile.isEmpty()) {
             String imageFileName = UUID.randomUUID() + "_" + imageFile.getOriginalFilename();
-            Path imagePath = Paths.get(UPLOAD_DIR, imageFileName);
-            Files.createDirectories(imagePath.getParent());
-            Files.copy(imageFile.getInputStream(), imagePath, StandardCopyOption.REPLACE_EXISTING);
+            String imageFilePath = IMAGE_UPLOAD_DIR + imageFileName;
+            imageFile.transferTo(new File(imageFilePath));
             existing.setImageFilePath(imageFileName);
         }
 
-        // Handle PDF upload if present
         if (pdfFile != null && !pdfFile.isEmpty()) {
             String pdfFileName = UUID.randomUUID() + "_" + pdfFile.getOriginalFilename();
-            Path pdfPath = Paths.get(UPLOAD_DIR, pdfFileName);
-            Files.createDirectories(pdfPath.getParent());
-            Files.copy(pdfFile.getInputStream(), pdfPath, StandardCopyOption.REPLACE_EXISTING);
+            String pdfFilePath = PDF_UPLOAD_DIR + pdfFileName;
+            pdfFile.transferTo(new File(pdfFilePath));
             existing.setPdfFilePath(pdfFileName);
         }
 
@@ -124,30 +118,19 @@ public class ProjectController {
             @RequestParam("partners") List<String> partners,
             @RequestParam("image") MultipartFile imageFile,
             @RequestParam(value = "pdf", required = false) MultipartFile pdfFile,
-            @RequestParam(value = "status", required = false, defaultValue = "ON GOING")String statusStr) throws IOException {
+            @RequestParam(value = "status", required = false, defaultValue = "ON GOING") String statusStr) throws IOException {
 
-        // Make sure folders exist
-        File imageDir = new File(UPLOAD_DIR);
-        if (!imageDir.exists()) {
-            imageDir.mkdirs();
-        }
+        new File(IMAGE_UPLOAD_DIR).mkdirs();
+        new File(PDF_UPLOAD_DIR).mkdirs();
 
-        // Check if folder exists
-        File pdfDir = new File(UPLOAD_DIR + "pdf/");
-        if (!pdfDir.exists()) {
-            pdfDir.mkdirs();
-        }
-
-        // Save image
         String imageFileName = UUID.randomUUID() + "_" + imageFile.getOriginalFilename();
-        String imageFilePath = UPLOAD_DIR + imageFileName;
+        String imageFilePath = IMAGE_UPLOAD_DIR + imageFileName;
         imageFile.transferTo(new File(imageFilePath));
 
-        // Save PDF if provided
         String pdfFileName = null;
         if (pdfFile != null && !pdfFile.isEmpty()) {
             pdfFileName = UUID.randomUUID() + "_" + pdfFile.getOriginalFilename();
-            String pdfFilePath = pdfDir.getAbsolutePath() + File.separator + pdfFileName;
+            String pdfFilePath = PDF_UPLOAD_DIR + pdfFileName;
             pdfFile.transferTo(new File(pdfFilePath));
         }
 
@@ -167,8 +150,8 @@ public class ProjectController {
         project.setQuickSummary(quickSummary);
         project.setDurationDate(durationDate);
         project.setPartners(partners);
-        project.setImageFilePath(imageFileName);
-        project.setPdfFilePath(pdfFileName); // store PDF path in DB
+        project.setImageFilePath(imageFileName); // store image filename
+        project.setPdfFilePath(pdfFileName);     // store PDF filename
         project.setStatus(status);
 
         Project saved = projectService.save(project);
