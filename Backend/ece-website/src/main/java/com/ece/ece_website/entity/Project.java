@@ -21,6 +21,7 @@ public class Project {
 
     private String title;
     private long budget;
+    @Column(length = 4000)
     private String description;
     private String imageFilePath;
     private String quickSummary;
