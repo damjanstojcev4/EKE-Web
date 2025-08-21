@@ -7,12 +7,12 @@ public class ProjectMapper {
     public static ProjectResponseDTO toDTO(Project project) {
         String imageUrl = null;
         if (project.getImageFilePath() != null) {
-            imageUrl = "/images/" + project.getImageFilePath(); // static url ??
+            imageUrl = "/api/uploads/images/" + project.getImageFilePath(); // full API path
         }
 
         String pdfFileUrl = null;
         if (project.getPdfFilePath() != null) {
-            pdfFileUrl = "/pdfs/" + project.getPdfFilePath();
+            pdfFileUrl = "/api/uploads/pdf/" + project.getPdfFilePath(); // full API path
         }
 
         return new ProjectResponseDTO(
