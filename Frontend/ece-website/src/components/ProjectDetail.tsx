@@ -22,7 +22,7 @@ const ProjectDetail: React.FC = () => {
 
   useEffect(() => {
     if (!uuid) return;
-    fetch(`http://localhost:8080/api/projects/get/${uuid}`)
+    fetch(`/api/projects/get/${uuid}`)
       .then((res) => res.json())
       .then((data) => setProject(data))
       .catch((err) => console.error(err));
@@ -53,7 +53,7 @@ const ProjectDetail: React.FC = () => {
         {/* Image */}
         <div className="w-full flex justify-center mb-5">
             <img
-                src={`http://localhost:8080${project.image}`}
+                src={project.image}
                 alt={project.title}
                 className="w-full max-w-3xl h-auto rounded-lg shadow-md object-contain"
             />
@@ -104,7 +104,7 @@ const ProjectDetail: React.FC = () => {
         {project.pdfUrl && (
             <div className="text-center">
                 <a
-                href={`http://localhost:8080${project.pdfUrl}`}
+                href={project.pdfUrl}
                 download // ← this makes it download instead of just open
                 className="inline-block px-8 py-3 bg-blue-600 text-white font-semibold rounded-lg shadow hover:bg-blue-700 transition"
                 >

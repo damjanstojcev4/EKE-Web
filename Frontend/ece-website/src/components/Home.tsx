@@ -6,7 +6,6 @@ import { Eye, Zap } from "lucide-react";
 import Partners from "./Partners";
 import Footer from "./Footer";
 import type { FC } from "react";
-import ProjectCard from "./ProjectCard"; // ✅ Correct import
 import RecentProjects from "./RecentProjects";
 
 interface Project {

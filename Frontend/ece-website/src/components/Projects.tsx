@@ -16,7 +16,7 @@ const Projects = () => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    fetch("http://localhost:8080/")
+    fetch("/api/projects/")
       .then((res) => res.json())
       .then((data) => {
         setProjects(data);
@@ -54,7 +54,7 @@ const Projects = () => {
                 title={project.title}
                 quickSummary={project.quickSummary}
                 durationDate={project.durationDate}
-                image={`http://localhost:8080${project.image}`}
+                image={project.image}
                 status={project.status}
               />
             ))}
