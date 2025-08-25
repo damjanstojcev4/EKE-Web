@@ -27,7 +27,7 @@ public class AdminService implements UserDetailsService {
         return new org.springframework.security.core.userdetails.User(
                 admin.getUsername(),
                 admin.getPassword(),
-                List.of(new SimpleGrantedAuthority("ROLE_ADMIN"))
+                List.of(new SimpleGrantedAuthority("ADMIN"))
         );
     }
 }

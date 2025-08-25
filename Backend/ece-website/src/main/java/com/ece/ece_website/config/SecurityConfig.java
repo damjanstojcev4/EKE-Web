@@ -4,9 +4,7 @@ import com.ece.ece_website.service.AdminService;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
-import org.springframework.security.authentication.ProviderManager;
-import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
-import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
+import org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.http.SessionCreationPolicy;
@@ -20,22 +18,9 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 public class SecurityConfig {
 
     private final AdminService adminDetailsService;
-    private final PasswordEncoder passwordEncoder;
-    private final JwtAuthFilter jwtAuthFilter;
 
-    public SecurityConfig(AdminService adminDetailsService, PasswordEncoder passwordEncoder, JwtAuthFilter jwtAuthFilter) {
+    public SecurityConfig(AdminService adminDetailsService) {
         this.adminDetailsService = adminDetailsService;
-        this.passwordEncoder = passwordEncoder;
-        this.jwtAuthFilter = jwtAuthFilter;
-    }
-
-    @Bean
-    public AuthenticationManager authenticationManager(HttpSecurity http) throws Exception {
-        DaoAuthenticationProvider authProvider = new DaoAuthenticationProvider();
-        authProvider.setUserDetailsService(adminDetailsService);
-        authProvider.setPasswordEncoder(passwordEncoder);
-
-        return new ProviderManager(authProvider);
     }
 
     @Bean
@@ -44,18 +29,35 @@ public class SecurityConfig {
     }
 
     @Bean
-    public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
+    public AuthenticationManager authenticationManager(AuthenticationConfiguration authenticationConfiguration) throws Exception {
+        return authenticationConfiguration.getAuthenticationManager();
+    }
+
+    @Bean
+    public JwtAuthFilter jwtAuthFilter(JwtUtils jwtUtils) {
+        return new JwtAuthFilter(jwtUtils, adminDetailsService);
+    }
+
+    @Bean
+    public SecurityFilterChain securityFilterChain(HttpSecurity http, JwtAuthFilter jwtAuthFilter) throws Exception {
         http
                 .csrf(csrf -> csrf.disable())
                 .authorizeHttpRequests(auth -> auth
-                        .requestMatchers("/auth/**").permitAll()
-                        .requestMatchers("/admin/**").hasRole("ADMIN")
+
+                        // Public endpoints (no token needed)
+                        .requestMatchers("/api/auth/**").permitAll()
+                        .requestMatchers("/api/uploads/**").permitAll()
+                        .requestMatchers("/api/projects/recent").permitAll()
+
+                        // Admin endpoints (need JWT)
+                        .requestMatchers("/api/admin/**").hasRole("ADMIN")
+
+                        // Any other request -> must be authenticated
                         .anyRequest().authenticated()
                 )
                 .sessionManagement(session ->
-                        session.sessionCreationPolicy(SessionCreationPolicy.STATELESS));
-        
-        http.addFilterBefore(jwtAuthFilter, UsernamePasswordAuthenticationFilter.class);
+                        session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
+                .addFilterBefore(jwtAuthFilter, UsernamePasswordAuthenticationFilter.class);
 
         return http.build();
     }
