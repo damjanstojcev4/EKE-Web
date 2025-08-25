@@ -13,6 +13,7 @@ import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
 @Configuration
 @EnableWebSecurity
@@ -20,10 +21,12 @@ public class SecurityConfig {
 
     private final AdminService adminDetailsService;
     private final PasswordEncoder passwordEncoder;
+    private final JwtAuthFilter jwtAuthFilter;
 
-    public SecurityConfig(AdminService adminDetailsService, PasswordEncoder passwordEncoder) {
+    public SecurityConfig(AdminService adminDetailsService, PasswordEncoder passwordEncoder, JwtAuthFilter jwtAuthFilter) {
         this.adminDetailsService = adminDetailsService;
         this.passwordEncoder = passwordEncoder;
+        this.jwtAuthFilter = jwtAuthFilter;
     }
 
     @Bean
@@ -51,6 +54,8 @@ public class SecurityConfig {
                 )
                 .sessionManagement(session ->
                         session.sessionCreationPolicy(SessionCreationPolicy.STATELESS));
+        
+        http.addFilterBefore(jwtAuthFilter, UsernamePasswordAuthenticationFilter.class);
 
         return http.build();
     }
