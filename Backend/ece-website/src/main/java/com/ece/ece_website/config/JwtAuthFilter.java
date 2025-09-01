@@ -3,6 +3,7 @@ package com.ece.ece_website.config;
 import com.ece.ece_website.service.JwtService;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
+import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import lombok.NonNull;
@@ -32,20 +33,37 @@ public class JwtAuthFilter extends OncePerRequestFilter {
 
         // Skip JWT processing for auth endpoints
         String path = request.getRequestURI();
-        if (path.startsWith("/auth/")) {
+        String method = request.getMethod();
+
+        if (path.startsWith("/auth/")
+                || (path.startsWith("/projects") && "GET".equals(method))
+                || (path.startsWith("/messages") && "POST".equals(method)))
+        {
             filterChain.doFilter(request, response);
             return;
+        }
+
+        String jwt = null;
+
+        for (Cookie cookie: request.getCookies()) {
+            if ("cookie-auth".equals(cookie.getName())) {
+                jwt = cookie.getValue();
+                break;
+            }
         }
 
         final String authHeader = request.getHeader("Authorization");
-        final String jwt;
         final String username;
 
-        if (authHeader == null || !authHeader.startsWith("Bearer ")) {
-            filterChain.doFilter(request, response);
-            return;
+        if (jwt == null) {
+            if (authHeader == null || !authHeader.startsWith("Bearer ")) {
+                filterChain.doFilter(request, response);
+                return;
+            } else {
+                jwt = authHeader.substring(7);
+            }
         }
-        jwt = authHeader.substring(7);
+
         username = jwtService.extractUsername(jwt);
         if (username != null && SecurityContextHolder.getContext().getAuthentication() == null) {
             UserDetails userDetails = this.userDetailsService.loadUserByUsername(username);
