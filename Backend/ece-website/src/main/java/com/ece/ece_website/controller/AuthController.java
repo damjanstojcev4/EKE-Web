@@ -37,4 +37,15 @@ public class AuthController {
         // todo extend jwtFilter to check if cookie exists in header, check for bearer, if not deny,
         return ok;
     }
+
+    @PostMapping("/logout")
+    public ResponseEntity<Void> logout(HttpServletResponse response) {
+        Cookie cookie = new Cookie("cookie-auth", null);
+        cookie.setHttpOnly(true);
+        cookie.setSecure(false);
+        cookie.setPath("/");
+        cookie.setMaxAge(0);
+        response.addCookie(cookie);
+        return ResponseEntity.ok().build();
+    }
 }
