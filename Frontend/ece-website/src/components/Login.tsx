@@ -8,24 +8,28 @@ const Login = () => {
   const navigate = useNavigate();
 
   const handleLogin = async (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    setError("");
+  e.preventDefault();
+  setError("");
 
-    try {
-      const res = await fetch("/api/auth/authenticate", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ username, password }),
-        credentials: "include",
-      });
+  try {
+    const res = await fetch("/api/auth/authenticate", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ username, password }),
+      credentials: "include",
+    });
 
-      if (!res.ok) throw new Error("Login failed");
+    if (!res.ok) throw new Error("Login failed");
 
-      navigate("/admin");
-    } catch (err: any) {
-      setError(err.message || "Something went wrong");
-    }
-  };
+    const data = await res.json();
+    // 🔑 save JWT in localStorage
+    localStorage.setItem("jwt", data.token);
+
+    navigate("/admin");
+  } catch (err: any) {
+    setError(err.message || "Something went wrong");
+  }
+};
 
   return (
     <div className="flex items-center justify-center min-h-screen bg-gradient-to-r from-blue-100 to-purple-100">

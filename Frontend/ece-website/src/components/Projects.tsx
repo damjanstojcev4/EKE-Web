@@ -1,104 +1,75 @@
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import ProjectCard from "./ProjectCard";
-import SkeletonLoader from "./utils/SkeletonLoader";
 
 interface Project {
   uuid: string;
   title: string;
+  budget: string;
+  description: string;
   quickSummary: string;
   durationDate: string;
-  image: string;
+  partners: string;
   status: "ON_GOING" | "PAST";
+  image: string;
+  pdf: string;
 }
 
-const Projects = () => {
+const Projects: React.FC = () => {
   const [projects, setProjects] = useState<Project[]>([]);
   const [loading, setLoading] = useState(true);
-  const [filter, setFilter] = useState<"ALL" | "ON_GOING" | "PAST">("ALL");
+
+  const fetchProjects = async () => {
+    try {
+      const res = await fetch("/api/projects/");
+      if (!res.ok) throw new Error("Failed to load projects");
+      const data = await res.json();
+      setProjects(data);
+    } catch (e) {
+      console.error(e);
+    } finally {
+      setLoading(false);
+    }
+  };
 
   useEffect(() => {
-    fetch("/api/projects/")
-      .then((res) => res.json())
-      .then((data) => {
-        setProjects(data);
-        setLoading(false);
-      })
-      .catch((err) => {
-        console.error("Failed to fetch projects:", err);
-        setLoading(false);
-      });
+    fetchProjects();
   }, []);
 
-  const filteredProjects = projects.filter((project) => {
-    if (filter === "ALL") {
-      return true;
-    }
-    return project.status === filter;
-  });
+  if (loading) {
+    return (
+      <div className="min-h-screen pt-28 px-6">
+        <div className="max-w-6xl mx-auto grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+          {Array.from({ length: 6 }).map((_, i) => (
+            <div key={i} className="h-80 bg-gray-200 rounded-xl animate-pulse" />
+          ))}
+        </div>
+      </div>
+    );
+  }
 
   return (
-    <section className="bg-gray-100 py-16 px-4 pt-40">
-      <div className="max-w-7xl mx-auto">
-        <div className="text-center mb-12">
-          <h1 className="text-5xl font-extrabold text-gray-900 mb-4">
-            Our Projects
-          </h1>
-          <p className="text-lg text-gray-700 max-w-2xl mx-auto">
-            Explore our recent and past projects, showcasing our dedication and
-            the partnerships that make them possible.
-          </p>
-        </div>
-
-        <div className="flex justify-center space-x-4 mb-10">
-          <button
-            onClick={() => setFilter("ALL")}
-            className={`px-6 py-2 rounded-full font-semibold transition-colors duration-300 ${
-              filter === "ALL" ? "bg-cyan-800 text-white shadow-lg" : "bg-white text-gray-700 hover:bg-gray-200"
-            }`}
-          >
-            All Projects
-          </button>
-          <button
-            onClick={() => setFilter("ON_GOING")}
-            className={`px-6 py-2 rounded-full font-semibold transition-colors duration-300 ${
-              filter === "ON_GOING" ? "bg-cyan-800 text-white shadow-lg" : "bg-white text-gray-700 hover:bg-gray-200"
-            }`}
-          >
-            On-Going
-          </button>
-          <button
-            onClick={() => setFilter("PAST")}
-            className={`px-6 py-2 rounded-full font-semibold transition-colors duration-300 ${
-              filter === "PAST" ? "bg-cyan-800 text-white shadow-lg" : "bg-white text-gray-700 hover:bg-gray-200"
-            }`}
-          >
-            Past Projects
-          </button>
-        </div>
-
-        {loading ? (
-          <SkeletonLoader count={6} type="card" />
-        ) : filteredProjects.length === 0 ? (
-          <p className="text-center text-gray-600">
-            No projects found for this selection.
-          </p>
+    <div className="min-h-screen pt-40 px-6 pb-24">
+      <div className="max-w-6xl mx-auto">
+        <h1 className="text-3xl font-bold mb-8 text-gray-900">Projects</h1>
+        {projects.length === 0 ? (
+          <p className="text-gray-600">No projects found.</p>
         ) : (
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10">
-            {filteredProjects.map((project) => (
+          <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+            {projects.map((p) => (
               <ProjectCard
-                key={project.uuid}
-                uuid={project.uuid}
-                title={project.title}
-                quickSummary={project.quickSummary}
-                durationDate={project.durationDate}
-                image={project.image}
-                status={project.status}
+                key={p.uuid}
+                uuid={p.uuid}
+                title={p.title}
+                quickSummary={p.quickSummary}
+                durationDate={p.durationDate}
+                image={p.image}
+                status={p.status}
               />
             ))}
           </div>
         )}
       </div>
-    </section>
+    </div>
   );
 };
 

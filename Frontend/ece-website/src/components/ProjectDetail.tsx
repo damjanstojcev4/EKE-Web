@@ -1,17 +1,15 @@
-import { useEffect, useState } from "react";
-import { useParams} from "react-router-dom";
-import { Link } from "react-router-dom";
-import SkeletonLoader from "./utils/SkeletonLoader";
+import React, { useEffect, useState } from "react";
+import { Link, useParams } from "react-router-dom";
 
 interface ProjectDetailData {
   uuid: string;
   title: string;
-  budget: number;
+  budget: number | string;
   description: string;
   image: string;
   quickSummary: string;
   durationDate: string;
-  partners: string[];
+  partners: string[] | string; // handle both array or comma-separated
   status: "ON_GOING" | "PAST";
   pdfUrl?: string;
 }
@@ -19,62 +17,102 @@ interface ProjectDetailData {
 const ProjectDetail: React.FC = () => {
   const { uuid } = useParams<{ uuid: string }>();
   const [project, setProject] = useState<ProjectDetailData | null>(null);
+  const [error, setError] = useState<string>("");
 
   useEffect(() => {
     if (!uuid) return;
-    fetch(`/api/projects/get/${uuid}`)
-      .then((res) => res.json())
-      .then((data) => setProject(data))
-      .catch((err) => console.error(err));
+
+    const load = async () => {
+      try {
+        const res = await fetch(`/api/projects/get/${uuid}`);
+        if (!res.ok) throw new Error(`Failed to load project ${uuid}`);
+        const data = await res.json();
+        setProject(data);
+      } catch (e: any) {
+        console.error(e);
+        setError(e.message || "Failed to load project");
+      }
+    };
+
     window.scrollTo(0, 0);
+    load();
   }, [uuid]);
 
-  if (!project) {
+  if (error) {
     return (
-      <SkeletonLoader/>
+      <div className="min-h-screen px-6">
+        <div className="max-w-5xl mx-auto">
+          <Link to="/projects" className="text-blue-600 hover:underline">
+            ← Back to Projects
+          </Link>
+          <div className="mt-6 p-6 bg-red-50 border border-red-200 text-red-700 rounded-lg">
+            {error}
+          </div>
+        </div>
+      </div>
     );
   }
 
+  if (!project) {
+    return (
+      <div className="min-h-screen pt-28 px-6">
+        <div className="max-w-6xl mx-auto grid gap-6">
+          <div className="h-8 w-64 bg-gray-200 rounded animate-pulse" />
+          <div className="h-5 w-96 bg-gray-200 rounded animate-pulse" />
+          <div className="h-80 bg-gray-200 rounded-lg animate-pulse" />
+          <div className="h-40 bg-gray-200 rounded-lg animate-pulse" />
+        </div>
+      </div>
+    );
+  }
+
+  const partners =
+    Array.isArray(project.partners)
+      ? project.partners
+      : project.partners
+      ? project.partners.split(",").map((s) => s.trim())
+      : [];
+
   return (
-    <div className="bg-gray-50 min-h-screen pt-20">
-      <div className="max-w-6xl mx-auto px-4 py-12">
-        {/* Back Button */}
-        <Link
-          to="/projects"
-          className="inline-flex items-center text-blue-600 hover:underline mb-6"
-        >
+    <div className="bg-gray-50 min-h-screen pt-30 pb-24 px-6">
+      <div className="max-w-6xl mx-auto">
+        <Link to="/projects" className="inline-flex items-center text-blue-600 hover:underline mb-6">
           ← Back to Projects
         </Link>
 
-        {/* Title */}
         <h1 className="text-4xl font-bold mb-3 text-gray-900">{project.title}</h1>
         <p className="text-lg text-gray-600 mb-8">{project.quickSummary}</p>
 
-        {/* Image */}
-        <div className="w-full flex justify-center mb-5">
+        <div className="w-full flex justify-center mb-8">
+          {project.image ? (
             <img
-                src={project.image}
-                alt={project.title}
-                className="w-full max-w-3xl h-auto rounded-lg shadow-md object-contain"
+              src={project.image}
+              alt={project.title}
+              className="w-full max-w-3xl h-auto rounded-lg shadow-md object-contain bg-white"
             />
+          ) : (
+            <div className="w-full max-w-3xl h-64 rounded-lg bg-gray-200 flex items-center justify-center text-gray-500">
+              No image
             </div>
-        {/* Project Info */}
+          )}
+        </div>
+
         <div className="grid md:grid-cols-3 gap-6 mb-12">
-          <div className="bg-stone-200 rounded-lg p-6 shadow">
-            <h3 className="text-sm font-semibold text-gray-950">Budget</h3>
-            <p className="text-xl font-bold text-gray-950">€{project.budget}</p>
+          <div className="bg-white rounded-lg p-6 shadow">
+            <h3 className="text-sm font-semibold text-gray-700">Budget</h3>
+            <p className="text-xl font-bold text-gray-900">
+              {typeof project.budget === "number" ? `€${project.budget}` : project.budget}
+            </p>
           </div>
-          <div className="bg-stone-200 rounded-lg p-6 shadow">
-            <h3 className="text-sm font-semibold text-gray-950">Duration</h3>
-            <p className="text-xl font-bold text-gray-950">{project.durationDate}</p>
+          <div className="bg-white rounded-lg p-6 shadow">
+            <h3 className="text-sm font-semibold text-gray-700">Duration</h3>
+            <p className="text-xl font-bold text-gray-900">{project.durationDate}</p>
           </div>
-          <div className="bg-stone-200 rounded-lg p-6 shadow">
-            <h3 className="text-sm font-semibold text-gray-950 mb-4">Status</h3>
+          <div className="bg-white rounded-lg p-6 shadow">
+            <h3 className="text-sm font-semibold text-gray-700 mb-3">Status</h3>
             <span
-              className={`px-7 py-2 rounded-full text-base font-semibold ${
-                project.status === "ON_GOING"
-                  ? "bg-green-100 text-green-700"
-                  : "bg-red-500 text-white"
+              className={`px-4 py-2 rounded-full text-sm font-semibold ${
+                project.status === "ON_GOING" ? "bg-green-100 text-green-700" : "bg-red-500 text-white"
               }`}
             >
               {project.status === "ON_GOING" ? "Ongoing" : "Past"}
@@ -82,35 +120,32 @@ const ProjectDetail: React.FC = () => {
           </div>
         </div>
 
-        {/* Description */}
-        <div className="bg-stone-200 rounded-lg p-8 shadow mb-12">
+        <div className="bg-white rounded-lg p-8 shadow mb-12 break-words">
           <h2 className="text-2xl font-bold mb-4">Project Description</h2>
           <p className="text-gray-700 leading-relaxed">{project.description}</p>
         </div>
 
-        {/* Partners */}
-        {project.partners.length > 0 && (
-          <div className="bg-stone-200 rounded-lg p-8 shadow mb-12">
+        {partners.length > 0 && (
+          <div className="bg-white rounded-lg p-8 shadow mb-12">
             <h2 className="text-2xl font-bold mb-4">Partners</h2>
-            <ul className="pl-5 space-y-2 text-gray-700">
-              {project.partners.map((partner, index) => (
-                <li key={index}>{partner}</li>
+            <ul className="pl-5 space-y-2 text-gray-700 list-disc">
+              {partners.map((partner, i) => (
+                <li key={i}>{partner}</li>
               ))}
             </ul>
           </div>
         )}
 
-        {/* PDF Link */}
         {project.pdfUrl && (
-            <div className="text-center">
-                <a
-                href={project.pdfUrl}
-                download // ← this makes it download instead of just open
-                className="inline-block px-8 py-3 bg-blue-600 text-white font-semibold rounded-lg shadow hover:bg-blue-700 transition"
-                >
-                Download Project PDF
-                </a>
-            </div>
+          <div className="text-center">
+            <a
+              href={project.pdfUrl}
+              download
+              className="inline-block px-8 py-3 bg-blue-600 text-white font-semibold rounded-lg shadow hover:bg-blue-700 transition"
+            >
+              Download Project PDF
+            </a>
+          </div>
         )}
       </div>
     </div>

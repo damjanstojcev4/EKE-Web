@@ -70,8 +70,8 @@ const AdminPage = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gray-900 text-white pt-24 px-6 pb-24">
-      <h1 className="text-4xl font-bold text-center mb-10 pt-20">
+    <div className="min-h-screen bg-gray-200 text-white pt-24 px-6 pb-24">
+      <h1 className="text-4xl font-bold text-center mb-10 pt-20 text-stone-950">
         Admin Dashboard
       </h1>
 
@@ -80,8 +80,8 @@ const AdminPage = () => {
           onClick={() => setActiveTab("projects")}
           className={`px-6 py-2 rounded-lg ${
             activeTab === "projects"
-              ? "bg-blue-600"
-              : "bg-gray-700 hover:bg-gray-600"
+              ? "bg-cyan-600"
+              : "bg-cyan-950 hover:bg-cyan-900"
           }`}
         >
           Projects
@@ -93,8 +93,8 @@ const AdminPage = () => {
           }}
           className={`px-6 py-2 rounded-lg ${
             activeTab === "add"
-              ? "bg-blue-600"
-              : "bg-gray-700 hover:bg-gray-600"
+              ? "bg-cyan-600"
+              : "bg-cyan-950 hover:bg-cyan-900"
           }`}
         >
           Add Project
@@ -103,8 +103,8 @@ const AdminPage = () => {
           onClick={() => setActiveTab("messages")}
           className={`px-6 py-2 rounded-lg ${
             activeTab === "messages"
-              ? "bg-blue-600"
-              : "bg-gray-700 hover:bg-gray-600"
+              ? "bg-cyan-600"
+              : "bg-cyan-950 hover:bg-cyan-900"
           }`}
         >
           Messages
