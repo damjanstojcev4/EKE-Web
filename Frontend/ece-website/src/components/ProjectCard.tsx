@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import React from "react";
 
 interface ProjectCardProps {
   uuid: string;
@@ -7,34 +7,53 @@ interface ProjectCardProps {
   durationDate: string;
   image: string;
   status: "ON_GOING" | "PAST";
+  onEdit?: () => void;
+  onDelete?: () => void;
 }
 
-const ProjectCard: React.FC<ProjectCardProps> = ({
-  uuid,
+const ProjectCard = ({
   title,
   quickSummary,
   durationDate,
   image,
   status,
-}) => {
+  onEdit,
+  onDelete,
+}: ProjectCardProps) => {
   return (
-    <Link to={`/project/${uuid}`} className="block">
-      <div className="bg-gray-200 rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition">
-        <img src={image} alt={title} className="w-full h-48 object-cover" />
-        <div className="p-4">
-          <h3 className="text-xl font-bold mb-2">{title}</h3>
-          <p className="text-gray-600 mb-2">{quickSummary}</p>
-          <p className="text-sm text-gray-500">{durationDate}</p>
-          <span
-            className={`inline-block mt-2 px-5 py-2 text-sm rounded ${
-              status === "ON_GOING" ? "bg-green-100 text-green-700" : "bg-red-600/80 text-white"
-            }`}
-          >
-            {status === "ON_GOING" ? "Ongoing" : "Past"}
-          </span>
+    <div className="bg-gray-800 rounded-xl shadow-lg overflow-hidden">
+      <img src={image} alt={title} className="w-full h-48 object-cover" />
+      <div className="p-4">
+        <h3 className="text-xl font-bold">{title}</h3>
+        <p className="text-gray-400">{quickSummary}</p>
+        <p className="text-gray-500 text-sm mb-2">{durationDate}</p>
+        <div className="flex gap-2">
+          {onEdit && (
+            <button
+              onClick={onEdit}
+              className="px-3 py-1 bg-blue-600 rounded hover:bg-blue-500 transition text-white"
+            >
+              Edit
+            </button>
+          )}
+          {onDelete && (
+            <button
+              onClick={onDelete}
+              className="px-3 py-1 bg-red-600 rounded hover:bg-red-500 transition text-white"
+            >
+              Delete
+            </button>
+          )}
         </div>
+        <span
+          className={`inline-block mt-2 px-2 py-1 rounded text-xs ${
+            status === "ON_GOING" ? "bg-green-600" : "bg-red-600"
+          }`}
+        >
+          {status === "ON_GOING" ? "Ongoing" : "Past"}
+        </span>
       </div>
-    </Link>
+    </div>
   );
 };
 
