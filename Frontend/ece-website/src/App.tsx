@@ -15,7 +15,9 @@ import BackToTopButton from './components/utils/BackToTopButton.tsx';
 function App() {
   // PrivateRoute component
   const PrivateRoute = ({ children }: { children: React.ReactNode }) => {
-    return <>{children}</>;
+        const token = localStorage.getItem("jwt");
+        return token ? <>{children}</> : <Navigate to="/login" replace />;
+    // return <>{children}</>;
   };
 
   return (
@@ -27,6 +29,8 @@ function App() {
         <Route path="/about-us" element={<AboutUs />} />
         <Route path="/contact" element={<Contact />} />
         <Route path="/projects" element={<Projects />} />
+        <Route path="/project/:uuid" element={<ProjectDetail />} />
+        <Route path="/login" element={<Login />} />
         <Route
           path="/admin"
           element={
@@ -35,8 +39,7 @@ function App() {
             </PrivateRoute>
           }
         />
-        <Route path="/login" element={<Login />} />
-        <Route path="/project/:uuid" element={<ProjectDetail />} />
+
       </Routes>
       <BackToTopButton />
     </Router>
