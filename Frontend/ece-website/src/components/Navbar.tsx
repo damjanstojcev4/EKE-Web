@@ -10,7 +10,7 @@ const Navbar = () => {
     { label: 'About Us', path: '/about-us' },
     { label: 'News', path: '/news' },
     { label: 'Projects', path: '/projects' },
-    { label: 'Contact', path: '/contact' },
+    { label: 'Reach Us', path: '/contact' },
   ];
 
   return (
