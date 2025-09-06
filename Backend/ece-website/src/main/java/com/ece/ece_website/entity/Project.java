@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 import lombok.*;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
@@ -28,7 +29,7 @@ public class Project {
     private String durationDate;
     @ElementCollection
     private List<String> partners = new ArrayList<>();
-    private LocalDate date;
+    private LocalDateTime date;
     @Enumerated(EnumType.STRING)
     private ProjectStatus status;
     private String pdfFilePath;
@@ -40,7 +41,7 @@ public class Project {
         }
 
         if (date == null) {
-            date = LocalDate.now();
+            date = LocalDateTime.now();
         }
 
         if (status == null) {

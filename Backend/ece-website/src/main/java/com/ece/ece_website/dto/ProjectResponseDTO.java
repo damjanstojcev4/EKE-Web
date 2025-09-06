@@ -4,7 +4,7 @@ import com.ece.ece_website.entity.ProjectStatus;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.UUID;
 
@@ -21,5 +21,5 @@ public class ProjectResponseDTO {
     List<String> partners;
     private ProjectStatus status;
     private String pdfUrl;
-    private LocalDate date;
+    private LocalDateTime date;
 }
