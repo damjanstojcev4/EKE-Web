@@ -21,4 +21,5 @@ public class ProjectResponseDTO {
     List<String> partners;
     private ProjectStatus status;
     private String pdfUrl;
+    private LocalDate date;
 }

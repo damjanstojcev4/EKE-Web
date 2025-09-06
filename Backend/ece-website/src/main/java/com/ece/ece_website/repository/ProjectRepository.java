@@ -11,7 +11,8 @@ import java.util.UUID;
 
 @Repository
 public interface ProjectRepository extends JpaRepository<Project, Long> {
-    List<Project> findAll(); // list all projects
+
+    List<Project> findAllByOrderByDateDesc(); // list all projects
 
     Optional<Project> findByTitle(String title); // search by name
 

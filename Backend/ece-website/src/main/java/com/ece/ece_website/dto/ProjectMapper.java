@@ -25,7 +25,8 @@ public class ProjectMapper {
                 project.getDurationDate(),
                 project.getPartners(),
                 project.getStatus(),
-                pdfFileUrl
+                pdfFileUrl,
+                project.getDate()
                 );
     }
 
