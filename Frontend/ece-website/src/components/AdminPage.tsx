@@ -114,7 +114,7 @@ const AdminPage = () => {
       <div className="max-w-6xl mx-auto">
         {activeTab === "projects" && (
           <div className="grid gap-6">
-            {projects.length === 0 && <p>No projects found.</p>}
+            {projects.length === 0 && <p className="text-gray-950">No projects found</p>}
             {projects.map((project) => (
               <ProjectCard
                 key={project.uuid}

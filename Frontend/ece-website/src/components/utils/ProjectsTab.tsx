@@ -1,70 +1,80 @@
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import ProjectCard from "../ProjectCard";
 
 interface Project {
   uuid: string;
   title: string;
+  budget: string;
   description: string;
   quickSummary: string;
-  budget: number;
   durationDate: string;
   partners: string;
   status: "ON_GOING" | "PAST";
   image: string;
+  pdf: string;
+  date: string
 }
 
-const ProjectsTab = () => {
+const Projects: React.FC = () => {
   const [projects, setProjects] = useState<Project[]>([]);
+  const [loading, setLoading] = useState(true);
 
-  useEffect(() => {
-    fetch("/api/projects/", { credentials: "include" })
-      .then((res) => res.json())
-      .then((data) => setProjects(data))
-      .catch((err) => console.error("Error fetching projects:", err));
-  }, []);
+  const fetchProjects = async () => {
+    try {
+      const res = await fetch("/api/projects/");
+      if (!res.ok) throw new Error("Failed to load projects");
+      const data = await res.json();
 
-  const handleDelete = async (uuid: string) => {
-    if (!window.confirm("Are you sure you want to delete this project?")) return;
+      data.sort((a: any, b: any) => new Date(b.date).getTime() - new Date(a.date).getTime());
 
-    await fetch(`/api/projects/${uuid}`, {
-      method: "DELETE",
-      credentials: "include",
-    });
-    setProjects((prev) => prev.filter((p) => p.uuid !== uuid));
+      setProjects(data);
+    } catch (e) {
+      console.error(e);
+    } finally {
+      setLoading(false);
+    }
   };
 
-  return (
-    <div>
-      <h2 className="text-xl font-semibold mb-4">All Projects</h2>
-      {projects.length === 0 ? (
-        <p className="text-gray-600">No projects available.</p>
-      ) : (
-        <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-          {projects.map((project) => (
-            <div key={project.uuid} className="relative">
-              <ProjectCard 
-              key={project.uuid}
-              uuid={project.uuid}
-              title={project.title}
-              quickSummary={project.quickSummary}
-              durationDate={project.durationDate}
-              image={project.image}
-              status={project.status} />
-              <div className="absolute top-2 right-2 flex space-x-2">
-                <button
-                  onClick={() => handleDelete(project.uuid)}
-                  className="px-3 py-1 bg-red-500 text-white rounded-md text-sm hover:bg-red-600"
-                >
-                  Delete
-                </button>
-                {/* 🔹 You can add Update button here */}
-              </div>
-            </div>
+  useEffect(() => {
+    fetchProjects();
+  }, []);
+
+  if (loading) {
+    return (
+      <div className="min-h-screen pt-28 px-6">
+        <div className="max-w-6xl mx-auto grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+          {Array.from({ length: 6 }).map((_, i) => (
+            <div key={i} className="h-80 bg-gray-200 rounded-xl animate-pulse" />
           ))}
         </div>
-      )}
+      </div>
+    );
+  }
+
+  return (
+    <div className="min-h-screen pt-40 px-6 pb-24">
+      <div className="max-w-6xl mx-auto">
+        <h1 className="text-3xl font-bold mb-8 text-gray-900">Projects</h1>
+        {projects.length === 0 ? (
+          <p className="text-gray-600">No projects found.</p>
+        ) : (
+          <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+            {projects.map((p) => (
+              <ProjectCard
+                key={p.uuid}
+                uuid={p.uuid}
+                title={p.title}
+                quickSummary={p.quickSummary}
+                durationDate={p.durationDate}
+                image={p.image}
+                status={p.status}
+              />
+            ))}
+          </div>
+        )}
+      </div>
     </div>
   );
 };
 
-export default ProjectsTab;
+export default Projects;

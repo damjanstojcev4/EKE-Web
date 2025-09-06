@@ -12,6 +12,7 @@ interface Project {
   status: "ON_GOING" | "PAST";
   image: string;
   pdf: string;
+  date: string;
 }
 
 const Projects: React.FC = () => {
@@ -19,17 +20,20 @@ const Projects: React.FC = () => {
   const [loading, setLoading] = useState(true);
 
   const fetchProjects = async () => {
-    try {
-      const res = await fetch("/api/projects/");
-      if (!res.ok) throw new Error("Failed to load projects");
-      const data = await res.json();
-      setProjects(data);
-    } catch (e) {
-      console.error(e);
-    } finally {
-      setLoading(false);
-    }
-  };
+  try {
+    const res = await fetch("/api/projects/");
+    if (!res.ok) throw new Error("Failed to load projects");
+    const data = await res.json();
+
+    data.sort((a: any, b: any) => new Date(b.date).getTime() - new Date(a.date).getTime());
+
+    setProjects(data);
+  } catch (e) {
+    console.error(e);
+  } finally {
+    setLoading(false);
+  }
+};
 
   useEffect(() => {
     fetchProjects();

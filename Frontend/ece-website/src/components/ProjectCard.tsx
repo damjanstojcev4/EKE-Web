@@ -49,7 +49,7 @@ const ProjectCard: React.FC<ProjectCardProps> = ({
       </div>
 
       <div className="p-4">
-        <h3 className="text-xl font-bold text-gray-900">{title}</h3>
+        <h3 className="text-xl font-bold text-gray-900 word-break">{title}</h3>
         <p className="text-gray-700 mt-1 line-clamp-3">{quickSummary}</p>
         <p className="text-gray-500 text-sm mt-2">{durationDate}</p>
 

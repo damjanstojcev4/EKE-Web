@@ -93,17 +93,17 @@ const AddProjectsTab = ({ projectToEdit, onSaved }: AddProjectsTabProps) => {
 
   return (
     <div className="p-6 pb-24">
-      <h2 className="text-2xl font-semibold mb-6 text-white">
+      <h2 className="text-2xl font-semibold mb-6 text-black">
         {projectToEdit ? "Update Project" : "Add New Project"}
       </h2>
       <form
         onSubmit={handleSubmit}
-        className="space-y-4 bg-gray-800 p-6 rounded-xl shadow-lg mb-12"
+        className="space-y-4 bg-gray-400 p-6 rounded-xl shadow-lg mb-12"
       >
         <input
           type="text"
           placeholder="Project Title"
-          className="w-full p-3 rounded bg-gray-700 text-white placeholder-gray-400 focus:outline-none"
+          className="w-full p-3 rounded bg-gray-200 text-black placeholder-gray-500 focus:outline-none"
           value={formData.title}
           onChange={(e) => setFormData({ ...formData, title: e.target.value })}
           required
@@ -111,14 +111,14 @@ const AddProjectsTab = ({ projectToEdit, onSaved }: AddProjectsTabProps) => {
         <input
           type="number"
           placeholder="Budget (€)"
-          className="w-full p-3 rounded bg-gray-700 text-white placeholder-gray-400 focus:outline-none"
+          className="w-full p-3 rounded bg-gray-200 text-black placeholder-gray-500 focus:outline-none"
           value={formData.budget}
           onChange={(e) => setFormData({ ...formData, budget: e.target.value })}
           required
         />
         <textarea
           placeholder="Description"
-          className="w-full p-3 rounded bg-gray-700 text-white placeholder-gray-400 focus:outline-none"
+          className="w-full p-3 rounded bg-gray-200 text-black placeholder-gray-500 focus:outline-none"
           value={formData.description}
           onChange={(e) =>
             setFormData({ ...formData, description: e.target.value })
@@ -128,7 +128,7 @@ const AddProjectsTab = ({ projectToEdit, onSaved }: AddProjectsTabProps) => {
         />
         <textarea
           placeholder="Quick Summary"
-          className="w-full p-3 rounded bg-gray-700 text-white placeholder-gray-400 focus:outline-none"
+          className="w-full p-3 rounded bg-gray-200 text-black placeholder-gray-500 focus:outline-none"
           value={formData.quickSummary}
           onChange={(e) =>
             setFormData({ ...formData, quickSummary: e.target.value })
@@ -139,7 +139,7 @@ const AddProjectsTab = ({ projectToEdit, onSaved }: AddProjectsTabProps) => {
         <input
           type="text"
           placeholder="Duration Date"
-          className="w-full p-3 rounded bg-gray-700 text-white placeholder-gray-400 focus:outline-none"
+          className="w-full p-3 rounded bg-gray-200 text-black placeholder-gray-500 focus:outline-none"
           value={formData.durationDate}
           onChange={(e) =>
             setFormData({ ...formData, durationDate: e.target.value })
@@ -149,14 +149,14 @@ const AddProjectsTab = ({ projectToEdit, onSaved }: AddProjectsTabProps) => {
         <input
           type="text"
           placeholder="Partners (comma separated)"
-          className="w-full p-3 rounded bg-gray-700 text-white placeholder-gray-400 focus:outline-none"
+          className="w-full p-3 rounded bg-gray-200 text-black placeholder-gray-500 focus:outline-none"
           value={formData.partners}
           onChange={(e) =>
             setFormData({ ...formData, partners: e.target.value })
           }
         />
         <select
-          className="w-full p-3 rounded bg-gray-700 text-white placeholder-gray-400 focus:outline-none"
+          className="w-full p-3 rounded bg-gray-200 text-black focus:outline-none"
           value={formData.status}
           onChange={(e) =>
             setFormData({ ...formData, status: e.target.value })
@@ -171,7 +171,7 @@ const AddProjectsTab = ({ projectToEdit, onSaved }: AddProjectsTabProps) => {
             <label className="block text-gray-300 font-medium mb-1">
               Project Image
             </label>
-            <label className="w-full flex justify-center items-center px-6 py-3 bg-gray-700 text-white rounded-lg cursor-pointer hover:bg-gray-600 transition">
+            <label className="w-full flex justify-center items-center px-6 py-3 bg-gray-200 text-black rounded-lg cursor-pointer hover:bg-gray-600 transition">
               {image ? image.name : projectToEdit?.image || "Select Image"}
               <input
                 type="file"
@@ -184,7 +184,7 @@ const AddProjectsTab = ({ projectToEdit, onSaved }: AddProjectsTabProps) => {
 
           <div>
             <label className="block text-gray-300 font-medium mb-1">Project PDF</label>
-            <label className="w-full flex justify-center items-center px-6 py-3 bg-gray-700 text-white rounded-lg cursor-pointer hover:bg-gray-600 transition">
+            <label className="w-full flex justify-center items-center px-6 py-3 bg-gray-200 text-black rounded-lg cursor-pointer hover:bg-gray-600 transition">
               {pdf ? pdf.name : projectToEdit?.pdf || "Select PDF"}
               <input
                 type="file"
