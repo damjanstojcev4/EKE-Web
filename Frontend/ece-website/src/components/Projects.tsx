@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import ProjectCard from "./ProjectCard";
+import SkeletonLoader from "./utils/SkeletonLoader";
 
 interface Project {
   uuid: string;
@@ -40,21 +41,13 @@ const Projects: React.FC = () => {
   }, []);
 
   if (loading) {
-    return (
-      <div className="min-h-screen pt-28 px-6">
-        <div className="max-w-6xl mx-auto grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-          {Array.from({ length: 6 }).map((_, i) => (
-            <div key={i} className="h-80 bg-gray-200 rounded-xl animate-pulse" />
-          ))}
-        </div>
-      </div>
-    );
+    return <SkeletonLoader/>
   }
 
   return (
     <div className="min-h-screen pt-40 px-6 pb-24">
       <div className="max-w-6xl mx-auto">
-        <h1 className="text-3xl font-bold mb-8 text-gray-900">Projects</h1>
+        <h1 className="text-5xl font-bold mb-8 text-blue-900 text-center">Projects</h1>
         {projects.length === 0 ? (
           <p className="text-gray-600">No projects found.</p>
         ) : (

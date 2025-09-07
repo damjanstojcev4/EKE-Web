@@ -1,11 +1,9 @@
 import Footer from "./Footer";
-import Navbar from "./Navbar";
 import OurTeam from "./OurTeam";
 
 const AboutUs = () => {
   return (
     <div className="flex flex-col min-h-screen pt-20">
-      <Navbar />
 
       <div className="relative w-full flex-1 p-4 sm:p-8 pt-[80px] overflow-hidden font-sans">
         {/* Background Image with gradient overlay */}
@@ -67,10 +65,6 @@ const AboutUs = () => {
           </div>
         </div>
       </div>
-
-      {/* Team Section */}
-      <OurTeam />
-
       <Footer />
     </div>
   );

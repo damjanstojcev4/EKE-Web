@@ -29,9 +29,9 @@ const teamMembers = [
 
 const OurTeam = () => {
   return (
-    <section className="py-12 bg-gray-200">
+    <section className="py-12 bg-gray-200 pt-40">
       <div className="max-w-7xl mx-auto px-6 text-center">
-        <h2 className="text-5xl font-bold mb-10 text-transparent bg-clip-text bg-gradient-to-r from-blue-900 to-yellow-300">Our Team</h2>
+        <h2 className="text-5xl font-bold mb-10 text-transparent bg-clip-text bg-gradient-to-r from-blue-900 to-yellow-300">Meet Our Team</h2>
 
         <div className="grid gap-6 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-3">
           {teamMembers.map((member, index) => (

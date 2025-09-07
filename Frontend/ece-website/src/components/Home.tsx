@@ -1,7 +1,18 @@
 import { useState, useEffect, type FC } from "react";
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
-import { Eye, Zap, BookOpen, Plane, Briefcase, Laptop, Leaf, Dumbbell, Users, Scale, } from "lucide-react";
+import {
+  Eye,
+  Zap,
+  BookOpen,
+  Plane,
+  Briefcase,
+  Laptop,
+  Leaf,
+  Dumbbell,
+  Users,
+  Scale,
+} from "lucide-react";
 
 import heroImage from "../assets/hero-background.jpg";
 import Partners from "./Partners";
@@ -18,48 +29,16 @@ interface Project {
 }
 
 const Home: FC = () => {
-const aims = [
-  {
-    text: "Personal and professional development",
-    icon: BookOpen,
-    color: "text-blue-600",
-  },
-  {
-    text: "Promoting mobility within the country and abroad",
-    icon: Plane,
-    color: "text-purple-600",
-  },
-  {
-    text: "Promote entrepreneurship",
-    icon: Briefcase,
-    color: "text-yellow-600",
-  },
-  {
-    text: "Digital literacy, digital skills and digital transformation",
-    icon: Laptop,
-    color: "text-indigo-600",
-  },
-  {
-    text: 'Sustainable development and the "green agenda"',
-    icon: Leaf,
-    color: "text-green-600",
-  },
-  {
-    text: "Promote a healthy lifestyle through sports and sports activities",
-    icon: Dumbbell,
-    color: "text-red-600",
-  },
-  {
-    text: "Advocate for human rights and empowerment of vulnerable and marginalized groups",
-    icon: Users,
-    color: "text-pink-600",
-  },
-  {
-    text: "Stand for democratic values and standards",
-    icon: Scale,
-    color: "text-gray-700",
-  },
-];
+  const aims = [
+    { text: "Personal and professional development", icon: BookOpen, color: "text-blue-600" },
+    { text: "Promoting mobility within the country and abroad", icon: Plane, color: "text-purple-600" },
+    { text: "Promote entrepreneurship", icon: Briefcase, color: "text-yellow-600" },
+    { text: "Digital literacy, digital skills and digital transformation", icon: Laptop, color: "text-indigo-600" },
+    { text: 'Sustainable development and the "green agenda"', icon: Leaf, color: "text-green-600" },
+    { text: "Promote a healthy lifestyle through sports and sports activities", icon: Dumbbell, color: "text-red-600" },
+    { text: "Advocate for human rights and empowerment of vulnerable and marginalized groups", icon: Users, color: "text-pink-600" },
+    { text: "Stand for democratic values and standards", icon: Scale, color: "text-gray-700" },
+  ];
 
   const [projects, setProjects] = useState<Project[]>([]);
 
@@ -144,6 +123,45 @@ const aims = [
         </div>
       </section>
 
+      {/* About Us */}
+      <section className="relative py-20 bg-gradient-to-r from-blue-50 via-white to-yellow-50">
+        <div className="max-w-6xl mx-auto px-6 grid md:grid-cols-2 gap-12 items-center">
+          {/* Text */}
+          <div className="space-y-6">
+            <h2 className="text-4xl md:text-5xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-gray-600 to-blue-500">About Us</h2>
+            <p className="text-gray-600 text-lg leading-relaxed">
+              Since 2012, European Cultural Epicenter (EKE) has been fostering
+              positive values and empowering youth through non-formal education,
+              workshops, trainings, and international projects. Our mission is
+              to connect communities and inspire sustainable change.
+            </p>
+            <Link
+              to="/about-us"
+              className="inline-block px-6 py-3 bg-blue-600 text-white font-semibold rounded-lg shadow hover:bg-blue-500 transition"
+            >
+              Discover More
+            </Link>
+          </div>
+
+          {/* Image / Illustration */}
+          <motion.div
+            initial={{ opacity: 0, x: 50 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.8 }}
+            viewport={{ once: true }}
+            className="relative rounded-2xl overflow-hidden shadow-lg"
+          >
+            <img
+              src="/src/assets/about-us-bg.jpg"
+              alt="About Us"
+              className="w-full h-80 object-cover"
+            />
+            <div className="absolute inset-0 bg-gradient-to-tr from-blue-900/40 to-yellow-500/30" />
+          </motion.div>
+        </div>
+      </section>
+
+      {/* Stats */}
       <section>
         <div className="mt-20 mb-20 grid grid-cols-2 md:grid-cols-4 gap-8 max-w-4xl mx-auto">
           <div className="text-center">
@@ -167,29 +185,31 @@ const aims = [
 
       {/* Our Aims */}
       <section className="bg-gray-50 py-16">
-  <div className="container mx-auto px-4 text-center">
-    <h1 className="text-5xl font-bold mb-4 text-transparent bg-clip-text bg-gradient-to-r from-orange-400 to-green-500">Our Aims</h1>
-    <p className="text-gray-600 mb-10 max-w-2xl mx-auto">
-      We are committed to achieving these key objectives through our programs
-      and initiatives.
-    </p>
-    <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 max-w-4xl mx-auto">
-      {aims.map((aim, index) => {
-        const Icon = aim.icon;
-        return (
-          <motion.div
-            key={index}
-            className="bg-white shadow-md rounded-xl p-5 flex items-center gap-4 hover:shadow-lg transition"
-            whileHover={{ scale: 1.02 }}
-          >
-            <Icon className={`w-7 h-7 shrink-0 ${aim.color}`} />
-            <p className="text-left text-gray-700">{aim.text}</p>
-          </motion.div>
-        );
-      })}
-    </div>
-  </div>
-</section>
+        <div className="container mx-auto px-4 text-center">
+          <h1 className="text-5xl font-bold mb-4 text-transparent bg-clip-text bg-gradient-to-r from-orange-400 to-green-500">
+            Our Aims
+          </h1>
+          <p className="text-gray-600 mb-10 max-w-2xl mx-auto">
+            We are committed to achieving these key objectives through our programs
+            and initiatives.
+          </p>
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 max-w-4xl mx-auto">
+            {aims.map((aim, index) => {
+              const Icon = aim.icon;
+              return (
+                <motion.div
+                  key={index}
+                  className="bg-white shadow-md rounded-xl p-5 flex items-center gap-4 hover:shadow-lg transition"
+                  whileHover={{ scale: 1.02 }}
+                >
+                  <Icon className={`w-7 h-7 shrink-0 ${aim.color}`} />
+                  <p className="text-left text-gray-700">{aim.text}</p>
+                </motion.div>
+              );
+            })}
+          </div>
+        </div>
+      </section>
 
       {/* Recent Projects */}
       <div className="py-16 px-4 max-w-7xl mx-auto">

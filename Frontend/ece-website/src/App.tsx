@@ -11,6 +11,7 @@ import AdminPage from './components/AdminPage.tsx';
 import Login from './components/Login.tsx';
 import ScrollToTop from './components/utils/ScrollToTop.tsx';
 import BackToTopButton from './components/utils/BackToTopButton.tsx';
+import OurTeam from './components/OurTeam.tsx';
 
 function App() {
   // PrivateRoute component
@@ -26,6 +27,7 @@ function App() {
       <Navbar />
       <Routes>
         <Route path="/" element={<Home />} />
+        <Route path="/our-team" element={<OurTeam />} />
         <Route path="/about-us" element={<AboutUs />} />
         <Route path="/contact" element={<Contact />} />
         <Route path="/projects" element={<Projects />} />
