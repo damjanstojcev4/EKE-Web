@@ -1,16 +1,16 @@
-import { useState } from 'react';
-import { Link } from 'react-router-dom';
-import logo from '/src/assets/EKE_logo_no_background-gpt.png';
+import { useState } from "react";
+import { NavLink } from "react-router-dom";
+import logo from "/src/assets/EKE_logo_no_background-gpt.png";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
 
   const navItems = [
-    { label: 'Home', path: '/' },
-    { label: 'About Us', path: '/about-us' },
-    { label: 'News', path: '/news' },
-    { label: 'Projects', path: '/projects' },
-    { label: 'Reach Us', path: '/contact' },
+    { label: "Home", path: "/" },
+    { label: "About Us", path: "/about-us" },
+    { label: "News", path: "/news" },
+    { label: "Projects", path: "/projects" },
+    { label: "Reach Us", path: "/contact" },
   ];
 
   return (
@@ -18,7 +18,13 @@ const Navbar = () => {
       <div className="flex items-center justify-between px-6 py-4">
         {/* Logo and Title */}
         <div className="flex items-center space-x-3">
-          <Link to="/"><img src={logo} alt="Logo" className="h-20 w-20 object-contain" /></Link>
+          <NavLink to="/">
+            <img
+              src={logo}
+              alt="Logo"
+              className="h-20 w-20 object-contain"
+            />
+          </NavLink>
           {/* ECE text only on lg and above */}
           <span className="hidden lg:inline text-white font-semibold text-lg">
             EKE Bitola
@@ -32,7 +38,6 @@ const Navbar = () => {
             className="text-white focus:outline-none"
             aria-label="Toggle menu"
           >
-            {/* Simple Hamburger Icon */}
             <svg
               className="w-6 h-6"
               fill="none"
@@ -63,12 +68,18 @@ const Navbar = () => {
         <ul className="hidden lg:flex space-x-6">
           {navItems.map((item) => (
             <li key={item.label}>
-              <Link
+              <NavLink
                 to={item.path}
-                className="text-white hover:bg-yellow-600 px-3 py-2 rounded transition duration-300 ease-in-out"
+                className={({ isActive }) =>
+                  `px-3 py-2 rounded transition duration-300 ease-in-out ${
+                    isActive
+                      ? "bg-yellow-600 text-black font-semibold"
+                      : "text-white hover:bg-yellow-600"
+                  }`
+                }
               >
                 {item.label}
-              </Link>
+              </NavLink>
             </li>
           ))}
         </ul>
@@ -79,13 +90,19 @@ const Navbar = () => {
         <ul className="lg:hidden flex flex-col px-6 pb-4 space-y-2 bg-cyan-900/20">
           {navItems.map((item) => (
             <li key={item.label}>
-              <Link
+              <NavLink
                 to={item.path}
-                className="block text-white hover:bg-yellow-600 px-3 py-2 rounded transition duration-300 ease-in-out"
+                className={({ isActive }) =>
+                  `block px-3 py-2 rounded transition duration-300 ease-in-out ${
+                    isActive
+                      ? "bg-yellow-600 text-black font-semibold"
+                      : "text-white hover:bg-yellow-600"
+                  }`
+                }
                 onClick={() => setIsOpen(false)}
               >
                 {item.label}
-              </Link>
+              </NavLink>
             </li>
           ))}
         </ul>
