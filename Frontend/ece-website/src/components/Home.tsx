@@ -1,7 +1,6 @@
 import { useState, useEffect, type FC } from "react";
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
-import { FaCheckCircle } from "react-icons/fa";
 import { Eye, Zap, BookOpen, Plane, Briefcase, Laptop, Leaf, Dumbbell, Users, Scale, } from "lucide-react";
 
 import heroImage from "../assets/hero-background.jpg";
@@ -112,7 +111,7 @@ const aims = [
       {/* Vision & Mission */}
       <section className="bg-gray-100 py-16">
         <div className="max-w-6xl mx-auto px-4 text-center">
-          <h2 className="text-3xl font-bold mb-12 text-gray-900">
+          <h2 className="text-5xl font-bold mb-12 text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-green-400">
             Vision & Mission
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
@@ -148,19 +147,19 @@ const aims = [
       <section>
         <div className="mt-20 mb-20 grid grid-cols-2 md:grid-cols-4 gap-8 max-w-4xl mx-auto">
           <div className="text-center">
-            <div className="text-3xl lg:text-4xl font-bold text-gray-900 mb-2">12+</div>
+            <div className="text-3xl lg:text-4xl font-bold text-orange-500 mb-2">12+</div>
             <div className="text-gray-600 text-sm font-medium">Years of Experience</div>
           </div>
           <div className="text-center">
-            <div className="text-3xl lg:text-4xl font-bold text-gray-900 mb-2">500+</div>
+            <div className="text-3xl lg:text-4xl font-bold text-green-600 mb-2">500+</div>
             <div className="text-gray-600 text-sm font-medium">Participants Trained</div>
           </div>
           <div className="text-center">
-            <div className="text-3xl lg:text-4xl font-bold text-gray-900 mb-2">50+</div>
+            <div className="text-3xl lg:text-4xl font-bold text-pink-700 mb-2">50+</div>
             <div className="text-gray-600 text-sm font-medium">Successful Projects</div>
           </div>
           <div className="text-center">
-            <div className="text-3xl lg:text-4xl font-bold text-gray-900 mb-2">15+</div>
+            <div className="text-3xl lg:text-4xl font-bold text-blue-700 mb-2">15+</div>
             <div className="text-gray-600 text-sm font-medium">Partner Organizations</div>
           </div>
         </div>
@@ -169,7 +168,7 @@ const aims = [
       {/* Our Aims */}
       <section className="bg-gray-50 py-16">
   <div className="container mx-auto px-4 text-center">
-    <h2 className="text-3xl font-bold mb-4 text-gray-900">Our Aims</h2>
+    <h1 className="text-5xl font-bold mb-4 text-transparent bg-clip-text bg-gradient-to-r from-orange-400 to-green-500">Our Aims</h1>
     <p className="text-gray-600 mb-10 max-w-2xl mx-auto">
       We are committed to achieving these key objectives through our programs
       and initiatives.

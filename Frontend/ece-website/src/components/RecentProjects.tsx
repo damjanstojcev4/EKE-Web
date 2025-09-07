@@ -37,7 +37,7 @@ const RecentProjects = () => {
 
   return (
     <div className="py-16 px-4 max-w-7xl mx-auto">
-      <h2 className="text-3xl font-bold mb-8 text-center">Recent Projects</h2>
+      <h2 className="text-5xl font-bold pb-8 mb-8 text-center text-transparent bg-clip-text bg-gradient-to-r from-rose-500 to-blue-600">Recent Projects</h2>
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
         {projects.map((project) => (
           <ProjectCard

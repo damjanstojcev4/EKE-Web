@@ -18,7 +18,7 @@ const partners = [
 
   return (
     <section className="bg-gray-50 py-12">
-      <h2 className="text-2xl font-bold text-center mb-8">Partners</h2>
+      <h2 className="text-5xl font-bold text-center mb-8 text-transparent bg-clip-text bg-gradient-to-r from-slate-800 to-cyan-400">Donors</h2>
       <div
         className="
           grid gap-8
