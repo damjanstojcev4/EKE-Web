@@ -88,7 +88,7 @@ const Home: FC = () => {
       </section>
 
       {/* Vision & Mission */}
-      <section className="bg-gray-100 py-16">
+      <section className="py-16">
         <div className="max-w-6xl mx-auto px-4 text-center">
           <h2 className="text-5xl font-bold mb-12 text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-green-400">
             Vision & Mission
@@ -124,7 +124,7 @@ const Home: FC = () => {
       </section>
 
       {/* About Us */}
-      <section className="relative py-20 bg-gradient-to-r from-blue-50 via-white to-yellow-50">
+      <section className="relative py-20 bg-gray-100">
         <div className="max-w-6xl mx-auto px-6 grid md:grid-cols-2 gap-12 items-center">
           {/* Text */}
           <div className="space-y-6">
