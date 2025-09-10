@@ -140,10 +140,11 @@ const ProjectDetail: React.FC = () => {
           <div className="text-center">
             <a
               href={project.pdfUrl}
-              download
-              className="inline-block px-8 py-3 bg-blue-600 text-white font-semibold rounded-lg shadow hover:bg-blue-700 transition"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-block px-8 py-3 bg-gradient-to-r from-blue-600 to-blue-500 text-white font-semibold rounded-xl shadow-lg hover:from-blue-700 hover:to-blue-600 focus:ring-4 focus:ring-blue-300 transition-transform transform hover:scale-105"
             >
-              Download Project PDF
+              View Project PDF
             </a>
           </div>
         )}

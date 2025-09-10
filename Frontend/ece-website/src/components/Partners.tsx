@@ -1,19 +1,17 @@
-import partner1 from "../assets/logo-black-white.png";
-import partner2 from "../assets/logo-black-white.png";
-import partner3 from "../assets/logo-black-white.png";
-import partner4 from "../assets/logo-black-white.png";
-import partner5 from "../assets/logo-black-white.png";
-import partner6 from "../assets/logo-black-white.png";
+import partner1 from "../assets/NA logo EN.png";
+import partner2 from "../assets/ESC Quality Label.png";
+import partner3 from "../assets/ESC logo EN.png";
+import partner4 from "../assets/eu_flag-erasmus_vect_pos.jpg";
+import partner5 from "../assets/btgrb.png";
 
 
 const Partners = () => {
 const partners = [
-  { name: "EduCompass", logo: partner1 },
-  { name: "Essenia", logo: partner2 },
-  { name: "Libertania", logo: partner3 },
-  { name: "Street Warriors", logo: partner4 },
-  { name: "FarmaCon", logo: partner5 },
-  { name: "FarmaCon", logo: partner6 }
+  { name: "NA", logo: partner1 },
+  { name: "ESC", logo: partner2 },
+  { name: "CORPS", logo: partner3 },
+  { name: "bitola", logo: partner4 },
+  { name: "FarmaCon", logo: partner5 }
 ];
 
   return (
@@ -25,8 +23,8 @@ const partners = [
           grid-cols-2
           sm:grid-cols-3
           md:grid-cols-4
-          lg:grid-cols-6
-          place-items-center
+          lg:grid-cols-5
+          items-center
         "
       >
         {partners.map((partner, index) => (
