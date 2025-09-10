@@ -1,6 +1,5 @@
 package com.ece.ece_website.controller;
 
-import com.ece.ece_website.dto.MessageRequest;
 import com.ece.ece_website.entity.Contact;
 import com.ece.ece_website.service.ContactService;
 import com.ece.ece_website.service.MailService;
@@ -28,12 +27,7 @@ public class ContactController {
     public ResponseEntity<Contact> createContact(@RequestBody Contact contact) {
         contactService.save(contact);
 
-        mailService.sendMail(
-                "New Message From: " + contact.getFullName(),
-                "Email: " + contact.getEmail() +
-                        "\n Message: \n " + contact.getYourMessage(),
-                "damjan.stojcev4@gmail.com"
-        );
+        mailService.sendContactEmail(contact, "damjan.stojcev4@gmail.com"); // "head.eke.macedonia@gmail.com"
 
         return ResponseEntity.ok(contact);
     }

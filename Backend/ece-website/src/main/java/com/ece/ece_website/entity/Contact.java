@@ -12,6 +12,7 @@ public class Contact {
     private int id;
     private String fullName;
     private String email;
+    private String subject;
     @Column(length = 400)
     private String yourMessage;
 }
