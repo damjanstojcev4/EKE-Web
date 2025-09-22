@@ -63,12 +63,10 @@ public class JwtAuthFilter extends OncePerRequestFilter {
                 if (jwtService.isTokenValid(jwt, userDetails)) {
                     logger.debug("Token is valid, setting authentication");
                     UsernamePasswordAuthenticationToken authToken = new UsernamePasswordAuthenticationToken(
-                            userDetails, null, userDetails.getAuthorities()
-                    );
+                            userDetails, null, userDetails.getAuthorities());
 
                     authToken.setDetails(
-                            new WebAuthenticationDetailsSource().buildDetails(request)
-                    );
+                            new WebAuthenticationDetailsSource().buildDetails(request));
                     SecurityContextHolder.getContext().setAuthentication(authToken);
                 } else {
                     logger.warn("Token is invalid");
@@ -88,7 +86,7 @@ public class JwtAuthFilter extends OncePerRequestFilter {
     }
 
     private boolean isPublicEndpoint(HttpServletRequest request) {
-        String path = request.getRequestURI();
+        String path = request.getServletPath();
         String method = request.getMethod();
 
         return path.startsWith("/auth/") ||
