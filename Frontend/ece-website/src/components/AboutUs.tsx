@@ -1,4 +1,5 @@
-import Footer from "./Footer";
+import BecomePartner from "./BecomePartner";
+import Contact from "./Contact";
 import OurTeam from "./OurTeam";
 
 const AboutUs = () => {
@@ -65,8 +66,11 @@ const AboutUs = () => {
           </div>
         </div>
       </div>
-      <Footer />
+      <BecomePartner/>
+      <OurTeam/>
+      <Contact/>
     </div>
+
   );
 };
 

@@ -1,6 +1,5 @@
 package com.ece.ece_website.config;
 
-import jakarta.servlet.Filter;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -22,19 +21,25 @@ public class SecurityConfig {
 
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
-        return http
+        http
                 .csrf(csrf -> csrf.disable())
                 .authorizeHttpRequests(auth -> auth
                         .requestMatchers("/auth/**").permitAll()
-                        .requestMatchers( HttpMethod.GET, "/projects/**").permitAll()
-                        .requestMatchers( HttpMethod.GET, "/uploads/**").permitAll()
-                        .requestMatchers(HttpMethod.POST, "/messages/").permitAll()
-                        .requestMatchers(HttpMethod.GET, "/messages/").permitAll()
-                        .anyRequest().authenticated())
+                        .requestMatchers(HttpMethod.GET, "/projects/**").permitAll()
+                        .requestMatchers(HttpMethod.GET, "/uploads/**").permitAll()
+                        .requestMatchers(HttpMethod.POST, "/messages/**").permitAll()
+                        .requestMatchers(HttpMethod.GET, "/messages/**").permitAll()
+                        .requestMatchers(HttpMethod.DELETE, "/messages/**").permitAll()
+                        .requestMatchers("/test/public").permitAll()
+                        .requestMatchers("/test/secure").authenticated()
+                        .anyRequest().authenticated()
+                )
                 .sessionManagement(session -> session
-                        .sessionCreationPolicy(SessionCreationPolicy.STATELESS))
+                        .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
+                )
                 .authenticationProvider(authenticationProvider)
-                .addFilterBefore(jwtAuthFilter, UsernamePasswordAuthenticationFilter.class)
-                .build();
+                .addFilterBefore(jwtAuthFilter, UsernamePasswordAuthenticationFilter.class);
+
+        return http.build();
     }
 }

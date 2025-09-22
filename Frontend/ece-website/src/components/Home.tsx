@@ -16,7 +16,6 @@ import {
 
 import heroImage from "../assets/hero-background.jpg";
 import Partners from "./Partners";
-import Footer from "./Footer";
 import RecentProjects from "./RecentProjects";
 
 interface Project {
@@ -141,6 +140,14 @@ const Home: FC = () => {
             >
               Discover More
             </Link>
+            <a
+              href="src/assets/PIF EKE Bitola 2025.pdf"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-block px-6 py-3 ml-5 bg-green-800 text-white font-semibold rounded-lg shadow hover:bg-green-700 transition"
+            >
+              Become Partner
+            </a>
           </div>
 
           {/* Image / Illustration */}
@@ -218,9 +225,6 @@ const Home: FC = () => {
 
       {/* Partners */}
       <Partners />
-
-      {/* Footer */}
-      <Footer />
     </>
   );
 };
