@@ -23,6 +23,7 @@ public class SecurityConfig {
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http
                 .csrf(csrf -> csrf.disable())
+                .headers(headers -> headers.frameOptions(frameOptions -> frameOptions.sameOrigin()))
                 .authorizeHttpRequests(auth -> auth
                         .requestMatchers("/auth/**").permitAll()
                         .requestMatchers(HttpMethod.GET, "/projects/**").permitAll()
@@ -30,6 +31,7 @@ public class SecurityConfig {
                         .requestMatchers(HttpMethod.POST, "/messages/**").permitAll()
                         .requestMatchers(HttpMethod.GET, "/messages/**").permitAll()
                         .requestMatchers(HttpMethod.DELETE, "/messages/**").permitAll()
+                        .requestMatchers("/h2-console/**").permitAll()
                         .requestMatchers("/test/public").permitAll()
                         .requestMatchers("/test/secure").authenticated()
                         .anyRequest().authenticated()
