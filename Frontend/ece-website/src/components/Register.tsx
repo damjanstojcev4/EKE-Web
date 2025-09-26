@@ -1,41 +1,41 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
-const Login: React.FC = () => {
+const Register: React.FC = () => {
   const navigate = useNavigate();
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
 
-  const handleLogin = async (e: React.FormEvent<HTMLFormElement>) => {
+  const handleRegister = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setError("");
     setLoading(true);
 
     try {
-      const res = await fetch("/api/auth/authenticate", {
+      const res = await fetch("/api/auth/register", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        credentials: "include", // important so cookie is stored
+        credentials: "include", // store JWT cookie
         body: JSON.stringify({ username, password }),
       });
 
       if (!res.ok) {
         const errBody = await res.json().catch(() => null);
-        throw new Error(errBody?.message || "Login failed");
+        throw new Error(errBody?.message || "Registration failed");
       }
 
-      // backend returns token in body and sets cookie (if implemented)
       const data = await res.json().catch(() => null);
       if (data?.token) {
+        // store token if returned
         localStorage.setItem("jwt", data.token);
       } else {
-        // if backend relies on cookie-only, still set a marker so PrivateRoute can work
+        // fallback if backend relies on cookie only
         localStorage.setItem("jwt", "cookie-authenticated");
       }
 
-      navigate("/admin");
+      navigate("/admin"); // redirect after successful register + login
     } catch (err: any) {
       setError(err.message || "Something went wrong");
     } finally {
@@ -44,13 +44,13 @@ const Login: React.FC = () => {
   };
 
   return (
-    <div className="flex items-center justify-center min-h-screen bg-gradient-to-r from-blue-100 to-purple-100">
+    <div className="flex items-center justify-center min-h-screen bg-gradient-to-r from-green-100 to-teal-100">
       <form
-        onSubmit={handleLogin}
+        onSubmit={handleRegister}
         className="w-full max-w-md p-10 bg-white rounded-2xl shadow-xl space-y-6"
       >
         <h2 className="text-3xl font-bold text-center text-gray-900">
-          Admin Login
+          Register New Admin
         </h2>
         {error && <p className="text-red-500 text-center">{error}</p>}
 
@@ -59,7 +59,7 @@ const Login: React.FC = () => {
           placeholder="Username"
           value={username}
           onChange={(e) => setUsername(e.target.value)}
-          className="w-full p-4 border border-gray-300 rounded-lg shadow-sm focus:ring-2 focus:ring-blue-500 focus:outline-none"
+          className="w-full p-4 border border-gray-300 rounded-lg shadow-sm focus:ring-2 focus:ring-green-500 focus:outline-none"
           required
         />
         <input
@@ -67,7 +67,7 @@ const Login: React.FC = () => {
           placeholder="Password"
           value={password}
           onChange={(e) => setPassword(e.target.value)}
-          className="w-full p-4 border border-gray-300 rounded-lg shadow-sm focus:ring-2 focus:ring-blue-500 focus:outline-none"
+          className="w-full p-4 border border-gray-300 rounded-lg shadow-sm focus:ring-2 focus:ring-green-500 focus:outline-none"
           required
         />
 
@@ -77,22 +77,14 @@ const Login: React.FC = () => {
           className={`w-full py-3 font-semibold text-white rounded-lg shadow-md transition-all duration-300 ${
             loading
               ? "bg-gray-400 cursor-not-allowed"
-              : "bg-blue-600 hover:bg-blue-700"
+              : "bg-green-600 hover:bg-green-700"
           }`}
         >
-          {loading ? "Logging in..." : "Login"}
+          {loading ? "Registering..." : "Register & Login"}
         </button>
-        <button
-        type="button"
-        onClick={() => navigate("/register")}
-        className="w-full py-3 font-semibold text-white rounded-lg shadow-md transition-all duration-300 bg-green-600 hover:bg-green-800"
-      >
-        Create New Account
-      </button>
       </form>
-      
     </div>
   );
 };
 
-export default Login;
+export default Register;

@@ -37,7 +37,6 @@ const AdminPage: React.FC = () => {
   const fetchProjects = async () => {
     const res = await fetch("/api/projects/", { credentials: "include" });
     if (res.status === 401) {
-      // unauthorized -> clear token and redirect to login
       localStorage.removeItem("jwt");
       navigate("/login");
       throw new Error("Unauthorized");
@@ -64,7 +63,6 @@ const AdminPage: React.FC = () => {
       try {
         await Promise.all([fetchProjects(), fetchMessages()]);
       } catch (e) {
-        // fetch functions already handle navigation on 401
         console.error(e);
       } finally {
         setLoading(false);
@@ -93,14 +91,16 @@ const AdminPage: React.FC = () => {
   };
 
   const handleLogout = async () => {
-    // attempt server logout (optional) to clear cookie
     try {
-      await fetch("/api/auth/logout", { method: "POST", credentials: "include" });
+      await fetch("/api/auth/logout", {
+        method: "POST",
+        credentials: "include",
+      });
     } catch (e) {
-      // ignore
+      console.warn("Logout request failed, proceeding anyway");
     }
     localStorage.removeItem("jwt");
-    navigate("/login");
+    navigate("/login", { replace: true });
   };
 
   if (loading) {
@@ -112,23 +112,28 @@ const AdminPage: React.FC = () => {
   }
 
   return (
-    <div className="min-h-screen bg-gray-200 text-black pt-24 px-6 pb-24">
-      <button
-        className="absolute top-6 right-6 px-4 py-2 bg-red-600 text-white rounded-lg"
-        onClick={handleLogout}
-      >
-        Logout
-      </button>
+    <div className="min-h-screen bg-gray-200 text-black pt-30 px-6 pb-24">
+      <div className="flex justify-end">
+        <button
+          className="px-4 py-2 bg-red-600 text-white rounded-lg shadow-md hover:bg-red-700 transition"
+          onClick={handleLogout}
+        >
+          Logout
+        </button>
+      </div>
 
-      <h1 className="text-4xl font-bold text-center mb-10 pt-20 text-stone-950">
+      <h1 className="text-4xl font-bold text-center mb-10 pt-10 text-stone-950">
         Admin Dashboard
       </h1>
 
+      {/* Tabs */}
       <div className="flex justify-center space-x-4 mb-10">
         <button
           onClick={() => setActiveTab("projects")}
           className={`px-6 py-2 rounded-lg ${
-            activeTab === "projects" ? "bg-blue-400" : "bg-gray-400 hover:bg-gray-500"
+            activeTab === "projects"
+              ? "bg-blue-400"
+              : "bg-gray-400 hover:bg-gray-500"
           }`}
         >
           Projects
@@ -139,7 +144,9 @@ const AdminPage: React.FC = () => {
             setActiveTab("add");
           }}
           className={`px-6 py-2 rounded-lg ${
-            activeTab === "add" ? "bg-blue-400" : "bg-gray-400 hover:bg-gray-500"
+            activeTab === "add"
+              ? "bg-blue-400"
+              : "bg-gray-400 hover:bg-gray-500"
           }`}
         >
           Add Project
@@ -147,13 +154,16 @@ const AdminPage: React.FC = () => {
         <button
           onClick={() => setActiveTab("messages")}
           className={`px-6 py-2 rounded-lg ${
-            activeTab === "messages" ? "bg-blue-400" : "bg-gray-400 hover:bg-gray-500"
+            activeTab === "messages"
+              ? "bg-blue-400"
+              : "bg-gray-400 hover:bg-gray-500"
           }`}
         >
           Messages
         </button>
       </div>
 
+      {/* Content */}
       <div className="max-w-6xl mx-auto">
         {activeTab === "projects" && (
           <div className="grid gap-6">
@@ -192,7 +202,10 @@ const AdminPage: React.FC = () => {
           <div className="space-y-4">
             {messages.length === 0 && <p>No messages found.</p>}
             {messages.map((msg) => (
-              <div key={msg.id} className="p-4 rounded-lg bg-white flex flex-col gap-2">
+              <div
+                key={msg.id}
+                className="p-4 rounded-lg bg-white flex flex-col gap-2"
+              >
                 <div className="flex justify-between items-center">
                   <h3 className="font-semibold">{msg.name}</h3>
                   <span className="text-gray-600 text-sm">{msg.email}</span>

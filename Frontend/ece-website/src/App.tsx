@@ -8,11 +8,13 @@ import Projects from "./components/Projects.tsx";
 import ProjectDetail from "./components/ProjectDetail.tsx";
 import AdminPage from "./components/AdminPage.tsx";
 import Login from "./components/Login.tsx";
+import Register from "./components/Register.tsx"; // ✅ new
 import ScrollToTop from "./components/utils/ScrollToTop.tsx";
 import BackToTopButton from "./components/utils/BackToTopButton.tsx";
 import Footer from "./components/Footer.tsx";
 
 function App() {
+  // wrapper for routes that require login
   const PrivateRoute = ({ children }: { children: React.ReactNode }) => {
     const token = localStorage.getItem("jwt");
     return token ? <>{children}</> : <Navigate to="/login" replace />;
@@ -28,6 +30,9 @@ function App() {
         <Route path="/projects" element={<Projects />} />
         <Route path="/project/:uuid" element={<ProjectDetail />} />
         <Route path="/login" element={<Login />} />
+        <Route path="/register" element={<Register />} />
+
+        {/* Protected route */}
         <Route
           path="/admin"
           element={
@@ -36,6 +41,9 @@ function App() {
             </PrivateRoute>
           }
         />
+
+        {/* fallback route if no match */}
+        <Route path="*" element={<Navigate to="/" replace />} />
       </Routes>
       <Footer />
       <BackToTopButton />
