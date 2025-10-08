@@ -15,8 +15,8 @@ jobs:
           java-version: "17"
           distribution: "temurin"
       - run: cd Backend/ece-website && mvn clean install
-      - run: mkdir staging && cp target/*.jar staging
+      - run: cd Backend/ece-website && mkdir staging && cp target/*.jar staging
       - uses: actions/upload-artifact@v4
         with:
           name: Package
-          path: staging
+          path: Backend/ece-website/staging
