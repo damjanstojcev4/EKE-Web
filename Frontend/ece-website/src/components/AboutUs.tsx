@@ -2,6 +2,7 @@ import BecomePartner from "./BecomePartner";
 import Contact from "./Contact";
 import OurTeam from "./OurTeam";
 import { motion } from "framer-motion";
+import aboutus from "../assets/about-us-bg.jpg";
 
 const AboutUs = () => {
   const blocks = [
@@ -20,7 +21,7 @@ const AboutUs = () => {
       {/* Hero Section */}
       <section className="relative w-full h-[600px] md:h-[700px]">
         <img
-          src="/src/assets/about-us-bg.jpg"
+          src={aboutus}
           alt="Group of people taking a selfie"
           className="absolute inset-0 w-full h-full object-cover"
         />

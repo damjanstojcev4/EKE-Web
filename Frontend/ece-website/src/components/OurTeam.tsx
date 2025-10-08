@@ -1,29 +1,32 @@
 
+import ekeLogo from "../assets/EKE_logo PNG.png";
+import logoBlackWhite from "../assets/logo-black-white.png";
+
 const teamMembers = [
   {
     name: "Vele Georgiev",
     position: "President",
-    image: "/src/assets/EKE_logo PNG.png",
+    image: ekeLogo,
   },
   {
     name: "Ivana Baltovska",
     position: "Project Manager",
-    image: "/src/assets/logo-black-white.png",
+    image: logoBlackWhite,
   },
   {
     name: "Sofija Mickoska",
     position: "Project Assistant",
-    image: "/src/assets/EKE_logo PNG.png",
+    image: ekeLogo,
   },
   {
     name: "Dimitar Gogu",
     position: "Accountant",
-    image: "/src/assets/logo-black-white.png",
+    image: logoBlackWhite,
   },
   {
     name: "Hristina Gogu",
     position: "Designer",
-    image: "/src/assets/logo-black-white.png",
+    image: logoBlackWhite,
   }
 ];
 

@@ -1,3 +1,5 @@
+import logo from "../assets/EKE_logo_no_background-gpt.png";
+
 const Footer = () => {
   return (
     <footer className="bg-[#1a1a2e] text-white py-12 px-6 sm:px-12 font-sans">
@@ -153,7 +155,7 @@ const Footer = () => {
             <h3 className="text-xl font-semibold mb-2">Where are we?</h3>
             <div className="flex items-center space-x-4">
               <img
-                src="/src/assets/EKE_logo_no_background-gpt.png"
+                src={logo}
                 alt="European Cultural Epicenter Logo"
                 className="w-10 h-10 rounded-lg flex-shrink-0"
               />

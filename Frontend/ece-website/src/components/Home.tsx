@@ -17,6 +17,7 @@ import {
 import heroImage from "../assets/hero-background.jpg";
 import Partners from "./Partners";
 import RecentProjects from "./RecentProjects";
+import about from "../assets/about-us-bg.jpg";
 
 
 const Home: FC = () => {
@@ -142,7 +143,7 @@ const Home: FC = () => {
             className="relative rounded-2xl overflow-hidden shadow-lg"
           >
             <img
-              src="/src/assets/about-us-bg.jpg"
+              src={about}
               alt="About Us"
               className="w-full h-80 object-cover"
             />

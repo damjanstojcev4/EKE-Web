@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { FaEnvelope, FaPhoneAlt, FaMapMarkerAlt } from "react-icons/fa";
+import obg from "../assets/o-bg.jpg";
 
 const Contact = () => {
   const [fullName, setFullName] = useState("");
@@ -54,7 +55,7 @@ const Contact = () => {
       <div className="relative w-full flex-1 font-sans">
         <div className="absolute inset-0 z-0">
           <img
-            src="src/assets/o-bg.jpg"
+            src={obg}
             alt="Contact background"
             className="w-full h-full object-cover"
           />
