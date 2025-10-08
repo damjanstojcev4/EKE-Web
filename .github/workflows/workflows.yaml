@@ -1,12 +1,22 @@
-steps:
-  - uses: actions/checkout@v5
-  - uses: actions/setup-java@v4
-    with:
-      java-version: '17'
-      distribution: 'temurin'
-  - run: cd/Backend/ece-website && mvn clean install
-  - run: mkdir staging && cp target/*.jar staging
-  - uses: actions/upload-artifact@v4
-    with:
-      name: Package
-      path: staging
+name: Build Backend
+on:
+  workflow_dispatch:
+  push:
+    branches: ['main']
+  pull_request:
+    branches: ['main']
+jobs:
+  Build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/setup-java@v4
+        with:
+          java-version: "17"
+          distribution: "temurin"
+      - run: cd/Backend/ece-website && mvn clean install
+      - run: mkdir staging && cp target/*.jar staging
+      - uses: actions/upload-artifact@v4
+        with:
+          name: Package
+          path: staging
