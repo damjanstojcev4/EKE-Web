@@ -59,4 +59,6 @@ jobs:
             rm -rf ~/eke/*.jar
             cp *.jar ~/eke
             cd ~/eke
+            killall java || true
             java -jar *.jar >application.log 2>&1 &
+          
