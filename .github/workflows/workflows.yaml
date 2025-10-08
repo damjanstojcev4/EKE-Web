@@ -56,7 +56,7 @@ jobs:
           script_stop: true
           script: |
             mkdir -p ~/eke
-            rm -rf ~/eke/*
+            rm -rf ~/eke/*.jar
             cp *.jar ~/eke
             cd ~/eke
             java -jar *.jar >application.log 2>&1 &
