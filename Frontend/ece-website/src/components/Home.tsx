@@ -1,4 +1,4 @@
-import { useState, useEffect, type FC } from "react";
+import { type FC } from "react";
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import {
@@ -18,14 +18,6 @@ import heroImage from "../assets/hero-background.jpg";
 import Partners from "./Partners";
 import RecentProjects from "./RecentProjects";
 
-interface Project {
-  uuid: string;
-  title: string;
-  quickSummary: string;
-  durationDate: string;
-  image: string;
-  status: "ON_GOING" | "PAST";
-}
 
 const Home: FC = () => {
   const aims = [
@@ -38,15 +30,6 @@ const Home: FC = () => {
     { text: "Advocate for human rights and empowerment of vulnerable and marginalized groups", icon: Users, color: "text-pink-600" },
     { text: "Stand for democratic values and standards", icon: Scale, color: "text-gray-700" },
   ];
-
-  const [projects, setProjects] = useState<Project[]>([]);
-
-  useEffect(() => {
-    fetch("/api/projects/recent")
-      .then((res) => res.json())
-      .then((data) => setProjects(data))
-      .catch((err) => console.error(err));
-  }, []);
 
   return (
     <>

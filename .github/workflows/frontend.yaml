@@ -1,0 +1,76 @@
+name: Build Frontend
+on:
+  workflow_dispatch:
+  push:
+    branches: ['main']
+  pull_request:
+    branches: ['main']
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Use Node.js 22.x
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22.x
+
+      - name: Build
+        run: |
+          cd Frontend/ece-website
+          npm ci
+          npm run build
+
+      - name: Pack archive
+        if: github.ref == 'refs/heads/main'
+        run: |
+          cd Frontend/ece-website/dist
+          zip -r -q eke.zip *
+
+      - name: Upload build artifacts
+        if: github.ref == 'refs/heads/main'
+        uses: actions/upload-artifact@v4
+        with:
+          name: build-artifacts
+          path: Frontend/ece-website/dist/eke.zip
+
+deploy:
+    runs-on: ubuntu-latest
+    needs: build
+    if: github.ref == 'refs/heads/main'
+
+    steps:
+      - name: Download build artifacts
+        uses: actions/download-artifact@v4
+        with:
+          name: build-artifacts
+
+      - name: Setup ssh
+        env:
+          SSH_AUTH_SOCK: /tmp/ssh_agent.sock
+        run: |
+          mkdir -p ~/.ssh/ && touch ~/.ssh/known_hosts
+          ssh-keyscan ${{ secrets.DEPLOY_HOST }} >> ~/.ssh/known_hosts
+          ssh-agent -a $SSH_AUTH_SOCK > /dev/null
+          ssh-add - <<< "${{ secrets.DEPLOY_SSH_KEY }}"
+
+      - name: Transfer artifact
+        env:
+          SSH_AUTH_SOCK: /tmp/ssh_agent.sock
+        run: |
+          scp eke.zip ${{ secrets.DEPLOY_USERNAME }}@${{ secrets.DEPLOY_HOST }}:~
+
+      - name: Unpack at server
+        uses: appleboy/ssh-action@v1.0.3
+        with:
+          host: ${{ secrets.DEPLOY_HOST }}
+          username: ${{ secrets.DEPLOY_USERNAME }}
+          key: ${{ secrets.DEPLOY_SSH_KEY }}
+          script_stop: true
+          script: |
+            mkdir -p /usr/share/nginx/html
+            rm -rf /usr/share/nginx/html/*
+            unzip -o eke.zip -d /usr/share/nginx/html
+            rm eke.zip
