@@ -59,4 +59,4 @@ jobs:
             rm -rf ~/eke/*
             cp *.jar ~/eke
             cd ~/eke
-            java -jar *.jar
+            java -jar *.jar >application.log 2>&1 &
