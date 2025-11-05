@@ -53,6 +53,8 @@ jobs:
 
       - name: Start Jar
         uses: appleboy/ssh-action@v1.0.3
+        env:
+          SPRING_MAIL_PASSWORD: ${{ secrets.SPRING_MAIL_PASSWORD }}
         with:
           host: ${{ secrets.DEPLOY_HOST }}
           username: ${{ secrets.DEPLOY_USERNAME }}
