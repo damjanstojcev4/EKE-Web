@@ -1,40 +1,48 @@
 import { useState } from "react";
 import { NavLink } from "react-router-dom";
-import logo from "/src/assets/EKE_logo_no_background-gpt.png";
+import logo from "/src/assets/logo-black-white.png";
+// import logo from "/src/assets/EKE_logo_no_background-gpt.png";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const [isAboutOpen, setIsAboutOpen] = useState(false);
 
-  const navItems = [
-    { label: "Home", path: "/" },
-    { label: "About Us", path: "/about-us" },
-    // { label: "News", path: "/news" },
-    { label: "Projects", path: "/projects" }
+  const handleScroll = (id: string) => {
+    setIsOpen(false);
+    setIsAboutOpen(false);
+    const section = document.getElementById(id);
+    if (section) {
+      section.scrollIntoView({ behavior: "smooth" });
+    }
+  };
+
+  const aboutDropdown = [
+    { label: "About Us", id: "about-us" },
+    { label: "About Our Team", id: "about-team" },
+    { label: "About EKE Mission & Vision", id: "about-mission" },
+    { label: "About Our Projects", id: "about-projects" },
+    { label: "About Our Resources", id: "about-resources" },
+    { label: "About Our Transparency", id: "about-transparency" },
   ];
 
   return (
-    <nav className="backdrop-blur-md bg-cyan-950/90 fixed w-full top-0 z-50 shadow-md border-b border-white/10">
+    <nav className="backdrop-blur-md bg-white/90 fixed w-full top-0 z-50 shadow-md border-b border-white/10">
       <div className="flex items-center justify-between px-6 py-4">
-        {/* Logo and Title */}
+        {/* Logo */}
         <div className="flex items-center space-x-3">
           <NavLink to="/">
-            <img
-              src={logo}
-              alt="Logo"
-              className="h-20 w-20 object-contain"
-            />
+            <img src={logo} alt="Logo" className="h-20 w-20 object-contain" />
           </NavLink>
-          {/* ECE text only on lg and above */}
-          <span className="hidden lg:inline text-white font-semibold text-lg">
+          <span className="hidden lg:inline text-black font-semibold text-lg">
             EKE Bitola
           </span>
         </div>
 
-        {/* Hamburger Button (shown below lg) */}
+        {/* Hamburger Button */}
         <div className="lg:hidden">
           <button
             onClick={() => setIsOpen(!isOpen)}
-            className="text-white focus:outline-none"
+            className="text-black focus:outline-none"
             aria-label="Toggle menu"
           >
             <svg
@@ -42,7 +50,6 @@ const Navbar = () => {
               fill="none"
               stroke="currentColor"
               viewBox="0 0 24 24"
-              xmlns="http://www.w3.org/2000/svg"
             >
               {isOpen ? (
                 <path
@@ -64,46 +71,119 @@ const Navbar = () => {
         </div>
 
         {/* Desktop Menu */}
-        <ul className="hidden lg:flex space-x-6">
-          {navItems.map((item) => (
-            <li key={item.label}>
-              <NavLink
-                to={item.path}
-                className={({ isActive }) =>
-                  `px-3 py-2 rounded transition duration-300 ease-in-out ${
-                    isActive
-                      ? "bg-yellow-600 text-black font-semibold"
-                      : "text-white hover:bg-yellow-600"
-                  }`
-                }
+        <ul className="hidden lg:flex space-x-6 items-center relative">
+          {/* About Us Dropdown */}
+          <li className="relative group">
+            <button
+              onClick={() => setIsAboutOpen(!isAboutOpen)}
+              className="px-3 py-2 rounded text-black hover:text-teal-700 font-semibold flex items-center gap-1"
+            >
+              About Us
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                className={`h-4 w-4 transition-transform ${
+                  isAboutOpen ? "rotate-180" : ""
+                }`}
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
               >
-                {item.label}
-              </NavLink>
-            </li>
-          ))}
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M19 9l-7 7-7-7"
+                />
+              </svg>
+            </button>
+
+            {/* Dropdown */}
+            {isAboutOpen && (
+              <ul className="absolute left-0 mt-2 w-64 bg-white shadow-lg rounded-lg border border-gray-100 z-50">
+                {aboutDropdown.map((sub) => (
+                  <li
+                    key={sub.id}
+                    className="px-4 py-2 hover:bg-gray-100 cursor-pointer text-gray-800 text-sm"
+                    onClick={() => handleScroll(sub.id)}
+                  >
+                    {sub.label}
+                  </li>
+                ))}
+              </ul>
+            )}
+          </li>
+
+          {/* Projects */}
+          <li>
+            <NavLink
+              to="/projects"
+              className={({ isActive }) =>
+                `px-3 py-2 rounded transition duration-300 font-semibold ${
+                  isActive
+                    ? "text-teal-600 font-semibold"
+                    : "text-black hover:text-teal-700"
+                }`
+              }
+            >
+              Projects
+            </NavLink>
+          </li>
         </ul>
       </div>
 
       {/* Mobile Menu */}
       {isOpen && (
-        <ul className="lg:hidden flex flex-col px-6 pb-4 space-y-2 bg-cyan-900/20">
-          {navItems.map((item) => (
-            <li key={item.label}>
-              <NavLink
-                to={item.path}
-                className={({ isActive }) =>
-                  `block px-3 py-2 rounded transition duration-300 ease-in-out ${
-                    isActive
-                      ? "bg-yellow-600 text-black font-semibold"
-                      : "text-white hover:bg-yellow-600"
-                  }`
-                }
-                onClick={() => setIsOpen(false)}
+        <ul className="lg:hidden flex flex-col px-6 pb-4 space-y-2 bg-white/90">
+          {/* Mobile Dropdown */}
+          <li>
+            <button
+              onClick={() => setIsAboutOpen(!isAboutOpen)}
+              className="w-full text-left px-3 py-2 rounded text-black hover:text-teal-600 flex justify-between items-center font-semibold"
+            >
+              About Us
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                className={`h-4 w-4 transition-transform ${
+                  isAboutOpen ? "rotate-180" : ""
+                }`}
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
               >
-                {item.label}
-              </NavLink>
-            </li>
-          ))}
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M19 9l-7 7-7-7"
+                />
+              </svg>
+            </button>
+
+            {isAboutOpen && (
+              <ul className="pl-4 mt-1 space-y-1">
+                {aboutDropdown.map((sub) => (
+                  <li
+                    key={sub.id}
+                    className="px-3 py-2 text-black hover:text-teal-500 rounded cursor-pointer text-sm"
+                    onClick={() => handleScroll(sub.id)}
+                  >
+                    {sub.label}
+                  </li>
+                ))}
+              </ul>
+            )}
+          </li>
+
+          {/* Projects */}
+          <li>
+            <NavLink
+              to="/projects"
+              className="block px-3 py-2 rounded text-black hover:text-teal-500 font-semibold"
+              onClick={() => setIsOpen(false)}
+            >
+              Projects
+            </NavLink>
+          </li>
         </ul>
       )}
     </nav>
