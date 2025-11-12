@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import { ArrowLeft, Target, Lightbulb, Heart } from "lucide-react";
+import { ArrowLeft, Target, Lightbulb} from "lucide-react";
 import vma from "../assets/vma-vele.jpg";
 
 const VisionMissionAims: React.FC = () => {
