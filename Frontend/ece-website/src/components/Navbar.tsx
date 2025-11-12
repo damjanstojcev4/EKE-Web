@@ -1,15 +1,22 @@
 import { useState } from "react";
-import { NavLink } from "react-router-dom";
+import { NavLink, useLocation } from "react-router-dom";
 import logo from "/src/assets/logo-black-white.png";
-// import logo from "/src/assets/EKE_logo_no_background-gpt.png";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [isAboutOpen, setIsAboutOpen] = useState(false);
+  const location = useLocation();
 
   const handleScroll = (id: string) => {
     setIsOpen(false);
     setIsAboutOpen(false);
+    
+    if (location.pathname !== "/") {
+      // If we're not on home page, navigate to home first
+      window.location.href = `/#${id}`;
+      return;
+    }
+
     const section = document.getElementById(id);
     if (section) {
       section.scrollIntoView({ behavior: "smooth" });
@@ -21,8 +28,9 @@ const Navbar = () => {
     { label: "About Our Team", id: "about-team" },
     { label: "About EKE Mission & Vision", id: "about-mission" },
     { label: "About Our Projects", id: "about-projects" },
+    { label: "About Our Documents", id: "documents" },
     { label: "About Our Resources", id: "about-resources" },
-    { label: "About Our Transparency", id: "about-transparency" },
+    { label: "Get In Touch", id: "get-in-touch" },
   ];
 
   return (
@@ -30,7 +38,7 @@ const Navbar = () => {
       <div className="flex items-center justify-between px-6 py-4">
         {/* Logo */}
         <div className="flex items-center space-x-3">
-          <NavLink to="/">
+          <NavLink to="/" onClick={() => handleScroll("hero")}>
             <img src={logo} alt="Logo" className="h-20 w-20 object-contain" />
           </NavLink>
           <span className="hidden lg:inline text-black font-semibold text-lg">
@@ -115,18 +123,12 @@ const Navbar = () => {
 
           {/* Projects */}
           <li>
-            <NavLink
-              to="/projects"
-              className={({ isActive }) =>
-                `px-3 py-2 rounded transition duration-300 font-semibold ${
-                  isActive
-                    ? "text-teal-600 font-semibold"
-                    : "text-black hover:text-teal-700"
-                }`
-              }
+            <button
+              onClick={() => handleScroll("about-projects")}
+              className="px-3 py-2 rounded text-black hover:text-teal-700 font-semibold transition duration-300"
             >
               Projects
-            </NavLink>
+            </button>
           </li>
         </ul>
       </div>
@@ -176,13 +178,12 @@ const Navbar = () => {
 
           {/* Projects */}
           <li>
-            <NavLink
-              to="/projects"
-              className="block px-3 py-2 rounded text-black hover:text-teal-500 font-semibold"
-              onClick={() => setIsOpen(false)}
+            <button
+              onClick={() => handleScroll("about-projects")}
+              className="w-full text-left px-3 py-2 rounded text-black hover:text-teal-500 font-semibold"
             >
               Projects
-            </NavLink>
+            </button>
           </li>
         </ul>
       )}

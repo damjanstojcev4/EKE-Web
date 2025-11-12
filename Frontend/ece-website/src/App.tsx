@@ -3,8 +3,8 @@ import { BrowserRouter as Router, Routes, Route, Navigate } from "react-router-d
 
 import Navbar from "./components/Navbar.tsx";
 import Home from "./components/Home.tsx";
-import AboutUs from "./components/AboutUs.tsx";
-import Projects from "./components/Projects.tsx";
+import AboutUs from "./pages/AboutUs.tsx";
+import Projects from "./pages/Projects.tsx";
 import ProjectDetail from "./components/ProjectDetail.tsx";
 import AdminPage from "./components/AdminPage.tsx";
 import Login from "./components/Login.tsx";
@@ -12,6 +12,8 @@ import Register from "./components/Register.tsx"; // ✅ new
 import ScrollToTop from "./components/utils/ScrollToTop.tsx";
 import BackToTopButton from "./components/utils/BackToTopButton.tsx";
 import Footer from "./components/Footer.tsx";
+import OurTeam from "./pages/OurTeam.tsx";
+import VisionMissionAims from "./pages/VisionMissionAims.tsx";
 
 function App() {
   // wrapper for routes that require login
@@ -31,6 +33,8 @@ function App() {
         <Route path="/project/:uuid" element={<ProjectDetail />} />
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
+        <Route path="/our-team" element={<OurTeam />} />
+        <Route path="/vma" element={<VisionMissionAims />} />
 
         {/* Protected route */}
         <Route
