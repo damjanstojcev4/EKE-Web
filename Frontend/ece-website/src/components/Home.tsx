@@ -91,7 +91,7 @@ const Home: FC = () => {
           </div>
 
           <div className="order-2 md:order-2 space-y-4 text-left">
-            <h3 className="text-teal-500 text-lg font-semibold">About Us</h3>
+            <h3 className="text-teal-500 text-3xl font-semibold">About Us</h3>
             <p className="text-gray-700 text-lg leading-relaxed">
               Learn about our journey, values, and the impact we've made in
               communities around the world. We believe in transparency,
@@ -127,7 +127,7 @@ const Home: FC = () => {
       <section id="about-team" className="py-20 bg-gray-50">
         <div className="max-w-6xl mx-auto px-6 grid md:grid-cols-2 gap-12 items-center">
           <div className="order-2 md:order-1 space-y-4 text-left">
-            <h3 className="text-teal-500 text-lg font-semibold">Our Team</h3>
+            <h3 className="text-teal-500 text-3xl font-semibold">Our Team</h3>
             <p className="text-gray-700 text-lg leading-relaxed">
               Meet the passionate individuals behind EKE Bitola — a team of
               dedicated professionals and volunteers working together to inspire
@@ -171,7 +171,7 @@ const Home: FC = () => {
           </div>
 
           <div className="order-2 md:order-2 space-y-4 text-left">
-            <h3 className="text-teal-500 text-lg font-semibold">
+            <h3 className="text-teal-500 text-3xl font-semibold">
               Vision, Mission & Aims
             </h3>
             <p className="text-gray-700 text-lg leading-relaxed">
@@ -208,7 +208,7 @@ const Home: FC = () => {
       <section id="about-projects" className="py-20 bg-gray-50">
         <div className="max-w-6xl mx-auto px-6 grid md:grid-cols-2 gap-12 items-center">
           <div className="order-2 md:order-1 space-y-4 text-left">
-            <h3 className="text-teal-500 text-lg font-semibold">Our Projects</h3>
+            <h3 className="text-teal-500 text-3xl font-semibold">Our Projects</h3>
             <p className="text-gray-700 text-lg leading-relaxed">
               Discover the initiatives and programs we've launched to address
               critical social issues. From education to healthcare, our projects
@@ -251,7 +251,7 @@ const Home: FC = () => {
           </div>
 
           <div className="order-2 md:order-2 space-y-4 text-left">
-            <h3 className="text-teal-500 text-lg font-semibold">Documents</h3>
+            <h3 className="text-teal-500 text-3xl font-semibold">Documents</h3>
             <p className="text-gray-700 text-lg leading-relaxed">
               Access our reports, publications, and official documents. We
               believe in transparency and accountability, making our work and
@@ -286,7 +286,7 @@ const Home: FC = () => {
       <section id="about-resources" className="py-20 bg-gray-50">
         <div className="max-w-6xl mx-auto px-6 grid md:grid-cols-2 gap-12 items-center">
           <div className="order-2 md:order-1 space-y-4 text-left">
-            <h3 className="text-teal-500 text-lg font-semibold">Resources</h3>
+            <h3 className="text-teal-500 text-3xl font-semibold">Resources</h3>
             <p className="text-gray-700 text-lg leading-relaxed">
               Explore our collection of tools, guides, and educational materials
               designed to support community development and empower individuals
@@ -329,7 +329,7 @@ const Home: FC = () => {
           </div>
 
           <div className="order-2 md:order-2 space-y-4 text-left">
-            <h3 className="text-teal-500 text-lg font-semibold">
+            <h3 className="text-teal-500 text-3xl font-semibold">
               Get In Touch
             </h3>
             <p className="text-gray-700 text-lg leading-relaxed">

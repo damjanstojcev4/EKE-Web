@@ -27,7 +27,7 @@ public class ContactController {
     public ResponseEntity<Contact> createContact(@RequestBody Contact contact) {
         contactService.save(contact);
 
-        mailService.sendContactEmail(contact, "damjan.stojcev4@gmail.com"); // "head.eke.macedonia@gmail.com"
+        mailService.sendContactEmail(contact, "head.eke.macedonia@gmail.com");
 
         return ResponseEntity.ok(contact);
     }

@@ -24,12 +24,12 @@ const Navbar = () => {
   };
 
   const aboutDropdown = [
-    { label: "About Us", id: "about-us" },
-    { label: "About Our Team", id: "about-team" },
-    { label: "About EKE Mission & Vision", id: "about-mission" },
-    { label: "About Our Projects", id: "about-projects" },
-    { label: "About Our Documents", id: "documents" },
-    { label: "About Our Resources", id: "about-resources" },
+    { label: "Us", id: "about-us" },
+    { label: "Our Team", id: "about-team" },
+    { label: "EKE Mission & Vision", id: "about-mission" },
+    { label: "Our Projects", id: "about-projects" },
+    { label: "Our Documents", id: "documents" },
+    { label: "Our Resources", id: "about-resources" },
     { label: "Get In Touch", id: "get-in-touch" },
   ];
 
@@ -80,13 +80,13 @@ const Navbar = () => {
 
         {/* Desktop Menu */}
         <ul className="hidden lg:flex space-x-6 items-center relative">
-          {/* About Us Dropdown */}
+          {/* About Us Dropdown - Centered */}
           <li className="relative group">
             <button
               onClick={() => setIsAboutOpen(!isAboutOpen)}
               className="px-3 py-2 rounded text-black hover:text-teal-700 font-semibold flex items-center gap-1"
             >
-              About Us
+              About
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 className={`h-4 w-4 transition-transform ${
@@ -105,9 +105,9 @@ const Navbar = () => {
               </svg>
             </button>
 
-            {/* Dropdown */}
+            {/* Dropdown - Centered under the button */}
             {isAboutOpen && (
-              <ul className="absolute left-0 mt-2 w-64 bg-white shadow-lg rounded-lg border border-gray-100 z-50">
+              <ul className="absolute left-1/2 transform -translate-x-1/2 mt-2 w-64 bg-white shadow-lg rounded-lg border border-gray-100 z-50">
                 {aboutDropdown.map((sub) => (
                   <li
                     key={sub.id}
@@ -120,72 +120,54 @@ const Navbar = () => {
               </ul>
             )}
           </li>
-
-          {/* Projects */}
-          <li>
-            <button
-              onClick={() => handleScroll("about-projects")}
-              className="px-3 py-2 rounded text-black hover:text-teal-700 font-semibold transition duration-300"
-            >
-              Projects
-            </button>
-          </li>
         </ul>
       </div>
 
       {/* Mobile Menu */}
       {isOpen && (
-        <ul className="lg:hidden flex flex-col px-6 pb-4 space-y-2 bg-white/90">
-          {/* Mobile Dropdown */}
-          <li>
-            <button
-              onClick={() => setIsAboutOpen(!isAboutOpen)}
-              className="w-full text-left px-3 py-2 rounded text-black hover:text-teal-600 flex justify-between items-center font-semibold"
-            >
-              About Us
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                className={`h-4 w-4 transition-transform ${
-                  isAboutOpen ? "rotate-180" : ""
-                }`}
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
+        <div className="lg:hidden bg-white/90">
+          <ul className="px-6 pb-4 space-y-2">
+            {/* Mobile Dropdown */}
+            <li>
+              <button
+                onClick={() => setIsAboutOpen(!isAboutOpen)}
+                className="w-full text-left px-3 py-2 rounded text-black hover:text-teal-600 flex justify-between items-center font-semibold"
               >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2}
-                  d="M19 9l-7 7-7-7"
-                />
-              </svg>
-            </button>
+                About Us
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  className={`h-4 w-4 transition-transform ${
+                    isAboutOpen ? "rotate-180" : ""
+                  }`}
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M19 9l-7 7-7-7"
+                  />
+                </svg>
+              </button>
 
-            {isAboutOpen && (
-              <ul className="pl-4 mt-1 space-y-1">
-                {aboutDropdown.map((sub) => (
-                  <li
-                    key={sub.id}
-                    className="px-3 py-2 text-black hover:text-teal-500 rounded cursor-pointer text-sm"
-                    onClick={() => handleScroll(sub.id)}
-                  >
-                    {sub.label}
-                  </li>
-                ))}
-              </ul>
-            )}
-          </li>
-
-          {/* Projects */}
-          <li>
-            <button
-              onClick={() => handleScroll("about-projects")}
-              className="w-full text-left px-3 py-2 rounded text-black hover:text-teal-500 font-semibold"
-            >
-              Projects
-            </button>
-          </li>
-        </ul>
+              {isAboutOpen && (
+                <ul className="pl-4 mt-1 space-y-1">
+                  {aboutDropdown.map((sub) => (
+                    <li
+                      key={sub.id}
+                      className="px-3 py-2 text-black hover:text-teal-500 rounded cursor-pointer text-sm"
+                      onClick={() => handleScroll(sub.id)}
+                    >
+                      {sub.label}
+                    </li>
+                  ))}
+                </ul>
+              )}
+            </li>
+          </ul>
+        </div>
       )}
     </nav>
   );
