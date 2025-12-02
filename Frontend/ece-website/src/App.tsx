@@ -8,12 +8,15 @@ import Projects from "./pages/Projects.tsx";
 import ProjectDetail from "./components/ProjectDetail.tsx";
 import AdminPage from "./components/AdminPage.tsx";
 import Login from "./components/Login.tsx";
-import Register from "./components/Register.tsx"; // ✅ new
+import Register from "./components/Register.tsx";
 import ScrollToTop from "./components/utils/ScrollToTop.tsx";
 import BackToTopButton from "./components/utils/BackToTopButton.tsx";
 import Footer from "./components/Footer.tsx";
 import OurTeam from "./pages/OurTeam.tsx";
 import VisionMissionAims from "./pages/VisionMissionAims.tsx";
+import Documents from "./pages/Documents.tsx";
+import Resources from "./pages/Resources.tsx";
+import Contact from "./pages/Contact.tsx";
 
 function App() {
   // wrapper for routes that require login
@@ -35,6 +38,9 @@ function App() {
         <Route path="/register" element={<Register />} />
         <Route path="/our-team" element={<OurTeam />} />
         <Route path="/vma" element={<VisionMissionAims />} />
+        <Route path="/documents" element={<Documents />} />
+        <Route path="/resources" element={<Resources />} />
+        <Route path="/contact" element={<Contact />} />
 
         {/* Protected route */}
         <Route
