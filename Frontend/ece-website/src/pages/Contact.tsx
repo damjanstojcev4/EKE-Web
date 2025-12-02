@@ -22,7 +22,7 @@ const Contact = () => {
     const finalSubject = subject === "custom" ? customSubject : subject;
 
     try {
-      const response = await fetch("/api/messages/", {
+      const response = await fetch("/api/messages", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
