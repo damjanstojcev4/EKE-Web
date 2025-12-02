@@ -23,7 +23,7 @@ public class ContactController {
         return contactService.findAll();
     }
 
-    @PostMapping("/")
+    @PostMapping()
     public ResponseEntity<Contact> createContact(@RequestBody Contact contact) {
         contactService.save(contact);
 
