@@ -25,6 +25,7 @@ public class Project {
     @Column(length = 4000)
     private String description;
     private String imageFilePath;
+    @Column(length = 4000)
     private String quickSummary;
     private String durationDate;
     @ElementCollection
