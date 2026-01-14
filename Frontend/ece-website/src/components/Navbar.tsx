@@ -24,12 +24,12 @@ const Navbar = () => {
   };
 
   const aboutDropdown = [
-    { label: "Us", id: "about-us" },
+    { label: "EKE Bitola", id: "about-us" },
     { label: "Our Team", id: "about-team" },
-    { label: "EKE Mission & Vision", id: "about-mission" },
-    { label: "Our Projects", id: "about-projects" },
-    { label: "Our Documents", id: "documents" },
-    { label: "Our Resources", id: "about-resources" },
+    { label: "Vision & Mission", id: "about-mission" },
+    { label: "Projects & Initiatives", id: "about-projects" },
+    { label: "Documents", id: "documents" },
+    { label: "Resources", id: "about-resources" },
     { label: "Get In Touch", id: "get-in-touch" },
   ];
 
