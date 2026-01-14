@@ -91,7 +91,7 @@ const Home: FC = () => {
           </div>
 
           <div className="order-2 md:order-2 space-y-4 text-left">
-            <h3 className="text-teal-500 text-3xl font-semibold">About Us</h3>
+            <h3 className="text-teal-500 text-3xl font-semibold">EKE Bitola</h3>
             <p className="text-gray-700 text-lg leading-relaxed">
               Learn about our journey, values, and the impact we've made in
               communities around the world. We believe in transparency,
@@ -172,7 +172,7 @@ const Home: FC = () => {
 
           <div className="order-2 md:order-2 space-y-4 text-left">
             <h3 className="text-teal-500 text-3xl font-semibold">
-              Vision, Mission & Aims
+              Vision & Mission
             </h3>
             <p className="text-gray-700 text-lg leading-relaxed">
               Our vision is a world where every individual has the opportunity
@@ -208,7 +208,7 @@ const Home: FC = () => {
       <section id="about-projects" className="py-20 bg-gray-50">
         <div className="max-w-6xl mx-auto px-6 grid md:grid-cols-2 gap-12 items-center">
           <div className="order-2 md:order-1 space-y-4 text-left">
-            <h3 className="text-teal-500 text-3xl font-semibold">Our Projects</h3>
+            <h3 className="text-teal-500 text-3xl font-semibold">Projects & Initiatives</h3>
             <p className="text-gray-700 text-lg leading-relaxed">
               Discover the initiatives and programs we've launched to address
               critical social issues. From education to healthcare, our projects
