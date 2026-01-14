@@ -22,7 +22,8 @@ public class Project {
 
     private String title;
     private long budget;
-    @Column(length = 4000)
+    @Lob
+    @Column(columnDefinition = "CLOB")
     private String description;
     private String imageFilePath;
     @Column(length = 4000)
