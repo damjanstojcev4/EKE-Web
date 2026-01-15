@@ -16,7 +16,8 @@ public class ProjectRequestDTO {
     private long budget;
     private String description;
     private String quickSummary;
-    private String durationDate;
-    List<String> partners;
+    private LocalDate startDate;
+    private LocalDate endDate;
+    private List<String> partners;
     private ProjectStatus status;
 }

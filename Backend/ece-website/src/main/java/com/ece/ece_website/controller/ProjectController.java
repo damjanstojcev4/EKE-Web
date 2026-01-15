@@ -13,6 +13,8 @@ import org.springframework.web.multipart.MultipartFile;
 
 import java.io.File;
 import java.io.IOException;
+import java.time.LocalDate;
+import java.util.Arrays;
 import java.util.List;
 import java.util.UUID;
 import java.util.stream.Collectors;
@@ -23,7 +25,6 @@ public class ProjectController {
 
     private static final String IMAGE_UPLOAD_DIR = System.getProperty("user.dir") + "/uploads/images/";
     private static final String PDF_UPLOAD_DIR = System.getProperty("user.dir") + "/uploads/pdf/";
-
 
 
     @Autowired
@@ -59,15 +60,20 @@ public class ProjectController {
     @PutMapping(value = "{uuid}", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
     public ResponseEntity<ProjectResponseDTO> updateProject(
             @PathVariable UUID uuid,
-            @RequestParam("title") String title,
-            @RequestParam("budget") int budget,
-            @RequestParam("description") String description,
-            @RequestParam("quickSummary") String quickSummary,
-            @RequestParam("durationDate") String durationDate,
-            @RequestParam("partners") List<String> partners,
-            @RequestParam("status") ProjectStatus status,
+            @RequestParam String title,
+            @RequestParam long budget,
+            @RequestParam String description,
+            @RequestParam String quickSummary,
+
+            // ✅ NEW
+            @RequestParam LocalDate startDate,
+            @RequestParam LocalDate endDate,
+
+            @RequestParam String partners,
+            @RequestParam ProjectStatus status,
             @RequestParam(value = "image", required = false) MultipartFile imageFile,
-            @RequestParam(value = "pdf", required = false) MultipartFile pdfFile) throws IOException {
+            @RequestParam(value = "pdf", required = false) MultipartFile pdfFile
+    ) throws IOException {
 
         Project existing = projectService.findEntityByUuid(uuid);
 
@@ -75,31 +81,36 @@ public class ProjectController {
         existing.setBudget(budget);
         existing.setDescription(description);
         existing.setQuickSummary(quickSummary);
-        existing.setDurationDate(durationDate);
-        existing.setPartners(partners);
+        existing.setStartDate(startDate);
+        existing.setEndDate(endDate);
         existing.setStatus(status);
+
+        existing.setPartners(
+                Arrays.stream(partners.split(","))
+                        .map(String::trim)
+                        .filter(s -> !s.isEmpty())
+                        .toList()
+        );
 
         new File(IMAGE_UPLOAD_DIR).mkdirs();
         new File(PDF_UPLOAD_DIR).mkdirs();
 
         if (imageFile != null && !imageFile.isEmpty()) {
             String imageFileName = UUID.randomUUID() + "_" + imageFile.getOriginalFilename();
-            String imageFilePath = IMAGE_UPLOAD_DIR + imageFileName;
-            imageFile.transferTo(new File(imageFilePath));
+            imageFile.transferTo(new File(IMAGE_UPLOAD_DIR + imageFileName));
             existing.setImageFilePath(imageFileName);
         }
 
         if (pdfFile != null && !pdfFile.isEmpty()) {
             String pdfFileName = UUID.randomUUID() + "_" + pdfFile.getOriginalFilename();
-            String pdfFilePath = PDF_UPLOAD_DIR + pdfFileName;
-            pdfFile.transferTo(new File(pdfFilePath));
+            pdfFile.transferTo(new File(PDF_UPLOAD_DIR + pdfFileName));
             existing.setPdfFilePath(pdfFileName);
         }
 
         Project updated = projectService.save(existing);
-
         return ResponseEntity.ok(ProjectMapper.toDTO(updated));
     }
+
 
     @DeleteMapping("/{uuid}")
     public ResponseEntity<Void> deleteProject(@PathVariable UUID uuid) {
@@ -108,56 +119,52 @@ public class ProjectController {
         return ResponseEntity.noContent().build();
     }
 
-    @PostMapping
+    @PostMapping(consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
     public ResponseEntity<ProjectResponseDTO> addProject(
-            @RequestParam("title") String title,
-            @RequestParam("budget") long budget,
-            @RequestParam("description") String description,
-            @RequestParam("quickSummary") String quickSummary,
-            @RequestParam("durationDate") String durationDate,
-            @RequestParam("partners") List<String> partners,
+            @RequestParam String title,
+            @RequestParam long budget,
+            @RequestParam String description,
+            @RequestParam String quickSummary,
+            @RequestParam LocalDate startDate,
+            @RequestParam LocalDate endDate,
+            @RequestParam String partners,
             @RequestParam("image") MultipartFile imageFile,
             @RequestParam(value = "pdf", required = false) MultipartFile pdfFile,
-            @RequestParam(value = "status", required = false, defaultValue = "ON GOING") String statusStr) throws IOException {
+            @RequestParam(defaultValue = "ON_GOING") String status
+    ) throws IOException {
 
         new File(IMAGE_UPLOAD_DIR).mkdirs();
         new File(PDF_UPLOAD_DIR).mkdirs();
 
         String imageFileName = UUID.randomUUID() + "_" + imageFile.getOriginalFilename();
-        String imageFilePath = IMAGE_UPLOAD_DIR + imageFileName;
-        imageFile.transferTo(new File(imageFilePath));
+        imageFile.transferTo(new File(IMAGE_UPLOAD_DIR + imageFileName));
 
         String pdfFileName = null;
         if (pdfFile != null && !pdfFile.isEmpty()) {
             pdfFileName = UUID.randomUUID() + "_" + pdfFile.getOriginalFilename();
-            String pdfFilePath = PDF_UPLOAD_DIR + pdfFileName;
-            pdfFile.transferTo(new File(pdfFilePath));
+            pdfFile.transferTo(new File(PDF_UPLOAD_DIR + pdfFileName));
         }
 
-        // Map status string to enum
-        ProjectStatus status;
-        try {
-            status = ProjectStatus.valueOf(statusStr.toUpperCase().replace(" ", "_"));
-        } catch (IllegalArgumentException e) {
-            status = ProjectStatus.ON_GOING;
-        }
-
-        // Save to DB
         Project project = new Project();
         project.setTitle(title);
         project.setBudget(budget);
         project.setDescription(description);
         project.setQuickSummary(quickSummary);
-        project.setDurationDate(durationDate);
-        project.setPartners(partners);
-        project.setImageFilePath(imageFileName); // store image filename
-        project.setPdfFilePath(pdfFileName);     // store PDF filename
-        project.setStatus(status);
+        project.setStartDate(startDate);
+        project.setEndDate(endDate);
+        project.setPartners(
+                Arrays.stream(partners.split(","))
+                        .map(String::trim)
+                        .filter(s -> !s.isEmpty())
+                        .toList()
+        );
+
+        project.setImageFilePath(imageFileName);
+        project.setPdfFilePath(pdfFileName);
+        project.setStatus(ProjectStatus.valueOf(status));
 
         Project saved = projectService.save(project);
-
         return ResponseEntity.ok(ProjectMapper.toDTO(saved));
     }
-
 }
 

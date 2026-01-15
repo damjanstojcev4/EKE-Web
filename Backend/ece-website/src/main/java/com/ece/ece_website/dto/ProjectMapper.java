@@ -5,15 +5,14 @@ import com.ece.ece_website.entity.Project;
 public class ProjectMapper {
 
     public static ProjectResponseDTO toDTO(Project project) {
-        String imageUrl = null;
-        if (project.getImageFilePath() != null) {
-            imageUrl = "/api/uploads/images/" + project.getImageFilePath(); // full API path
-        }
 
-        String pdfFileUrl = null;
-        if (project.getPdfFilePath() != null) {
-            pdfFileUrl = "/api/uploads/pdf/" + project.getPdfFilePath(); // full API path
-        }
+        String imageUrl = project.getImageFilePath() != null
+                ? "/api/uploads/images/" + project.getImageFilePath()
+                : null;
+
+        String pdfFileUrl = project.getPdfFilePath() != null
+                ? "/api/uploads/pdf/" + project.getPdfFilePath()
+                : null;
 
         return new ProjectResponseDTO(
                 project.getUuid(),
@@ -21,22 +20,25 @@ public class ProjectMapper {
                 project.getBudget(),
                 project.getDescription(),
                 imageUrl,
+                pdfFileUrl,
                 project.getQuickSummary(),
-                project.getDurationDate(),
+                project.getStartDate(),
+                project.getEndDate(),
                 project.getPartners(),
                 project.getStatus(),
-                pdfFileUrl,
                 project.getDate()
-                );
+        );
     }
 
     public static Project fromDTO(ProjectRequestDTO dto) {
         Project project = new Project();
+
         project.setTitle(dto.getTitle());
         project.setBudget(dto.getBudget());
         project.setDescription(dto.getDescription());
         project.setQuickSummary(dto.getQuickSummary());
-        project.setDurationDate(dto.getDurationDate());
+        project.setStartDate(dto.getStartDate());
+        project.setEndDate(dto.getEndDate());
         project.setPartners(dto.getPartners());
 
         if (dto.getStatus() != null) {
@@ -46,3 +48,4 @@ public class ProjectMapper {
         return project;
     }
 }
+

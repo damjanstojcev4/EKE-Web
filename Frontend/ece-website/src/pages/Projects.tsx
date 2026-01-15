@@ -11,7 +11,6 @@ interface Project {
   status: "ON_GOING" | "PAST";
   partners: string | string[];
   location?: string;
-  date?: string;
 }
 
 const Projects: React.FC = () => {
@@ -26,15 +25,8 @@ const Projects: React.FC = () => {
       if (!res.ok) throw new Error("Failed to load projects");
       const data = await res.json();
 
-      // Sort by date if available, otherwise keep original order
-      const sortedData = data.sort((a: any, b: any) => {
-        if (a.date && b.date) {
-          return new Date(b.date).getTime() - new Date(a.date).getTime();
-        }
-        return 0;
-      });
-
-      setProjects(sortedData);
+      // ✅ BACKEND ALREADY SORTS BY START DATE
+      setProjects(data);
     } catch (e) {
       console.error(e);
     } finally {
@@ -51,7 +43,7 @@ const Projects: React.FC = () => {
   };
 
   const handleImageClick = (e: React.MouseEvent, uuid: string) => {
-    e.stopPropagation(); // Prevent navigation when clicking image
+    e.stopPropagation();
     setColoredProject(coloredProject === uuid ? null : uuid);
   };
 
@@ -67,15 +59,13 @@ const Projects: React.FC = () => {
     <div className="bg-gradient-to-b from-teal-50 to-white min-h-screen pt-40 pb-16 px-6">
       <div className="max-w-6xl mx-auto space-y-14">
         {/* Back Button */}
-        <div>
-          <Link
-            to="/"
-            className="inline-flex items-center text-teal-600 hover:text-teal-700 transition-colors"
-          >
-            <ArrowLeft className="w-4 h-4 mr-2" />
-            Back to Home
-          </Link>
-        </div>
+        <Link
+          to="/"
+          className="inline-flex items-center text-teal-600 hover:text-teal-700 transition-colors"
+        >
+          <ArrowLeft className="w-4 h-4 mr-2" />
+          Back to Home
+        </Link>
 
         {/* Header */}
         <div className="text-center space-y-2">
@@ -95,7 +85,7 @@ const Projects: React.FC = () => {
               className="bg-white rounded-xl shadow-md overflow-hidden border border-gray-100 flex flex-col md:flex-row transition hover:shadow-lg cursor-pointer"
             >
               {/* Image */}
-              <div 
+              <div
                 className="md:w-1/2"
                 onClick={(e) => handleImageClick(e, project.uuid)}
               >
@@ -133,6 +123,7 @@ const Projects: React.FC = () => {
                         {project.location}
                       </div>
                     )}
+
                     {project.durationDate && (
                       <div className="flex items-center">
                         <Calendar className="w-4 h-4 mr-1 text-teal-600" />
@@ -143,10 +134,9 @@ const Projects: React.FC = () => {
                     {project.partners && (
                       <div className="flex items-center">
                         <Users className="w-4 h-4 mr-1 text-teal-600" />
-                        {Array.isArray(project.partners) 
+                        {Array.isArray(project.partners)
                           ? project.partners.join(", ")
-                          : project.partners
-                        }
+                          : project.partners}
                       </div>
                     )}
                   </div>

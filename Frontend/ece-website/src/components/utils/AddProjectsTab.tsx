@@ -7,7 +7,8 @@ interface Project {
   budget: string;
   description: string;
   quickSummary: string;
-  durationDate: string;
+  startDate: string;
+  endDate: string;
   partners: string;
   status: "ON_GOING" | "PAST";
   image: string;
@@ -25,10 +26,12 @@ const AddProjectsTab = ({ projectToEdit, onSaved }: AddProjectsTabProps) => {
     budget: "",
     description: "",
     quickSummary: "",
-    durationDate: "",
+    startDate: "",
+    endDate: "",
     partners: "",
     status: "ON_GOING",
   });
+
   const [image, setImage] = useState<File | null>(null);
   const [pdf, setPdf] = useState<File | null>(null);
 
@@ -39,7 +42,8 @@ const AddProjectsTab = ({ projectToEdit, onSaved }: AddProjectsTabProps) => {
         budget: projectToEdit.budget,
         description: projectToEdit.description,
         quickSummary: projectToEdit.quickSummary,
-        durationDate: projectToEdit.durationDate,
+        startDate: projectToEdit.startDate,
+        endDate: projectToEdit.endDate,
         partners: projectToEdit.partners,
         status: projectToEdit.status,
       });
@@ -48,54 +52,59 @@ const AddProjectsTab = ({ projectToEdit, onSaved }: AddProjectsTabProps) => {
 
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
+
     const data = new FormData();
     Object.entries(formData).forEach(([key, value]) =>
-      data.append(key, value as string)
+      data.append(key, value)
     );
+
     if (image) data.append("image", image);
     if (pdf) data.append("pdf", pdf);
 
     try {
-      if (projectToEdit) {
-        await fetch(`/api/projects/${projectToEdit.uuid}`, {
-          method: "PUT",
-          body: data,
-          credentials: "include",
-        });
-        alert("Project updated!");
-      } else {
-        await fetch("/api/projects", {
-          method: "POST",
-          body: data,
-          credentials: "include",
-        });
-        alert("Project added!");
-      }
+      const url = projectToEdit
+        ? `/api/projects/${projectToEdit.uuid}`
+        : "/api/projects";
+
+      const method = projectToEdit ? "PUT" : "POST";
+
+      await fetch(url, {
+        method,
+        body: data,
+        credentials: "include",
+      });
+
+      alert(projectToEdit ? "Project updated!" : "Project added!");
 
       setFormData({
         title: "",
         budget: "",
         description: "",
         quickSummary: "",
-        durationDate: "",
+        startDate: "",
+        endDate: "",
         partners: "",
         status: "ON_GOING",
       });
+
       setImage(null);
       setPdf(null);
-
-      if (onSaved) onSaved();
+      onSaved?.();
     } catch (err) {
       console.error(err);
       alert("Failed to save project");
     }
   };
 
+  const inputStyle =
+    "w-full p-3 rounded bg-gray-200 text-black placeholder-gray-500 focus:outline-none";
+
   return (
     <div className="p-6 pb-24">
       <h2 className="text-2xl font-semibold mb-6 text-black">
         {projectToEdit ? "Update Project" : "Add New Project"}
       </h2>
+
       <form
         onSubmit={handleSubmit}
         className="space-y-4 bg-gray-400 p-6 rounded-xl shadow-lg mb-12"
@@ -103,60 +112,82 @@ const AddProjectsTab = ({ projectToEdit, onSaved }: AddProjectsTabProps) => {
         <input
           type="text"
           placeholder="Project Title"
-          className="w-full p-3 rounded bg-gray-200 text-black placeholder-gray-500 focus:outline-none"
+          className={inputStyle}
           value={formData.title}
-          onChange={(e) => setFormData({ ...formData, title: e.target.value })}
+          onChange={(e) =>
+            setFormData({ ...formData, title: e.target.value })
+          }
           required
         />
+
         <input
           type="number"
           placeholder="Budget (€)"
-          className="w-full p-3 rounded bg-gray-200 text-black placeholder-gray-500 focus:outline-none"
+          className={inputStyle}
           value={formData.budget}
-          onChange={(e) => setFormData({ ...formData, budget: e.target.value })}
+          onChange={(e) =>
+            setFormData({ ...formData, budget: e.target.value })
+          }
           required
         />
+
         <textarea
           placeholder="Description"
-          className="w-full p-3 rounded bg-gray-200 text-black placeholder-gray-500 focus:outline-none"
+          className={inputStyle}
+          rows={4}
           value={formData.description}
           onChange={(e) =>
             setFormData({ ...formData, description: e.target.value })
           }
-          rows={4}
           required
         />
+
         <textarea
           placeholder="Quick Summary"
-          className="w-full p-3 rounded bg-gray-200 text-black placeholder-gray-500 focus:outline-none"
+          className={inputStyle}
+          rows={2}
           value={formData.quickSummary}
           onChange={(e) =>
             setFormData({ ...formData, quickSummary: e.target.value })
           }
-          rows={2}
           required
         />
-        <input
-          type="text"
-          placeholder="Duration Date"
-          className="w-full p-3 rounded bg-gray-200 text-black placeholder-gray-500 focus:outline-none"
-          value={formData.durationDate}
-          onChange={(e) =>
-            setFormData({ ...formData, durationDate: e.target.value })
-          }
-          required
-        />
+
+        {/* DATE RANGE — SAME STYLE */}
+        <div className="grid grid-cols-2 gap-4">
+          <input
+            type="date"
+            className={inputStyle}
+            value={formData.startDate}
+            onChange={(e) =>
+              setFormData({ ...formData, startDate: e.target.value })
+            }
+            required
+          />
+
+          <input
+            type="date"
+            className={inputStyle}
+            value={formData.endDate}
+            onChange={(e) =>
+              setFormData({ ...formData, endDate: e.target.value })
+            }
+            required
+          />
+        </div>
+
         <input
           type="text"
           placeholder="Partners (comma separated)"
-          className="w-full p-3 rounded bg-gray-200 text-black placeholder-gray-500 focus:outline-none"
+          className={inputStyle}
           value={formData.partners}
           onChange={(e) =>
             setFormData({ ...formData, partners: e.target.value })
           }
         />
+
         <select
-          className="w-full p-3 rounded bg-gray-200 text-black focus:outline-none"
+          className={inputStyle}
           value={formData.status}
           onChange={(e) =>
             setFormData({ ...formData, status: e.target.value })
@@ -166,34 +197,33 @@ const AddProjectsTab = ({ projectToEdit, onSaved }: AddProjectsTabProps) => {
           <option value="PAST">Past</option>
         </select>
 
+        {/* FILES */}
         <div className="space-y-4">
-          <div>
-            <label className="block text-gray-300 font-medium mb-1">
-              Project Image
-            </label>
-            <label className="w-full flex justify-center items-center px-6 py-3 bg-gray-200 text-black rounded-lg cursor-pointer hover:bg-gray-600 transition">
-              {image ? image.name : projectToEdit?.image || "Select Image"}
-              <input
-                type="file"
-                accept="image/*"
-                className="hidden"
-                onChange={(e) => setImage(e.target.files?.[0] || null)}
-              />
-            </label>
-          </div>
+          <label className="block font-medium text-gray-300">
+            Project Image
+          </label>
+          <label className="flex justify-center items-center px-6 py-3 bg-gray-200 text-black rounded-lg cursor-pointer hover:bg-gray-600 transition">
+            {image ? image.name : projectToEdit?.image || "Select Image"}
+            <input
+              type="file"
+              accept="image/*"
+              className="hidden"
+              onChange={(e) => setImage(e.target.files?.[0] || null)}
+            />
+          </label>
 
-          <div>
-            <label className="block text-gray-300 font-medium mb-1">Project PDF</label>
-            <label className="w-full flex justify-center items-center px-6 py-3 bg-gray-200 text-black rounded-lg cursor-pointer hover:bg-gray-600 transition">
-              {pdf ? pdf.name : projectToEdit?.pdf || "Select PDF"}
-              <input
-                type="file"
-                accept="application/pdf"
-                className="hidden"
-                onChange={(e) => setPdf(e.target.files?.[0] || null)}
-              />
-            </label>
-          </div>
+          <label className="block font-medium text-gray-300">
+            Project PDF
+          </label>
+          <label className="flex justify-center items-center px-6 py-3 bg-gray-200 text-black rounded-lg cursor-pointer hover:bg-gray-600 transition">
+            {pdf ? pdf.name : projectToEdit?.pdf || "Select PDF"}
+            <input
+              type="file"
+              accept="application/pdf"
+              className="hidden"
+              onChange={(e) => setPdf(e.target.files?.[0] || null)}
+            />
+          </label>
         </div>
 
         <button

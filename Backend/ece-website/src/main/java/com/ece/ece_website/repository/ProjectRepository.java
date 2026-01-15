@@ -22,6 +22,9 @@ public interface ProjectRepository extends JpaRepository<Project, Long> {
     @Query(value = "SELECT * FROM projects ORDER BY date DESC LIMIT 3", nativeQuery = true)
     List<Project> findLatestProjects();
 
+    // THIS IS NOW THE ORDER - OLDEST LAST
+    List<Project> findAllByOrderByStartDateDesc();
+
     // TODO: ADD MORE QUERIES IF NEEDED
 
 }

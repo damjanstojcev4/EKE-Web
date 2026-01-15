@@ -28,7 +28,8 @@ public class Project {
     private String imageFilePath;
     @Column(length = 4000)
     private String quickSummary;
-    private String durationDate;
+    private LocalDate startDate;
+    private LocalDate endDate;
     @ElementCollection
     private List<String> partners = new ArrayList<>();
     private LocalDateTime date;

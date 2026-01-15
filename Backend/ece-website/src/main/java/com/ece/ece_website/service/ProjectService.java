@@ -19,7 +19,7 @@ public class ProjectService {
     private ProjectRepository projectRepository;
 
     public List<Project> findAll() {
-        return projectRepository.findAllByOrderByDateAsc();
+        return projectRepository.findAllByOrderByStartDateDesc();
     }
 
     public Project findByName(String title) {
