@@ -5,17 +5,40 @@ export interface ProjectCardProps {
   uuid: string;
   title: string;
   quickSummary: string;
-  durationDate: string;
+  startDate?: string;
+  endDate?: string;
+  durationDate?: string;
   image: string;
   status: "ON_GOING" | "PAST";
   onEdit?: () => void;
   onDelete?: () => void;
 }
 
+// Helper to format date as DD/MM/YYYY
+const formatDate = (dateStr?: string) => {
+  if (!dateStr) return "";
+  const [y, m, d] = dateStr.split("-");
+  return `${d}/${m}/${y}`;
+};
+
+// Combine start & end dates or fallback to durationDate
+const getDurationLabel = (
+  startDate?: string,
+  endDate?: string,
+  durationDate?: string
+) => {
+  if (startDate || endDate) {
+    return `${startDate ? formatDate(startDate) : "—"} – ${endDate ? formatDate(endDate) : "—"}`;
+  }
+  return durationDate ? formatDate(durationDate) : "—";
+};
+
 const ProjectCard: React.FC<ProjectCardProps> = ({
   uuid,
   title,
   quickSummary,
+  startDate,
+  endDate,
   durationDate,
   image,
   status,
@@ -24,9 +47,9 @@ const ProjectCard: React.FC<ProjectCardProps> = ({
 }) => {
   const navigate = useNavigate();
 
-  const handleCardClick = () => {
-    navigate(`/project/${uuid}`);
-  };
+  const handleCardClick = () => navigate(`/project/${uuid}`);
+
+  const durationLabel = getDurationLabel(startDate, endDate, durationDate);
 
   return (
     <div
@@ -34,9 +57,7 @@ const ProjectCard: React.FC<ProjectCardProps> = ({
       onClick={handleCardClick}
       role="button"
       tabIndex={0}
-      onKeyDown={(e) => {
-        if (e.key === "Enter") handleCardClick();
-      }}
+      onKeyDown={(e) => e.key === "Enter" && handleCardClick()}
     >
       <div className="w-full h-48 bg-gray-200">
         {image ? (
@@ -51,7 +72,7 @@ const ProjectCard: React.FC<ProjectCardProps> = ({
       <div className="p-4">
         <h3 className="text-xl font-bold text-gray-900 word-break">{title}</h3>
         <p className="text-gray-700 mt-1 line-clamp-3">{quickSummary}</p>
-        <p className="text-gray-500 text-sm mt-2">{durationDate}</p>
+        <p className="text-gray-500 text-sm mt-2">{durationLabel}</p>
 
         <div className="mt-3 flex items-center justify-between">
           <span

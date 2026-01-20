@@ -3,13 +3,16 @@ import AddProjectsTab from "./utils/AddProjectsTab";
 import ProjectCard from "./ProjectCard";
 import { useNavigate } from "react-router-dom";
 
+// Updated Project type with startDate/endDate
 interface Project {
   uuid: string;
   title: string;
   budget: number;
   description: string;
   quickSummary: string;
-  durationDate: string;
+  startDate?: string; // YYYY-MM-DD
+  endDate?: string;   // YYYY-MM-DD
+  durationDate?: string;
   partners: string;
   status: "ON_GOING" | "PAST";
   image: string;
@@ -69,7 +72,6 @@ const AdminPage: React.FC = () => {
       }
     };
     load();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const handleDeleteProject = async (uuid: string) => {
@@ -174,6 +176,8 @@ const AdminPage: React.FC = () => {
                 uuid={project.uuid}
                 title={project.title}
                 quickSummary={project.quickSummary}
+                startDate={project.startDate}
+                endDate={project.endDate}
                 durationDate={project.durationDate}
                 image={project.image}
                 status={project.status}

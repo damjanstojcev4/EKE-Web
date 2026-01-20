@@ -1,3 +1,4 @@
+// ProjectDetail.tsx
 import React, { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import { ArrowLeft } from "lucide-react";
@@ -5,21 +6,19 @@ import { ArrowLeft } from "lucide-react";
 interface ProjectDetailData {
   uuid: string;
   title: string;
-  budget: number | string;
+  budget: number;
   description: string;
   image: string;
   quickSummary: string;
-
-  // support both
-  durationDate?: string;      // legacy / single date
   startDate?: string;         // YYYY-MM-DD
   endDate?: string;           // YYYY-MM-DD
-
+  durationDate?: string;      // legacy / single date
   partners: string[] | string;
   status: "ON_GOING" | "PAST";
   pdfUrl?: string;
 }
 
+// Convert YYYY-MM-DD to DD/MM/YYYY
 const formatDate = (dateStr?: string) => {
   if (!dateStr) return "";
   const [y, m, d] = dateStr.split("-");
@@ -88,18 +87,19 @@ const ProjectDetail: React.FC = () => {
     );
   }
 
+  // Ensure partners is always an array
   const partners = Array.isArray(project.partners)
     ? project.partners
     : project.partners
     ? project.partners.split(",").map((p) => p.trim())
     : [];
 
-  const durationLabel =
-    project.startDate && project.endDate
-      ? `${formatDate(project.startDate)} – ${formatDate(project.endDate)}`
-      : project.durationDate
-      ? formatDate(project.durationDate)
-      : "—";
+  // Combine startDate & endDate, fallback to durationDate
+  const durationLabel = project.startDate || project.endDate
+    ? `${project.startDate ? formatDate(project.startDate) : "—"} – ${project.endDate ? formatDate(project.endDate) : "—"}`
+    : project.durationDate
+    ? formatDate(project.durationDate)
+    : "—";
 
   return (
     <div className="bg-gradient-to-b from-teal-50 to-white min-h-screen pt-40 pb-24 px-6">
@@ -112,12 +112,8 @@ const ProjectDetail: React.FC = () => {
           Back to Projects
         </Link>
 
-        <h1 className="text-4xl font-bold mb-3 text-gray-900">
-          {project.title}
-        </h1>
-        <p className="text-lg text-gray-600 mb-8">
-          {project.quickSummary}
-        </p>
+        <h1 className="text-4xl font-bold mb-3 text-gray-900">{project.title}</h1>
+        <p className="text-lg text-gray-600 mb-8">{project.quickSummary}</p>
 
         {/* Image */}
         <div className="w-full flex justify-center mb-8">
@@ -138,11 +134,7 @@ const ProjectDetail: React.FC = () => {
         <div className="grid md:grid-cols-3 gap-6 mb-12">
           <div className="bg-white rounded-lg p-6 shadow">
             <h3 className="text-sm font-semibold mb-2">Budget</h3>
-            <p className="text-xl font-bold">
-              {typeof project.budget === "number"
-                ? `€${project.budget.toLocaleString()}`
-                : project.budget}
-            </p>
+            <p className="text-xl font-bold">€{project.budget.toLocaleString()}</p>
           </div>
 
           <div className="bg-white rounded-lg p-6 shadow">
@@ -167,9 +159,7 @@ const ProjectDetail: React.FC = () => {
         {/* Description */}
         <div className="bg-white rounded-lg p-8 shadow mb-12">
           <h2 className="text-2xl font-bold mb-4">Project Description</h2>
-          <p className="text-gray-700 whitespace-pre-line">
-            {project.description}
-          </p>
+          <p className="text-gray-700 whitespace-pre-line">{project.description}</p>
         </div>
 
         {/* Partners */}
