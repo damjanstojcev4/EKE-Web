@@ -7,8 +7,8 @@ interface Project {
   budget: string;
   description: string;
   quickSummary: string;
-  startDate: string;
-  endDate: string;
+  startDate?: string; // ✅ optional
+  endDate?: string;   // ✅ optional
   partners: string;
   status: "ON_GOING" | "PAST";
   image: string;
@@ -42,8 +42,8 @@ const AddProjectsTab = ({ projectToEdit, onSaved }: AddProjectsTabProps) => {
         budget: projectToEdit.budget,
         description: projectToEdit.description,
         quickSummary: projectToEdit.quickSummary,
-        startDate: projectToEdit.startDate,
-        endDate: projectToEdit.endDate,
+        startDate: projectToEdit.startDate ?? "", // ✅ safe
+        endDate: projectToEdit.endDate ?? "",     // ✅ safe
         partners: projectToEdit.partners,
         status: projectToEdit.status,
       });
@@ -55,7 +55,7 @@ const AddProjectsTab = ({ projectToEdit, onSaved }: AddProjectsTabProps) => {
 
     const data = new FormData();
     Object.entries(formData).forEach(([key, value]) =>
-      data.append(key, value)
+      data.append(key, value as string) // ✅ explicit
     );
 
     if (image) data.append("image", image);
@@ -153,7 +153,7 @@ const AddProjectsTab = ({ projectToEdit, onSaved }: AddProjectsTabProps) => {
           required
         />
 
-        {/* DATE RANGE — SAME STYLE */}
+        {/* DATE RANGE */}
         <div className="grid grid-cols-2 gap-4">
           <input
             type="date"
@@ -190,7 +190,10 @@ const AddProjectsTab = ({ projectToEdit, onSaved }: AddProjectsTabProps) => {
           className={inputStyle}
           value={formData.status}
           onChange={(e) =>
-            setFormData({ ...formData, status: e.target.value })
+            setFormData({
+              ...formData,
+              status: e.target.value as "ON_GOING" | "PAST",
+            })
           }
         >
           <option value="ON_GOING">Ongoing</option>
