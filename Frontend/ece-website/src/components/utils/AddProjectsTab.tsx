@@ -4,11 +4,11 @@ import type { FormEvent } from "react";
 interface Project {
   uuid: string;
   title: string;
-  budget: string;
+  budget: number;
   description: string;
   quickSummary: string;
-  startDate?: string; // ✅ optional
-  endDate?: string;   // ✅ optional
+  startDate?: string;
+  endDate?: string;
   partners: string;
   status: "ON_GOING" | "PAST";
   image: string;
@@ -21,6 +21,7 @@ interface AddProjectsTabProps {
 }
 
 const AddProjectsTab = ({ projectToEdit, onSaved }: AddProjectsTabProps) => {
+  // Use strings for form inputs, convert budget to number on submit
   const [formData, setFormData] = useState({
     title: "",
     budget: "",
@@ -35,15 +36,16 @@ const AddProjectsTab = ({ projectToEdit, onSaved }: AddProjectsTabProps) => {
   const [image, setImage] = useState<File | null>(null);
   const [pdf, setPdf] = useState<File | null>(null);
 
+  // Fill form if editing
   useEffect(() => {
     if (projectToEdit) {
       setFormData({
         title: projectToEdit.title,
-        budget: projectToEdit.budget,
+        budget: String(projectToEdit.budget),
         description: projectToEdit.description,
         quickSummary: projectToEdit.quickSummary,
-        startDate: projectToEdit.startDate ?? "", // ✅ safe
-        endDate: projectToEdit.endDate ?? "",     // ✅ safe
+        startDate: projectToEdit.startDate ?? "",
+        endDate: projectToEdit.endDate ?? "",
         partners: projectToEdit.partners,
         status: projectToEdit.status,
       });
@@ -54,8 +56,10 @@ const AddProjectsTab = ({ projectToEdit, onSaved }: AddProjectsTabProps) => {
     e.preventDefault();
 
     const data = new FormData();
-    Object.entries(formData).forEach(([key, value]) =>
-      data.append(key, value as string) // ✅ explicit
+
+    // Convert budget to number for backend
+    Object.entries({ ...formData, budget: Number(formData.budget) }).forEach(
+      ([key, value]) => data.append(key, value as any)
     );
 
     if (image) data.append("image", image);
@@ -65,7 +69,6 @@ const AddProjectsTab = ({ projectToEdit, onSaved }: AddProjectsTabProps) => {
       const url = projectToEdit
         ? `/api/projects/${projectToEdit.uuid}`
         : "/api/projects";
-
       const method = projectToEdit ? "PUT" : "POST";
 
       await fetch(url, {
@@ -86,7 +89,6 @@ const AddProjectsTab = ({ projectToEdit, onSaved }: AddProjectsTabProps) => {
         partners: "",
         status: "ON_GOING",
       });
-
       setImage(null);
       setPdf(null);
       onSaved?.();
@@ -122,6 +124,8 @@ const AddProjectsTab = ({ projectToEdit, onSaved }: AddProjectsTabProps) => {
 
         <input
           type="number"
+          step="1"
+          min="0"
           placeholder="Budget (€)"
           className={inputStyle}
           value={formData.budget}
@@ -153,7 +157,7 @@ const AddProjectsTab = ({ projectToEdit, onSaved }: AddProjectsTabProps) => {
           required
         />
 
-        {/* DATE RANGE */}
+        {/* Start & End Dates */}
         <div className="grid grid-cols-2 gap-4">
           <input
             type="date"
@@ -162,9 +166,7 @@ const AddProjectsTab = ({ projectToEdit, onSaved }: AddProjectsTabProps) => {
             onChange={(e) =>
               setFormData({ ...formData, startDate: e.target.value })
             }
-            required
           />
-
           <input
             type="date"
             className={inputStyle}
@@ -172,7 +174,6 @@ const AddProjectsTab = ({ projectToEdit, onSaved }: AddProjectsTabProps) => {
             onChange={(e) =>
               setFormData({ ...formData, endDate: e.target.value })
             }
-            required
           />
         </div>
 
@@ -190,21 +191,16 @@ const AddProjectsTab = ({ projectToEdit, onSaved }: AddProjectsTabProps) => {
           className={inputStyle}
           value={formData.status}
           onChange={(e) =>
-            setFormData({
-              ...formData,
-              status: e.target.value as "ON_GOING" | "PAST",
-            })
+            setFormData({ ...formData, status: e.target.value })
           }
         >
           <option value="ON_GOING">Ongoing</option>
           <option value="PAST">Past</option>
         </select>
 
-        {/* FILES */}
+        {/* File uploads */}
         <div className="space-y-4">
-          <label className="block font-medium text-gray-300">
-            Project Image
-          </label>
+          <label className="block font-medium text-gray-300">Project Image</label>
           <label className="flex justify-center items-center px-6 py-3 bg-gray-200 text-black rounded-lg cursor-pointer hover:bg-gray-600 transition">
             {image ? image.name : projectToEdit?.image || "Select Image"}
             <input
@@ -215,9 +211,7 @@ const AddProjectsTab = ({ projectToEdit, onSaved }: AddProjectsTabProps) => {
             />
           </label>
 
-          <label className="block font-medium text-gray-300">
-            Project PDF
-          </label>
+          <label className="block font-medium text-gray-300">Project PDF</label>
           <label className="flex justify-center items-center px-6 py-3 bg-gray-200 text-black rounded-lg cursor-pointer hover:bg-gray-600 transition">
             {pdf ? pdf.name : projectToEdit?.pdf || "Select PDF"}
             <input

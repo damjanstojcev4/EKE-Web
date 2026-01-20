@@ -6,7 +6,7 @@ import { useNavigate } from "react-router-dom";
 interface Project {
   uuid: string;
   title: string;
-  budget: string;
+  budget: number;
   description: string;
   quickSummary: string;
   durationDate: string;
