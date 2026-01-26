@@ -38,7 +38,13 @@ const AdminPage: React.FC = () => {
   const [loading, setLoading] = useState(true);
 
   const fetchProjects = async () => {
-    const res = await fetch("/api/projects/", { credentials: "include" });
+    const token = localStorage.getItem("jwt");
+    const res = await fetch("/api/projects/", {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+      credentials: "include",
+    });
     if (res.status === 401) {
       localStorage.removeItem("jwt");
       navigate("/login");
@@ -50,7 +56,13 @@ const AdminPage: React.FC = () => {
   };
 
   const fetchMessages = async () => {
-    const res = await fetch("/api/messages/", { credentials: "include" });
+    const token = localStorage.getItem("jwt");
+    const res = await fetch("/api/messages/", {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+      credentials: "include",
+    });
     if (res.status === 401) {
       localStorage.removeItem("jwt");
       navigate("/login");
@@ -76,8 +88,12 @@ const AdminPage: React.FC = () => {
 
   const handleDeleteProject = async (uuid: string) => {
     if (!confirm("Are you sure you want to delete this project?")) return;
+    const token = localStorage.getItem("jwt");
     const res = await fetch(`/api/projects/${uuid}`, {
       method: "DELETE",
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
       credentials: "include",
     });
     if (res.status === 401) {
@@ -132,11 +148,10 @@ const AdminPage: React.FC = () => {
       <div className="flex justify-center space-x-4 mb-10">
         <button
           onClick={() => setActiveTab("projects")}
-          className={`px-6 py-2 rounded-lg ${
-            activeTab === "projects"
+          className={`px-6 py-2 rounded-lg ${activeTab === "projects"
               ? "bg-blue-400"
               : "bg-gray-400 hover:bg-gray-500"
-          }`}
+            }`}
         >
           Projects
         </button>
@@ -145,21 +160,19 @@ const AdminPage: React.FC = () => {
             setEditingProject(null);
             setActiveTab("add");
           }}
-          className={`px-6 py-2 rounded-lg ${
-            activeTab === "add"
+          className={`px-6 py-2 rounded-lg ${activeTab === "add"
               ? "bg-blue-400"
               : "bg-gray-400 hover:bg-gray-500"
-          }`}
+            }`}
         >
           Add Project
         </button>
         <button
           onClick={() => setActiveTab("messages")}
-          className={`px-6 py-2 rounded-lg ${
-            activeTab === "messages"
+          className={`px-6 py-2 rounded-lg ${activeTab === "messages"
               ? "bg-blue-400"
               : "bg-gray-400 hover:bg-gray-500"
-          }`}
+            }`}
         >
           Messages
         </button>

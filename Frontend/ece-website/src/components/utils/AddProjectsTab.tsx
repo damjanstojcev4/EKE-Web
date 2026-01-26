@@ -9,7 +9,7 @@ interface Project {
   quickSummary: string;
   startDate?: string;
   endDate?: string;
-  partners: string;
+  partners: string[] | string;
   status: "ON_GOING" | "PAST";
   image: string;
   pdf: string;
@@ -46,7 +46,9 @@ const AddProjectsTab = ({ projectToEdit, onSaved }: AddProjectsTabProps) => {
         quickSummary: projectToEdit.quickSummary,
         startDate: projectToEdit.startDate ?? "",
         endDate: projectToEdit.endDate ?? "",
-        partners: projectToEdit.partners,
+        partners: Array.isArray(projectToEdit.partners)
+          ? projectToEdit.partners.join(", ")
+          : projectToEdit.partners,
         status: projectToEdit.status,
       });
     }
@@ -58,9 +60,22 @@ const AddProjectsTab = ({ projectToEdit, onSaved }: AddProjectsTabProps) => {
     const data = new FormData();
 
     // Convert budget to number for backend
+    // Append only non-empty values (except partners which we handle separately)
     Object.entries({ ...formData, budget: Number(formData.budget) }).forEach(
-      ([key, value]) => data.append(key, value as any)
+      ([key, value]) => {
+        if (key !== "partners" && value !== "" && value !== null && value !== undefined) {
+          data.append(key, value as any);
+        }
+      }
     );
+
+    // Handle partners: split string and append multiple fields
+    const partnersArray = formData.partners
+      .split(",")
+      .map((p) => p.trim())
+      .filter(Boolean);
+
+    partnersArray.forEach((p) => data.append("partners", p));
 
     if (image) data.append("image", image);
     if (pdf) data.append("pdf", pdf);
@@ -71,8 +86,12 @@ const AddProjectsTab = ({ projectToEdit, onSaved }: AddProjectsTabProps) => {
         : "/api/projects";
       const method = projectToEdit ? "PUT" : "POST";
 
+      const token = localStorage.getItem("jwt");
       await fetch(url, {
         method,
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
         body: data,
         credentials: "include",
       });

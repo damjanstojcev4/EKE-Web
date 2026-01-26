@@ -43,12 +43,9 @@ public class JwtAuthFilter extends OncePerRequestFilter {
         }
 
         String jwt = extractJwtFromRequest(request);
-        logger.debug("JWT found: {}", jwt != null);
-
         if (jwt == null) {
-            logger.warn("No JWT token found for protected endpoint");
-            response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
-            response.getWriter().write("Unauthorized: No token provided");
+            logger.debug("No JWT token found, letting security chain handle it");
+            filterChain.doFilter(request, response);
             return;
         }
 
@@ -89,7 +86,7 @@ public class JwtAuthFilter extends OncePerRequestFilter {
         String path = request.getServletPath();
         String method = request.getMethod();
 
-        return path.startsWith("/auth/") ||
+        return path.startsWith("/auth") ||
                 (path.startsWith("/projects") && "GET".equalsIgnoreCase(method)) ||
                 (path.startsWith("/uploads") && "GET".equalsIgnoreCase(method)) ||
                 (path.startsWith("/messages") && "POST".equalsIgnoreCase(method)) ||
