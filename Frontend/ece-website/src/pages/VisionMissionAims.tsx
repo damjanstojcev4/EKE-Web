@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import { ArrowLeft, Target, Lightbulb} from "lucide-react";
+import { ArrowLeft, Target, Lightbulb } from "lucide-react";
 import vma from "../assets/vma-vele.jpg";
 
 const VisionMissionAims: React.FC = () => {
@@ -77,11 +77,10 @@ const VisionMissionAims: React.FC = () => {
             <img
               src={vma}
               alt="Vision and Mission"
-              className={`w-full h-full object-cover transition-all duration-700 rounded-xl ${
-                isColored
-                  ? "grayscale-0"
-                  : "grayscale md:grayscale md:hover:grayscale-0"
-              }`}
+              className={`w-full h-full object-cover transition-all duration-700 rounded-xl ${isColored
+                ? "grayscale-0"
+                : "grayscale md:grayscale md:hover:grayscale-0"
+                }`}
             />
           </div>
 
@@ -94,7 +93,7 @@ const VisionMissionAims: React.FC = () => {
                   Our Vision
                 </h3>
                 <p className="text-gray-700 leading-relaxed">
-                  A world where every individual, regardless of their background or circumstance, has the opportunity to thrive. We envision communities that are inclusive, fair, and resilient — where collaboration and innovation lead to the foundations of education, empowerment, and social justice.
+                  An inclusive society with active citizens who are personally and professionally accomplished.
                 </p>
               </div>
             </div>
@@ -106,7 +105,7 @@ const VisionMissionAims: React.FC = () => {
                   Our Mission
                 </h3>
                 <p className="text-gray-700 leading-relaxed">
-                  To empower communities through sustainable development initiatives, knowledge sharing, and inclusive partnerships. Our mission focuses on promoting education, innovation, and equitable growth by creating evidence-based interventions and culturally sensitive approaches.
+                  Life-long learning through non-formal education for everyone
                 </p>
               </div>
             </div>
@@ -140,23 +139,35 @@ const VisionMissionAims: React.FC = () => {
           <h3 className="text-teal-500 text-lg font-semibold mb-4">
             Our Approach
           </h3>
-          <p className="text-gray-700 leading-relaxed mb-4">
-            We believe that sustainable change requires a holistic, community-centered approach. Our work is guided by principles of:
-          </p>
-
           <ul className="list-disc pl-6 space-y-2 text-gray-700">
             <li>
-              <strong>Participation:</strong> Engaging communities as active partners in all stages of program design and implementation.
+              Including the citizens in non-formal education and learning;
             </li>
             <li>
-              <strong>Evidence-Based Practices:</strong> Utilizing data-driven insights to ensure our initiatives are effective and impactful.
+              Recognition of non-formal learning by progessionals, organisations and institutions for personal and professional development;
             </li>
             <li>
-              <strong>Collaboration:</strong> Working closely with stakeholders to build trust and long-term partnerships.
+              Encouragement and promotion of volunteering;
             </li>
             <li>
-              <strong>Sustainability:</strong> Creating programs that continue to benefit communities long after our direct involvement ends.
+              Application of sustainable practices, promotion of sustainable development and increasing the contribution of citizens in solving local and global challenges;
             </li>
+            <li>
+              Promotion of digital literacy, digital skills and digital transformation;
+            </li>
+            <li>
+              Practicing and promoting a healthy lifestyle through physical activity, sports and sports activities;
+            </li>
+            <li>
+              Education and emancipation of vulnerable and marginalized groups;
+            </li>
+            <li>
+              Promotion of active citizenship, human rights, democracy, a market economy, entrepreneurship, equality and solidarity;
+            </li>
+            <li>
+              Strengthening the role and capacities of organisations and institutions through mutual cooperation, support, indicating needs and possible reforms;
+            </li>
+
           </ul>
         </div>
       </div>

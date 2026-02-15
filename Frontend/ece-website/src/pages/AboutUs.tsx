@@ -40,10 +40,9 @@ const AboutUs: React.FC = () => {
               alt="About Us"
               onClick={toggleColor}
               className={`w-full h-96 object-cover rounded-xl shadow-lg transition-all duration-700 
-                ${
-                  colorVisible
-                    ? "grayscale-0"
-                    : "grayscale md:grayscale md:hover:grayscale-0"
+                ${colorVisible
+                  ? "grayscale-0"
+                  : "grayscale md:grayscale md:hover:grayscale-0"
                 }`}
             />
           </div>
@@ -52,23 +51,14 @@ const AboutUs: React.FC = () => {
           <div className="order-2 md:order-2 space-y-4 text-left">
             <h3 className="text-teal-500 text-lg font-semibold">Our Story</h3>
             <p className="text-gray-700 leading-relaxed">
-              Founded in 2015, our organization emerged from a single yet
-              powerful idea: that sustainable change comes from empowering
-              communities from within. What started as a small group of
-              motivated volunteers has grown into a dynamic organization working
-              across multiple sectors and regions.
+              EKE Bitola is a non-profit organisation based in Bitola, North Macedoni, with
+              main aim to provide high-quality non-formal educational programs for citizens personal and professional development.
             </p>
             <p className="text-gray-700 leading-relaxed">
-              Over the years, we’ve learned that the most effective solutions are
-              those developed by the people who know their own realities best.
-              The collaboration between leadership, local volunteers, and
-              everyday individuals has shaped our initiatives — locally relevant,
-              and truly sustainable.
+              Through our educational programs, we aim to develop citizens' competencies and cultivate core value that foster life long learning.
             </p>
             <p className="text-gray-700 leading-relaxed">
-              Today, we proudly work with thousands of individuals and dozens of
-              partner organizations, all united in our commitment to creating a
-              more equitable and just world.
+              In our programs we empower participants to recognise and develop their full potential, be able to create vision for their future and remain resilient in the face of evolving societal and professional challenges.
             </p>
           </div>
         </section>
