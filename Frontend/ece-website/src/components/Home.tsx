@@ -1,6 +1,6 @@
 import { type FC, useState, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
-import { motion } from "framer-motion";
+import NewsCarousel from "./NewsCarousel";
 import team from "../assets/o-bg.jpg";
 import about from "../assets/about-us-bg.jpg";
 import vma from "../assets/vma-vele.jpg";
@@ -52,36 +52,7 @@ const Home: FC = () => {
   return (
     <>
       {/* Hero Section */}
-      <section id="hero" className="h-screen w-full bg-gradient-to-b from-teal-700 to-white flex items-center justify-center">
-        <motion.div
-          className="text-center px-4"
-          initial={{ opacity: 0, y: 50 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 1.4, ease: "easeOut" }}
-        >
-          <h1 className="text-4xl md:text-5xl font-extrabold text-white leading-tight drop-shadow-lg">
-            Making a Difference Together
-          </h1>
-          <p className="mt-6 text-lg md:text-xl text-gray-800 max-w-2xl mx-auto">
-            We are a non-governmental organization dedicated to creating
-            positive change in our communities through collaborative efforts,
-            sustainable projects, and unwavering commitment to our mission.
-          </p>
-          <div className="mt-8 flex flex-wrap justify-center gap-4">
-            <button
-              onClick={() => {
-                const section = document.getElementById("about-projects");
-                if (section) {
-                  section.scrollIntoView({ behavior: "smooth" });
-                }
-              }}
-              className="px-6 py-3 bg-teal-600 text-white font-semibold rounded-lg shadow hover:bg-teal-800 transition"
-            >
-              Discover Our Work
-            </button>
-          </div>
-        </motion.div>
-      </section>
+      <NewsCarousel />
 
       {/* About Us Section */}
       <section id="about-us" className="py-20 bg-white">

@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from "react";
-import AddProjectsTab from "./utils/AddProjectsTab";
-import ProjectCard from "./ProjectCard";
+import AddProjectsTab from "./utils/AddProjectsTab.tsx";
+import AddNewsTab from "./utils/AddNewsTab.tsx";
+import ProjectCard from "./ProjectCard.tsx";
+import NewsCard from "./NewsCard.tsx";
 import { useNavigate } from "react-router-dom";
 
 // Updated Project type with startDate/endDate
@@ -29,11 +31,13 @@ interface Message {
 const AdminPage: React.FC = () => {
   const navigate = useNavigate();
 
-  const [activeTab, setActiveTab] = useState<"projects" | "add" | "messages">(
+  const [activeTab, setActiveTab] = useState<"projects" | "add" | "messages" | "news" | "add-news">(
     "projects"
   );
   const [projects, setProjects] = useState<Project[]>([]);
   const [editingProject, setEditingProject] = useState<Project | null>(null);
+  const [news, setNews] = useState<any[]>([]);
+  const [editingNews, setEditingNews] = useState<any>(null);
   const [messages, setMessages] = useState<Message[]>([]);
   const [loading, setLoading] = useState(true);
 
@@ -73,10 +77,28 @@ const AdminPage: React.FC = () => {
     setMessages(data);
   };
 
+  const fetchNews = async () => {
+    const token = localStorage.getItem("jwt");
+    const res = await fetch("/api/news", {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+      credentials: "include",
+    });
+    if (res.status === 401) {
+      localStorage.removeItem("jwt");
+      navigate("/login");
+      throw new Error("Unauthorized");
+    }
+    if (!res.ok) throw new Error("Failed to fetch news");
+    const data = await res.json();
+    setNews(data);
+  };
+
   useEffect(() => {
     const load = async () => {
       try {
-        await Promise.all([fetchProjects(), fetchMessages()]);
+        await Promise.all([fetchProjects(), fetchMessages(), fetchNews()]);
       } catch (e) {
         console.error(e);
       } finally {
@@ -106,6 +128,28 @@ const AdminPage: React.FC = () => {
       return;
     }
     setProjects((prev) => prev.filter((p) => p.uuid !== uuid));
+  };
+
+  const handleDeleteNews = async (id: number) => {
+    if (!confirm("Are you sure you want to delete this news item?")) return;
+    const token = localStorage.getItem("jwt");
+    const res = await fetch(`/api/news/${id}`, {
+      method: "DELETE",
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+      credentials: "include",
+    });
+    if (res.status === 401) {
+      localStorage.removeItem("jwt");
+      navigate("/login");
+      return;
+    }
+    if (!res.ok) {
+      alert("Failed to delete news");
+      return;
+    }
+    setNews((prev) => prev.filter((n) => n.id !== id));
   };
 
   const handleLogout = async () => {
@@ -149,8 +193,8 @@ const AdminPage: React.FC = () => {
         <button
           onClick={() => setActiveTab("projects")}
           className={`px-6 py-2 rounded-lg ${activeTab === "projects"
-              ? "bg-blue-400"
-              : "bg-gray-400 hover:bg-gray-500"
+            ? "bg-blue-400"
+            : "bg-gray-400 hover:bg-gray-500"
             }`}
         >
           Projects
@@ -161,8 +205,8 @@ const AdminPage: React.FC = () => {
             setActiveTab("add");
           }}
           className={`px-6 py-2 rounded-lg ${activeTab === "add"
-              ? "bg-blue-400"
-              : "bg-gray-400 hover:bg-gray-500"
+            ? "bg-blue-400"
+            : "bg-gray-400 hover:bg-gray-500"
             }`}
         >
           Add Project
@@ -170,11 +214,32 @@ const AdminPage: React.FC = () => {
         <button
           onClick={() => setActiveTab("messages")}
           className={`px-6 py-2 rounded-lg ${activeTab === "messages"
-              ? "bg-blue-400"
-              : "bg-gray-400 hover:bg-gray-500"
+            ? "bg-blue-400"
+            : "bg-gray-400 hover:bg-gray-500"
             }`}
         >
           Messages
+        </button>
+        <button
+          onClick={() => setActiveTab("news")}
+          className={`px-6 py-2 rounded-lg ${activeTab === "news"
+            ? "bg-blue-400"
+            : "bg-gray-400 hover:bg-gray-500"
+            }`}
+        >
+          News
+        </button>
+        <button
+          onClick={() => {
+            setEditingNews(null);
+            setActiveTab("add-news");
+          }}
+          className={`px-6 py-2 rounded-lg ${activeTab === "add-news"
+            ? "bg-blue-400"
+            : "bg-gray-400 hover:bg-gray-500"
+            }`}
+        >
+          Add News
         </button>
       </div>
 
@@ -204,6 +269,25 @@ const AdminPage: React.FC = () => {
           </div>
         )}
 
+        {activeTab === "news" && (
+          <div className="grid gap-6">
+            {news.length === 0 && <p>No news found</p>}
+            {news.map((item) => (
+              <NewsCard
+                key={item.id}
+                shortDescription={item.shortDescription}
+                instagramUrl={item.instagramUrl}
+                imageUrl={item.imageUrl}
+                onEdit={() => {
+                  setEditingNews(item);
+                  setActiveTab("add-news");
+                }}
+                onDelete={() => handleDeleteNews(item.id)}
+              />
+            ))}
+          </div>
+        )}
+
         {activeTab === "add" && (
           <AddProjectsTab
             projectToEdit={editingProject || undefined}
@@ -211,6 +295,17 @@ const AdminPage: React.FC = () => {
               setEditingProject(null);
               setActiveTab("projects");
               fetchProjects();
+            }}
+          />
+        )}
+
+        {activeTab === "add-news" && (
+          <AddNewsTab
+            newsToEdit={editingNews || undefined}
+            onSaved={() => {
+              setEditingNews(null);
+              setActiveTab("news");
+              fetchNews();
             }}
           />
         )}
