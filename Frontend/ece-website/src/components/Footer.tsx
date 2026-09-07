@@ -132,7 +132,7 @@ const Footer = () => {
         {/* Copyright Section */}
         <div className="text-center mt-6 sm:mt-8 text-xs sm:text-sm text-slate-500 px-2">
           <p>© 2024 European Cultural Epicenter (EKE). All rights reserved.</p>
-          <a href="https://portfolio-damjan.vercel.app/" className="hover:text-teal-400 transition-colors duration-200">
+          <a href="https://www.myceliumagency.co/" className="hover:text-teal-400 transition-colors duration-200">
             Developed by
           </a>
         </div>
