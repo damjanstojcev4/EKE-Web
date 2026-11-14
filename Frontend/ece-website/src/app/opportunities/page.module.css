@@ -1,0 +1,622 @@
+.page {
+  background: #fafafa;
+  overflow: clip;
+}
+.page :global(.nav-cta) {
+  color: var(--light-blue);
+}
+.pending :global(.original-arrow img) {
+  width: calc(26.47 * var(--u));
+  height: calc(34.61 * var(--u));
+  transform: translate(-50%, -50%) rotate(90deg);
+}
+.label {
+  font-size: calc(24 * var(--u));
+  line-height: calc(30 * var(--u));
+  font-weight: 700;
+  text-transform: uppercase;
+}
+.hero {
+  position: relative;
+  isolation: isolate;
+  height: calc(1225 * var(--u));
+  padding: calc(278 * var(--u)) calc(80 * var(--u)) 0;
+  background: linear-gradient(
+    var(--dark-blue) 0 calc(865 * var(--u)),
+    transparent calc(865 * var(--u))
+  );
+  color: white;
+}
+.heroArtwork {
+  position: absolute;
+  inset: 0 0 auto;
+  height: calc(865 * var(--u));
+  overflow: hidden;
+  pointer-events: none;
+  z-index: -1;
+}
+.heroArtwork img {
+  position: absolute;
+  top: 0;
+  left: calc(255 * var(--u));
+  width: calc(1196 * var(--u));
+  height: calc(805 * var(--u));
+  max-width: none;
+}
+.hero h1 {
+  position: relative;
+  margin-top: calc(18 * var(--u));
+  font-size: calc(110 * var(--u) - 2px);
+  line-height: calc(120 * var(--u));
+  font-weight: 700;
+  color: var(--light-blue);
+}
+.heroCopy {
+  position: absolute;
+  top: calc(475 * var(--u));
+  left: calc(853 * var(--u));
+  width: calc(906 * var(--u));
+  font-size: calc(24 * var(--u));
+  line-height: calc(32 * var(--u));
+}
+.heroPhoto {
+  position: absolute;
+  top: calc(747 * var(--u));
+  left: calc(80 * var(--u));
+  width: calc(1760 * var(--u));
+  height: calc(478 * var(--u));
+  object-fit: cover;
+  border-radius: calc(24 * var(--u)) calc(24 * var(--u)) 0 0;
+}
+.introduction,
+.closing {
+  padding: calc(102 * var(--u)) calc(85 * var(--u)) 0;
+  height: calc(384 * var(--u));
+  font-size: calc(40 * var(--u));
+  line-height: calc(50 * var(--u));
+}
+.introduction p,
+.closing p {
+  text-indent: calc(140 * var(--u));
+}
+.calls {
+  background: var(--dark-blue);
+}
+.calls > h2 {
+  height: calc(105 * var(--u));
+  background: var(--light-blue);
+  display: flex;
+  align-items: center;
+  gap: calc(16 * var(--u));
+  padding-left: calc(80 * var(--u));
+  color: white;
+  font-size: calc(64 * var(--u) - 2px);
+  line-height: 1;
+  font-weight: 700;
+}
+.calls > h2 img {
+  width: calc(64 * var(--u));
+  height: calc(51 * var(--u));
+}
+.listing {
+  height: calc(1413 * var(--u));
+  padding: calc(69 * var(--u)) calc(80 * var(--u)) 0;
+}
+.sortLabel {
+  color: var(--light-blue);
+  font-size: calc(24 * var(--u));
+  line-height: calc(32 * var(--u));
+  margin-bottom: calc(20 * var(--u));
+}
+.grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  column-gap: calc(20 * var(--u));
+  row-gap: calc(60 * var(--u));
+}
+.call {
+  position: relative;
+  display: grid;
+  grid-template-columns: calc(205 * var(--u)) 1fr;
+  grid-template-rows: calc(100 * var(--u)) 1fr;
+  column-gap: calc(24 * var(--u));
+  height: calc(245 * var(--u));
+  padding: calc(25 * var(--u)) calc(30 * var(--u));
+  border-radius: calc(16 * var(--u));
+  background: var(--light-blue);
+}
+.count {
+  border-right: var(--u) solid var(--dark-blue);
+  padding-top: calc(14 * var(--u));
+  height: calc(88 * var(--u));
+}
+.count strong {
+  display: block;
+  font-size: calc(38 * var(--u));
+  line-height: calc(40 * var(--u));
+  font-weight: 700;
+}
+.count span {
+  font-size: calc(24 * var(--u));
+  line-height: calc(28 * var(--u));
+}
+.call h3 {
+  font-size: calc(28 * var(--u) - 2px);
+  line-height: calc(32 * var(--u));
+  font-weight: 700;
+  color: white;
+  white-space: pre-line;
+  padding-top: calc(13 * var(--u));
+}
+.category {
+  margin-top: calc(19 * var(--u));
+  border-top: var(--u) solid var(--dark-blue);
+  width: calc(174 * var(--u));
+  padding-top: calc(16 * var(--u));
+  white-space: pre-line;
+  font-size: calc(20 * var(--u));
+  line-height: calc(24 * var(--u));
+  font-weight: 700;
+}
+.call ul {
+  margin: calc(13 * var(--u)) 0 0;
+  padding: 0;
+  list-style: square;
+  font-size: calc(20 * var(--u));
+  line-height: calc(28 * var(--u));
+  font-weight: 700;
+}
+.call li {
+  padding-left: 0;
+}
+.call li::marker {
+  font-size: calc(25 * var(--u));
+}
+.pending,
+.closed {
+  position: absolute;
+  right: calc(23 * var(--u));
+  bottom: calc(25 * var(--u));
+}
+.pending button,
+.closed {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: calc(16 * var(--u));
+  height: calc(76 * var(--u));
+  padding: 0 calc(24 * var(--u));
+  border-radius: calc(8 * var(--u));
+  font-size: calc(22 * var(--u));
+  font-weight: 700;
+}
+.pending button {
+  background: var(--dark-blue);
+  color: var(--tirkiz);
+  border: 0;
+  cursor: default;
+}
+.closed {
+  color: #ff7777;
+  border: var(--u) solid #ff7777;
+  background: transparent;
+  cursor: default;
+}
+.pending > span {
+  display: none;
+  position: absolute;
+  bottom: 110%;
+  right: 0;
+  width: 240px;
+  padding: 12px;
+  background: white;
+  color: var(--dark-blue);
+  font-size: 15px;
+  line-height: 1.4;
+  border-radius: 6px;
+  z-index: 2;
+  box-shadow: 0 2px 12px #212c5d33;
+}
+.pending:hover > span,
+.pending:focus-within > span {
+  display: block;
+}
+.paths {
+  height: calc(1614 * var(--u));
+  position: relative;
+  background: linear-gradient(
+    #fafafa 0 calc(880 * var(--u)),
+    var(--light-blue) calc(880 * var(--u))
+  );
+}
+.pathsIntro {
+  height: calc(637 * var(--u));
+  position: relative;
+  padding: calc(120 * var(--u)) calc(80 * var(--u)) 0;
+  isolation: isolate;
+  overflow: hidden;
+}
+.pathsArt {
+  position: absolute;
+  z-index: -1;
+  width: calc(1139 * var(--u));
+  height: calc(967 * var(--u));
+  left: calc(150 * var(--u));
+  top: calc(-382 * var(--u));
+}
+.pathsIntro .label {
+  font-size: calc(28 * var(--u));
+  line-height: calc(36 * var(--u));
+}
+.pathsIntro h2 {
+  font-size: calc(100 * var(--u) - 2px);
+  line-height: calc(100 * var(--u));
+  font-weight: 700;
+  color: var(--light-blue);
+  margin-top: calc(34 * var(--u));
+}
+.pathsCopy {
+  position: absolute;
+  left: calc(1019 * var(--u));
+  top: calc(185 * var(--u));
+  width: calc(820 * var(--u));
+  font-size: calc(24 * var(--u));
+  line-height: calc(32 * var(--u));
+}
+.pathGrid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: calc(66 * var(--u));
+  gap: calc(66 / 3 * var(--u));
+  margin: 0 calc(80 * var(--u));
+}
+.path {
+  position: relative;
+  min-width: 0;
+}
+.pathPhoto {
+  width: 100%;
+  height: calc(326 * var(--u));
+  object-fit: fill;
+  border-radius: calc(24 * var(--u)) calc(24 * var(--u)) 0 0;
+}
+.pathBody {
+  position: relative;
+  height: calc(444 * var(--u));
+  background: #438edc;
+  padding: calc(76 * var(--u)) calc(24 * var(--u)) 0;
+  color: white;
+  font-size: calc(18 * var(--u));
+  line-height: calc(28 * var(--u));
+}
+.pathBody::before {
+  content: "";
+  position: absolute;
+  inset: 0 0 auto;
+  height: calc(64 * var(--u));
+  background: linear-gradient(#788c9e80, transparent);
+}
+.pathReflection {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: calc(70 * var(--u));
+  object-fit: cover;
+  object-position: bottom;
+  filter: blur(calc(18 * var(--u)));
+  opacity: 0.55;
+  mask-image: linear-gradient(black, transparent);
+  pointer-events: none;
+}
+.path h3 {
+  position: absolute;
+  bottom: calc(-30 * var(--u));
+  left: 0;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: calc(16 * var(--u));
+  color: white;
+  font-size: calc(46 * var(--u) - 2px);
+  line-height: 1;
+  font-weight: 700;
+  white-space: nowrap;
+}
+.internIcon {
+  width: calc(65 * var(--u));
+  height: calc(83 * var(--u));
+  overflow: hidden;
+  flex-shrink: 0;
+}
+.pathIcon {
+  width: auto;
+  height: calc(81 * var(--u));
+}
+.closing {
+  height: calc(528 * var(--u));
+  padding-top: calc(151 * var(--u));
+}
+.page :global(.footer) {
+  height: calc(629 * var(--u));
+}
+@media (max-width: 1100px) {
+  .hero {
+    height: auto;
+    padding: 140px 40px 0;
+    background: linear-gradient(var(--dark-blue) 0 85%, transparent 85%);
+  }
+  .label {
+    font-size: 18px;
+    line-height: 26px;
+  }
+  .hero h1 {
+    margin-top: 20px;
+    font-size: 62px;
+    line-height: 1.05;
+  }
+  .heroCopy {
+    position: static;
+    width: auto;
+    margin-top: 30px;
+    font-size: 18px;
+    line-height: 1.5;
+  }
+  .heroPhoto {
+    position: static;
+    width: 100%;
+    height: 280px;
+    margin-top: 40px;
+    border-radius: 20px 20px 0 0;
+  }
+  .introduction,
+  .closing {
+    height: auto;
+    padding: 60px 40px;
+    font-size: 28px;
+    line-height: 1.4;
+  }
+  .introduction p,
+  .closing p {
+    text-indent: 0;
+  }
+  .calls > h2 {
+    height: auto;
+    padding: 15px 40px;
+    font-size: 38px;
+    gap: 15px;
+  }
+  .calls > h2 img {
+    width: 42px;
+    height: auto;
+  }
+  .listing {
+    height: auto;
+    padding: 40px 40px 60px;
+  }
+  .sortLabel {
+    font-size: 18px;
+    line-height: 26px;
+    margin-bottom: 20px;
+  }
+  .grid {
+    grid-template-columns: 1fr;
+    gap: 24px;
+  }
+  .call {
+    height: 230px;
+    grid-template-columns: 180px 1fr;
+    grid-template-rows: 100px 1fr;
+    padding: 24px;
+    column-gap: 24px;
+    border-radius: 16px;
+  }
+  .count {
+    height: 80px;
+    padding-top: 10px;
+  }
+  .count strong {
+    font-size: 32px;
+    line-height: 36px;
+  }
+  .count span {
+    font-size: 20px;
+    line-height: 26px;
+  }
+  .call h3 {
+    font-size: 22px;
+    line-height: 28px;
+    padding-top: 8px;
+  }
+  .category {
+    width: 160px;
+    margin-top: 10px;
+    padding-top: 15px;
+    font-size: 17px;
+    line-height: 22px;
+  }
+  .call ul {
+    margin-top: 4px;
+    font-size: 17px;
+    line-height: 24px;
+  }
+  .call li::marker {
+    font-size: 20px;
+  }
+  .pending,
+  .closed {
+    right: 20px;
+    bottom: 20px;
+  }
+  .pending button,
+  .closed {
+    height: 50px;
+    font-size: 16px;
+    padding: 0 15px;
+    gap: 10px;
+    border-radius: 6px;
+  }
+  .paths {
+    height: auto;
+    padding-bottom: 80px;
+    background: linear-gradient(#fafafa 0 480px, var(--light-blue) 480px);
+  }
+  .pathsIntro {
+    height: auto;
+    padding: 60px 40px;
+  }
+  .pathsIntro .label {
+    font-size: 18px;
+    line-height: 26px;
+  }
+  .pathsIntro h2 {
+    font-size: 56px;
+    line-height: 1.05;
+    margin-top: 24px;
+  }
+  .pathsCopy {
+    position: static;
+    width: auto;
+    margin-top: 30px;
+    font-size: 18px;
+    line-height: 1.5;
+  }
+  .pathGrid {
+    margin: 0 40px;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 70px 24px;
+  }
+  .pathPhoto {
+    height: 260px;
+    border-radius: 20px 20px 0 0;
+  }
+  .pathBody {
+    height: 370px;
+    padding: 40px 24px;
+    font-size: 18px;
+    line-height: 28px;
+  }
+  .path h3 {
+    font-size: 30px;
+    bottom: -25px;
+    gap: 12px;
+  }
+  .internIcon {
+    width: 50px;
+    height: 64px;
+  }
+  .pathIcon {
+    height: 64px;
+  }
+}
+@media (max-width: 700px) {
+  .heroArtwork {
+    height: 85%;
+  }
+  .heroArtwork img {
+    left: -200px;
+    width: 780px;
+    height: auto;
+  }
+  .hero {
+    padding: 145px 24px 0;
+  }
+  .hero h1 {
+    font-size: 44px;
+    overflow-wrap: anywhere;
+  }
+  .hero h1 br {
+    display: none;
+  }
+  .heroPhoto {
+    height: 220px;
+  }
+  .introduction,
+  .closing {
+    padding: 50px 24px;
+    font-size: 24px;
+  }
+  .calls > h2 {
+    padding: 18px 24px;
+    font-size: 30px;
+  }
+  .listing {
+    padding: 30px 24px 50px;
+  }
+  .call {
+    height: auto;
+    min-height: 340px;
+    padding: 22px;
+    grid-template-columns: 1fr;
+    grid-template-rows: auto;
+    gap: 18px;
+  }
+  .count {
+    border: 0;
+    height: auto;
+    padding: 0;
+  }
+  .call h3 {
+    grid-row: 1;
+    font-size: 21px;
+    line-height: 28px;
+    padding: 0;
+    white-space: normal;
+  }
+  .count strong {
+    font-size: 28px;
+    line-height: 32px;
+  }
+  .category {
+    margin: 0;
+    padding-top: 14px;
+    width: 100%;
+    font-size: 16px;
+    line-height: 20px;
+    white-space: normal;
+  }
+  .call ul {
+    margin: 0 0 65px 18px;
+    font-size: 16px;
+  }
+  .pending,
+  .closed {
+    bottom: 20px;
+    right: 22px;
+  }
+  .pathsIntro {
+    padding: 50px 24px;
+  }
+  .pathsIntro h2 {
+    font-size: 41px;
+  }
+  .pathsIntro h2 br {
+    display: none;
+  }
+  .pathsArt {
+    width: 650px;
+    height: auto;
+    top: -50px;
+    left: -100px;
+  }
+  .pathGrid {
+    margin: 0 24px;
+    grid-template-columns: 1fr;
+    gap: 70px;
+  }
+  .pathPhoto {
+    height: 265px;
+  }
+  .pathBody {
+    height: auto;
+    min-height: 340px;
+    padding: 40px 24px 70px;
+  }
+  .path h3 {
+    font-size: 32px;
+  }
+  .page :global(.footer) {
+    height: auto;
+  }
+}

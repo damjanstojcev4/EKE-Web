@@ -1,0 +1,19 @@
+# TEMPLATE ONLY: install manually after DNS, permissions and TLS review.
+server {
+    listen 80;
+    server_name preview.eke.mk;
+    root /srv/eke-staging/current;
+    index index.html;
+    add_header X-Robots-Tag "noindex, nofollow" always;
+    location / {
+        try_files $uri $uri/ =404;
+    }
+    error_page 404 /404.html;
+    location = /404.html { internal; }
+    location ^~ /_next/static/ {
+        add_header Cache-Control "public, max-age=31536000, immutable";
+        add_header X-Robots-Tag "noindex, nofollow" always;
+        try_files $uri =404;
+    }
+    # Add staging-only TLS and optional access control before public exposure.
+}

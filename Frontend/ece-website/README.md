@@ -1,69 +1,30 @@
-# React + TypeScript + Vite
+# EKE Next.js frontend
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+The redesigned frontend lives in Frontend/ece-website on feat/nextjs-migration. It replaces Vite on this branch only. Spring Boot is unchanged.
 
-Currently, two official plugins are available:
+Use Node.js 22:
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
-
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
-
-```js
-export default tseslint.config([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-
-      // Remove tseslint.configs.recommended and replace with this
-      ...tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      ...tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      ...tseslint.configs.stylisticTypeChecked,
-
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+```powershell
+cd D:\eke-web\Frontend\ece-website
+npm ci
+npm run dev
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+Development serves http://127.0.0.1:3100. For the static production preview, stop the dev server and run:
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-
-export default tseslint.config([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+```powershell
+npm run lint
+npm run build
+npm run typecheck
+npm start
 ```
+
+The static deployment artifact is out/. npm start is a loopback-only preview server, not a production service. Local fonts and application assets are in public/. All project/news slugs, including content-pending pages, are exported; unknown slugs return 404.
+
+For route, asset and responsive smoke checks, run `node scripts/migration-qa.mjs` after building (requires installed Edge or Chrome). This checks 390px and 1440px viewports; it is not visual acceptance testing.
+
+See ../../MIGRATION_STAGING.md for staging configuration, secrets, DNS, Nginx, TLS, production cutover and rollback. Deployment is disabled until explicitly configured. The old production workflow must be updated before merging.
+
+The app retains its existing preview behavior: local datasets, pending content, and a contact form that does not submit. Read BACKEND_INTEGRATION_TODO.md and PRIVACY_POLICY_REVIEW.md before production approval. DEMO_QA_REPORT.md is historical source-app evidence, not current migration validation.
+
+NEXT_PUBLIC_EXISTING_SITE_URL is an optional build-time value for the currently unused legacy-link helper; it defaults to localhost:5173. Never put secrets in public variables. No API integration or live backend configuration is added by this migration.
