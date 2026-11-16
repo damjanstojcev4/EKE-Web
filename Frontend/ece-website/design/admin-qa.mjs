@@ -1,0 +1,68 @@
+import { chromium, expect } from '@playwright/test';
+import fs from 'node:fs/promises';
+
+const browser = await chromium.launch({ channel: 'msedge', headless: true });
+const base = process.env.ADMIN_QA_BASE_URL || 'http://127.0.0.1:3100';
+const errors = [];
+const results = [];
+try {
+  const page = await browser.newPage({ viewport: { width: 1440, height: 1000 } });
+  page.on('pageerror', e => errors.push(e.message));
+  await page.goto(base + '/admin/');
+  await expect(page.getByRole('button', { name: 'Add project', exact: true })).toBeEnabled();
+  await fs.mkdir('design/screenshots', { recursive: true });
+  await page.screenshot({ path: 'design/screenshots/admin-desktop.png', fullPage: true });
+  await page.getByRole('button', { name: 'Ongoing', exact: true }).click();
+  await expect(page.getByText('No matching content.')).toBeVisible();
+  await page.getByRole('button', { name: 'Clear filters' }).click();
+  await page.getByRole('button', { name: 'Add project', exact: true }).click();
+  await page.getByLabel('Title *', { exact: true }).fill('QA community project');
+  await page.getByLabel('Quick summary').fill('A local preview project.');
+  await page.getByLabel('Description *', { exact: true }).fill('Testing the project management flow.');
+  await page.getByLabel('Budget').fill('1000');
+  await page.getByLabel('Start date').fill('2026-11-16');
+  await page.getByLabel('End date').fill('2026-12-16');
+  await page.getByRole('button', { name: 'Save changes' }).click();
+  await expect(page.getByRole('heading', { name: 'QA community project', exact: true })).toBeVisible();
+  await page.reload();
+  await expect(page.getByRole('heading', { name: 'QA community project', exact: true })).toBeVisible();
+  await page.getByRole('button', { name: 'Edit QA community project', exact: true }).click();
+  await expect(page.getByLabel('Budget')).toHaveValue('1000');
+  await page.getByLabel('Title *', { exact: true }).fill('QA updated project');
+  await page.getByRole('button', { name: 'Save changes' }).click();
+  await page.getByRole('button', { name: 'Delete QA updated project', exact: true }).click();
+  await page.getByRole('button', { name: 'Keep it' }).click();
+  await expect(page.getByRole('heading', { name: 'QA updated project', exact: true })).toBeVisible();
+  await page.getByRole('button', { name: 'Delete QA updated project', exact: true }).click();
+  await page.getByRole('button', { name: 'Delete item', exact: true }).click();
+  await expect(page.getByRole('heading', { name: 'QA updated project', exact: true })).toHaveCount(0);
+  await page.getByRole('navigation', { name: 'Admin navigation' }).getByRole('button', { name: /News/ }).click();
+  await page.getByRole('button', { name: 'Add news', exact: true }).click();
+  await page.getByLabel('Title *', { exact: true }).fill('QA news');
+  await page.getByLabel('Short description').fill('News preview test');
+  await page.getByLabel('Instagram URL').fill('https://www.instagram.com/p/example/');
+  await page.getByLabel(/Cover image/).setInputFiles({ name: 'test.png', mimeType: 'image/png', buffer: Buffer.from('iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mP8/x8AAwMCAO+jRZkAAAAASUVORK5CYII=', 'base64') });
+  await expect(page.getByAltText('Selected cover')).toBeVisible();
+  await expect(page.getByRole('button', { name: 'Save changes' })).toBeEnabled();
+  await page.getByRole('button', { name: 'Save changes' }).click();
+  await expect(page.getByRole('heading', { name: 'QA news', exact: true })).toBeVisible();
+  await page.getByRole('searchbox').fill('no-such-story');
+  await expect(page.getByText('No matching content.')).toBeVisible();
+  await page.getByRole('navigation', { name: 'Admin navigation' }).getByRole('button', { name: /Messages/ }).click();
+  await expect(page.getByRole('heading', { name: 'Your inbox will live here.' })).toBeVisible();
+  for (const width of [1440, 768, 390, 320]) {
+    await page.setViewportSize({ width, height: 900 });
+    await page.getByRole('navigation', { name: 'Admin navigation' }).getByRole('button', { name: /Projects/ }).click();
+    const overflow = await page.evaluate(() => document.documentElement.scrollWidth > innerWidth);
+    expect(overflow).toBe(false);
+    await page.screenshot({ path: `design/screenshots/admin-${width}.png`, fullPage: true });
+    await page.getByRole('button', { name: 'Add project', exact: true }).click();
+    expect(await page.evaluate(() => document.documentElement.scrollWidth > innerWidth)).toBe(false);
+    await page.screenshot({ path: `design/screenshots/admin-form-${width}.png`, fullPage: true });
+    page.once('dialog', d => d.accept());
+    await page.getByRole('button', { name: 'Cancel', exact: true }).click();
+    results.push({ width, overflow });
+  }
+  expect(errors).toEqual([]);
+  console.log(JSON.stringify({ passed: true, flows: ['create', 'reload persistence', 'edit', 'cancel deletion', 'delete', 'news image upload', 'search', 'filters', 'messages'], results, errors }, null, 2));
+} finally { await browser.close(); }
