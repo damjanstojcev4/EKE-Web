@@ -1,13 +1,14 @@
 import Image from "next/image";
-import copy from "@/data/copy.json";
-import FigmaText from "../FigmaText";
+import { serviceCopy } from "@/content/service-copy";
+import ContentBlock from "@/components/ContentBlock";
+import { siteContent } from "@/content/site-content";
 import { Button, Stripe, Arrow, Divider } from "../ui";
 const services = [
-  ["Project Development", "2180:440", "line8.svg"],
-  ["Training & Facilitation", "2180:441", "line11.svg"],
-  ["Volunteering & Mobility", "2180:442", "line12.svg"],
-  ["Institutional Cooperation", "2180:443", "line12.svg"],
-  ["Research & Education", "2180:444", null],
+  ["Project Development", "projectDevelopment", "line8.svg"],
+  ["Training & Facilitation", "training", "line11.svg"],
+  ["Volunteering & Mobility", "volunteering", "line12.svg"],
+  ["Institutional Cooperation", "institutionalCooperation", "line12.svg"],
+  ["Research & Education", "research", null],
 ] as const;
 export default function PartnershipsSection() {
   return (
@@ -15,18 +16,18 @@ export default function PartnershipsSection() {
       <Stripe />
       <div className="partnership-photo">
         <Image
-          src="/assets/partnership-international-flags.png"
+          src="/assets/partnership-international-flags.webp"
           alt="International flags"
           fill
           sizes="100vw"
         />
         <div className="partnership-title">
-          <FigmaText id="2180:340" />
-          <FigmaText id="2180:345" as="h2" />
+          <ContentBlock block={siteContent.partnershipLabel} />
+          <ContentBlock block={siteContent.partnershipHeading} as="h2" />
         </div>
       </div>
       <div className="partnership-intro">
-        <FigmaText id="2180:320" />
+        <ContentBlock block={siteContent.partnershipIntro} />
         <Divider file="line20.svg" />
       </div>
       <div className="actions partnership-actions">
@@ -51,7 +52,7 @@ export default function PartnershipsSection() {
               <Arrow kind="service" file="vector9.svg" />
               {title}
             </h3>
-            <p data-figma-id={id}>{copy[id]}</p>
+            <p>{serviceCopy[id]}</p>
             {line && <Divider file={line} />}
           </div>
         ))}

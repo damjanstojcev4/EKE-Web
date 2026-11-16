@@ -1,0 +1,13 @@
+export const serviceCopy = {
+  "learners": "Every year, people of all ages and backgrounds turn to EKE to learn and grow. From young people and educators to professionals and adult learners, every program encourages curiosity, builds confidence and supports continuous learning at every stage of life.",
+  "projects": "Since 2012, EKE has led initiatives that bring people, ideas and communities into conversation. Across youth exchanges, training courses and international conferences alike, every gathering nurtures connection, insight and collective growth.",
+  "experience": "Founded by former Youth in Action volunteers, EKE has grown through years of continuous cooperation into a trusted network of organisations, educators, researchers and practitioners working toward shared goals.",
+  "accreditation": "Supporting active citizenship goes beyond volunteering. As an accredited European Solidarity Corps organisation, EKE coordinates volunteering opportunities that encourage cultural exchange, community participation and personal growth.",
+  "cooperation": "Through years of successful Erasmus+ cooperation, EKE has built a reliable, cross-sector European network. This ongoing exchange strengthens every initiative we deliver, creating a supportive space where people are seen, heard, and empowered to move forward.",
+  "prisonEducation": "With long-standing experience in prison education, EKE connects research, policy and practice to advance more inclusive approaches to rehabilitation and lifelong learning.",
+  "projectDevelopment": "EKE offers proven practical experience in designing, managing, and implementing local, international & Erasmus+ projects, developing concepts, identifying needs, coordinating activities, and aligning cross-border partnerships.",
+  "training": "EKE designs and delivers non-formal learning activities, including training courses, workshops, seminars and exchanges. Our team brings experience in training, coaching, mentoring and group facilitation.",
+  "volunteering": "As a European Solidarity Corps accredited organisation, EKE can host and support international volunteers while creating opportunities for them to contribute to local educational and community activities.",
+  "institutionalCooperation": "Our partnerships extend beyond the NGO sector. EKE has experience working with schools, local authorities, educational institutions, sports organisations and other community stakeholders, helping projects reach the people and settings they are designed for.",
+  "research": "We contribute to needs analysis, research, professional exchange and the development of educational resources and project outputs, connecting practical experience with the perspectives of practitioners and experts."
+} as const;

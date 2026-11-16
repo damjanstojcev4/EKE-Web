@@ -37,27 +37,45 @@ export const values = [
 export const members = [
   {
     name: "Vele Georgiev",
-    image: "Group 49.png",
+    image: "vele.webp",
     role: "President & Lead Project Coordinator",
     bio: "Vele oversees EKE’s project work from proposal to evaluation, informed by nine years of Erasmus+ experience in entrepreneurship, active citizenship and gender equality. With a foundation in ESC volunteering and international coordination, he brings clear methods and reliable planning to every programme.",
   },
   {
     name: "Ivana Baltovska",
-    image: "Group 50.png",
+    image: "ivana.webp",
     role: "Project Manager — Correctional Education",
     bio: "Ivana leads EKE’s prison education programmes, providing legal support and resocialisation guidance inside correctional institutions. Her expertise in criminal law and community-based justice strengthens EKE’s work with vulnerable groups, while her translation skills keep project communication clear across Macedonian, English and Spanish.",
   },
   {
     name: "Sofija Mickoska",
-    image: "Group 52.png",
+    image: "sofija.webp",
     role: "Project Manager — Youth & Sustainability",
     bio: "Sofija works across EKE’s youth and sustainability programmes, applying environmental engineering insight to leadership camps and community initiatives. Her civic engagement in Bitola, including efforts to promote everyday cycling, reflects the practical, community-centred approach she brings to each project.",
   },
   {
     name: "Dimitar Gogu",
-    image: "Group 51.png",
+    image: "dimitar.webp",
     role: "Finance & Compliance Manager",
     bio: "Dimitar oversees finances for EKE’s Erasmus+ and European Solidarity Corps projects, ensuring accurate, transparent budgeting across international teams. His accounting experience and fluency in Macedonian, English and Greek support smooth financial management in cross-country collaborations.",
+  },
+  {
+    name: "Iskra Talevska",
+    image: "iskra.webp",
+    role: "Content Writer, Strategirst & Social Media Manager",
+    bio: "Iskra is a content and communications professional with a background in English literature and linguistics. Her work brings research and editorial expertise together to create compelling brand communication that gives businesses a distinctive voice, a compelling identity and a lasting presence in their markets.",
+  },
+  {
+    name: "Milcho Pipin",
+    image: "milcho.webp",
+    role: "Senior UX/UI & Graphic Designer, Pro Photographer, Photo Editor",
+    bio: "Milcho is a global UX/UI and Graphic Designer, Professional Photographer and Photo Editor with 20+ years of experience. Skilled in intuitive digital experiences, DLT and blockchain platforms, branding, marketing, publications and environmental design. Expertise in studio management, cross-functional collaboration, and editorial, documentary, fine art, product, commercial and architectural photography.",
+  },
+  {
+    name: "Damjan Stojchev",
+    image: "damjan.webp",
+    role: "Full Stack Developer",
+    bio: "Damjan is an IT professional and Full Stack Developer experienced in building digital solutions, integrating systems, and improving business processes. With a strong personal interest in innovation, automation, and emerging technologies, he focuses on making technology more accessible, efficient, and impactful for organizations and communities.",
   },
 ];
 export const documents = [

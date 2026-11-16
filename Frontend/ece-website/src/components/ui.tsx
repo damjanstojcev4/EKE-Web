@@ -58,9 +58,6 @@ export function Stripe() {
     </div>
   );
 }
-export function Label({ children }: { children: ReactNode }) {
-  return <p className="eyebrow">{children}</p>;
-}
 export function Divider({ file = "line21.svg" }: { file?: string }) {
   return (
     <img

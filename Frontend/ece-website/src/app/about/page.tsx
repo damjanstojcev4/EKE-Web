@@ -122,12 +122,14 @@ export default function About() {
           <div className={styles.members}>
             {members.map((m) => (
               <article key={m.name}>
-                <img
-                  src={asset(m.image)}
-                  alt={m.name}
-                  width={241}
-                  height={339}
-                />
+                <div className={styles.portrait}>
+                  <img
+                    src={asset(m.image)}
+                    alt={m.name}
+                    width={241}
+                    height={339}
+                  />
+                </div>
                 <div>
                   <h3>{m.name}</h3>
                   <p className={styles.role}>{m.role}</p>
@@ -141,7 +143,7 @@ export default function About() {
           <Stripe />
           <div className={styles.networkPhoto}>
             <img
-              src={asset("unsplash_M5k978V3qBc.png")}
+              src={asset("unsplash_M5k978V3qBc.webp")}
               alt="Field experts exchanging ideas"
               width={1920}
               height={682}

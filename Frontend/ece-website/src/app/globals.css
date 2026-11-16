@@ -58,10 +58,10 @@ main {
 .font-flex {
   font-family: var(--font-google-flex), sans-serif;
 }
-.figma-text {
+.content-block {
   position: relative;
 }
-.figma-text span.block {
+.content-block span.block {
   display: block;
 }
 .actions {
@@ -293,7 +293,7 @@ main {
 }
 .hero-mask {
   position: absolute;
-  background-image: url("/assets/hero-lightbulb.png");
+  background-image: url("/assets/hero-lightbulb.webp");
   background-size: 100% 100%;
   width: calc(1941 * var(--u));
   height: calc(1084 * var(--u));
@@ -326,7 +326,7 @@ main {
   padding-top: calc(904 * var(--u));
   width: calc(871 * var(--u));
 }
-.hero-intro > .figma-text {
+.hero-intro > .content-block {
   height: calc(128 * var(--u));
 }
 .hero-intro .actions {
@@ -345,7 +345,7 @@ main {
   isolation: isolate;
   padding-top: calc(181 * var(--u));
 }
-.impact > .figma-text {
+.impact > .content-block {
   margin-left: calc(74 * var(--u));
   width: calc(947 * var(--u));
   height: calc(84 * var(--u));
@@ -449,18 +449,18 @@ main {
 .expertise-intro {
   padding-top: calc(88 * var(--u));
 }
-.expertise-intro > .figma-text:nth-child(1) {
+.expertise-intro > .content-block:nth-child(1) {
   margin-left: calc(78 * var(--u));
   height: calc(72 * var(--u));
   width: calc(226 * var(--u));
 }
-.expertise-intro > .figma-text:nth-child(2) {
+.expertise-intro > .content-block:nth-child(2) {
   margin-left: calc(72 * var(--u));
   margin-top: calc(24 * var(--u));
   height: calc(72 * var(--u));
   width: calc(1207 * var(--u));
 }
-.expertise-intro > .figma-text:nth-child(3) {
+.expertise-intro > .content-block:nth-child(3) {
   margin-left: calc(79 * var(--u));
   margin-top: calc(87 * var(--u));
   height: calc(210 * var(--u));
@@ -521,33 +521,33 @@ main {
   height: calc(682 * var(--u));
   background: linear-gradient(to bottom, #fff 0%, #fff 82%, #ffffff00 100%);
 }
-.expertise-copy > .figma-text:first-child {
+.expertise-copy > .content-block:first-child {
   margin-left: calc(28 * var(--u));
   margin-top: calc(34 * var(--u));
   width: calc(385 * var(--u));
   height: calc(176 * var(--u));
 }
-.expertise-copy > .figma-text:nth-child(2) {
+.expertise-copy > .content-block:nth-child(2) {
   margin-left: calc(28 * var(--u));
   margin-top: calc(30 * var(--u));
   width: calc(385 * var(--u));
 }
-.expertise-card:nth-child(2) .expertise-copy > .figma-text {
+.expertise-card:nth-child(2) .expertise-copy > .content-block {
   margin-left: calc(30 * var(--u));
 }
-.expertise-card:nth-child(2) .expertise-copy > .figma-text:nth-child(2) {
+.expertise-card:nth-child(2) .expertise-copy > .content-block:nth-child(2) {
   margin-top: calc(28 * var(--u));
 }
-.expertise-card:nth-child(3) .expertise-copy > .figma-text {
+.expertise-card:nth-child(3) .expertise-copy > .content-block {
   margin-left: calc(26 * var(--u));
 }
-.expertise-card:nth-child(3) .expertise-copy > .figma-text:nth-child(2) {
+.expertise-card:nth-child(3) .expertise-copy > .content-block:nth-child(2) {
   margin-top: calc(29 * var(--u));
 }
-.expertise-card:nth-child(4) .expertise-copy > .figma-text {
+.expertise-card:nth-child(4) .expertise-copy > .content-block {
   margin-left: calc(22 * var(--u));
 }
-.expertise-card:nth-child(4) .expertise-copy > .figma-text:nth-child(2) {
+.expertise-card:nth-child(4) .expertise-copy > .content-block:nth-child(2) {
   margin-left: calc(24 * var(--u));
   margin-top: calc(32 * var(--u));
   width: calc(383 * var(--u));
@@ -593,12 +593,12 @@ main {
   border-radius: calc(24 * var(--u)) calc(24 * var(--u)) 0 0;
   padding-top: calc(24 * var(--u));
 }
-.partnership-title > .figma-text:first-child {
+.partnership-title > .content-block:first-child {
   margin-left: calc(49 * var(--u));
   height: calc(72 * var(--u));
   width: calc(340 * var(--u));
 }
-.partnership-title > .figma-text:nth-child(2) {
+.partnership-title > .content-block:nth-child(2) {
   margin-left: calc(45 * var(--u));
   margin-top: calc(-10 * var(--u));
   width: calc(910 * var(--u));
@@ -611,7 +611,7 @@ main {
   height: calc(454 * var(--u));
   width: calc(1752 * var(--u));
 }
-.partnership-intro > .figma-text {
+.partnership-intro > .content-block {
   width: calc(1744 * var(--u));
 }
 .partnership-intro > .original-divider {
@@ -726,18 +726,18 @@ main {
   background: #4da6ff;
   padding-top: calc(80 * var(--u));
 }
-.news-heading > .figma-text:first-child {
+.news-heading > .content-block:first-child {
   margin-left: calc(170 * var(--u));
   width: calc(267 * var(--u));
   height: calc(72 * var(--u));
 }
-.news-heading > .figma-text:nth-child(2) {
+.news-heading > .content-block:nth-child(2) {
   margin-left: calc(167 * var(--u));
   margin-top: calc(30 * var(--u));
   height: calc(72 * var(--u));
   width: calc(762 * var(--u));
 }
-.news-heading > .figma-text:nth-child(3) {
+.news-heading > .content-block:nth-child(3) {
   margin-left: calc(167 * var(--u));
   margin-top: calc(76 * var(--u));
   width: calc(1601 * var(--u));
@@ -789,7 +789,7 @@ main {
   width: calc(627 * var(--u));
   height: calc(100 * var(--u));
 }
-.news-copy > .figma-text:last-child {
+.news-copy > .content-block:last-child {
   width: calc(888 * var(--u));
   margin-top: calc(34 * var(--u));
 }
@@ -802,7 +802,7 @@ main {
 .news-item:nth-child(2) .news-meta {
   height: calc(54 * var(--u));
 }
-.news-item:nth-child(2) .news-copy > .figma-text:last-child {
+.news-item:nth-child(2) .news-copy > .content-block:last-child {
   margin-top: calc(24 * var(--u));
 }
 .news-item:nth-child(3) .news-copy {
@@ -814,7 +814,7 @@ main {
 .news-item:nth-child(3) .news-copy h3 {
   width: calc(945 * var(--u));
 }
-.news-item:nth-child(3) .news-copy > .figma-text:last-child {
+.news-item:nth-child(3) .news-copy > .content-block:last-child {
   margin-top: calc(21 * var(--u));
 }
 .news-item:nth-child(3) {
@@ -840,7 +840,7 @@ main {
   position: relative;
   height: calc(1447 * var(--u));
 }
-.team > .figma-text {
+.team > .content-block {
   margin-left: calc(81 * var(--u));
   height: calc(72 * var(--u));
   width: calc(118 * var(--u));
@@ -851,7 +851,7 @@ main {
   width: calc(1009 * var(--u));
   height: calc(200 * var(--u));
 }
-.team-title > .figma-text {
+.team-title > .content-block {
   width: calc(1009 * var(--u));
   height: calc(200 * var(--u));
 }
@@ -914,7 +914,7 @@ main {
   gap: calc(205 * var(--u));
   align-items: start;
 }
-.team-bottom > .figma-text {
+.team-bottom > .content-block {
   width: calc(1121 * var(--u));
   height: calc(210 * var(--u));
 }
@@ -943,17 +943,17 @@ main {
 .partner-heading {
   margin-left: calc(472 * var(--u));
 }
-.partner-heading > .figma-text:first-child {
+.partner-heading > .content-block:first-child {
   margin-left: calc(3 * var(--u));
   height: calc(79 * var(--u));
   width: calc(261 * var(--u));
 }
-.partner-heading > .figma-text:nth-child(2) {
+.partner-heading > .content-block:nth-child(2) {
   margin-top: calc(14 * var(--u));
   height: calc(90 * var(--u));
   width: calc(908 * var(--u));
 }
-.partner-content > .figma-text {
+.partner-content > .content-block {
   margin-top: calc(70 * var(--u));
   margin-left: calc(124 * var(--u));
   width: calc(1584 * var(--u));
@@ -1305,12 +1305,12 @@ main {
     margin: 0;
     width: auto;
   }
-  .hero-intro > .figma-text {
+  .hero-intro > .content-block {
     height: auto;
     font-size: 20px !important;
     line-height: 1.5 !important;
   }
-  .hero-intro > .figma-text span {
+  .hero-intro > .content-block span {
     line-height: inherit !important;
   }
   .actions {
@@ -1349,7 +1349,7 @@ main {
   .impact {
     padding: 60px 24px;
   }
-  .impact > .figma-text {
+  .impact > .content-block {
     margin: 0;
     width: auto;
     height: auto;
@@ -1400,19 +1400,19 @@ main {
   .expertise-intro {
     padding: 0;
   }
-  .expertise-intro > .figma-text,
-  .news-heading > .figma-text {
+  .expertise-intro > .content-block,
+  .news-heading > .content-block {
     margin: 0 0 24px !important;
     width: auto !important;
     height: auto !important;
   }
-  .expertise-intro > .figma-text:nth-child(2),
-  .news-heading > .figma-text:nth-child(2) {
+  .expertise-intro > .content-block:nth-child(2),
+  .news-heading > .content-block:nth-child(2) {
     font-size: 44px !important;
     line-height: 1.1 !important;
   }
-  .expertise-intro > .figma-text:nth-child(3),
-  .news-heading > .figma-text:nth-child(3) {
+  .expertise-intro > .content-block:nth-child(3),
+  .news-heading > .content-block:nth-child(3) {
     font-size: 23px !important;
     line-height: 1.45 !important;
     white-space: normal;
@@ -1446,17 +1446,17 @@ main {
     background: white;
     padding: 24px;
   }
-  .expertise-copy > .figma-text {
+  .expertise-copy > .content-block {
     margin: 0 !important;
     width: auto !important;
     height: auto !important;
   }
-  .expertise-copy > .figma-text:first-child {
+  .expertise-copy > .content-block:first-child {
     font-size: 30px !important;
     line-height: 1.2 !important;
     margin-bottom: 24px !important;
   }
-  .expertise-copy > .figma-text:nth-child(2) {
+  .expertise-copy > .content-block:nth-child(2) {
     font-size: 18px !important;
     line-height: 1.6 !important;
   }
@@ -1487,12 +1487,12 @@ main {
     height: auto;
     padding: 20px;
   }
-  .partnership-title > .figma-text {
+  .partnership-title > .content-block {
     margin: 0 !important;
     width: auto !important;
     height: auto !important;
   }
-  .partnership-title > .figma-text:nth-child(2) {
+  .partnership-title > .content-block:nth-child(2) {
     font-size: 35px !important;
     line-height: 1.2 !important;
   }
@@ -1502,7 +1502,7 @@ main {
     height: auto;
     padding-bottom: 30px;
   }
-  .partnership-intro > .figma-text {
+  .partnership-intro > .content-block {
     width: auto;
     font-size: 23px !important;
     line-height: 1.5 !important;
@@ -1596,7 +1596,7 @@ main {
     height: auto;
     margin: 0;
   }
-  .news-copy > .figma-text:last-child {
+  .news-copy > .content-block:last-child {
     width: auto;
     margin-top: 20px !important;
     font-size: 18px !important;
@@ -1614,7 +1614,7 @@ main {
   .team {
     padding-top: 0;
   }
-  .team > .figma-text {
+  .team > .content-block {
     margin-left: 24px;
     width: auto;
     height: auto;
@@ -1624,7 +1624,7 @@ main {
     width: auto;
     height: auto;
   }
-  .team-title > .figma-text {
+  .team-title > .content-block {
     width: auto;
     height: auto;
     font-size: 44px !important;
@@ -1646,7 +1646,7 @@ main {
     display: block;
     margin: 30px 24px 50px;
   }
-  .team-bottom > .figma-text {
+  .team-bottom > .content-block {
     width: auto;
     height: auto;
     font-size: 24px !important;
@@ -1672,16 +1672,16 @@ main {
   .partner-heading {
     margin: 0;
   }
-  .partner-heading > .figma-text {
+  .partner-heading > .content-block {
     margin: 0 !important;
     width: auto !important;
     height: auto !important;
   }
-  .partner-heading > .figma-text:nth-child(2) {
+  .partner-heading > .content-block:nth-child(2) {
     font-size: 44px !important;
     line-height: 1.1 !important;
   }
-  .partner-content > .figma-text {
+  .partner-content > .content-block {
     margin: 30px 0;
     width: auto;
     height: auto;
@@ -1834,7 +1834,7 @@ html {
   background-position: center center;
 }
 @media (max-width: 700px) {
-  .figma-text * {
+  .content-block * {
     font-size: inherit !important;
     line-height: inherit !important;
   }
@@ -1867,7 +1867,7 @@ body {
   opacity: 0.5;
 }
 @media (max-width: 700px) {
-  .figma-text {
+  .content-block {
     white-space: normal !important;
   }
   .button {
@@ -1878,7 +1878,7 @@ body {
   .partnership-photo > img {
     object-fit: cover !important;
   }
-  .partnership-title > .figma-text:first-child {
+  .partnership-title > .content-block:first-child {
     font-size: 17px !important;
     line-height: 1.4 !important;
     margin-bottom: 16px !important;

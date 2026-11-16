@@ -1,10 +1,11 @@
 import Image from "next/image";
-import FigmaText from "../FigmaText";
+import ContentBlock from "@/components/ContentBlock";
+import { siteContent } from "@/content/site-content";
 import { Button, Divider } from "../ui";
 const news = [
   {
-    title: "2180:374",
-    body: "2180:354",
+    title: "chessNewsHeading",
+    body: "chessNewsBody",
     img: "news-accessible-chess.png",
     alt: "Chess pieces on a board",
     date: "Oct 6, 2026",
@@ -12,8 +13,8 @@ const news = [
     kind: "Latest News",
   },
   {
-    title: "2196:48",
-    body: "2196:46",
+    title: "spainNewsHeading",
+    body: "spainNewsBody",
     img: "news-spain-opportunity.png",
     alt: "Architecture in Spain",
     date: "Sep 10, 2026",
@@ -21,8 +22,8 @@ const news = [
     kind: "Open Call",
   },
   {
-    title: "2196:53",
-    body: "2196:51",
+    title: "aiNewsHeading",
+    body: "aiNewsBody",
     img: "news-ai-educator-training.png",
     alt: "Educators taking part in AI training",
     date: "Aug 13, 2026",
@@ -34,9 +35,9 @@ export default function NewsSection() {
   return (
     <section className="news" id="news">
       <div className="news-heading">
-        <FigmaText id="2196:41" />
-        <FigmaText id="2196:42" as="h2" />
-        <FigmaText id="2196:40" />
+        <ContentBlock block={siteContent.newsLabel} />
+        <ContentBlock block={siteContent.newsHeading} as="h2" />
+        <ContentBlock block={siteContent.newsIntro} />
       </div>
       <div className="news-list">
         {news.map((n, i) => (
@@ -65,8 +66,8 @@ export default function NewsSection() {
                   <time dateTime={n.iso}>{n.date}</time>
                 </div>
               </div>
-              <FigmaText id={n.title} as="h3" />
-              <FigmaText id={n.body} />
+              <ContentBlock block={siteContent[n.title]} as="h3" />
+              <ContentBlock block={siteContent[n.body]} />
             </div>
             <Divider />
           </article>

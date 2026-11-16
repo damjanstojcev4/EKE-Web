@@ -1,7 +1,6 @@
-import type { ElementType } from "react";
-// Text runs and explicit line breaks transcribed from Figma MCP, with layout handled by section CSS.
-const textNodes = {
-  "2406:3041": {
+// Editorial rich text; formatting preserves the approved layout.
+export const siteContent = {
+  registration: {
     className:
       "[word-break:break-word] font-normal leading-[0] not-italic text-[calc(18*var(--u))] text-[color:var(--dark-blue,#212c5d)] whitespace-pre-wrap",
     content: (
@@ -41,7 +40,7 @@ const textNodes = {
       </>
     ),
   },
-  "2196:40": {
+  newsIntro: {
     className:
       "[word-break:break-word] font-normal leading-[0] not-italic text-[calc(40*var(--u))] text-[color:var(--dark-blue,#212c5d)] whitespace-pre-wrap",
     content: (
@@ -57,7 +56,7 @@ const textNodes = {
       </>
     ),
   },
-  "2180:304": {
+  teamIntro: {
     className:
       "[word-break:break-word] font-normal leading-[0] not-italic text-[calc(40*var(--u))] text-[color:var(--dark-blue,#212c5d)] whitespace-pre-wrap",
     content: (
@@ -73,7 +72,7 @@ const textNodes = {
       </>
     ),
   },
-  "2180:305": {
+  partnerIntro: {
     className:
       "[word-break:break-word] font-normal leading-[0] not-italic text-[calc(40*var(--u))] text-[color:var(--white,white)] whitespace-pre-wrap",
     content: (
@@ -91,7 +90,7 @@ const textNodes = {
       </>
     ),
   },
-  "2180:320": {
+  partnershipIntro: {
     className:
       "[word-break:break-word] font-normal leading-[0] not-italic text-[calc(0*var(--u))] text-[color:var(--dark-blue,#212c5d)] whitespace-pre-wrap",
     content: (
@@ -120,7 +119,7 @@ const textNodes = {
       </>
     ),
   },
-  "2180:321": {
+  heroIntro: {
     className:
       "[word-break:break-word] font-normal leading-[calc(32*var(--u))] not-italic text-[calc(24*var(--u))] text-white",
     content: (
@@ -135,12 +134,12 @@ const textNodes = {
       </>
     ),
   },
-  "2180:333": {
+  expertiseLabel: {
     className:
       "[word-break:break-word] font-bold leading-[calc(72*var(--u))] not-italic text-[calc(22*var(--u))] text-[color:var(--white,white)] uppercase whitespace-nowrap",
     content: <>Areas of Expertise</>,
   },
-  "2196:41": {
+  newsLabel: {
     className:
       "[word-break:break-word] font-bold leading-[0] not-italic text-[calc(22*var(--u))] text-[color:var(--white,white)] uppercase whitespace-nowrap",
     content: (
@@ -150,27 +149,27 @@ const textNodes = {
       </>
     ),
   },
-  "2180:336": {
+  teamLabel: {
     className:
       "[word-break:break-word] font-bold leading-[calc(72*var(--u))] not-italic text-[calc(22*var(--u))] text-[color:var(--dark-blue,#212c5d)] uppercase whitespace-nowrap",
     content: <>Inside eke</>,
   },
-  "2180:337": {
+  partnerLabel: {
     className:
       "[word-break:break-word] font-bold leading-[calc(72*var(--u))] not-italic text-[calc(22*var(--u))] text-[color:var(--white,white)] uppercase",
     content: <>Change Starts Here</>,
   },
-  "2180:341": {
+  expertiseHeading: {
     className:
       "[word-break:break-word] font-bold leading-[calc(72*var(--u))] not-italic text-[calc(100*var(--u)-2px)] text-[color:var(--light-blue,#4da6ff)] whitespace-nowrap",
     content: <>The Heart of What We Do</>,
   },
-  "2196:42": {
+  newsHeading: {
     className:
       "[word-break:break-word] font-bold leading-[calc(72*var(--u))] not-italic text-[calc(100*var(--u)-2px)] text-[color:var(--dark-blue,#212c5d)] whitespace-nowrap",
     content: <>Latest from EKE</>,
   },
-  "2180:343": {
+  teamHeading: {
     className:
       "[word-break:break-word] font-bold leading-[0] not-italic text-[calc(100*var(--u)-2px)] text-[color:var(--dark-blue,#212c5d)] uppercase whitespace-nowrap",
     content: (
@@ -182,17 +181,17 @@ const textNodes = {
       </>
     ),
   },
-  "2180:344": {
+  partnerHeading: {
     className:
       "[word-break:break-word] font-bold leading-[calc(72*var(--u))] not-italic text-[calc(100*var(--u)-2px)] text-[color:var(--light-blue,#4da6ff)]",
     content: <>Partner with us!</>,
   },
-  "2180:346": {
+  impactHeading: {
     className:
       "[word-break:break-word] font-bold leading-[calc(83.035*var(--u))] not-italic text-[calc(100*var(--u)-2px)] text-[color:var(--dark-blue,#212c5d)] whitespace-nowrap",
     content: <>{`GROWTH & IMPACT`}</>,
   },
-  "2180:354": {
+  chessNewsBody: {
     className:
       "[word-break:break-word] font-normal leading-[0] not-italic text-[calc(18*var(--u))] text-[color:var(--dark-blue,#212c5d)]",
     content: (
@@ -209,7 +208,7 @@ const textNodes = {
       </>
     ),
   },
-  "2196:46": {
+  spainNewsBody: {
     className:
       "[word-break:break-word] font-normal leading-[0] not-italic text-[calc(18*var(--u))] text-[color:var(--dark-blue,#212c5d)]",
     content: (
@@ -221,7 +220,7 @@ const textNodes = {
       </>
     ),
   },
-  "2196:51": {
+  aiNewsBody: {
     className:
       "[word-break:break-word] font-normal leading-[0] not-italic text-[calc(18*var(--u))] text-[color:var(--dark-blue,#212c5d)]",
     content: (
@@ -235,7 +234,7 @@ const textNodes = {
       </>
     ),
   },
-  "2180:374": {
+  chessNewsHeading: {
     className:
       "[word-break:break-word] font-bold leading-[0] not-italic text-[calc(40*var(--u)-2px)] text-[color:var(--dark-blue,#212c5d)] whitespace-pre-wrap",
     content: (
@@ -247,7 +246,7 @@ const textNodes = {
       </>
     ),
   },
-  "2196:48": {
+  spainNewsHeading: {
     className:
       "[word-break:break-word] font-bold leading-[calc(50*var(--u))] not-italic text-[calc(40*var(--u)-2px)] text-[color:var(--dark-blue,#212c5d)] whitespace-pre-wrap",
     content: (
@@ -258,7 +257,7 @@ const textNodes = {
       </>
     ),
   },
-  "2196:53": {
+  aiNewsHeading: {
     className:
       "[word-break:break-word] font-bold leading-[0] not-italic text-[calc(40*var(--u)-2px)] text-[color:var(--dark-blue,#212c5d)] whitespace-pre-wrap",
     content: (
@@ -270,7 +269,7 @@ const textNodes = {
       </>
     ),
   },
-  "2180:377": {
+  digitalHeading: {
     className:
       "[word-break:break-word] font-bold leading-[0] not-italic text-[calc(36*var(--u)-2px)] text-[color:var(--dark-blue,#212c5d)] whitespace-pre-wrap",
     content: (
@@ -280,7 +279,7 @@ const textNodes = {
       </>
     ),
   },
-  "2180:378": {
+  womenHeading: {
     className:
       "[word-break:break-word] font-bold leading-[0] not-italic text-[calc(36*var(--u)-2px)] text-[color:var(--dark-blue,#212c5d)] whitespace-pre-wrap",
     content: (
@@ -290,12 +289,12 @@ const textNodes = {
       </>
     ),
   },
-  "2180:379": {
+  prisonHeading: {
     className:
       "[word-break:break-word] font-bold leading-[calc(44*var(--u))] not-italic text-[calc(36*var(--u)-2px)] text-[color:var(--dark-blue,#212c5d)]",
     content: <>{`Prison Education & Social Reintegration `}</>,
   },
-  "2180:398": {
+  heroHeading: {
     className:
       "[word-break:break-word] font-bold leading-[0] not-italic text-[#00e2bc] text-[calc(0*var(--u))] whitespace-pre-wrap",
     content: (
@@ -314,14 +313,14 @@ const textNodes = {
       </>
     ),
   },
-  "2180:410": {
+  expertiseIntro: {
     className:
       "[word-break:break-word] font-normal leading-[calc(50*var(--u))] not-italic text-[calc(40*var(--u))] text-[color:var(--white,white)] whitespace-pre-wrap",
     content: (
       <>{`              Since 2012, EKE has designed youth exchanges, training courses, seminars, conferences and capacity-building activities for young people, youth workers, teachers, educators and adult learners. Implemented locally, nationally and internationally, these initiatives actively shape practical solutions to today's educational and social challenges. `}</>
     ),
   },
-  "2180:373": {
+  youthHeading: {
     className:
       "[word-break:break-word] font-bold leading-[0] not-italic text-[calc(36*var(--u)-2px)] text-[color:var(--dark-blue,#212c5d)] whitespace-pre-wrap",
     content: (
@@ -331,17 +330,17 @@ const textNodes = {
       </>
     ),
   },
-  "2180:340": {
+  partnershipLabel: {
     className:
       "[word-break:break-word] font-bold leading-[calc(72*var(--u))] not-italic text-[calc(22*var(--u))] text-[color:var(--white,white)] uppercase whitespace-nowrap",
     content: <>International partnerships</>,
   },
-  "2180:345": {
+  partnershipHeading: {
     className:
       "[word-break:break-word] font-bold leading-[calc(72*var(--u))] not-italic text-[calc(60*var(--u)-2px)] text-[color:var(--dark-blue,#212c5d)] uppercase whitespace-nowrap",
     content: <>moved by a Shared Purpose</>,
   },
-  "2180:353": {
+  youthBody: {
     className:
       "[word-break:break-word] font-normal leading-[0] not-italic text-[calc(18*var(--u))] text-[color:var(--white,white)] whitespace-pre-wrap",
     content: (
@@ -362,7 +361,7 @@ const textNodes = {
       </>
     ),
   },
-  "2180:360": {
+  digitalBody: {
     className:
       "[word-break:break-word] font-normal leading-[0] not-italic text-[calc(18*var(--u))] text-[color:var(--white,white)] whitespace-pre-wrap",
     content: (
@@ -382,7 +381,7 @@ const textNodes = {
       </>
     ),
   },
-  "2180:361": {
+  womenBody: {
     className:
       "[word-break:break-word] font-normal leading-[0] not-italic text-[calc(18*var(--u))] text-[color:var(--white,white)] whitespace-pre-wrap",
     content: (
@@ -405,7 +404,7 @@ const textNodes = {
       </>
     ),
   },
-  "2180:362": {
+  prisonBody: {
     className:
       "[word-break:break-word] font-normal leading-[0] not-italic text-[calc(18*var(--u))] text-[color:var(--white,white)] whitespace-pre-wrap",
     content: (
@@ -429,22 +428,3 @@ const textNodes = {
     ),
   },
 } as const;
-export default function FigmaText({
-  id,
-  as: Tag = "div",
-  className = "",
-}: {
-  id: keyof typeof textNodes;
-  as?: ElementType;
-  className?: string;
-}) {
-  const node = textNodes[id];
-  return (
-    <Tag
-      data-figma-id={id}
-      className={"figma-text " + node.className + " " + className}
-    >
-      {node.content}
-    </Tag>
-  );
-}

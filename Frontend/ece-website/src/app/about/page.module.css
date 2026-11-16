@@ -226,8 +226,7 @@
   transform: translateX(calc(12 * var(--u)));
 }
 .team {
-  height: calc(1681 * var(--u));
-  padding: calc(121 * var(--u)) calc(150 * var(--u)) 0;
+  padding: calc(121 * var(--u)) calc(150 * var(--u)) calc(150 * var(--u));
 }
 .team h2 {
   text-transform: uppercase;
@@ -271,6 +270,19 @@
   width: calc(241 * var(--u));
   height: auto;
 }
+.portrait {
+  position: relative;
+  width: calc(241 * var(--u));
+  height: calc(339 * var(--u));
+}
+.members article:nth-child(n + 5) .portrait::after {
+  content: "";
+  position: absolute;
+  inset: 3.54% 4.98% 0;
+  border: 1px solid var(--light-blue);
+  border-radius: calc(20 * var(--u)) calc(20 * var(--u)) 0 0;
+  pointer-events: none;
+}
 .members h3 {
   font-size: calc(24 * var(--u) - 2px);
   line-height: calc(32 * var(--u));
@@ -285,7 +297,7 @@
   line-height: calc(28 * var(--u));
   font-weight: 500;
   margin-top: calc(11 * var(--u));
-  white-space: nowrap;
+  white-space: normal;
 }
 .bio {
   width: calc(450 * var(--u));
@@ -301,6 +313,20 @@
 }
 .members article:nth-child(n + 3) .bio {
   margin-top: calc(74 * var(--u));
+}
+.members article:last-child:nth-child(odd) {
+  grid-column: 1 / -1;
+  grid-template-columns: calc(241 * var(--u)) calc(630 * var(--u));
+  margin-left: calc(372 * var(--u));
+  margin-top: calc(-18 * var(--u));
+  min-height: calc(339 * var(--u));
+}
+.members article:nth-child(n + 5) .bio {
+  margin-top: calc(48 * var(--u));
+}
+.members article:last-child:nth-child(odd) .bio {
+  width: calc(630 * var(--u));
+  margin-top: calc(56 * var(--u));
 }
 .network {
   height: calc(1587 * var(--u));
@@ -648,6 +674,15 @@
     display: block;
     min-height: 0;
   }
+  .members article:last-child:nth-child(odd) {
+    margin-left: 0;
+    margin-top: 0;
+    min-height: 0;
+  }
+  .portrait {
+    width: 200px;
+    height: calc(200px * 339 / 241);
+  }
   .members img {
     width: 200px;
     height: auto;
@@ -665,6 +700,7 @@
     margin-top: 12px;
   }
   .members .bio,
+  .members article:last-child:nth-child(odd) .bio,
   .members article:nth-child(n) .bio {
     width: auto;
     font-size: 18px;

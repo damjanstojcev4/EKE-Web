@@ -5,7 +5,7 @@ import { usePathname } from "next/navigation";
 
 const textSelector = [
   "h1", "h2", "h3", "h4", "h5", "h6", "p", "blockquote",
-  "figcaption", "li", "dt", "dd", ".figma-text", ".hero-heading-line",
+  "figcaption", "li", "dt", "dd", ".content-block", ".hero-heading-line",
   "footer nav a", "footer .address", "footer .social > strong",
   ".news-meta strong", ".news-meta time", "[data-text-reveal]",
 ].join(",");

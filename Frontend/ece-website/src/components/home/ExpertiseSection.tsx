@@ -1,28 +1,29 @@
 import Image from "next/image";
-import FigmaText from "../FigmaText";
+import ContentBlock from "@/components/ContentBlock";
+import { siteContent } from "@/content/site-content";
 import { Button } from "../ui";
 const areas = [
   [
-    "2180:373",
-    "2180:353",
+    "youthHeading",
+    "youthBody",
     "expertise-youth-development.png",
     "Young people together outdoors",
   ],
   [
-    "2180:377",
-    "2180:360",
+    "digitalHeading",
+    "digitalBody",
     "expertise-digital-literacy.png",
     "Learning with digital technology",
   ],
   [
-    "2180:378",
-    "2180:361",
+    "womenHeading",
+    "womenBody",
     "expertise-women-community.png",
     "Women supporting one another",
   ],
   [
-    "2180:379",
-    "2180:362",
+    "prisonHeading",
+    "prisonBody",
     "expertise-prison-education.png",
     "A conversation about social reintegration",
   ],
@@ -31,9 +32,9 @@ export default function ExpertiseSection() {
   return (
     <section className="expertise" id="expertise">
       <div className="expertise-intro">
-        <FigmaText id="2180:333" />
-        <FigmaText id="2180:341" as="h2" />
-        <FigmaText id="2180:410" />
+        <ContentBlock block={siteContent.expertiseLabel} />
+        <ContentBlock block={siteContent.expertiseHeading} as="h2" />
+        <ContentBlock block={siteContent.expertiseIntro} />
       </div>
       <div className="expertise-grid">
         {areas.map(([title, body, img, alt]) => (
@@ -47,8 +48,8 @@ export default function ExpertiseSection() {
               />
             </div>
             <div className="expertise-copy">
-              <FigmaText id={title} as="h3" />
-              <FigmaText id={body} />
+              <ContentBlock block={siteContent[title]} as="h3" />
+              <ContentBlock block={siteContent[body]} />
             </div>
           </article>
         ))}

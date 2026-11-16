@@ -23,7 +23,12 @@ export const metadata: Metadata = {
 export default function Layout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en">
-      <body className={sans.variable + " " + flex.variable}>{children}<TextReveals /></body>
+      {/* Extensions such as Grammarly add body attributes before hydration.
+          Suppression is limited to this element; child mismatches still warn. */}
+      <body className={sans.variable + " " + flex.variable} suppressHydrationWarning>
+        {children}
+        <TextReveals />
+      </body>
     </html>
   );
 }

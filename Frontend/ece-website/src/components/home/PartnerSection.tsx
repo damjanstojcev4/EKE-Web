@@ -1,4 +1,5 @@
-import FigmaText from "../FigmaText";
+import ContentBlock from "@/components/ContentBlock";
+import { siteContent } from "@/content/site-content";
 import { Button, Stripe } from "../ui";
 export default function PartnerSection() {
   return (
@@ -6,10 +7,10 @@ export default function PartnerSection() {
       <Stripe />
       <div className="partner-content">
         <div className="partner-heading">
-          <FigmaText id="2180:337" />
-          <FigmaText id="2180:344" as="h2" />
+          <ContentBlock block={siteContent.partnerLabel} />
+          <ContentBlock block={siteContent.partnerHeading} as="h2" />
         </div>
-        <FigmaText id="2180:305" />
+        <ContentBlock block={siteContent.partnerIntro} />
         <div className="partner-button" style={{ position: "relative", zIndex: 1 }}>
           <Button light href="/contact">
             Contact us

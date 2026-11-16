@@ -1,5 +1,6 @@
 import Image from "next/image";
-import FigmaText from "../FigmaText";
+import ContentBlock from "@/components/ContentBlock";
+import { siteContent } from "@/content/site-content";
 import HeroHeadline from "./HeroHeadline";
 import { Button, Stripe } from "../ui";
 
@@ -8,7 +9,7 @@ export default function HeroSection() {
     <section className="hero" id="home">
       <div className="hero-photo">
         <Image
-          src="/assets/hero-lightbulb.png"
+          src="/assets/hero-lightbulb.webp"
           alt="A glowing light bulb"
           fill
           priority
@@ -20,7 +21,7 @@ export default function HeroSection() {
       <div className="hero-body">
         <HeroHeadline />
         <div className="hero-intro">
-          <FigmaText id="2180:321" />
+          <ContentBlock block={siteContent.heroIntro} />
           <div className="actions">
             <Button light outline href={"/projects"}>
               Explore Our Projects

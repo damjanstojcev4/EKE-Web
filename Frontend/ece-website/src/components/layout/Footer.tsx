@@ -1,6 +1,7 @@
 import { nav } from "@/data/navigation";
 import Link from "next/link";
-import FigmaText from "../FigmaText";
+import ContentBlock from "@/components/ContentBlock";
+import { siteContent } from "@/content/site-content";
 import { Divider } from "../ui";
 export default function Footer() {
   return (
@@ -53,7 +54,7 @@ export default function Footer() {
             Belgradska 27, 7000 Bitola, North Macedonia
           </a>
         </div>
-        <FigmaText id="2406:3041" className="registration" />
+        <ContentBlock block={siteContent.registration} className="registration" />
       </div>
       <div className="footer-right">
         <h2>ENGAGE. EMPOWER. TRANSFORM.</h2>
