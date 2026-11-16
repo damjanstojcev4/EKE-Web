@@ -73,7 +73,7 @@ jobs:
           cache: maven
       - name: Compile, test and package with isolated in-memory database
         working-directory: Backend/ece-website
-        run: bash mvnw -B -ntp verify
+        run: bash ./mvnw -B -ntp verify
       - name: Prepare backend artifact and source identity
         if: inputs.publish
         shell: bash
