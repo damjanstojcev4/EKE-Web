@@ -1,0 +1,89 @@
+name: CI
+on:
+  pull_request:
+    branches: [staging, main]
+  workflow_call:
+    inputs:
+      publish:
+        type: boolean
+        default: false
+      existing_site_url:
+        type: string
+        default: ''
+permissions:
+  contents: read
+jobs:
+  deployment-safety:
+    name: Deployment safety checks
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - run: bash -n deploy/release.sh && bash -n deploy/activate-release.sh
+      - run: bash deploy/test-release.sh
+  frontend:
+    name: Frontend checks
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    defaults:
+      run:
+        working-directory: Frontend/ece-website
+    env:
+      NEXT_TELEMETRY_DISABLED: '1'
+      NEXT_PUBLIC_EXISTING_SITE_URL: ${{ inputs.existing_site_url }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+          cache-dependency-path: Frontend/ece-website/package-lock.json
+      - run: npm ci
+      - run: npm run lint
+      - run: npm run build
+      - run: npm run typecheck
+      - name: Verify static export
+        run: test -s out/index.html && test -s out/404.html && test -d out/_next/static
+      - uses: actions/upload-artifact@v4
+        if: inputs.publish
+        with:
+          name: frontend
+          path: Frontend/ece-website/out/
+          if-no-files-found: error
+  backend:
+    name: Backend checks
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    env:
+      SPRING_DATASOURCE_URL: 'jdbc:h2:mem:eke_ci;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=FALSE'
+      SPRING_DATASOURCE_USERNAME: sa
+      SPRING_DATASOURCE_PASSWORD: ''
+      SPRING_JPA_HIBERNATE_DDL_AUTO: create-drop
+      SPRING_H2_CONSOLE_ENABLED: 'false'
+      SPRING_MAIL_HOST: 127.0.0.1
+      SPRING_MAIL_PORT: '9'
+      SPRING_MAIL_USERNAME: ci
+      MAIL_PASSWORD: ci-placeholder
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '17'
+          cache: maven
+      - name: Compile, test and package with isolated in-memory database
+        working-directory: Backend/ece-website
+        run: bash mvnw -B -ntp verify
+      - name: Prepare backend artifact and source identity
+        if: inputs.publish
+        shell: bash
+        run: |
+          mkdir backend-artifact
+          cp Backend/ece-website/target/*.jar backend-artifact/app.jar
+          git rev-parse HEAD:Backend/ece-website > backend-artifact/source-id
+      - uses: actions/upload-artifact@v4
+        if: inputs.publish
+        with:
+          name: backend
+          path: backend-artifact/
+          if-no-files-found: error

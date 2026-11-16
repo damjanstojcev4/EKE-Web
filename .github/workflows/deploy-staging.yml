@@ -1,0 +1,44 @@
+name: Deploy staging
+on:
+  push:
+    branches: [staging]
+  workflow_dispatch:
+permissions:
+  contents: read
+concurrency:
+  group: eke-staging-deployment
+  cancel-in-progress: false
+jobs:
+  checks:
+    if: github.ref == 'refs/heads/staging'
+    uses: ./.github/workflows/ci.yml
+    with:
+      publish: true
+      existing_site_url: ${{ vars.STAGING_EXISTING_SITE_URL }}
+  deploy:
+    needs: checks
+    if: github.ref == 'refs/heads/staging' && vars.STAGING_PIPELINE_ENABLED == 'true'
+    environment: staging
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    env:
+      DEPLOY_ENV: staging
+      DEPLOY_HOST: ${{ secrets.STAGING_HOST }}
+      DEPLOY_USER: ${{ secrets.STAGING_USER }}
+      DEPLOY_SSH_KEY: ${{ secrets.STAGING_SSH_KEY }}
+      DEPLOY_KNOWN_HOSTS: ${{ secrets.STAGING_KNOWN_HOSTS }}
+      FRONTEND_URL: ${{ vars.STAGING_FRONTEND_URL }}
+      BACKEND_ENABLED: ${{ vars.STAGING_BACKEND_ENABLED }}
+      INFRA_READY: ${{ vars.STAGING_INFRA_READY }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/download-artifact@v4
+        with:
+          name: frontend
+          path: frontend-artifact
+      - uses: actions/download-artifact@v4
+        with:
+          name: backend
+          path: backend-artifact
+      - name: Deploy isolated releases with health checks
+        run: bash deploy/release.sh frontend-artifact backend-artifact
