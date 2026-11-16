@@ -1,55 +1,10 @@
-name: Next.js staging
+name: Migration branch checks
 on:
   push:
-    branches: ['feat/nextjs-migration']
+    branches: [feat/nextjs-migration]
 permissions:
   contents: read
-concurrency:
-  group: nextjs-staging
-  cancel-in-progress: false
 jobs:
-  validate:
-    if: github.ref == 'refs/heads/feat/nextjs-migration'
-    runs-on: ubuntu-latest
-    defaults:
-      run:
-        working-directory: Frontend/ece-website
-    env:
-      NEXT_TELEMETRY_DISABLED: '1'
-      NEXT_PUBLIC_EXISTING_SITE_URL: ${{ vars.STAGING_EXISTING_SITE_URL }}
-    steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
-        with:
-          node-version: '22'
-          cache: npm
-          cache-dependency-path: Frontend/ece-website/package-lock.json
-      - run: npm ci
-      - run: npm run lint
-      - run: npm run build
-      - run: npm run typecheck
-      - uses: actions/upload-artifact@v4
-        with:
-          name: nextjs-staging
-          path: Frontend/ece-website/out/
-          if-no-files-found: error
-  deploy:
-    needs: validate
-    # Retired deployment entry point. Permanent staging uses deploy-staging.yml.
-    if: ${{ false }}
-    environment: staging
-    runs-on: ubuntu-latest
-    env:
-      STAGING_HOST: ${{ secrets.STAGING_HOST }}
-      STAGING_USER: ${{ secrets.STAGING_USER }}
-      STAGING_SSH_KEY: ${{ secrets.STAGING_SSH_KEY }}
-      STAGING_KNOWN_HOSTS: ${{ secrets.STAGING_KNOWN_HOSTS }}
-    steps:
-      - uses: actions/checkout@v4
-      - uses: actions/download-artifact@v4
-        with:
-          name: nextjs-staging
-          path: staging-artifact
-      - name: Deploy isolated static release
-        shell: bash
-        run: bash deploy/staging/deploy.sh staging-artifact
+  checks:
+    uses: ./.github/workflows/ci.yml
+# Validation only. Deployment moved to deploy-staging.yml.
