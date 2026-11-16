@@ -18,12 +18,36 @@ expect_rejected() {
   bash "$root/deploy/release.sh" "$scratch" "$scratch" > "$scratch/output" 2>&1 || status=$?
   [[ "$status" != 0 && "$status" != 99 ]]
   ! grep -q unexpected-network-call "$scratch/output"
+  grep -Fq "${1:-::error::}" "$scratch/output"
+  ! grep -Fq 'secret-sentinel' "$scratch/output"
 }
 expect_rejected
 GITHUB_REF=refs/heads/staging INFRA_READY=false expect_rejected
 GITHUB_REF=refs/heads/staging DEPLOY_USER=root expect_rejected
 GITHUB_REF=refs/heads/staging FRONTEND_URL='https://example.invalid/;bad' expect_rejected
 GITHUB_REF=refs/heads/staging DEPLOY_ENV=production expect_rejected
+GITHUB_REF=refs/heads/staging FRONTEND_URL=http://preview.ekebitola.org expect_rejected 'FRONTEND_URL must be an HTTPS origin'
+for name in DEPLOY_HOST DEPLOY_USER DEPLOY_SSH_KEY DEPLOY_KNOWN_HOSTS FRONTEND_URL; do
+  (export GITHUB_REF=refs/heads/staging; unset "$name"; expect_rejected "Required setting $name is missing")
+done
+GITHUB_REF=refs/heads/staging GITHUB_SHA=bad expect_rejected 'GITHUB_SHA'
+GITHUB_REF=refs/heads/staging GITHUB_RUN_ID=bad expect_rejected 'GITHUB_RUN_ID'
+GITHUB_REF=refs/heads/staging BACKEND_ENABLED=typo expect_rejected 'BACKEND_ENABLED'
+GITHUB_REF=refs/heads/staging expect_rejected 'Frontend artifact'
+printf '<html></html>' > "$scratch/index.html"
+GITHUB_REF=refs/heads/staging BACKEND_ENABLED=true expect_rejected 'app.jar'
+printf jar > "$scratch/app.jar"
+GITHUB_REF=refs/heads/staging BACKEND_ENABLED=true expect_rejected 'source-id'
+GITHUB_REF=refs/heads/staging DEPLOY_SSH_KEY=secret-sentinel expect_rejected 'DEPLOY_SSH_KEY is not a readable'
+# Mock SSH/key validation to test transport diagnostics without any network access.
+printf '#!/usr/bin/env bash\nexit 0\n' > "$scratch/bin/ssh-keygen"
+cat > "$scratch/bin/ssh" <<'MOCK'
+#!/usr/bin/env bash
+echo 'Permission denied (publickey) secret-sentinel' >&2
+exit 255
+MOCK
+chmod +x "$scratch/bin/ssh-keygen" "$scratch/bin/ssh"
+GITHUB_REF=refs/heads/staging expect_rejected 'SSH authentication failed'
 echo 'Branch, readiness, user and URL guards passed.'
 # Real symlink/atomic rename tests require Linux (same platform as deployment).
 [[ "$(uname -s)" == Linux ]] || { echo 'Activation fixtures require Linux; covered in CI.'; exit 0; }
