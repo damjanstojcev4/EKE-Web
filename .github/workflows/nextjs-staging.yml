@@ -35,7 +35,8 @@ jobs:
           if-no-files-found: error
   deploy:
     needs: validate
-    if: github.ref == 'refs/heads/feat/nextjs-migration' && vars.STAGING_DEPLOY_ENABLED == 'true'
+    # Retired deployment entry point. Permanent staging uses deploy-staging.yml.
+    if: ${{ false }}
     environment: staging
     runs-on: ubuntu-latest
     env:
