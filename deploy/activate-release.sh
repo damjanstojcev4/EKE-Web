@@ -25,7 +25,10 @@ previous_site=$(readlink "$base/current" || true)
 previous_api=''
 validate_previous() {
   local previous="$1" parent="$2"
-  [[ -z "$previous" ]] || { [[ "$previous" == "$parent/releases/"* ]] && test -d "$previous"; }
+  [[ -z "$previous" ]] || {
+    [[ "$previous" == "$parent/releases/"* ]] && test -d "$previous" &&
+      [[ "$environment" != staging || "$(realpath -e -- "$previous")" == "$previous" ]]
+  }
 }
 [[ ! -e "$base/current" || -L "$base/current" ]]
 validate_previous "$previous_site" "$base"
@@ -36,7 +39,26 @@ if [[ "$backend" == true ]]; then
   validate_previous "$previous_api" "$api"
   test -s "$incoming/app.jar"
   grep -Eq '^[a-f0-9]{40}$' "$incoming/source-id"
+  if [[ "$environment" == staging ]]; then
+    for directory in "$api/data" "$api/uploads"; do
+      test -d "$directory" && test ! -L "$directory"
+    done
+    [[ "$(systemctl show --value -p WorkingDirectory "$unit")" == "$api" ]]
+    [[ "$(systemctl show --value -p User "$unit")" == eke-staging ]]
+    [[ "$(systemctl show --value -p KillMode "$unit")" == control-group ]]
+    [[ "$(systemctl show --value -p NeedDaemonReload "$unit")" == no ]]
+    stop_hooks=$(systemctl show --value -p ExecStop -p ExecStopPost -p ConsistsOf \
+      -p BoundBy -p PropagatesStopTo -p ConflictedBy -p OnFailure -p OnSuccess "$unit")
+    [[ -z "$stop_hooks" ]]
+    conflicts=$(systemctl show --value -p Conflicts "$unit")
+    [[ -z "$conflicts" || "$conflicts" == shutdown.target ]]
+  fi
 fi
+api_ok() {
+  local status
+  status=$(curl -q --fail --silent --show-error --max-time 5 -o /dev/null -w '%{http_code}' "$1") &&
+    [[ "$status" == 200 ]]
+}
 activate() {
   local parent="$1" target="$2"
   ln -s "$target" "$parent/current-$release"
@@ -80,7 +102,18 @@ if [[ "$backend" == true ]]; then
   fi
   healthy=false
   for attempt in {1..12}; do
-    if curl --fail --silent --show-error --max-time 5 "http://127.0.0.1:$port/api/projects/" > /dev/null; then healthy=true; break; fi
+    if [[ "$environment" == staging ]]; then
+      if systemctl is-active --quiet "$unit" &&
+         api_ok "http://127.0.0.1:$port/api/projects/" &&
+         api_ok "$url/api/projects/" &&
+         api_ok "$url/api/news/homepage"; then
+        healthy=true
+        break
+      fi
+    elif curl --fail --silent --show-error --max-time 5 "http://127.0.0.1:$port/api/projects/" > /dev/null; then
+      healthy=true
+      break
+    fi
     sleep 5
   done
   [[ "$healthy" == true ]]

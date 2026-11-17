@@ -24,17 +24,68 @@ GITHUB_REF=refs/heads/staging INFRA_READY=false expect_rejected
 GITHUB_REF=refs/heads/staging DEPLOY_USER=root expect_rejected
 GITHUB_REF=refs/heads/staging FRONTEND_URL='https://example.invalid/;bad' expect_rejected
 GITHUB_REF=refs/heads/staging DEPLOY_ENV=production expect_rejected
+printf site > "$scratch/index.html"
+GITHUB_REF=refs/heads/staging BACKEND_REQUESTED=true BACKEND_ENABLED=false expect_rejected
 echo 'Branch, readiness, user and URL guards passed.'
+
+export MOCK_TRANSFER_LOG="$scratch/transfer.log"
+for command in ssh scp; do
+  cat > "$scratch/bin/$command" <<'MOCK'
+#!/usr/bin/env bash
+printf '%s %s\n' "${0##*/}" "$*" >> "$MOCK_TRANSFER_LOG"
+MOCK
+done
+printf jar > "$scratch/app.jar"
+printf '%s\n' "$GITHUB_SHA" > "$scratch/source-id"
+GITHUB_REF=refs/heads/staging BACKEND_ENABLED=true BACKEND_REQUESTED=false \
+  bash "$root/deploy/release.sh" "$scratch" "$scratch"
+if grep -q 'app.jar' "$MOCK_TRANSFER_LOG"; then exit 1; fi
+grep -q "'false'$" "$MOCK_TRANSFER_LOG"
+: > "$MOCK_TRANSFER_LOG"
+GITHUB_REF=refs/heads/staging BACKEND_ENABLED=true BACKEND_REQUESTED=true \
+  bash "$root/deploy/release.sh" "$scratch" "$scratch"
+grep -q 'app.jar' "$MOCK_TRANSFER_LOG"
+grep -q "'true'$" "$MOCK_TRANSFER_LOG"
+echo 'Staging backend artifacts require an explicit activation request.'
+
 # Real symlink/atomic rename tests require Linux (same platform as deployment).
 [[ "$(uname -s)" == Linux ]] || { echo 'Activation fixtures require Linux; covered in CI.'; exit 0; }
 cat > "$scratch/bin/curl" <<'MOCK'
 #!/usr/bin/env bash
 if [[ "${MOCK_HEALTH:-}" == fail ]]; then exit 22; fi
+case "${*: -1}" in
+  'http://127.0.0.1:18081/api/projects/'|'https://example.invalid/api/projects/') printf 200; exit 0;;
+  'https://example.invalid/api/news/homepage')
+    if [[ "${MOCK_HEALTH:-}" == redirect ]]; then printf 302; else printf 200; fi
+    exit 0;;
+esac
 if [[ "$*" == *release-id.txt* ]]; then printf '%s\n' "$MOCK_RELEASE"; fi
+MOCK
+cat > "$scratch/bin/systemctl" <<'MOCK'
+#!/usr/bin/env bash
+set -eu
+[[ "${*: -1}" == eke-staging-backend.service ]]
+case "${1:-}" in
+  is-active) [[ "$*" == 'is-active --quiet eke-staging-backend.service' ]];;
+  show)
+    [[ "$2" == --value && "$3" == -p ]]
+    case "$4" in
+      WorkingDirectory) echo "$TEST_BASE-backend";;
+      User) echo "${MOCK_UNIT_USER:-eke-staging}";;
+      KillMode) echo control-group;;
+      NeedDaemonReload) echo no;;
+      ExecStop) ;;
+      Conflicts) echo shutdown.target;;
+      *) exit 99;;
+    esac;;
+  *) exit 99;;
+esac
 MOCK
 printf '#!/usr/bin/env bash\nexit 0\n' > "$scratch/bin/sleep"
 cat > "$scratch/bin/sudo" <<'MOCK'
 #!/usr/bin/env bash
+[[ "$*" == '-n systemctl restart eke-staging-backend.service' ||
+   "$*" == '-n systemctl stop eke-staging-backend.service' ]] || exit 99
 printf '%s\n' "$*" >> "$MOCK_SERVICE_LOG"
 MOCK
 chmod +x "$scratch/bin/"*
@@ -46,7 +97,8 @@ sed 's|base="/srv/eke-$environment"|base="$TEST_BASE"|' "$root/deploy/activate-r
 fixture() {
   TEST_BASE="$scratch/$1"
   export TEST_BASE
-  mkdir -p "$TEST_BASE/releases/old" "$TEST_BASE/incoming/$MOCK_RELEASE" "$TEST_BASE-backend/releases/old" "$scratch/payload"
+  mkdir -p "$TEST_BASE/releases/old" "$TEST_BASE/incoming/$MOCK_RELEASE" \
+    "$TEST_BASE-backend/"{releases/old,data,uploads} "$scratch/payload"
   printf old > "$TEST_BASE/releases/old/index.html"
   ln -s "$TEST_BASE/releases/old" "$TEST_BASE/current"
   ln -s "$TEST_BASE-backend/releases/old" "$TEST_BASE-backend/current"
@@ -65,6 +117,17 @@ fixture failure
 if MOCK_HEALTH=fail bash "$scratch/activate.sh" staging "$MOCK_RELEASE" https://example.invalid true; then exit 1; fi
 [[ "$(readlink "$TEST_BASE/current")" == "$TEST_BASE/releases/old" ]]
 [[ "$(readlink "$TEST_BASE-backend/current")" == "$TEST_BASE-backend/releases/old" ]]
+fixture first_backend_redirect
+unlink "$TEST_BASE-backend/current"
+if MOCK_HEALTH=redirect bash "$scratch/activate.sh" staging "$MOCK_RELEASE" https://example.invalid true; then exit 1; fi
+[[ "$(readlink "$TEST_BASE/current")" == "$TEST_BASE/releases/old" ]]
+[[ ! -L "$TEST_BASE-backend/current" ]]
+[[ "$(tail -n 1 "$MOCK_SERVICE_LOG")" == '-n systemctl stop eke-staging-backend.service' ]]
+fixture wrong_unit
+before=$(wc -l < "$MOCK_SERVICE_LOG")
+if MOCK_UNIT_USER=root bash "$scratch/activate.sh" staging "$MOCK_RELEASE" https://example.invalid true; then exit 1; fi
+[[ "$(readlink "$TEST_BASE-backend/current")" == "$TEST_BASE-backend/releases/old" ]]
+[[ "$(wc -l < "$MOCK_SERVICE_LOG")" == "$before" ]]
 fixture frontend_failure
 if MOCK_HEALTH=fail bash "$scratch/activate.sh" staging "$MOCK_RELEASE" https://example.invalid false; then exit 1; fi
 [[ "$(readlink "$TEST_BASE/current")" == "$TEST_BASE/releases/old" ]]

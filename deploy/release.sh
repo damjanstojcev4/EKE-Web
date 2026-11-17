@@ -18,7 +18,14 @@ test -s "$site/index.html"
 release="$GITHUB_SHA-$GITHUB_RUN_ID-$GITHUB_RUN_ATTEMPT"
 base="/srv/eke-$DEPLOY_ENV"
 backend_enabled=false
-[[ "${BACKEND_ENABLED:-}" != true ]] || backend_enabled=true
+if [[ "${BACKEND_ENABLED:-}" == true ]]; then
+  if [[ "$DEPLOY_ENV" != staging || "${BACKEND_REQUESTED:-}" == true ]]; then
+    backend_enabled=true
+  fi
+elif [[ "$DEPLOY_ENV" == staging && "${BACKEND_REQUESTED:-}" == true ]]; then
+  echo 'Staging backend activation is disabled' >&2
+  exit 1
+fi
 if [[ "$backend_enabled" == true ]]; then
   test -s "$backend/app.jar"
   grep -Eq '^[a-f0-9]{40}$' "$backend/source-id"

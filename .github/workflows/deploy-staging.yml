@@ -3,6 +3,11 @@ on:
   push:
     branches: [staging]
   workflow_dispatch:
+    inputs:
+      deploy_backend:
+        description: Activate the staging backend
+        type: boolean
+        default: false
 permissions:
   contents: read
 concurrency:
@@ -29,6 +34,7 @@ jobs:
       DEPLOY_KNOWN_HOSTS: ${{ secrets.STAGING_KNOWN_HOSTS }}
       FRONTEND_URL: ${{ vars.STAGING_FRONTEND_URL }}
       BACKEND_ENABLED: ${{ vars.STAGING_BACKEND_ENABLED }}
+      BACKEND_REQUESTED: ${{ github.event_name == 'workflow_dispatch' && inputs.deploy_backend }}
       INFRA_READY: ${{ vars.STAGING_INFRA_READY }}
     steps:
       - uses: actions/checkout@v4
