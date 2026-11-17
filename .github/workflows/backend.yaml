@@ -1,70 +1,77 @@
 name: Build Backend
 on:
   workflow_dispatch:
-  push:
-    branches: ['main']
-    paths:
-      - 'Backend/**'
   pull_request:
     branches: ['main']
     paths:
       - 'Backend/**'
+      - '.github/workflows/backend.yaml'
+      - 'deploy/*production-backend.sh'
+
+permissions:
+  contents: read
+
 jobs:
   Build:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v5
+      - name: Test production deployment offline
+        run: |
+          bash -n deploy/legacy-production-backend.sh
+          bash deploy/test-legacy-production-backend.sh
       - uses: actions/setup-java@v4
         with:
           java-version: "17"
           distribution: "temurin"
           cache: maven
-      - run: cd Backend/ece-website && mvn clean install
-      - run: cd Backend/ece-website && mkdir staging && cp target/*.jar staging
+      - run: mvn -B clean package
+        working-directory: Backend/ece-website
       - uses: actions/upload-artifact@v4
+        if: github.event_name == 'workflow_dispatch' && github.ref == 'refs/heads/main'
         with:
           name: JavaBackend
-          path: Backend/ece-website/staging
+          path: Backend/ece-website/target/*.jar
+          if-no-files-found: error
 
   Deploy:
     runs-on: ubuntu-latest
     needs: Build
-    if: github.ref == 'refs/heads/main'
+    if: github.event_name == 'workflow_dispatch' && github.ref == 'refs/heads/main'
+    timeout-minutes: 15
+    concurrency:
+      group: eke-production-backend
+      cancel-in-progress: false
+    env:
+      DEPLOY_HOST: ${{ secrets.DEPLOY_HOST }}
+      DEPLOY_USERNAME: ${{ secrets.DEPLOY_USERNAME }}
+      SSH_AUTH_SOCK: /tmp/ssh_agent.sock
 
     steps:
-      - name: Download build artifacts
-        uses: actions/download-artifact@v4
+      - uses: actions/checkout@v5
+      - uses: actions/download-artifact@v4
         with:
           name: JavaBackend
-      - name: Setup ssh
+          path: java-backend
+      - name: Set up SSH
         env:
-          SSH_AUTH_SOCK: /tmp/ssh_agent.sock
+          DEPLOY_SSH_KEY: ${{ secrets.DEPLOY_SSH_KEY }}
+          DEPLOY_KNOWN_HOSTS: ${{ secrets.DEPLOY_KNOWN_HOSTS }}
         run: |
-          mkdir -p ~/.ssh/ && touch ~/.ssh/known_hosts
-          ssh-keyscan ${{ secrets.DEPLOY_HOST }} >> ~/.ssh/known_hosts
-          ssh-agent -a $SSH_AUTH_SOCK > /dev/null
-          ssh-add - <<< "${{ secrets.DEPLOY_SSH_KEY }}"
+          : "${DEPLOY_HOST:?}" "${DEPLOY_USERNAME:?}" "${DEPLOY_SSH_KEY:?}" "${DEPLOY_KNOWN_HOSTS:?}"
+          install -d -m 0700 ~/.ssh
+          umask 077
+          printf '%s\n' "$DEPLOY_KNOWN_HOSTS" > ~/.ssh/known_hosts
+          ssh-agent -a "$SSH_AUTH_SOCK" > /dev/null
+          ssh-add - <<< "$DEPLOY_SSH_KEY"
 
-      - name: Transfer artifact
-        env:
-          SSH_AUTH_SOCK: /tmp/ssh_agent.sock
+      - name: Install JAR and restart the production service
+        shell: bash
         run: |
-          scp *.jar root@${{ secrets.DEPLOY_HOST }}:~
-
-      - name: Start Jar
-        uses: appleboy/ssh-action@v1.0.3
-        env:
-          SPRING_MAIL_PASSWORD: ${{ secrets.SPRING_MAIL_PASSWORD }}
-        with:
-          host: ${{ secrets.DEPLOY_HOST }}
-          username: ${{ secrets.DEPLOY_USERNAME }}
-          key: ${{ secrets.DEPLOY_SSH_KEY }}
-          script_stop: true
-          script: |
-            mkdir -p ~/eke
-            rm -rf ~/eke/*.jar
-            cp *.jar ~/eke
-            cd ~/eke
-            killall java || true
-            java -jar *.jar >application.log 2>&1 &
-          
+          shopt -s nullglob
+          jars=(java-backend/*.jar)
+          [[ "${#jars[@]}" == 1 ]] || { echo 'Expected one backend JAR' >&2; exit 1; }
+          checksum=$(sha256sum "${jars[0]}")
+          printf -v remote_script '%q' "$(cat deploy/legacy-production-backend.sh)"
+          ssh -T -o BatchMode=yes -o StrictHostKeyChecking=yes -l "$DEPLOY_USERNAME" -- "$DEPLOY_HOST" \
+            "bash -c $remote_script -- ${checksum%% *}" < "${jars[0]}"
