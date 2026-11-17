@@ -28,7 +28,7 @@ Open backend PRs against staging. No backend feature branch is created by this s
 | deploy-staging.yml | staging push or manual run on staging | Checks always; deployment only with activation gates |
 | deploy-production.yml | manual only | Literal-disabled checks make deployment unreachable until reviewed cutover |
 | frontend.yaml | main frontend push/PR/manual | Existing Vite production deployment; unchanged |
-| backend.yaml | main backend push/PR/manual | Existing backend production deployment; unchanged |
+| backend.yaml | main backend push/PR/manual | Legacy production backend deployment with an exact-unit restart after approved handoff |
 
 PR CI has read-only repository permission, no deployment environment/secrets and no
 deployment jobs. Maven tests use an isolated in-memory database and unreachable mail
@@ -39,12 +39,11 @@ GitHub may replace an older pending run with a newer one: only validated release
 activate, and backend comparison is against the last deployed source tree.
 
 The legacy frontend copies dist/ to /usr/share/nginx/html and removes its old
-contents. Next.js uses out/. The legacy backend copies jars under ~/eke and runs
-killall java. Both use DEPLOY_HOST, DEPLOY_USERNAME, DEPLOY_SSH_KEY.
-These workflows do not run deployments for staging pushes, but a legacy main
-backend deployment can kill a staging Java service on a shared VPS. Resolve that
-conflict under explicit production approval before enabling a staging backend.
-Do not change them automatically as part of this foundation.
+contents. Next.js uses out/. The production backend workflow keeps ~/eke and
+requires its dedicated systemd unit. Both legacy workflows use DEPLOY_HOST,
+DEPLOY_USERNAME, DEPLOY_SSH_KEY. Complete the
+[production backend isolation handoff](PRODUCTION_BACKEND_ISOLATION.md)
+and verify the workflow on main before enabling the staging backend.
 
 ## GitHub configuration (operator setup required)
 
@@ -118,8 +117,8 @@ does not itself wire forms/admin/pages to it.
 Backend exposure blockers found in existing code: default admin/admin creation,
 hardcoded JWT signing material, public message read/delete routes, localhost-only
 CORS, and H2 console enabled by default. H2 is disabled by the environment template;
-the other issues need a reviewed backend PR before exposing staging. Backend source
-is deliberately preserved in this CI/CD change. Resolve legacy killall conflict too.
+the other issues need a reviewed backend PR before exposing staging. Verify the
+production process isolation cutover too.
 
 Only after provisioning and review set STAGING_INFRA_READY=true and repository
 STAGING_PIPELINE_ENABLED=true. Keep STAGING_BACKEND_ENABLED=false for frontend-only
@@ -155,15 +154,15 @@ manual and must protect current, the previous release and database backups.
 1. Obtain client approval of staging and a reviewed main PR. Back up current
    frontend, backend, database and uploads; rehearse restoration.
 2. With explicit production approval, retire legacy frontend.yaml/backend.yaml
-   deployment triggers BEFORE merging Next.js into main. Do not let the legacy
-   Vite deployment or killall workflow run during cutover.
+   deployment triggers BEFORE merging Next.js into main. Pause the legacy
+   Vite and backend deployment workflows during cutover.
 3. Provision independent /srv/eke-production/{incoming,releases} and
    /srv/eke-production-backend/{releases,data,uploads}, dedicated service port 18082,
    production secrets/runtime configuration and exact-unit sudo permissions.
    Existing ~/eke data/uploads and database migration require a reviewed plan.
 4. Review routing/TLS and first cutover separately. Existing production backend
    may stay in place while PRODUCTION_BACKEND_ENABLED=false; confirm API routing.
-   New scripts never write /usr/share/nginx/html or ~/eke.
+   The /srv release scripts use their own deployment paths.
 5. In the approved workflow change remove literal false on production checks,
    replace it with a main + PRODUCTION_PIPELINE_ENABLED guard and add push main.
    Keep environment reviewer approval, environment readiness and branch checks.
