@@ -1,5 +1,6 @@
 package com.ece.ece_website.config;
 
+import com.ece.ece_website.entity.Role;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -29,10 +30,14 @@ public class SecurityConfig {
                                                 .requestMatchers(
                                                                 org.springframework.web.cors.CorsUtils::isPreFlightRequest)
                                                 .permitAll()
+                                                .requestMatchers("/auth/register").hasAuthority(Role.ADMIN.name())
                                                 .requestMatchers("/auth/**").permitAll()
                                                 .requestMatchers(HttpMethod.GET, "/projects/**").permitAll()
                                                 .requestMatchers(HttpMethod.GET, "/news/**").permitAll()
+                                                .requestMatchers(HttpMethod.HEAD, "/news/**").permitAll()
+                                                .requestMatchers("/news/**").hasAuthority(Role.ADMIN.name())
                                                 .requestMatchers(HttpMethod.GET, "/uploads/**").permitAll()
+                                                .requestMatchers(HttpMethod.HEAD, "/uploads/news/**").permitAll()
                                                 .requestMatchers(HttpMethod.POST, "/messages/**").permitAll()
                                                 .requestMatchers(HttpMethod.GET, "/messages/**").permitAll()
                                                 .requestMatchers(HttpMethod.DELETE, "/messages/**").permitAll()
