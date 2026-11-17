@@ -6,7 +6,7 @@ unit=eke-production-backend.service
 workdir=/root/eke
 systemctl=/usr/bin/systemctl
 proc=/proc
-health_url=http://127.0.0.1:8080/projects/
+health_url=http://127.0.0.1:8080/api/projects/
 expected_checksum=${1:-}
 [[ "$expected_checksum" =~ ^[a-f0-9]{64}$ ]] || { echo 'Expected a SHA-256 checksum' >&2; exit 1; }
 cd -- "$workdir"

@@ -58,9 +58,9 @@ MOCK
 cat > "$scratch/bin/curl" <<'MOCK'
 #!/usr/bin/env bash
 set -eu
-[[ "$*" == "-q --noproxy * --silent --max-time 3 --output /dev/null --write-out %{http_code} http://127.0.0.1:8080/projects/" ]]
+[[ "$*" == "-q --noproxy * --silent --max-time 3 --output /dev/null --write-out %{http_code} http://127.0.0.1:8080/api/projects/" ]]
 if [[ "$MODE" == preflight-api-failure || ( "$MODE" == failed-readiness && "$(cat app.jar)" == new ) ]]; then
-  echo 503
+  echo 404
 else
   echo 200
 fi

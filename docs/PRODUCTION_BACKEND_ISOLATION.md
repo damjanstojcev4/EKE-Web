@@ -35,7 +35,8 @@ check fails, it restores `app.jar.previous` and retries the same unit once.
    "/proc/$pid/exe" -version
    ss -ltnp 'sport = :8080'
    test -f /root/eke/app.jar && test -s /root/eke/app.jar && test ! -L /root/eke/app.jar
-   curl --noproxy '*' -sS -o /dev/null -w '%{http_code}\n' http://127.0.0.1:8080/projects/
+   status=$(curl -q --noproxy '*' -sS --max-time 3 -o /dev/null -w '%{http_code}' \
+     http://127.0.0.1:8080/api/projects/) && test "$status" = 200
    ```
 
    Expect `NeedDaemonReload=no`, `KillMode=control-group`, HTTP 200, and
