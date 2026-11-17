@@ -1,11 +1,11 @@
-# Admin staging preview
+# Admin workspace
 
-Open `/admin`. The reference is the original production branch's `AdminPage.tsx`, `AddProjectsTab.tsx`, and `AddNewsTab.tsx` in `D:/eke-web`. Projects, news and messages retain the legacy workflow, styled with the preview's existing fonts, logo and navy/turquoise palette.
+The static `/admin/` route checks `/api/auth/me` before displaying content. Anonymous or expired sessions go to `/login/`; non-admin accounts receive an access-denied screen. Server authorization protects the underlying APIs.
 
-This is an isolated UI preview, with no authentication or API calls. Browser-local changes use `eke-admin-preview-v1` in localStorage and do not change the public pages. Project and news examples come from the existing preview datasets. Missing legacy values (budget, dates, partners, Instagram URL) remain blank rather than being invented. Messages have an explicit disconnected empty state. There is no simulated login or logout.
+Project and news forms use the existing multipart API contracts. News has a short description and Instagram URL, with no separate title field. Project and news images are required when creating records; editing preserves existing uploads unless replaced. Images may be up to 5 MB and PDF documents up to 20 MB. Temporary image previews use object URLs and are released when the editor closes. No content or credentials are saved in localStorage.
 
-Image attachments are limited to 1 MB and PDF attachments to 2 MB. Files remain browser-local, and storage failures keep the form open. Deleting a record requires confirmation. Unsaved forms prompt before in-app navigation or cancellation.
+Projects, news and contact messages load from the backend after the session check. Failed reads provide a retry state. Failed writes preserve the editor or delete confirmation. Sign out uses the shared API helper and returns to `/login/`. Requests use the HttpOnly authentication cookie and CSRF header provided by `src/lib/admin-api.ts`.
 
-Before live integration: connect existing authenticated project/news CRUD and messages endpoints, enforce authorization on the server, restore session expiry/logout behavior, map the legacy field names and multipart uploads, and replace browser storage with the backend. Do not use this preview as a protected admin system.
+The frontend stays a static export; staging must route `/api/` to its isolated backend. Backend activation and production promotion follow `docs/CI_CD.md` and are not implied by deploying the frontend. Public redesigned pages still use their separately deferred content integration.
 
-Validation: `npm run lint`, `npm run build`, `npm run typecheck`, then `node design/admin-qa.mjs` against the static export served by `npm start`. Set `ADMIN_QA_BASE_URL` to test another port. Edge is required for browser checks. Follow the repository feature branch → PR → staging workflow in `docs/CI_CD.md`.
+Validation: `npm run lint`, `npm run build`, `npm run typecheck`, then the live backend checks in `design/admin-qa.mjs`.

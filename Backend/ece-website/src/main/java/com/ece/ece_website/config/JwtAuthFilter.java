@@ -16,104 +16,52 @@ import org.springframework.security.web.authentication.WebAuthenticationDetailsS
 import org.springframework.stereotype.Component;
 import org.springframework.web.filter.OncePerRequestFilter;
 import java.io.IOException;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 @Component
 @RequiredArgsConstructor
 public class JwtAuthFilter extends OncePerRequestFilter {
-    private static final Logger logger = LoggerFactory.getLogger(JwtAuthFilter.class);
     private final JwtService jwtService;
     private final UserDetailsService userDetailsService;
 
     @Override
-    protected void doFilterInternal(
-            @NonNull HttpServletRequest request,
-            @NonNull HttpServletResponse response,
-            @NonNull FilterChain filterChain)
-            throws ServletException, IOException {
-
-        logger.debug("Request: {} {}", request.getMethod(), request.getRequestURI());
-
-        // Skip JWT processing for public endpoints
-        if (isPublicEndpoint(request)) {
-            logger.debug("Skipping JWT check for public endpoint");
-            filterChain.doFilter(request, response);
-            return;
-        }
-
-        String jwt = extractJwtFromRequest(request);
-        if (jwt == null) {
-            logger.debug("No JWT token found, letting security chain handle it");
-            filterChain.doFilter(request, response);
-            return;
-        }
-
-        try {
-            final String username = jwtService.extractUsername(jwt);
-            logger.debug("Extracted username from token: {}", username);
-
-            if (username != null && SecurityContextHolder.getContext().getAuthentication() == null) {
-                UserDetails userDetails = this.userDetailsService.loadUserByUsername(username);
-                logger.debug("User details loaded: {}", userDetails.getUsername());
-
-                if (jwtService.isTokenValid(jwt, userDetails)) {
-                    logger.debug("Token is valid, setting authentication");
-                    UsernamePasswordAuthenticationToken authToken = new UsernamePasswordAuthenticationToken(
-                            userDetails, null, userDetails.getAuthorities());
-
-                    authToken.setDetails(
-                            new WebAuthenticationDetailsSource().buildDetails(request));
-                    SecurityContextHolder.getContext().setAuthentication(authToken);
-                } else {
-                    logger.warn("Token is invalid");
-                    response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
-                    response.getWriter().write("Unauthorized: Invalid token");
+    protected void doFilterInternal(@NonNull HttpServletRequest request, @NonNull HttpServletResponse response,
+            @NonNull FilterChain filterChain) throws ServletException, IOException {
+        // A stale cookie must not prevent acquiring CSRF or signing in again.
+        String path = request.getServletPath();
+        boolean publicRequest = ("GET".equals(request.getMethod()) &&
+            ("/auth/csrf".equals(path) || path.startsWith("/projects/") || path.equals("/projects") ||
+             path.startsWith("/news/") || path.equals("/news") || path.startsWith("/uploads/"))) ||
+            ("POST".equals(request.getMethod()) && ("/auth/authenticate".equals(path) ||
+             "/messages".equals(path) || "/messages/".equals(path)));
+        if (!publicRequest && SecurityContextHolder.getContext().getAuthentication() == null) {
+            String token = extractToken(request);
+            if (token != null) {
+                try {
+                    UserDetails user = userDetailsService.loadUserByUsername(jwtService.extractUsername(token));
+                    if (!jwtService.isTokenValid(token, user)) throw new IllegalArgumentException("Invalid token");
+                    UsernamePasswordAuthenticationToken auth = new UsernamePasswordAuthenticationToken(user, null, user.getAuthorities());
+                    auth.setDetails(new WebAuthenticationDetailsSource().buildDetails(request));
+                    SecurityContextHolder.getContext().setAuthentication(auth);
+                } catch (RuntimeException exception) {
+                    SecurityContextHolder.clearContext();
+                    response.setStatus(401);
+                    response.setContentType("application/json");
+                    response.getWriter().write("{\"message\":\"Your session has expired. Please sign in again.\"}");
                     return;
                 }
             }
-        } catch (Exception e) {
-            logger.error("JWT processing error: {}", e.getMessage());
-            response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
-            response.getWriter().write("Unauthorized: Token processing error");
-            return;
         }
-
         filterChain.doFilter(request, response);
     }
 
-    private boolean isPublicEndpoint(HttpServletRequest request) {
-        String path = request.getServletPath();
-        String method = request.getMethod();
-
-        return path.startsWith("/auth") ||
-                (path.startsWith("/projects") && "GET".equalsIgnoreCase(method)) ||
-                (path.startsWith("/news") && "GET".equalsIgnoreCase(method)) ||
-                (path.startsWith("/uploads") && "GET".equalsIgnoreCase(method)) ||
-                (path.startsWith("/messages") && "POST".equalsIgnoreCase(method)) ||
-                path.startsWith("/h2-console");
-    }
-
-    private String extractJwtFromRequest(HttpServletRequest request) {
-        // Check cookies first
-        Cookie[] cookies = request.getCookies();
-        if (cookies != null) {
-            for (Cookie cookie : cookies) {
-                if ("cookie-auth".equals(cookie.getName())) {
-                    logger.debug("Found JWT in cookie");
-                    return cookie.getValue();
-                }
+    private String extractToken(HttpServletRequest request) {
+        String authorization = request.getHeader("Authorization");
+        if (authorization != null && authorization.startsWith("Bearer ")) return authorization.substring(7);
+        if (request.getCookies() != null) {
+            for (Cookie cookie : request.getCookies()) {
+                if ("cookie-auth".equals(cookie.getName())) return cookie.getValue();
             }
         }
-
-        // Check Authorization header
-        final String authHeader = request.getHeader("Authorization");
-        if (authHeader != null && authHeader.startsWith("Bearer ")) {
-            logger.debug("Found JWT in Authorization header");
-            return authHeader.substring(7);
-        }
-
-        logger.debug("No JWT found in request");
         return null;
     }
 }

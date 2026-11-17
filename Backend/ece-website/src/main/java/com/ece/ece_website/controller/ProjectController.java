@@ -78,11 +78,8 @@ public class ProjectController {
         existing.setDescription(description);
         existing.setQuickSummary(quickSummary);
 
-        // Safe parsing for LocalDate
-        if (startDate != null && !startDate.isBlank())
-            existing.setStartDate(LocalDate.parse(startDate));
-        if (endDate != null && !endDate.isBlank())
-            existing.setEndDate(LocalDate.parse(endDate));
+        existing.setStartDate(startDate == null || startDate.isBlank() ? null : LocalDate.parse(startDate));
+        existing.setEndDate(endDate == null || endDate.isBlank() ? null : LocalDate.parse(endDate));
 
         // ✅ IMPORTANT: keep collection mutable and handle null (deleted all partners)
         existing.getPartners().clear();
