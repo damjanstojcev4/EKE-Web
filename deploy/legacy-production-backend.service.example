@@ -1,0 +1,18 @@
+[Unit]
+Description=EKE production backend (legacy layout)
+After=network.target
+
+[Service]
+Type=simple
+User=@USER@
+WorkingDirectory=@WORKDIR@
+EnvironmentFile=-/etc/eke-production-backend.env
+ExecStartPre=/usr/bin/test -x @JAVA@
+ExecStartPre=/usr/bin/test -r app.jar
+ExecStart=/bin/sh -c 'exec "@JAVA@" -jar app.jar >>application.log 2>&1'
+KillMode=control-group
+Restart=on-failure
+RestartSec=5
+
+[Install]
+WantedBy=multi-user.target
