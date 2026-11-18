@@ -25,7 +25,7 @@ Open backend PRs against staging. No backend feature branch is created by this s
 | --- | --- | --- |
 | ci.yml | PR targeting staging/main; reusable call | Node 22 lint/typecheck/static build; Java 17 Maven verify with in-memory H2 |
 | nextjs-staging.yml | migration branch push | Checks only; no deployment |
-| deploy-staging.yml | staging push or manual run on staging | Checks always; deployment only with activation gates |
+| deploy-staging.yml | staging push or manual run on staging | Checks always; backend requires activation gates and an explicit manual input |
 | deploy-production.yml | manual only | Literal-disabled checks make deployment unreachable until reviewed cutover |
 | frontend.yaml | main frontend push/PR/manual | Existing Vite production deployment; unchanged |
 | backend.yaml | main backend push/PR/manual | Existing backend production deployment; unchanged |
@@ -39,12 +39,9 @@ GitHub may replace an older pending run with a newer one: only validated release
 activate, and backend comparison is against the last deployed source tree.
 
 The legacy frontend copies dist/ to /usr/share/nginx/html and removes its old
-contents. Next.js uses out/. The legacy backend copies jars under ~/eke and runs
-killall java. Both use DEPLOY_HOST, DEPLOY_USERNAME, DEPLOY_SSH_KEY.
-These workflows do not run deployments for staging pushes, but a legacy main
-backend deployment can kill a staging Java service on a shared VPS. Resolve that
-conflict under explicit production approval before enabling a staging backend.
-Do not change them automatically as part of this foundation.
+contents. Next.js uses out/. On a shared VPS, confirm the effective backend workflow
+on main is manual-only and scoped to eke-production-backend.service. Leave its
+state alone and exclude older workflow reruns that used global Java termination.
 
 ## GitHub configuration (operator setup required)
 
@@ -97,34 +94,71 @@ permissions. Nginx serves /srv/eke-staging/current with correct trailing-slash a
 allowing the GitHub runner's health request. Root and release-id URLs must respond
 successfully with the same release marker.
 
-For a backend, install a dedicated Java 17 service using
-deploy/eke-backend.service.example, staging port 18081, loopback only.
-Use a service account separate from the SSH deployment account; give it read access
-to releases and write access only to its data/uploads directories.
-Store secrets in /etc/eke-staging/backend.env (root-owned, restricted permissions).
-The example env file is a template, not a usable credential file. Create a separate
-H2 database (the current application uses H2, not an assumed external DB). Never
-copy production data without a separate approved anonymization process.
-Provision schema before using ddl-auto=validate; schema changes require reviewed
-migrations and backups. Use a mail sink so staging cannot email real recipients.
+### First staging backend deployment
 
-Allow the deploy account passwordless sudo ONLY for restart/stop of
-eke-staging-backend.service, not wildcard systemctl and never killall.
-Route /api/ to 127.0.0.1:18081 preserving /api/. Route uploads consistently.
-The backend health check GET /api/projects/ also checks database access.
-The frontend still has existing/demo integration behavior; deploying a backend
-does not itself wire forms/admin/pages to it.
+1. Leave `STAGING_BACKEND_ENABLED=false` during preparation. Confirm the staging
+   hostname and TLS, that `ss -ltnp 'sport = :18081'` shows a free port for a
+   first install, and that `/usr/bin/java -version` reports Java 17 or 21.
+   CI compiles for Java 17. Preserve the live frontend tree and its current
+   pointer. Use a dedicated staging SSH account and an `eke-staging` service
+   account without production access.
+2. Provision the staging directories from the preceding section. The SSH
+   account owns incoming and release directories and manages current pointers.
+   Grant `eke-staging` read/traverse access to backend releases and ownership of
+   `/srv/eke-staging-backend/data` and `/srv/eke-staging-backend/uploads`.
+   Verify that the H2 file, upload directories and their contents resolve inside
+   the staging tree and are independent of production, including symlinks and
+   hard links. Verify that neither staging account can read or write production
+   JARs, database files, uploads or environment files.
+3. Install a root-owned `/etc/systemd/system/eke-staging-backend.service`
+   from `deploy/eke-backend.service.example`, replacing `ENVIRONMENT` with
+   `staging`. Create `/etc/eke-staging/backend.env` from
+   `deploy/backend.env.example` with mode 0600 and staging-only credentials.
+   Verify the exact working directory, JAR, env-file path, loopback port 18081,
+   absolute H2 URL with `IFEXISTS=TRUE`, H2 console disabled and `ddl-auto=validate`.
+   Use a staging mail sink compatible with the configured SMTP authentication and
+   STARTTLS settings. Check the effective unit with `systemctl cat` and
+   `systemd-analyze verify /etc/systemd/system/eke-staging-backend.service`.
+   Confirm control-group kill mode, empty stop hooks and no dependencies
+   that could start, stop or restart another application unit. With separately
+   approved VPS preparation, run `systemctl daemon-reload` to register the unit.
+   Permit the staging SSH account only these commands via a validated sudoers file.
 
-Backend exposure blockers found in existing code: default admin/admin creation,
-hardcoded JWT signing material, public message read/delete routes, localhost-only
-CORS, and H2 console enabled by default. H2 is disabled by the environment template;
-the other issues need a reviewed backend PR before exposing staging. Backend source
-is deliberately preserved in this CI/CD change. Resolve legacy killall conflict too.
+   ```sudoers
+   STAGING_SSH_USER ALL=(root) NOPASSWD: /usr/bin/systemctl restart eke-staging-backend.service, /usr/bin/systemctl stop eke-staging-backend.service
+   ```
 
-Only after provisioning and review set STAGING_INFRA_READY=true and repository
-STAGING_PIPELINE_ENABLED=true. Keep STAGING_BACKEND_ENABLED=false for frontend-only
-staging. Enable backend only after all above prerequisites. Merge a feature PR or
-manually run Deploy staging on staging to deploy.
+4. For an existing staging H2 database, stop only the staging unit during an
+   approved maintenance window, back up its closed database and uploads, then
+   rehearse and apply `001-news-publication.sql` with the application's H2
+   version and staging credentials. For fresh staging, provision the schema from
+   the reviewed staging JAR in a private bootstrap service as described in the
+   [migration runbook](../deploy/staging/migrations/README.md). Use synthetic or
+   existing staging data. Keep application startup on `ddl-auto=validate`.
+5. Add the routes from `deploy/staging/nginx.conf.example` to the staging HTTPS
+   vhost only. The proxy preserves `/api/`, points at loopback port 18081,
+   and serves only the public project and homepage-news reads and uploads.
+   Spring checks news image visibility. Keep auth, admin, messages and H2
+   endpoints off the public proxy. The application still has a default admin
+   bootstrap, hardcoded JWT signing material and anonymous message routes.
+   If staging needs access controls, allow the VPS health requests to reach the
+   allowed URLs. Run `nginx -t` before an approved reload and review the
+   effective vhost routing and SELinux policy.
+6. In GitHub, verify the staging environment and pinned SSH host key, set
+   `STAGING_FRONTEND_URL` to the staging HTTPS origin, and confirm
+   `STAGING_INFRA_READY=true` and `STAGING_PIPELINE_ENABLED=true` after review.
+   Only with separate approval set `STAGING_BACKEND_ENABLED=true` and manually
+   run **Deploy staging** on `staging` with **Activate the staging backend**
+   selected. Staging pushes continue to deploy the frontend independently.
+7. Verify `systemctl status eke-staging-backend.service` and `ss -ltnp 'sport = :18081'`.
+   Require HTTP 200 at `http://127.0.0.1:18081/api/projects/` and from
+   `/api/projects/` and `/api/news/homepage` on the staging HTTPS origin. In the
+   staging browser, request the same-origin URLs and check a published image and
+   an unpublished image. Confirm the published image is served and the
+   unpublished image is inaccessible. The static Next.js frontend does not
+   currently fetch the homepage news feed, so verify access with a direct
+   browser request. Check the staging service journal and ensure the existing
+   frontend still responds.
 
 ## Releases and rollback
 
