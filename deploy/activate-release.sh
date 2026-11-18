@@ -44,7 +44,8 @@ if [[ "$backend" == true ]]; then
       test -d "$directory" && test ! -L "$directory"
     done
     [[ "$(systemctl show --value -p WorkingDirectory "$unit")" == "$api" ]]
-    [[ "$(systemctl show --value -p User "$unit")" == eke-staging ]]
+    [[ "$(systemctl show --value -p User "$unit")" == eke-staging-backend ]]
+    [[ "$(systemctl show --value -p Group "$unit")" == eke-staging-backend ]]
     [[ "$(systemctl show --value -p KillMode "$unit")" == control-group ]]
     [[ "$(systemctl show --value -p NeedDaemonReload "$unit")" == no ]]
     stop_hooks=$(systemctl show --value -p ExecStop -p ExecStopPost -p ConsistsOf \
@@ -94,10 +95,18 @@ test -s "$base/releases/$release/index.html"
 if [[ "$backend" == true ]]; then
   # Compare to the last DEPLOYED source, so a failed run is retried even on a frontend-only push.
   if [[ -z "$previous_api" ]] || ! cmp -s "$incoming/source-id" "$previous_api/source-id"; then
-    mkdir "$api/releases/$release"
-    cp "$incoming/app.jar" "$incoming/source-id" "$api/releases/$release/"
+    api_release="$api/releases/$release"
+    if [[ "$environment" == staging ]]; then
+      # Keep the inherited runtime ACL effective even with a restrictive SSH umask or upload mode.
+      mkdir -m 0750 "$api_release"
+      cp "$incoming/app.jar" "$incoming/source-id" "$api_release/"
+      chmod 0640 "$api_release/app.jar" "$api_release/source-id"
+    else
+      mkdir "$api_release"
+      cp "$incoming/app.jar" "$incoming/source-id" "$api_release/"
+    fi
     api_changed=true
-    activate "$api" "$api/releases/$release"
+    activate "$api" "$api_release"
     sudo -n systemctl restart "$unit"
   fi
   healthy=false

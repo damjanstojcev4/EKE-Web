@@ -100,33 +100,17 @@ successfully with the same release marker.
    hostname and TLS, that `ss -ltnp 'sport = :18081'` shows a free port for a
    first install, and that `/usr/bin/java -version` reports Java 17 or 21.
    CI compiles for Java 17. Preserve the live frontend tree and its current
-   pointer. Use a dedicated staging SSH account and an `eke-staging` service
-   account without production access.
-2. Provision the staging directories from the preceding section. The SSH
-   account owns incoming and release directories and manages current pointers.
-   Grant `eke-staging` read/traverse access to backend releases and ownership of
-   `/srv/eke-staging-backend/data` and `/srv/eke-staging-backend/uploads`.
-   Verify that the H2 file, upload directories and their contents resolve inside
-   the staging tree and are independent of production, including symlinks and
-   hard links. Verify that neither staging account can read or write production
-   JARs, database files, uploads or environment files.
-3. Install a root-owned `/etc/systemd/system/eke-staging-backend.service`
-   from `deploy/eke-backend.service.example`, replacing `ENVIRONMENT` with
-   `staging`. Create `/etc/eke-staging/backend.env` from
-   `deploy/backend.env.example` with mode 0600 and staging-only credentials.
+   pointer. Confirm `STAGING_USER=eke-staging` in the GitHub staging environment.
+2. Follow [the staging account and ACL setup](#staging-account-and-acl-setup).
+   `eke-staging` owns releases and manages current pointers. `eke-staging-backend`
+   can read backend releases and owns the staging database and uploads. Verify
+   both accounts' isolation from production JARs, databases, uploads and secrets
+   by reviewing the existing ownership, groups and ACLs.
+3. Follow [the staging unit and sudo setup](#staging-unit-and-sudo-setup).
    Verify the exact working directory, JAR, env-file path, loopback port 18081,
    absolute H2 URL with `IFEXISTS=TRUE`, H2 console disabled and `ddl-auto=validate`.
    Use a staging mail sink compatible with the configured SMTP authentication and
-   STARTTLS settings. Check the effective unit with `systemctl cat` and
-   `systemd-analyze verify /etc/systemd/system/eke-staging-backend.service`.
-   Confirm control-group kill mode, empty stop hooks and no dependencies
-   that could start, stop or restart another application unit. With separately
-   approved VPS preparation, run `systemctl daemon-reload` to register the unit.
-   Permit the staging SSH account only these commands via a validated sudoers file.
-
-   ```sudoers
-   STAGING_SSH_USER ALL=(root) NOPASSWD: /usr/bin/systemctl restart eke-staging-backend.service, /usr/bin/systemctl stop eke-staging-backend.service
-   ```
+   STARTTLS settings.
 
 4. For an existing staging H2 database, stop only the staging unit during an
    approved maintenance window, back up its closed database and uploads, then
@@ -135,15 +119,7 @@ successfully with the same release marker.
    the reviewed staging JAR in a private bootstrap service as described in the
    [migration runbook](../deploy/staging/migrations/README.md). Use synthetic or
    existing staging data. Keep application startup on `ddl-auto=validate`.
-5. Add the routes from `deploy/staging/nginx.conf.example` to the staging HTTPS
-   vhost only. The proxy preserves `/api/`, points at loopback port 18081,
-   and serves only the public project and homepage-news reads and uploads.
-   Spring checks news image visibility. Keep auth, admin, messages and H2
-   endpoints off the public proxy. The application still has a default admin
-   bootstrap, hardcoded JWT signing material and anonymous message routes.
-   If staging needs access controls, allow the VPS health requests to reach the
-   allowed URLs. Run `nginx -t` before an approved reload and review the
-   effective vhost routing and SELinux policy.
+5. Follow [the staging public proxy checks](#staging-public-proxy-checks).
 6. In GitHub, verify the staging environment and pinned SSH host key, set
    `STAGING_FRONTEND_URL` to the staging HTTPS origin, and confirm
    `STAGING_INFRA_READY=true` and `STAGING_PIPELINE_ENABLED=true` after review.
@@ -159,6 +135,186 @@ successfully with the same release marker.
    currently fetch the homepage news feed, so verify access with a direct
    browser request. Check the staging service journal and ensure the existing
    frontend still responds.
+
+### Staging account and ACL setup
+
+Run from the reviewed staging checkout in a root Bash shell during approved
+staging preparation. Keep backend activation disabled, and ensure the deploy
+account has no concurrent backend file operations. Confirm the staging
+database is closed and the existing backups are verified. Confirm `/srv` is a
+real directory and use `findmnt` to review the backend tree for nested mounts
+and bind mounts. Proceed only with dedicated staging storage and no nested mounts.
+The commands require the Linux `acl` tools (`setfacl` and `getfacl`) and a
+filesystem supporting POSIX ACLs. The setup replaces ACLs on the named staging
+storage paths. Incoming artifacts and the frontend remain under the existing
+deployment account setup.
+
+```bash
+(
+  set -euo pipefail
+  ssh_user=eke-staging
+  runtime=eke-staging-backend
+  backend=/srv/eke-staging-backend
+  command -v setfacl getfacl >/dev/null
+  getent passwd "$ssh_user" >/dev/null
+  test -d /srv && test ! -L /srv
+  for dir in "$backend" "$backend/releases" "$backend/data" "$backend/uploads"; do
+    test -d "$dir" && test ! -L "$dir" || exit 1
+  done
+  if [ -L "$backend/current" ]; then
+    test "$(stat -c %U -- "$backend/current")" = "$ssh_user"
+  else
+    test ! -e "$backend/current"
+  fi
+  unsafe=$(find "$backend/releases" "$backend/data" "$backend/uploads" -xdev \
+    \( ! -type d ! -type f -o -type f -links +1 \) -print -quit)
+  test -z "$unsafe"
+  wrong_owner=$(find "$backend/releases" -xdev ! -user "$ssh_user" -print -quit)
+  test -z "$wrong_owner"
+
+  # Run once. If the identity already exists, inspect it before reusing it.
+  useradd --system --user-group --no-create-home --home-dir /nonexistent \
+    --shell /usr/sbin/nologin "$runtime"
+  passwd -l "$runtime"
+  id "$runtime"
+
+  chown root:root "$backend"
+  setfacl -k -- "$backend"
+  setfacl --set "u::rwx,u:$ssh_user:rwx,u:$runtime:--x,g::---,m::rwx,o::---" -- "$backend"
+  chmod +t -- "$backend"
+  find "$backend/releases" -xdev -type d -exec setfacl -k -- {} +
+  find "$backend/releases" -xdev -type d -exec setfacl --set \
+    "u::rwx,u:$runtime:r-x,g::---,m::r-x,o::---,d:u::rwx,d:u:$runtime:r-x,d:g::---,d:m::r-x,d:o::---" -- {} +
+  find "$backend/releases" -xdev -type f -exec setfacl --set \
+    "u::rw-,u:$runtime:r--,g::---,m::r--,o::---" -- {} +
+
+  setfacl -R -P -b -k -- "$backend/data" "$backend/uploads"
+  chown -R -P --no-dereference "$runtime:$runtime" -- "$backend/data" "$backend/uploads"
+  chmod -R u-s,g-s,o-t,u=rwX,go= -- "$backend/data" "$backend/uploads"
+
+  # Exercise the modes used by activation with a new release directory and a 0600 source.
+  probe="$backend/releases/.runtime-acl-check-$$"
+  runuser -u "$ssh_user" -- bash -eu -c '
+    umask 077
+    mkdir -m 0750 "$1"
+    printf probe > "$1/source"
+    chmod 0600 "$1/source"
+    cp "$1/source" "$1/app.jar"
+    chmod 0640 "$1/app.jar"
+  ' bash "$probe"
+  getfacl -p -- "$backend" "$backend/releases" "$probe/app.jar"
+  runuser -u "$runtime" -- bash -eu -c '
+    test -r "$1/app.jar"
+    for path in "$1" "$1/app.jar" "$2" "$2/releases"; do
+      test ! -w "$path" || exit 1
+    done
+    for dir in "$2/data" "$2/uploads"; do
+      file=$(mktemp "$dir/.runtime-acl-check.XXXXXX")
+      rm -- "$file"
+    done
+  ' bash "$probe" "$backend"
+  runuser -u "$ssh_user" -- test ! -x "$backend/data"
+  runuser -u "$ssh_user" -- test ! -x "$backend/uploads"
+  runuser -u "$ssh_user" -- rm -- "$probe/source" "$probe/app.jar"
+  runuser -u "$ssh_user" -- rmdir -- "$probe"
+)
+```
+
+If the runtime identity already exists, confirm it has a locked password,
+`/usr/sbin/nologin`, no home or SSH keys, and only its own group. Then skip
+`useradd`. Review SSH configuration for any policy that grants keys or SSH
+access to service identities. The root-owned sticky backend directory lets the
+deploy account replace its own `current` symlink and protects the runtime-owned
+`data` and `uploads` entries from deployment-account renames. The release
+directory's default ACL grants the runtime account read/traverse access to
+future releases. Activation sets the
+staging directory to `0750` and JAR and source marker to `0640` to keep the
+inherited ACL mask effective with restrictive upload modes and umasks.
+
+### Staging unit and sudo setup
+
+Run from the reviewed checkout as root. Review any existing staging env file
+before replacing it. Supply the staging-only credentials with a root editor.
+
+```bash
+(
+  set -euo pipefail
+  test ! -L /etc/eke-staging
+  install -d -o root -g root -m 0700 /etc/eke-staging
+  test ! -L /etc/eke-staging/backend.env
+  if [ ! -e /etc/eke-staging/backend.env ]; then
+    install -o root -g root -m 0600 deploy/backend.env.example /etc/eke-staging/backend.env
+  fi
+  test -f /etc/eke-staging/backend.env
+  test "$(stat -c %h /etc/eke-staging/backend.env)" = 1
+  chown root:root /etc/eke-staging/backend.env
+  chmod 0600 /etc/eke-staging/backend.env
+  "${EDITOR:-vi}" /etc/eke-staging/backend.env
+
+  unit_tmp=$(mktemp)
+  trap 'rm -f -- "$unit_tmp"' EXIT
+  sed -e 's/ENVIRONMENT/staging/g' -e 's/RUNTIME_ACCOUNT/eke-staging-backend/g' \
+    deploy/eke-backend.service.example > "$unit_tmp"
+  install -o root -g root -m 0644 "$unit_tmp" /etc/systemd/system/eke-staging-backend.service
+  systemd-analyze verify /etc/systemd/system/eke-staging-backend.service
+  systemctl daemon-reload
+  systemctl cat eke-staging-backend.service
+  systemctl show -p User -p Group -p WorkingDirectory -p ProtectSystem -p ReadWritePaths \
+    -p KillMode -p ExecStop -p ExecStopPost -p NeedDaemonReload eke-staging-backend.service
+
+  visudo -f /etc/sudoers.d/eke-staging-backend
+  chown root:root /etc/sudoers.d/eke-staging-backend
+  chmod 0440 /etc/sudoers.d/eke-staging-backend
+  visudo -c
+)
+```
+
+Enter this exact line in `visudo`. Check the effective unit and drop-ins for
+`User` and `Group` both set to `eke-staging-backend`, `KillMode=control-group`,
+empty stop hooks, and dependencies scoped to this service. The deploy account
+can select the JAR this unprivileged unit runs, so keep unit files and drop-ins
+root-controlled and free of privileged hooks.
+
+```sudoers
+eke-staging ALL=(root) NOPASSWD: /usr/bin/systemctl restart eke-staging-backend.service, /usr/bin/systemctl stop eke-staging-backend.service
+```
+
+Query sudo policy without executing a service action. The first two command
+queries must succeed and the remaining queries must be denied. Review the full
+list for grants inherited from groups or other sudoers files. The runtime
+account must have no sudo grants.
+
+```bash
+sudo -l -U eke-staging
+sudo -l -U eke-staging-backend
+sudo -n -l -U eke-staging -- systemctl restart eke-staging-backend.service
+sudo -n -l -U eke-staging -- systemctl stop eke-staging-backend.service
+sudo -n -l -U eke-staging -- /usr/bin/systemctl start eke-staging-backend.service
+sudo -n -l -U eke-staging -- /usr/bin/systemctl restart eke-staging-backend.service ssh.service
+sudo -n -l -U eke-staging -- /usr/bin/systemctl stop ssh.service
+sudo -n -l -U eke-staging -- /usr/bin/systemctl daemon-reload
+```
+
+### Staging public proxy checks
+
+Use the route allowlist from `deploy/staging/nginx.conf.example` in the staging
+HTTPS vhost. Preserve `/api/` and forward to loopback port 18081. Allow GET/HEAD
+at Nginx for the project list, title, recent and UUID lookups, the homepage news
+feed, and single-file reads from `uploads/news`, `uploads/images` and `uploads/pdf`.
+Spring decides whether to serve a HEAD request and checks news image visibility.
+Keep uploads behind Spring and keep `/api/auth`, `/api/admin`, `/api/messages`,
+other news routes, and the H2 console out of the proxy. The app still has a default
+admin bootstrap, hardcoded JWT signing material and anonymous message routes.
+Check the effective staging vhost for broader API proxy rules and run `nginx -t`
+before an approved reload. Any staging access control must allow the VPS health
+requests to the explicitly allowed paths.
+
+After separately approved activation, verify HTTP 200 on `GET /api/projects/`
+and `GET /api/news/homepage` and test a known public upload and an unpublished
+news image. Verify the vhost returns 404 on `/api/auth/authenticate`, `/api/admin`,
+`/api/messages`, `/api/news` and `/api/h2-console/`. Read-method access logs and
+the effective `limit_except GET` configuration can verify the write boundary
+without submitting a mutation to the staging application.
 
 ## Releases and rollback
 

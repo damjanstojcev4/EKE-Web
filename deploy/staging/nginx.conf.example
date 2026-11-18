@@ -5,8 +5,9 @@ server {
     root /srv/eke-staging/current;
     index index.html;
     add_header X-Robots-Tag "noindex, nofollow" always;
+    # Project list, title (including recent), UUID lookup, homepage news and single-file uploads.
     # Keep the API path intact and let Spring enforce news image visibility.
-    location ~ ^/api/(projects(?:/.*)?|news/homepage|uploads/(?:news|images|pdf)/[^/]+)$ {
+    location ~ "^/api/(projects/(?:[^/;]+|get/[0-9a-fA-F]{8}(?:-[0-9a-fA-F]{4}){3}-[0-9a-fA-F]{12})?|news/homepage|uploads/(?:news|images|pdf)/[^/;]+)$" {
         limit_except GET { deny all; }
         proxy_pass http://127.0.0.1:18081;
         proxy_set_header Host $host;
@@ -15,6 +16,7 @@ server {
         proxy_set_header Authorization "";
         proxy_set_header Cookie "";
     }
+    location = /api { return 404; }
     location /api/ { return 404; }
     location = /release-id.txt {
         add_header X-Robots-Tag "noindex, nofollow" always;
