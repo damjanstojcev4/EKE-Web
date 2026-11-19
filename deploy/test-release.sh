@@ -71,7 +71,8 @@ case "${1:-}" in
     [[ "$2" == --value && "$3" == -p ]]
     case "$4" in
       WorkingDirectory) echo "$TEST_BASE-backend";;
-      User) echo "${MOCK_UNIT_USER:-eke-staging}";;
+      User) echo "${MOCK_UNIT_USER:-eke-staging-backend}";;
+      Group) echo "${MOCK_UNIT_GROUP:-eke-staging-backend}";;
       KillMode) echo control-group;;
       NeedDaemonReload) echo no;;
       ExecStop) ;;
@@ -109,9 +110,13 @@ fixture() {
   printf '%s\n' cccccccccccccccccccccccccccccccccccccccc > "$TEST_BASE/incoming/$MOCK_RELEASE/source-id"
 }
 fixture success
-MOCK_HEALTH=ok bash "$scratch/activate.sh" staging "$MOCK_RELEASE" https://example.invalid true
+chmod 0600 "$TEST_BASE/incoming/$MOCK_RELEASE/"{app.jar,source-id}
+(umask 077; MOCK_HEALTH=ok bash "$scratch/activate.sh" staging "$MOCK_RELEASE" https://example.invalid true)
 [[ "$(readlink "$TEST_BASE/current")" == "$TEST_BASE/releases/$MOCK_RELEASE" ]]
 [[ "$(readlink "$TEST_BASE-backend/current")" == "$TEST_BASE-backend/releases/$MOCK_RELEASE" ]]
+[[ "$(stat -c %a "$TEST_BASE-backend/current/")" == 750 ]]
+[[ "$(stat -c %a "$TEST_BASE-backend/current/app.jar")" == 640 ]]
+[[ "$(stat -c %a "$TEST_BASE-backend/current/source-id")" == 640 ]]
 grep -q 'restart eke-staging-backend.service' "$MOCK_SERVICE_LOG"
 fixture failure
 if MOCK_HEALTH=fail bash "$scratch/activate.sh" staging "$MOCK_RELEASE" https://example.invalid true; then exit 1; fi
@@ -125,8 +130,12 @@ if MOCK_HEALTH=redirect bash "$scratch/activate.sh" staging "$MOCK_RELEASE" http
 [[ "$(tail -n 1 "$MOCK_SERVICE_LOG")" == '-n systemctl stop eke-staging-backend.service' ]]
 fixture wrong_unit
 before=$(wc -l < "$MOCK_SERVICE_LOG")
-if MOCK_UNIT_USER=root bash "$scratch/activate.sh" staging "$MOCK_RELEASE" https://example.invalid true; then exit 1; fi
+for identity in MOCK_UNIT_USER=root MOCK_UNIT_USER=eke-staging MOCK_UNIT_GROUP=eke-staging; do
+  if env "$identity" bash "$scratch/activate.sh" staging "$MOCK_RELEASE" https://example.invalid true; then exit 1; fi
+done
+[[ "$(readlink "$TEST_BASE/current")" == "$TEST_BASE/releases/old" ]]
 [[ "$(readlink "$TEST_BASE-backend/current")" == "$TEST_BASE-backend/releases/old" ]]
+[[ ! -e "$TEST_BASE-backend/releases/$MOCK_RELEASE" ]]
 [[ "$(wc -l < "$MOCK_SERVICE_LOG")" == "$before" ]]
 fixture frontend_failure
 if MOCK_HEALTH=fail bash "$scratch/activate.sh" staging "$MOCK_RELEASE" https://example.invalid false; then exit 1; fi

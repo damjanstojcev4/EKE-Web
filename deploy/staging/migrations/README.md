@@ -14,12 +14,12 @@ legacy item. Legacy items stay visible through `GET /api/news` and
    before copying the database. Back up the closed staging database (typically
    `mydb.mv.db`) and uploads to a restricted location and verify the backup.
 3. Run the SQL with H2 2.3.232, the version bundled in this staging build. Open
-   H2 Shell as `eke-staging`, using the configured staging user and entering the
+   H2 Shell as `eke-staging-backend`, using the configured database user and entering the
    password interactively. Make the reviewed migration and matching H2 JAR
    readable to that account before running these commands.
 
    ```bash
-   sudo -u eke-staging /usr/bin/java -cp /path/to/h2-2.3.232.jar org.h2.tools.Shell
+   sudo -u eke-staging-backend /usr/bin/java -cp /path/to/h2-2.3.232.jar org.h2.tools.Shell
    ```
 
    At the prompts, enter
@@ -51,7 +51,8 @@ legacy item. Legacy items stay visible through `GET /api/news` and
 For a first install with no staging database, initialize the schema from the
 reviewed staging JAR instead of applying the legacy-table migration. With
 separate VPS preparation approval, put that JAR at a staging-only bootstrap
-path readable by `eke-staging`. Confirm the staging unit is stopped, check that
+path readable by `eke-staging-backend`. Keep the bootstrap JAR and its parent
+directory writable only by the operator. Confirm the staging unit is stopped, check that
 both the H2 file and its symlink path are absent, and confirm the staging env
 file contains the intended credentials. Run the bootstrap as an isolated
 transient service. The explicit JDBC override allows file creation only at the
@@ -61,7 +62,7 @@ staging path and the private network keeps the temporary web listener isolated.
 sudo test ! -e /srv/eke-staging-backend/data/mydb.mv.db &&
 sudo test ! -L /srv/eke-staging-backend/data/mydb.mv.db &&
 sudo systemd-run --unit=eke-staging-schema-bootstrap \
-  -p User=eke-staging -p Group=eke-staging \
+  -p User=eke-staging-backend -p Group=eke-staging-backend \
   -p WorkingDirectory=/srv/eke-staging-backend \
   -p EnvironmentFile=/etc/eke-staging/backend.env \
   -p PrivateNetwork=yes -p ProtectHome=yes -p ProtectSystem=strict \

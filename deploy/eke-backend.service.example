@@ -1,11 +1,12 @@
 # TEMPLATE: replace ENVIRONMENT with staging (port 18081) or production (18082).
+# Replace RUNTIME_ACCOUNT with eke-staging-backend for staging or eke-production for production.
 # Install as /etc/systemd/system/eke-ENVIRONMENT-backend.service after review.
 [Unit]
 Description=EKE ENVIRONMENT backend
 After=network.target
 [Service]
-User=eke-ENVIRONMENT
-Group=eke-ENVIRONMENT
+User=RUNTIME_ACCOUNT
+Group=RUNTIME_ACCOUNT
 WorkingDirectory=/srv/eke-ENVIRONMENT-backend
 EnvironmentFile=/etc/eke-ENVIRONMENT/backend.env
 ExecStart=/usr/bin/java -jar /srv/eke-ENVIRONMENT-backend/current/app.jar
