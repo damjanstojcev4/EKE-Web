@@ -1,0 +1,22 @@
+name: Deploy staging
+
+on:
+  workflow_dispatch:
+    inputs:
+      deploy_backend:
+        description: Activate the staging backend
+        type: boolean
+        required: false
+        default: false
+
+permissions:
+  contents: read
+
+jobs:
+  default-branch-guard:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Prevent deployment from main
+        run: |
+          echo "::error::This is a registration-only workflow. Select the staging branch to deploy."
+          exit 1
