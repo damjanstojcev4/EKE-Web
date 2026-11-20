@@ -30,6 +30,29 @@ public class NewsController {
 
     private static final Path NEWS_UPLOAD_DIR = Path.of(System.getProperty("user.dir"), "uploads", "news");
     private final NewsService newsService;
+    private final com.ece.ece_website.repository.NewsRepository repository;
+    private final com.ece.ece_website.service.ContentValidation contentValidation;
+
+    @GetMapping("/public")
+    public Object publicNews(@RequestParam(defaultValue="0") int page, @RequestParam(defaultValue="12") int size,
+                             @RequestParam(required=false) News.Category category) {
+        if (page < 0 || size < 1 || size > 100) throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Invalid pagination");
+        return repository.publicPage(java.time.Instant.now(), category, org.springframework.data.domain.PageRequest.of(page, size,
+                org.springframework.data.domain.Sort.by(org.springframework.data.domain.Sort.Order.desc("publishedAt"), org.springframework.data.domain.Sort.Order.desc("id")))).map(NewsMapper::toDTO);
+    }
+    @GetMapping("/slug/{slug}")
+    public ResponseEntity<NewsResponseDTO> bySlug(@PathVariable String slug) {
+        News n = repository.findBySlug(slug).filter(item -> Boolean.TRUE.equals(item.getPublished()) && item.getPublishedAt() != null && !item.getPublishedAt().isAfter(java.time.Instant.now()))
+                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Article unavailable"));
+        return ResponseEntity.ok().cacheControl(CacheControl.noStore()).body(NewsMapper.toDTO(n));
+    }
+
+    @GetMapping("/public/{id}")
+    public ResponseEntity<NewsResponseDTO> publicById(@PathVariable Long id) {
+        return newsService.findById(id, false)
+                .map(n -> ResponseEntity.ok().cacheControl(CacheControl.noStore()).body(NewsMapper.toDTO(n)))
+                .orElseGet(() -> ResponseEntity.notFound().cacheControl(CacheControl.noStore()).build());
+    }
 
     @GetMapping
     public ResponseEntity<List<NewsResponseDTO>> getAllNews(Authentication authentication) {
@@ -53,10 +76,11 @@ public class NewsController {
     @PostMapping(consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
     public ResponseEntity<NewsResponseDTO> createNews(
             @ModelAttribute NewsWriteRequest request,
-            @RequestParam(value = "image", required = false) MultipartFile imageFile) throws IOException {
+            @RequestParam(value = "image", required = false) MultipartFile imageFile,
+            @RequestParam(value = "hero", required = false) MultipartFile heroFile) throws IOException {
         News news = new News();
         news.setPublished(false);
-        return save(news, request, imageFile);
+        return save(news, request, imageFile, heroFile);
     }
 
     @PutMapping(value = "/{id}", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
@@ -64,10 +88,11 @@ public class NewsController {
     public ResponseEntity<NewsResponseDTO> updateNews(
             @PathVariable Long id,
             @ModelAttribute NewsWriteRequest request,
-            @RequestParam(value = "image", required = false) MultipartFile imageFile) throws IOException {
+            @RequestParam(value = "image", required = false) MultipartFile imageFile,
+            @RequestParam(value = "hero", required = false) MultipartFile heroFile) throws IOException {
         News existing = newsService.findByIdForUpdate(id)
                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "News not found"));
-        return save(existing, request, imageFile);
+        return save(existing, request, imageFile, heroFile);
     }
 
     @DeleteMapping("/{id}")
@@ -76,7 +101,28 @@ public class NewsController {
         return ResponseEntity.noContent().build();
     }
 
-    private ResponseEntity<NewsResponseDTO> save(News news, NewsWriteRequest request, MultipartFile image) throws IOException {
+    private ResponseEntity<NewsResponseDTO> save(News news, NewsWriteRequest request, MultipartFile image, MultipartFile hero) throws IOException {
+        if (request.slug() != null) news.setSlug(contentValidation.slug(request.slug()));
+        if (news.getSlug() == null) news.setSlug("news-" + UUID.randomUUID());
+        if (repository.existsBySlugAndIdNot(news.getSlug(), news.getId() == null ? -1L : news.getId())) throw new ResponseStatusException(HttpStatus.CONFLICT, "Slug already exists");
+        if (request.contentJson() != null) news.setContentJson(contentValidation.blocks(request.contentJson()));
+        if (request.emphasis() != null) news.setEmphasis(contentValidation.text(request.emphasis(), 1200));
+        if (request.introduction() != null) news.setIntroduction(contentValidation.text(request.introduction(), 4000));
+        if (request.heroAlt() != null) news.setHeroAlt(contentValidation.text(request.heroAlt(), 255));
+        if (request.relatedIds() != null) {
+            if (!request.relatedIds().matches("([0-9]+(,[0-9]+)*)?")) throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Related IDs must be comma-separated article IDs");
+            news.setRelatedIds(contentValidation.text(request.relatedIds(), 2000));
+        }
+        if(request.placement()!=null) {
+            if(!java.util.Set.of("LATEST","FEATURED","BIG_STORY","COMMUNITY","MEDIA").contains(request.placement())) throw new ResponseStatusException(HttpStatus.BAD_REQUEST,"Invalid placement");
+            news.setPlacement(request.placement());
+        }
+        if(request.mediaKind()!=null) {
+            if(!java.util.Set.of("","AUDIO","VIDEO").contains(request.mediaKind())) throw new ResponseStatusException(HttpStatus.BAD_REQUEST,"Invalid media kind");
+            news.setMediaKind(request.mediaKind());
+        }
+        if(request.mediaUrl()!=null) news.setMediaUrl(contentValidation.url(request.mediaUrl()));
+        news.setUpdatedAt(java.time.Instant.now());
         if (request.shortDescription() != null) news.setShortDescription(request.shortDescription());
         if (request.instagramUrl() != null) news.setInstagramUrl(request.instagramUrl());
         if (request.title() != null) news.setTitle(request.title().strip());
@@ -91,6 +137,8 @@ public class NewsController {
 
         boolean hasNewImage = image != null && !image.isEmpty();
         validate(news, hasNewImage);
+        if (Boolean.TRUE.equals(news.getPublished()) && ((hero != null && !hero.isEmpty()) || news.getHeroFilePath() != null) && blank(news.getHeroAlt())) throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Hero image requires alternative text");
+        if (hero != null && !hero.isEmpty()) news.setHeroFilePath(contentValidation.upload(hero, NEWS_UPLOAD_DIR, false));
         if (hasNewImage) {
             String originalName = Objects.toString(image.getOriginalFilename(), "image");
             String lowerName = originalName.toLowerCase(java.util.Locale.ROOT);

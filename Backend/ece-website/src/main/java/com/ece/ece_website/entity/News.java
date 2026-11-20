@@ -46,6 +46,25 @@ public class News {
     // Null identifies a legacy record that has never used the publishing workflow.
     private Boolean published;
 
+    @Column(length = 160, unique = true)
+    private String slug;
+    @Column(length = 1200)
+    private String emphasis;
+    @Column(length = 4000)
+    private String introduction;
+    @Lob
+    private String contentJson;
+    private String heroFilePath;
+    private String heroAlt;
+    @Column(length = 2000)
+    private String relatedIds;
+    private Instant updatedAt;
+    @Column(length=20) private String placement;
+    @Column(length=10) private String mediaKind;
+    @Column(length=2000) private String mediaUrl;
+    @PreUpdate
+    protected void onUpdate() { updatedAt = Instant.now(); }
+
     @PrePersist
     protected void onCreate() {
         if (createdAt == null)

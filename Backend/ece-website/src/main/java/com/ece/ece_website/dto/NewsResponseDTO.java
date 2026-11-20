@@ -20,4 +20,7 @@ public class NewsResponseDTO {
     private String imageAlt;
     private Instant publishedAt;
     private Boolean published;
+    private String slug, emphasis, introduction, contentJson, heroUrl, heroAlt, relatedIds;
+    private Instant updatedAt;
+    private String placement, mediaKind, mediaUrl;
 }

@@ -1,11 +1,29 @@
 export type Publication = "draft" | "published" | "scheduled" | "legacy";
 export type NewsRecord = {
-  id: number; title: string | null; shortDescription: string; instagramUrl: string;
-  category: "LATEST_NEWS" | "OPEN_CALL" | null; imageUrl: string | null;
-  imageAlt: string | null; published: boolean | null; publishedAt: string | null;
+  placement?: string;
+  mediaKind?: string;
+  mediaUrl?: string;
+  slug?: string;
+  emphasis?: string;
+  introduction?: string;
+  contentJson?: string;
+  heroAlt?: string;
+  relatedIds?: string;
+  id: number;
+  title: string | null;
+  shortDescription: string;
+  instagramUrl: string;
+  category: "LATEST_NEWS" | "OPEN_CALL" | null;
+  imageUrl: string | null;
+  imageAlt: string | null;
+  published: boolean | null;
+  publishedAt: string | null;
 };
 
-export function publicationState(news: Pick<NewsRecord, "published" | "publishedAt">, now = Date.now()): Publication {
+export function publicationState(
+  news: Pick<NewsRecord, "published" | "publishedAt">,
+  now = Date.now(),
+): Publication {
   if (news.published === null) return "legacy";
   if (!news.published || !news.publishedAt) return "draft";
   return new Date(news.publishedAt).getTime() > now ? "scheduled" : "published";
@@ -20,19 +38,35 @@ export function localPublicationTime(instant: string | null): string {
 }
 
 export function publicationInstant(local: string): string {
-  if (!local || !Number.isFinite(new Date(local).getTime())) throw new Error("Choose a valid publication date and time.");
+  if (!local || !Number.isFinite(new Date(local).getTime()))
+    throw new Error("Choose a valid publication date and time.");
   // Reject nonexistent wall times during the spring daylight-saving transition.
   const normalized = local.length === 16 ? `${local}:00` : local;
   const instant = new Date(local).toISOString();
-  if (localPublicationTime(instant) !== normalized) throw new Error("This time does not exist in your timezone. Choose another time.");
+  if (localPublicationTime(instant) !== normalized)
+    throw new Error(
+      "This time does not exist in your timezone. Choose another time.",
+    );
   return instant;
 }
 
-export function publicationFields(state: Exclude<Publication, "legacy">, local: string, original: string | null = null, now = Date.now()) {
+export function publicationFields(
+  state: Exclude<Publication, "legacy">,
+  local: string,
+  original: string | null = null,
+  now = Date.now(),
+) {
   if (state === "draft") return { published: "false" };
-  const instant = original && localPublicationTime(original) === local ? original : publicationInstant(local);
+  const instant =
+    original && localPublicationTime(original) === local
+      ? original
+      : publicationInstant(local);
   const future = new Date(instant).getTime() > now;
-  if (state === "scheduled" && !future) throw new Error("Scheduled publication must be in the future.");
-  if (state === "published" && future) throw new Error("Choose Schedule for a future publication time, or Publish now.");
+  if (state === "scheduled" && !future)
+    throw new Error("Scheduled publication must be in the future.");
+  if (state === "published" && future)
+    throw new Error(
+      "Choose Schedule for a future publication time, or Publish now.",
+    );
   return { published: "true", publishedAt: instant };
 }

@@ -1,5 +1,12 @@
 # Staging H2 news migration
 
+The full integration also adds `002-news-details.sql`, `003-project-details.sql`
+and `004-opportunities-training.sql`. Apply them in order **only after backup and
+offline rehearsal**, using the same procedure below. See
+`docs/STAGING_INTEGRATION_DEPLOYMENT.md` for rollout ordering, exact prerequisites
+and rollback implications. Automated tests run each additive migration twice on
+isolated legacy schemas and validate against Hibernate; no live schema update is enabled.
+
 `001-news-publication.sql` adds five nullable columns and an index to the existing
 `news` table. It preserves all current values. A null `published` identifies a
 legacy item. Phase 1 hides legacy items from every anonymous News read and

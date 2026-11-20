@@ -25,10 +25,14 @@ public interface NewsRepository extends JpaRepository<News, Long> {
     @Query("select n from News n where n.id = :id and " + PUBLIC_VISIBILITY)
     Optional<News> findPublicNewsById(Long id, Instant now);
 
-    @Query("select count(n) > 0 from News n where n.imageFilePath = :filename and " + PUBLIC_VISIBILITY)
+    @Query("select count(n) > 0 from News n where (n.imageFilePath = :filename or n.heroFilePath = :filename) and " + PUBLIC_VISIBILITY)
     boolean hasPublicImage(String filename, Instant now);
 
-    boolean existsByImageFilePath(String filename);
+    boolean existsByImageFilePathOrHeroFilePath(String filename, String heroFilename);
+    Optional<News> findBySlug(String slug);
+    boolean existsBySlugAndIdNot(String slug, Long id);
+    @Query("select n from News n where " + PUBLIC_VISIBILITY + " and (:category is null or n.category = :category)")
+    org.springframework.data.domain.Page<News> publicPage(Instant now, News.Category category, org.springframework.data.domain.Pageable pageable);
 
     @Lock(LockModeType.PESSIMISTIC_WRITE)
     @Query("select n from News n where n.id = :id")

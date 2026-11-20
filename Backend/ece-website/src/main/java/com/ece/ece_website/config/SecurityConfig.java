@@ -28,9 +28,9 @@ public class SecurityConfig {
                                 .cors(cors -> cors.configurationSource(corsConfigurationSource()))
                                 .csrf(csrf -> csrf.csrfTokenRepository(new CookieCsrfTokenRepository())
                                         .csrfTokenRequestHandler(new CsrfTokenRequestAttributeHandler())
-                                        // Preserve existing bearer clients; browser News writes require CSRF.
+                                        // Preserve bearer clients; every cookie-authenticated write requires CSRF.
                                         .requireCsrfProtectionMatcher(request -> {
-                                                if (!request.getServletPath().startsWith("/news") ||
+                                                if (
                                                     java.util.Set.of("GET", "HEAD", "OPTIONS").contains(request.getMethod())) return false;
                                                 var cookies = request.getCookies();
                                                 return cookies != null && java.util.Arrays.stream(cookies)
@@ -45,16 +45,20 @@ public class SecurityConfig {
                                                 .requestMatchers("/auth/me").hasAuthority(Role.ADMIN.name())
                                                 .requestMatchers("/auth/**").permitAll()
                                                 .requestMatchers("/error").permitAll()
+                                                .requestMatchers("/opportunities/admin/**", "/training/admin/**").hasAuthority(Role.ADMIN.name())
+                                                .requestMatchers(HttpMethod.GET, "/opportunities/public", "/opportunities/slug/**", "/training/sessions", "/training/slug/**").permitAll()
+                                                .requestMatchers("/opportunities/**", "/training/**").hasAuthority(Role.ADMIN.name())
                                                 .requestMatchers(HttpMethod.GET, "/projects/**").permitAll()
+                                                .requestMatchers("/projects/**").hasAuthority(Role.ADMIN.name())
                                                 .requestMatchers(HttpMethod.GET, "/news/**").permitAll()
                                                 .requestMatchers(HttpMethod.HEAD, "/news/**").permitAll()
                                                 .requestMatchers("/news/**").hasAuthority(Role.ADMIN.name())
                                                 .requestMatchers(HttpMethod.GET, "/uploads/**").permitAll()
                                                 .requestMatchers(HttpMethod.HEAD, "/uploads/news/**").permitAll()
                                                 .requestMatchers(HttpMethod.POST, "/messages/**").permitAll()
-                                                .requestMatchers(HttpMethod.GET, "/messages/**").permitAll()
-                                                .requestMatchers(HttpMethod.DELETE, "/messages/**").permitAll()
-                                                .requestMatchers("/h2-console/**").permitAll()
+                                                .requestMatchers(HttpMethod.GET, "/messages/**").hasAuthority(Role.ADMIN.name())
+                                                .requestMatchers(HttpMethod.DELETE, "/messages/**").hasAuthority(Role.ADMIN.name())
+                                                .requestMatchers("/h2-console/**").denyAll()
                                                 .requestMatchers("/test/public").permitAll()
                                                 .requestMatchers("/test/secure").authenticated()
                                                 .anyRequest().authenticated())

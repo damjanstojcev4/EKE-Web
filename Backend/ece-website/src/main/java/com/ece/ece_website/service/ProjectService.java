@@ -24,7 +24,7 @@ public class ProjectService {
 
     public Project findByName(String title) {
         return projectRepository.findByTitle(title)
-                .orElseThrow(() -> new RuntimeException("Project with name " + title + " not found"));
+                .orElseThrow(() -> new org.springframework.web.server.ResponseStatusException(org.springframework.http.HttpStatus.NOT_FOUND, "Project unavailable"));
 
         // use custom exception class
         // and DTO to throw error code and not crash the app
@@ -32,14 +32,14 @@ public class ProjectService {
 
     public ProjectResponseDTO findByUuid(UUID uuid) {
         Project project = projectRepository.findByUuid(uuid)
-                .orElseThrow(() -> new RuntimeException("Project with uuid " + uuid + " not found"));
+                .orElseThrow(() -> new org.springframework.web.server.ResponseStatusException(org.springframework.http.HttpStatus.NOT_FOUND, "Project unavailable"));
 
         return ProjectMapper.toDTO(project);
     }
 
     public Project findEntityByUuid(UUID uuid) {
         return projectRepository.findByUuid(uuid)
-                .orElseThrow(() -> new RuntimeException("Project with uuid " + uuid + " not found"));
+                .orElseThrow(() -> new org.springframework.web.server.ResponseStatusException(org.springframework.http.HttpStatus.NOT_FOUND, "Project unavailable"));
     }
 
     public List<Project> latestProject() {
@@ -53,7 +53,7 @@ public class ProjectService {
 
     public void deleteProject(UUID uuid) {
         Project project = projectRepository.findByUuid(uuid)
-                .orElseThrow(() -> new RuntimeException("Project with UUID " + uuid + " not found"));
+                .orElseThrow(() -> new org.springframework.web.server.ResponseStatusException(org.springframework.http.HttpStatus.NOT_FOUND, "Project unavailable"));
 
         projectRepository.delete(project);
     }

@@ -30,6 +30,44 @@ public class ProjectController {
     @Autowired
     private ProjectService projectService;
 
+    @Autowired private com.ece.ece_website.service.ContentValidation validation;
+    @PostMapping(value="/media", consumes=MediaType.MULTIPART_FORM_DATA_VALUE)
+    public java.util.Map<String,String> uploadSupportingMedia(@RequestParam("file") MultipartFile file) throws IOException {
+        boolean pdf="application/pdf".equals(file.getContentType());
+        String filename=validation.upload(file,java.nio.file.Path.of(pdf?PDF_UPLOAD_DIR:IMAGE_UPLOAD_DIR),pdf);
+        return java.util.Map.of("url","/api/uploads/"+(pdf?"pdf/":"images/")+filename);
+    }
+    @GetMapping("/public")
+    public List<ProjectResponseDTO> publicProjects(@RequestParam(required=false) ProjectStatus status) {
+        return projectService.findAll().stream().filter(p -> status == null || status == p.getStatus())
+            .sorted(java.util.Comparator.comparing(Project::getId).reversed()).map(ProjectMapper::toDTO).toList();
+    }
+    @GetMapping("/slug/{slug}")
+    public ProjectResponseDTO bySlug(@PathVariable String slug) {
+        return projectService.findAll().stream().filter(p -> slug.equals(p.getSlug())).findFirst().map(ProjectMapper::toDTO)
+            .orElseThrow(() -> new org.springframework.web.server.ResponseStatusException(org.springframework.http.HttpStatus.NOT_FOUND,"Project unavailable"));
+    }
+    private void details(Project project, com.ece.ece_website.dto.ProjectDetailsRequest r) {
+        if (r.slug()!=null && !r.slug().isBlank()) project.setSlug(validation.slug(r.slug()));
+        if (project.getSlug()==null) project.setSlug("project-"+project.getUuid());
+        if (projectService.findAll().stream().anyMatch(p -> p.getId()!=project.getId() && project.getSlug().equals(p.getSlug()))) throw new org.springframework.web.server.ResponseStatusException(org.springframework.http.HttpStatus.CONFLICT,"Slug already exists");
+        if(r.resourcesJson()!=null) project.setResourcesJson(validation.mediaReferences(r.resourcesJson(),false));
+        if(r.partnerMediaJson()!=null) project.setPartnerMediaJson(validation.mediaReferences(r.partnerMediaJson(),true));
+        if (r.programme()!=null) project.setProgramme(validation.text(r.programme(),255));
+        if (r.grantValue()!=null) { if(r.grantValue().signum()<0) validation.fail("Grant cannot be negative"); project.setGrantValue(r.grantValue()); }
+        if (r.currency()!=null) { if(!r.currency().isBlank() && !r.currency().matches("[A-Z]{3}")) validation.fail("Currency must be a three-letter code"); project.setCurrency(r.currency()); }
+        if (r.countries()!=null) project.setCountries(validation.text(r.countries(),2000));
+        if (r.keyAction()!=null) project.setKeyAction(validation.text(r.keyAction(),255));
+        if (r.actionType()!=null) project.setActionType(validation.text(r.actionType(),255));
+        if (r.website()!=null) project.setWebsite(validation.url(r.website()));
+        if (r.topics()!=null) project.setTopics(validation.text(r.topics(),2000));
+        if (r.contentJson()!=null) project.setContentJson(validation.blocks(r.contentJson()));
+        if (r.imageAlt()!=null) project.setImageAlt(validation.text(r.imageAlt(),255));
+        if (r.downloadDescription()!=null) project.setDownloadDescription(validation.text(r.downloadDescription(),4000));
+        if (project.getTitle()==null || project.getTitle().isBlank() || project.getTitle().length()>255 || project.getBudget()<0) validation.fail("Valid title and nonnegative budget required");
+        validation.text(project.getQuickSummary(),4000);
+        if(project.getStartDate()!=null && project.getEndDate()!=null && project.getEndDate().isBefore(project.getStartDate())) validation.fail("End date precedes start date");
+    }
     @GetMapping("/")
     List<ProjectResponseDTO> getAllProjects() {
         return projectService.findAll()
@@ -57,6 +95,7 @@ public class ProjectController {
         return ResponseEntity.ok(projectResponseDTO);
     }
 
+    @org.springframework.transaction.annotation.Transactional(rollbackFor = IOException.class)
     @PutMapping(value = "/{uuid}", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
     public ResponseEntity<ProjectResponseDTO> updateProject(
             @PathVariable UUID uuid,
@@ -69,7 +108,9 @@ public class ProjectController {
             @RequestParam(value = "partners", required = false) List<String> partners,
             @RequestParam("status") ProjectStatus status,
             @RequestParam(value = "image", required = false) MultipartFile imageFile,
-            @RequestParam(value = "pdf", required = false) MultipartFile pdfFile) throws IOException {
+            @RequestParam(value = "pdf", required = false) MultipartFile pdfFile,
+            @RequestParam(value = "logo", required = false) MultipartFile logo,
+            @ModelAttribute com.ece.ece_website.dto.ProjectDetailsRequest detail) throws IOException {
 
         Project existing = projectService.findEntityByUuid(uuid);
 
@@ -96,17 +137,17 @@ public class ProjectController {
         new File(PDF_UPLOAD_DIR).mkdirs();
 
         if (imageFile != null && !imageFile.isEmpty()) {
-            String imageFileName = UUID.randomUUID() + "_" + imageFile.getOriginalFilename();
-            imageFile.transferTo(new File(IMAGE_UPLOAD_DIR + imageFileName));
+            String imageFileName = validation.upload(imageFile, java.nio.file.Path.of(IMAGE_UPLOAD_DIR), false);
             existing.setImageFilePath(imageFileName);
         }
 
         if (pdfFile != null && !pdfFile.isEmpty()) {
-            String pdfFileName = UUID.randomUUID() + "_" + pdfFile.getOriginalFilename();
-            pdfFile.transferTo(new File(PDF_UPLOAD_DIR + pdfFileName));
+            String pdfFileName = validation.upload(pdfFile, java.nio.file.Path.of(PDF_UPLOAD_DIR), true);
             existing.setPdfFilePath(pdfFileName);
         }
 
+        details(existing, detail);
+        if(logo!=null && !logo.isEmpty()) existing.setLogoFilePath(validation.upload(logo, java.nio.file.Path.of(IMAGE_UPLOAD_DIR), false));
         Project updated = projectService.save(existing);
         return ResponseEntity.ok(ProjectMapper.toDTO(updated));
     }
@@ -127,7 +168,9 @@ public class ProjectController {
             @RequestParam(value = "startDate", required = false) String startDate,
             @RequestParam(value = "endDate", required = false) String endDate,
             @RequestParam(value = "partners", required = false) List<String> partners,
-            @RequestParam("image") MultipartFile imageFile,
+            @RequestParam(value = "image", required = false) MultipartFile imageFile,
+            @RequestParam(value = "logo", required = false) MultipartFile logo,
+            @ModelAttribute com.ece.ece_website.dto.ProjectDetailsRequest detail,
             @RequestParam(value = "pdf", required = false) MultipartFile pdfFile,
             @RequestParam(value = "status", required = false, defaultValue = "ON_GOING") String statusStr)
             throws IOException {
@@ -135,20 +178,18 @@ public class ProjectController {
         new File(IMAGE_UPLOAD_DIR).mkdirs();
         new File(PDF_UPLOAD_DIR).mkdirs();
 
-        String imageFileName = UUID.randomUUID() + "_" + imageFile.getOriginalFilename();
-        imageFile.transferTo(new File(IMAGE_UPLOAD_DIR + imageFileName));
+        String imageFileName = imageFile == null || imageFile.isEmpty() ? null : validation.upload(imageFile, java.nio.file.Path.of(IMAGE_UPLOAD_DIR), false);
 
         String pdfFileName = null;
         if (pdfFile != null && !pdfFile.isEmpty()) {
-            pdfFileName = UUID.randomUUID() + "_" + pdfFile.getOriginalFilename();
-            pdfFile.transferTo(new File(PDF_UPLOAD_DIR + pdfFileName));
+            pdfFileName = validation.upload(pdfFile, java.nio.file.Path.of(PDF_UPLOAD_DIR), true);
         }
 
         ProjectStatus status;
         try {
             status = ProjectStatus.valueOf(statusStr.toUpperCase().replace(" ", "_"));
         } catch (IllegalArgumentException e) {
-            status = ProjectStatus.ON_GOING;
+            throw new org.springframework.web.server.ResponseStatusException(org.springframework.http.HttpStatus.BAD_REQUEST,"Invalid project status");
         }
 
         Project project = new Project();
@@ -168,6 +209,8 @@ public class ProjectController {
         project.setPdfFilePath(pdfFileName);
         project.setStatus(status);
 
+        details(project, detail);
+        if(logo!=null && !logo.isEmpty()) project.setLogoFilePath(validation.upload(logo, java.nio.file.Path.of(IMAGE_UPLOAD_DIR), false));
         Project saved = projectService.save(project);
         return ResponseEntity.ok(ProjectMapper.toDTO(saved));
     }

@@ -1,0 +1,36 @@
+package com.ece.ece_website.entity;
+import jakarta.persistence.*;
+import lombok.*;
+@Entity @Table(name="training_sessions") @Data
+public class TrainingSession {
+ @Id @GeneratedValue(strategy=GenerationType.IDENTITY) private Long id;
+ @Column(length=160, unique=true, nullable=false) private String slug;
+ @Column(length=255) private String title;
+ @Column(length=10000) private String description;
+ @Column(length=255) private String category;
+ @Column(length=255) private String location;
+  private java.time.LocalDate startDate;
+  private java.time.LocalDate endDate;
+  private java.time.Instant opensAt;
+  private java.time.Instant registrationDeadline;
+ @Column(length=2000) private String registrationUrl;
+  private boolean published;
+ @Column(length=255) private String availability;
+ @Column(length=255) private String audience;
+ @Column(length=255) private String format;
+ @Column(length=255) private String language;
+ @Column(length=255) private String cost;
+ @Column(length=10000) private String learningObjectives;
+ @Column(length=10000) private String trainingMethods;
+ private java.time.Instant createdAt;
+ private java.time.Instant updatedAt;
+ @PrePersist void create() { createdAt=java.time.Instant.now(); updatedAt=createdAt; }
+ @PreUpdate void update() { updatedAt=java.time.Instant.now(); }
+ public String getLifecycle() {
+  if (!published) return "UNPUBLISHED";
+  var now=java.time.Instant.now();
+  if ("CLOSED".equals(availability) || (registrationDeadline!=null && !now.isBefore(registrationDeadline)) || (endDate!=null && endDate.isBefore(java.time.LocalDate.now(java.time.ZoneId.of("Europe/Skopje"))))) return "CLOSED";
+  if ("UPCOMING".equals(availability) || (opensAt!=null && now.isBefore(opensAt))) return "UPCOMING";
+  return "OPEN";
+ }
+}
