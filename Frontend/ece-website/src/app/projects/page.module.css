@@ -118,60 +118,47 @@
 .card {
   position: relative;
   display: grid;
-  grid-template-columns: calc(420 * var(--u)) calc(417 * var(--u)) minmax(
-      0,
-      1fr
-    );
-  min-height: calc(400 * var(--u));
-  padding-bottom: calc(113 * var(--u));
+  grid-template-columns: minmax(0, 420fr) minmax(0, 417fr) minmax(0, 596fr);
+  align-items: stretch;
+  padding-bottom: calc(56 * var(--u));
+  margin-bottom: calc(56 * var(--u));
 }
 .card::after {
   content: "";
   position: absolute;
-  bottom: calc(56 * var(--u));
+  bottom: 0;
   left: calc(184 * var(--u));
   right: 0;
   border-bottom: 1px solid #212c5d40;
 }
-.card:nth-of-type(2) {
-  min-height: calc(398 * var(--u));
+.results,
+.card > * {
+  min-width: 0;
 }
-.card:nth-of-type(3) {
-  min-height: calc(408 * var(--u));
-}
-.card:nth-of-type(4) {
-  min-height: calc(399 * var(--u));
-}
-.card:nth-of-type(5) {
-  min-height: calc(398 * var(--u));
+.projectVisual {
+  aspect-ratio: 420 / 287;
+  align-self: start;
+  background: #212c5d08;
 }
 .projectImage {
-  width: calc(420 * var(--u));
-  height: calc(287 * var(--u));
+  width: 100%;
+  height: 100%;
+  aspect-ratio: 420 / 287;
+  object-fit: cover;
 }
 .projectInfo {
   padding: calc(24 * var(--u)) calc(30 * var(--u)) 0 calc(63 * var(--u));
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-}
-.card:first-of-type .projectInfo {
-  padding-left: calc(43 * var(--u));
-}
-.card:first-of-type .projectInfo {
-  padding-top: calc(34 * var(--u));
-}
-.card:first-of-type .projectCopy {
-  padding-top: calc(28 * var(--u));
-}
-.card:nth-of-type(n + 3) .projectCopy > p {
-  padding-right: calc(20 * var(--u));
+  gap: calc(24 * var(--u));
 }
 .projectInfo h2 {
   font-size: calc(34 * var(--u) - 2px);
   font-weight: 700;
   line-height: calc(42 * var(--u));
   white-space: pre-line;
+  overflow-wrap: anywhere;
 }
 .projectMeta p:first-child {
   font-family: var(--font-google-flex);
@@ -184,15 +171,17 @@
   font-size: calc(16 * var(--u));
   line-height: calc(24 * var(--u));
   margin-top: calc(4 * var(--u));
-  white-space: nowrap;
+  overflow-wrap: anywhere;
 }
 .projectCopy {
   padding-top: calc(16 * var(--u));
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  gap: calc(24 * var(--u));
 }
 .projectCopy > p {
+  overflow-wrap: anywhere;
   font-size: calc(20 * var(--u));
   line-height: calc(32 * var(--u));
 }
@@ -515,103 +504,6 @@
     grid-template-columns: calc(327 * var(--u)) minmax(0, 1fr);
     padding-bottom: calc(122 * var(--u));
   }
-  .card {
-    min-height: 0;
-    height: calc(400 * var(--u));
-    padding-bottom: 0;
-    align-items: start;
-  }
-  .card:nth-of-type(1) {
-    height: calc(395 * var(--u));
-  }
-  .card:nth-of-type(2) {
-    min-height: 0;
-    height: calc(398 * var(--u));
-  }
-  .card:nth-of-type(3) {
-    min-height: 0;
-    height: calc(408 * var(--u));
-  }
-  .card:nth-of-type(4) {
-    min-height: 0;
-    height: calc(399 * var(--u));
-  }
-  .card:nth-of-type(5) {
-    min-height: 0;
-    height: calc(404 * var(--u));
-  }
-  .card::after {
-    bottom: auto;
-    top: calc(341 * var(--u));
-  }
-  .card:nth-of-type(3)::after {
-    top: calc(346 * var(--u));
-  }
-  .card:nth-of-type(4)::after {
-    top: calc(343 * var(--u));
-  }
-  .card:nth-of-type(5)::after {
-    top: calc(347 * var(--u));
-  }
-  .projectInfo,
-  .projectCopy {
-    height: calc(287 * var(--u));
-  }
-  .projectMeta p:last-child {
-    margin-top: calc(3 * var(--u));
-  }
-  .card:nth-of-type(1) .projectMeta {
-    transform: translateY(calc(-7 * var(--u)));
-  }
-  .card:nth-of-type(3) .projectMeta {
-    transform: translateY(calc(8 * var(--u)));
-  }
-  .card:nth-of-type(4) .projectMeta {
-    transform: translate(calc(4 * var(--u)), calc(7 * var(--u)));
-  }
-  .card:nth-of-type(5) .projectMeta {
-    transform: translate(calc(9 * var(--u)), calc(10 * var(--u)));
-  }
-  .card:first-of-type .projectInfo {
-    padding-left: calc(42 * var(--u));
-  }
-  .card:nth-of-type(2) .projectInfo {
-    padding-left: calc(61 * var(--u));
-    padding-top: calc(20 * var(--u));
-  }
-  .card:nth-of-type(3) .projectInfo {
-    padding-left: calc(64 * var(--u));
-    padding-top: calc(23 * var(--u));
-  }
-  .card:nth-of-type(4) .projectInfo {
-    padding-left: calc(64 * var(--u));
-  }
-  .card:nth-of-type(5) .projectInfo {
-    padding-left: calc(58 * var(--u));
-    padding-top: calc(23 * var(--u));
-  }
-  .card:first-of-type .projectCopy {
-    padding-top: calc(29 * var(--u));
-    padding-bottom: calc(10 * var(--u));
-  }
-  .card:nth-of-type(2) .projectCopy {
-    padding-top: calc(12 * var(--u));
-  }
-  .card:nth-of-type(3) .projectCopy {
-    padding-top: calc(13 * var(--u));
-    padding-bottom: calc(10 * var(--u));
-  }
-  .card:nth-of-type(4) .projectCopy {
-    padding-top: calc(10 * var(--u));
-    padding-bottom: calc(10 * var(--u));
-  }
-  .card:nth-of-type(5) .projectCopy {
-    padding-top: calc(9 * var(--u));
-    padding-bottom: calc(10 * var(--u));
-  }
-  .card:nth-of-type(5) .projectCopy > p {
-    padding-right: calc(25 * var(--u));
-  }
   .programIntro > div {
     padding-top: calc(11 * var(--u));
   }
@@ -728,12 +620,11 @@
   }
   .card {
     grid-template-columns: 30% 25% 45%;
-    min-height: 260px !important;
     padding-bottom: 50px;
   }
   .projectImage {
     width: 100%;
-    height: auto;
+    height: 100%;
   }
   .projectInfo {
     padding: 10px 16px !important;
