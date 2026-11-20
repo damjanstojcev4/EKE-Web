@@ -22,6 +22,8 @@ public class NewsMapper {
                 news.getCategory(),
                 news.getImageAlt(),
                 news.getPublishedAt(),
-                news.getPublished());
+                news.getPublished(), news.getSlug(), news.getEmphasis(), news.getIntroduction(), news.getContentJson(),
+                news.getHeroFilePath() == null ? null : "/api/uploads/news/" + UriUtils.encodePathSegment(news.getHeroFilePath(), StandardCharsets.UTF_8),
+                news.getHeroAlt(), news.getRelatedIds(), news.getUpdatedAt(), news.getPlacement(), news.getMediaKind(), news.getMediaUrl());
     }
 }

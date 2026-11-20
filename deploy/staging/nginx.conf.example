@@ -1,13 +1,13 @@
 # TEMPLATE ONLY: install manually after DNS, permissions and TLS review.
 server {
     listen 80;
-    server_name preview.eke.mk;
+    server_name preview.ekebitola.org;
     root /srv/eke-staging/current;
     index index.html;
     add_header X-Robots-Tag "noindex, nofollow" always;
-    # Project list, title (including recent), UUID lookup, homepage news and single-file uploads.
+    # Reviewed public reads only. Admin/auth routing requires separate approval.
     # Keep the API path intact and let Spring enforce news image visibility.
-    location ~ "^/api/(projects/(?:[^/;]+|get/[0-9a-fA-F]{8}(?:-[0-9a-fA-F]{4}){3}-[0-9a-fA-F]{12})?|news/homepage|uploads/(?:news|images|pdf)/[^/;]+)$" {
+    location ~ "^/api/(projects/(?:public|recent|get/[0-9a-fA-F]{8}(?:-[0-9a-fA-F]{4}){3}-[0-9a-fA-F]{12}|slug/[a-z0-9-]+)?|news/(?:homepage|public(?:/[0-9]+)?|slug/[a-z0-9-]+)|opportunities/(?:public|slug/[a-z0-9-]+)|training/(?:sessions|slug/[a-z0-9-]+)|uploads/(?:news|images|pdf)/[^/;]+)$" {
         limit_except GET { deny all; }
         proxy_pass http://127.0.0.1:18081;
         proxy_set_header Host $host;

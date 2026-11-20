@@ -42,10 +42,11 @@ jobs:
       - run: npm run lint
       - run: npm run build
       - run: npm run typecheck
+      - run: npx playwright install --with-deps chromium
+      - run: npm test
       - name: Verify static export
         run: test -s out/index.html && test -s out/404.html && test -d out/_next/static
       - uses: actions/upload-artifact@v4
-        if: inputs.publish
         with:
           name: frontend
           path: Frontend/ece-website/out/
@@ -75,15 +76,44 @@ jobs:
         working-directory: Backend/ece-website
         run: bash ./mvnw -B -ntp verify
       - name: Prepare backend artifact and source identity
-        if: inputs.publish
         shell: bash
         run: |
           mkdir backend-artifact
           cp Backend/ece-website/target/*.jar backend-artifact/app.jar
           git rev-parse HEAD:Backend/ece-website > backend-artifact/source-id
       - uses: actions/upload-artifact@v4
-        if: inputs.publish
         with:
           name: backend
           path: backend-artifact/
           if-no-files-found: error
+  full-stack:
+    name: Real Spring Boot and H2 browser checks
+    needs: [frontend, backend]
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+          cache-dependency-path: Frontend/ece-website/package-lock.json
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '21'
+      - uses: actions/download-artifact@v4
+        with:
+          name: frontend
+          path: Frontend/ece-website/out
+      - uses: actions/download-artifact@v4
+        with:
+          name: backend
+          path: Backend/ece-website/target
+      - run: mv Backend/ece-website/target/app.jar Backend/ece-website/target/ece-website-0.0.1-SNAPSHOT.jar
+      - run: npm ci
+        working-directory: Frontend/ece-website
+      - run: npx playwright install --with-deps chromium
+        working-directory: Frontend/ece-website
+      - run: node scripts/full-stack-qa.mjs
+        working-directory: Frontend/ece-website

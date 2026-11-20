@@ -2,8 +2,8 @@ import type { Metadata } from "next";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
 import PartnerSection from "@/components/home/PartnerSection";
-import { Arrow } from "@/components/ui";
-import { opportunities, opportunityPaths } from "@/data/opportunities.mock";
+import SessionListings from "@/components/SessionListings";
+import { opportunityPaths } from "@/data/opportunities.mock";
 import styles from "./page.module.css";
 
 export const metadata: Metadata = {
@@ -60,45 +60,7 @@ export default function OpportunitiesPage() {
           </h2>
           <div className={styles.listing}>
             <p className={styles.sortLabel}>Closing soonest first</p>
-            <div className={styles.grid}>
-              {opportunities.map((call) => (
-                <article
-                  key={call.id}
-                  className={styles.call}
-                  aria-labelledby={`${call.id}-title`}
-                >
-                  <div className={styles.count}>
-                    <strong>{call.days}</strong>
-                    <span>{call.deadline}</span>
-                  </div>
-                  <h3 id={`${call.id}-title`}>{call.title}</h3>
-                  <p className={styles.category}>{call.category}</p>
-                  <ul>
-                    <li>{call.age}</li>
-                    <li>{call.location}</li>
-                    <li>{call.dates}</li>
-                  </ul>
-                  {call.status === "open" ? (
-                    <div className={styles.pending}>
-                      <button
-                        type="button"
-                        aria-disabled="true"
-                        aria-describedby={`${call.id}-pending`}
-                      >
-                        APPLY <Arrow file="vector3.svg" />
-                      </button>
-                      <span role="tooltip" id={`${call.id}-pending`}>
-                        Project details will be available after integration.
-                      </span>
-                    </div>
-                  ) : (
-                    <button type="button" className={styles.closed} disabled>
-                      CLOSED
-                    </button>
-                  )}
-                </article>
-              ))}
-            </div>
+            <SessionListings module="opportunities" />
           </div>
         </section>
         <section className={styles.paths} aria-labelledby="paths-title">

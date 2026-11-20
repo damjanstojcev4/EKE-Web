@@ -2,7 +2,8 @@ import type { Metadata } from "next";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
 import { Button, Stripe } from "@/components/ui";
-import { trainingSessions, trainingThemes } from "@/data/training.mock";
+import SessionListings from "@/components/SessionListings";
+import { trainingThemes } from "@/data/training.mock";
 import styles from "./page.module.css";
 
 export const metadata: Metadata = {
@@ -34,29 +35,6 @@ function ThemeBanner({
         width={237}
         height={149}
       />
-    </div>
-  );
-}
-
-function UnavailableAction({
-  id,
-  children,
-  message,
-  className = "",
-}: {
-  id: string;
-  children: React.ReactNode;
-  message: string;
-  className?: string;
-}) {
-  return (
-    <div className={`${styles.unavailable} ${className}`}>
-      <button type="button" aria-disabled="true" aria-describedby={id}>
-        {children}
-      </button>
-      <span id={id} role="tooltip">
-        {message}
-      </span>
     </div>
   );
 }
@@ -200,88 +178,7 @@ export default function TrainingPage() {
         </section>
         <section className={styles.sessions} aria-labelledby="sessions-title">
           <h2 id="sessions-title">All Training Sessions</h2>
-          <div className={styles.sessionList}>
-            {trainingSessions.map((session) => (
-              <article
-                className={styles.session}
-                key={session.id}
-                aria-labelledby={`${session.id}-title`}
-              >
-                <dl className={styles.facts}>
-                  {(
-                    [
-                      ["Audience", session.audience],
-                      ["Format", session.format],
-                      ["Language", session.language],
-                      ["Cost", session.cost],
-                    ] as const
-                  ).map(([label, value]) => (
-                    <div key={label}>
-                      <dt>{label}</dt>
-                      <dd>
-                        {label === "Language" ? (
-                          <>
-                            {value.split("/")[0]}/<wbr />
-                            {value.split("/")[1]}
-                          </>
-                        ) : (
-                          value
-                        )}
-                      </dd>
-                    </div>
-                  ))}
-                </dl>
-                <div className={styles.sessionBody}>
-                  <div className={styles.sessionAside}>
-                    <div className={styles.countdown}>
-                      <strong>{session.days}</strong>
-                      <span>{session.countdownLabel}</span>
-                    </div>
-                    <p>{session.category}</p>
-                  </div>
-                  <div className={styles.sessionContent}>
-                    <h3 id={`${session.id}-title`}>{session.title}</h3>
-                    <p>
-                      <strong>WHAT YOU WILL LEARN:</strong> {session.learning}
-                    </p>
-                    <p>
-                      <strong>HOW WE TEACH IT:</strong> {session.method}
-                    </p>
-                    <ul>
-                      <li>{session.location}</li>
-                      <li>{session.dates}</li>
-                      <li>{session.spots} spots left</li>
-                    </ul>
-                  </div>
-                  {session.status === "open" ? (
-                    <UnavailableAction
-                      id={`${session.id}-unavailable`}
-                      className={styles.status}
-                      message="Registration is not available in this preview. A confirmed registration link has not been supplied."
-                    >
-                      OPEN
-                    </UnavailableAction>
-                  ) : (
-                    <button
-                      className={`${styles.status} ${styles.closed}`}
-                      type="button"
-                      disabled
-                    >
-                      CLOSED
-                    </button>
-                  )}
-                </div>
-              </article>
-            ))}
-            <p className={styles.showing}>Showing 1 to 6 training sessions</p>
-            <UnavailableAction
-              id="more-unavailable"
-              className={styles.loadMore}
-              message="All six supplied training sessions are shown. Additional sessions have not been supplied."
-            >
-              LOAD MORE
-            </UnavailableAction>
-          </div>
+          <SessionListings module="training" />
         </section>
         <section className={styles.closing} aria-label="Partner with EKE">
           <p>

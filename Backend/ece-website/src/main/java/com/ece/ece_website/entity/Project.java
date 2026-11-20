@@ -37,6 +37,35 @@ public class Project {
     private ProjectStatus status;
     private String pdfFilePath;
 
+    @Column(unique = true, length = 160)
+    private String slug;
+    @Column(length = 255)
+    private String programme;
+    @Column(precision = 19, scale = 2)
+    private java.math.BigDecimal grantValue;
+    @Column(length = 3)
+    private String currency;
+    @Column(length = 2000)
+    private String countries;
+    @Column(length = 255)
+    private String keyAction;
+    @Column(length = 255)
+    private String actionType;
+    @Column(length = 2000)
+    private String website;
+    @Column(length = 2000)
+    private String topics;
+    @Lob
+    private String contentJson;
+    @Column(length = 255)
+    private String logoFilePath;
+    @Column(length = 255)
+    private String imageAlt;
+    @Column(length = 4000)
+    private String downloadDescription;
+
+    @Lob private String resourcesJson;
+    @Lob private String partnerMediaJson;
     @PrePersist
     protected void onCreate() {
         if (uuid == null) {

@@ -1,0 +1,18 @@
+-- Additive project metadata; retain UUIDs, associations and media.
+ALTER TABLE projects ADD COLUMN IF NOT EXISTS slug VARCHAR(160);
+ALTER TABLE projects ADD COLUMN IF NOT EXISTS programme VARCHAR(255);
+ALTER TABLE projects ADD COLUMN IF NOT EXISTS grant_value DECIMAL(19,2);
+ALTER TABLE projects ADD COLUMN IF NOT EXISTS currency VARCHAR(3);
+ALTER TABLE projects ADD COLUMN IF NOT EXISTS countries VARCHAR(2000);
+ALTER TABLE projects ADD COLUMN IF NOT EXISTS key_action VARCHAR(255);
+ALTER TABLE projects ADD COLUMN IF NOT EXISTS action_type VARCHAR(255);
+ALTER TABLE projects ADD COLUMN IF NOT EXISTS website VARCHAR(2000);
+ALTER TABLE projects ADD COLUMN IF NOT EXISTS topics VARCHAR(2000);
+ALTER TABLE projects ADD COLUMN IF NOT EXISTS content_json CLOB;
+ALTER TABLE projects ADD COLUMN IF NOT EXISTS logo_file_path VARCHAR(255);
+ALTER TABLE projects ADD COLUMN IF NOT EXISTS image_alt VARCHAR(255);
+ALTER TABLE projects ADD COLUMN IF NOT EXISTS download_description VARCHAR(4000);
+UPDATE projects SET slug = 'project-' || uuid WHERE slug IS NULL;
+CREATE UNIQUE INDEX IF NOT EXISTS ux_projects_slug ON projects(slug);
+ALTER TABLE projects ADD COLUMN IF NOT EXISTS resources_json CLOB;
+ALTER TABLE projects ADD COLUMN IF NOT EXISTS partner_media_json CLOB;

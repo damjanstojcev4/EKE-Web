@@ -25,6 +25,7 @@ public class WebConfig implements WebMvcConfigurer {
         Path newsUploads = uploads.resolve("news");
         String location = uploads.toUri().toString();
         registry.addResourceHandler("/uploads/**")
+                .setCacheControl(org.springframework.http.CacheControl.noStore())
                 .addResourceLocations(location.endsWith("/") ? location : location + "/")
                 .resourceChain(false)
                 .addResolver(new PathResourceResolver() {

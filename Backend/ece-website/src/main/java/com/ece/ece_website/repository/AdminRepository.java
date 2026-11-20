@@ -10,4 +10,5 @@ import java.util.Optional;
 public interface AdminRepository extends JpaRepository<Admin, Integer> {
 
     Optional<Admin> findByUsername(String username);
+    boolean existsByRole(com.ece.ece_website.entity.Role role);
 }

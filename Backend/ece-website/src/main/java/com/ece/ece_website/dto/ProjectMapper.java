@@ -15,6 +15,20 @@ public class ProjectMapper {
                 : null;
 
         return new ProjectResponseDTO(
+                project.getSlug(),
+                project.getProgramme(),
+                project.getGrantValue(),
+                project.getCurrency(),
+                project.getCountries(),
+                project.getKeyAction(),
+                project.getActionType(),
+                project.getWebsite(),
+                project.getTopics(),
+                project.getContentJson(),
+                project.getLogoFilePath(),
+                project.getImageAlt(),
+                project.getDownloadDescription(),
+                project.getResourcesJson(), project.getPartnerMediaJson(),
                 project.getUuid(),
                 project.getTitle(),
                 project.getBudget(),

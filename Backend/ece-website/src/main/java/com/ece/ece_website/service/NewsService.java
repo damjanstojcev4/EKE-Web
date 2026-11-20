@@ -31,7 +31,7 @@ public class NewsService {
 
     public boolean canReadImage(String filename, Authentication authentication) {
         return isAdmin(authentication)
-                ? newsRepository.existsByImageFilePath(filename)
+                ? newsRepository.existsByImageFilePathOrHeroFilePath(filename, filename)
                 : newsRepository.hasPublicImage(filename, Instant.now());
     }
 

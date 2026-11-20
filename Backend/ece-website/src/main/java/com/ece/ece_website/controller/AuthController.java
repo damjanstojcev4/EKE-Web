@@ -4,7 +4,6 @@ import com.ece.ece_website.dto.AuthenticationRequest;
 import com.ece.ece_website.dto.AuthenticationResponse;
 import com.ece.ece_website.entity.Admin;
 import com.ece.ece_website.service.AuthService;
-import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServletResponse;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -12,36 +11,47 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.security.web.csrf.CsrfToken;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.http.ResponseCookie;
+import java.util.Map;
 
 @RestController
 @RequestMapping("/auth")
 @RequiredArgsConstructor
 public class AuthController {
     private final AuthService authService;
+    @Value("${app.security.cookie-secure:true}")
+    private boolean secureCookies;
+
+    @GetMapping("/csrf")
+    public Map<String, String> csrf(CsrfToken token, HttpServletResponse response) {
+        response.setHeader("Cache-Control", "no-store");
+        return Map.of("token", token.getToken(), "headerName", token.getHeaderName());
+    }
+
+    @GetMapping("/me")
+    public Map<String, String> me(@AuthenticationPrincipal Admin admin, HttpServletResponse response) {
+        response.setHeader("Cache-Control", "no-store");
+        return Map.of("username", admin.getUsername(), "role", admin.getRole().name());
+    }
 
     @PostMapping("/authenticate")
     public ResponseEntity<AuthenticationResponse> auth(@RequestBody AuthenticationRequest request,
                                                        HttpServletResponse response) {
         AuthenticationResponse authenticationResponse = authService.authenticate(request);
 
-        Cookie jwtCookie = new Cookie("cookie-auth", authenticationResponse.getToken());
-        jwtCookie.setHttpOnly(true);
-        jwtCookie.setSecure(false);
-        jwtCookie.setPath("/");
-        jwtCookie.setMaxAge(4 * 60 * 60); // 4 hours
-        response.addCookie(jwtCookie);
+        setAuthCookie(response, authenticationResponse.getToken(), 4 * 60 * 60);
 
+        response.setHeader("Cache-Control", "no-store");
         return ResponseEntity.ok(authenticationResponse);
     }
 
     @PostMapping("/logout")
     public ResponseEntity<Void> logout(HttpServletResponse response) {
-        Cookie cookie = new Cookie("cookie-auth", null);
-        cookie.setHttpOnly(true);
-        cookie.setSecure(false);
-        cookie.setPath("/");
-        cookie.setMaxAge(0);
-        response.addCookie(cookie);
+        setAuthCookie(response, "", 0);
         return ResponseEntity.ok().build();
     }
 
@@ -55,16 +65,15 @@ public class AuthController {
 
             AuthenticationResponse authResponse = authService.register(admin);
 
-            Cookie jwtCookie = new Cookie("cookie-auth", authResponse.getToken());
-            jwtCookie.setHttpOnly(true);
-            jwtCookie.setSecure(false);
-            jwtCookie.setPath("/");
-            jwtCookie.setMaxAge(4 * 60 * 60); // 4 hours
-            response.addCookie(jwtCookie);
+            setAuthCookie(response, authResponse.getToken(), 4 * 60 * 60);
 
             return ResponseEntity.ok(authResponse);
         } catch (RuntimeException e) {
             return ResponseEntity.badRequest().body(e.getMessage());
         }
+    }
+    private void setAuthCookie(HttpServletResponse response, String token, long seconds) {
+        response.addHeader("Set-Cookie", ResponseCookie.from("cookie-auth", token)
+                .httpOnly(true).secure(secureCookies).sameSite("Strict").path("/").maxAge(seconds).build().toString());
     }
 }

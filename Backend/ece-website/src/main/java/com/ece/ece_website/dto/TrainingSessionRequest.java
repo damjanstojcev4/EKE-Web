@@ -1,0 +1,2 @@
+package com.ece.ece_website.dto;
+public record TrainingSessionRequest(String slug, String title, String description, String category, String location, java.time.LocalDate startDate, java.time.LocalDate endDate, java.time.Instant opensAt, java.time.Instant registrationDeadline, String registrationUrl, boolean published, String availability, String audience, String format, String language, String cost, String learningObjectives, String trainingMethods) {}

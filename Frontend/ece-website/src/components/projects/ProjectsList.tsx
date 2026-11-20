@@ -1,6 +1,7 @@
 "use client";
 import { useState } from "react";
-import { projects } from "@/data/projects.mock";
+import { useApi } from "@/lib/api/use-api";
+import type { ProjectRecord } from "@/lib/api/projects";
 import ProjectCard from "./ProjectCard";
 import styles from "@/app/projects/page.module.css";
 
@@ -11,8 +12,11 @@ const filters = [
 ] as const;
 export default function ProjectsList() {
   const [filter, setFilter] = useState<(typeof filters)[number]["id"]>("all");
-  const visible = projects.filter(
-    (project) => filter === "all" || project.status === filter,
+  const { data: projects, error } = useApi<ProjectRecord[]>("/projects/public");
+  const visible = (projects || []).filter(
+    (project) =>
+      filter === "all" ||
+      (project.status === "ON_GOING" ? "ongoing" : "completed") === filter,
   );
   return (
     <section className={styles.listing} aria-label="Projects">
@@ -38,25 +42,12 @@ export default function ProjectsList() {
           {visible.length} projects shown.
         </p>
         {visible.map((project) => (
-          <ProjectCard key={project.id} project={project} />
+          <ProjectCard key={project.uuid} project={project} />
         ))}
-        {!visible.length && (
-          <p className={styles.empty}>No ongoing projects in this preview.</p>
-        )}
-        {!!visible.length && (
-          <div className={`${styles.pending} ${styles.more}`}>
-            <button
-              type="button"
-              aria-disabled="true"
-              aria-describedby="more-projects-status"
-            >
-              View more projects
-            </button>
-            <span id="more-projects-status" role="tooltip">
-              All five reference projects are shown. More projects will be
-              available after backend integration.
-            </span>
-          </div>
+        {error && <p role="alert">{error}</p>}
+        {!projects && !error && <p role="status">Loading projects…</p>}
+        {projects && !visible.length && (
+          <p className={styles.empty}>No projects match this filter.</p>
         )}
       </div>
     </section>

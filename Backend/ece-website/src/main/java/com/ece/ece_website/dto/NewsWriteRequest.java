@@ -11,7 +11,7 @@ public record NewsWriteRequest(
         Category category,
         String imageAlt,
         Instant publishedAt,
-        Boolean published
+        Boolean published, String slug, String emphasis, String introduction, String contentJson, String heroAlt, String relatedIds, String placement, String mediaKind, String mediaUrl
 ) {
     public boolean usesPublishing() {
         return title != null || category != null || imageAlt != null || publishedAt != null || published != null;

@@ -1,0 +1,2 @@
+package com.ece.ece_website.dto;
+public record OpportunityRequest(String slug, String title, String description, String category, String location, java.time.LocalDate startDate, java.time.LocalDate endDate, java.time.Instant opensAt, java.time.Instant applicationDeadline, String applicationUrl, boolean published, String availability, String country, Integer minimumAge, Integer maximumAge, java.util.UUID relatedProjectUuid) {}

@@ -40,6 +40,9 @@ class NewsMigrationTests {
             ScriptUtils.executeSqlScript(connection, migration);
             ScriptUtils.executeSqlScript(connection, migration);
 
+            var details = new FileSystemResource(Path.of("..", "..", "deploy", "staging", "migrations", "002-news-details.sql"));
+            ScriptUtils.executeSqlScript(connection, details);
+            ScriptUtils.executeSqlScript(connection, details);
             var registry = new StandardServiceRegistryBuilder()
                     .applySetting("jakarta.persistence.jdbc.url", url)
                     .applySetting("jakarta.persistence.jdbc.user", "sa")
