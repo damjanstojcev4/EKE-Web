@@ -8,7 +8,8 @@
     "postbuild": "node scripts/normalize-export.mjs",
     "start": "node scripts/serve.mjs",
     "lint": "eslint src",
-    "typecheck": "tsc --noEmit"
+    "typecheck": "tsc --noEmit",
+    "test": "playwright test"
   },
   "dependencies": {
     "next": "^16.0.0",

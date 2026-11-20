@@ -13,13 +13,13 @@ import java.util.Optional;
 
 @Repository
 public interface NewsRepository extends JpaRepository<News, Long> {
-    String PUBLIC_VISIBILITY = "(n.published is null or (n.published = true and n.publishedAt <= :now))";
+    String PUBLIC_VISIBILITY = "(n.published = true and n.publishedAt <= :now)";
 
     List<News> findAllByOrderByCreatedAtDesc();
 
     List<News> findTop3ByPublishedTrueAndPublishedAtLessThanEqualOrderByPublishedAtDescIdDesc(Instant now);
 
-    @Query("select n from News n where " + PUBLIC_VISIBILITY + " order by n.createdAt desc, n.id desc")
+    @Query("select n from News n where " + PUBLIC_VISIBILITY + " order by n.publishedAt desc, n.id desc")
     List<News> findPublicNews(Instant now);
 
     @Query("select n from News n where n.id = :id and " + PUBLIC_VISIBILITY)

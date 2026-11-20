@@ -2,8 +2,10 @@
 
 `001-news-publication.sql` adds five nullable columns and an index to the existing
 `news` table. It preserves all current values. A null `published` identifies a
-legacy item. Legacy items stay visible through `GET /api/news` and
-`GET /api/news/{id}` and are absent from `GET /api/news/homepage`.
+legacy item. Phase 1 hides legacy items from every anonymous News read and
+News image request until an editor explicitly prepares and publishes them.
+Authenticated administrators retain access to all rows. See
+`docs/NEWS_PHASE1.md` for the feature audit and release checklist.
 
 1. Confirm that staging uses an isolated service, writable uploads directory, and
    H2 file database. Confirm the unit and JDBC URL against the staging
@@ -37,7 +39,7 @@ legacy item. Legacy items stay visible through `GET /api/news` and
    proceeding. Confirm the database's H2 version on the backup before migrating.
 4. Keep `ddl-auto=validate`. Start only the staging service through the approved
    release process. Check that schema validation passes, legacy rows and images
-   still load, and the homepage feed admits only complete, published records
+   remain available to authenticated administrators, and the homepage feed admits only complete, published records
    whose publication time has arrived. Proxy `/api/uploads/news/` through Spring
    so it can enforce visibility.
 5. If validation fails, keep staging offline while investigating. The additive
@@ -81,16 +83,19 @@ continues to use `IFEXISTS=TRUE` and `ddl-auto=validate`.
 
 The existing multipart routes still accept `shortDescription`, `instagramUrl`
 and `image`. Admin requests continue to authenticate with the existing JWT
-cookie or bearer token. Existing admins can manage every record through the
+cookie or bearer token. Cookie-authenticated News mutations also require the
+CSRF cookie and header returned by `GET /api/auth/csrf`. Existing admins can manage every record through the
 same list, detail, and write routes. Anonymous account registration is disabled
 because registration creates an administrator.
 
 The new multipart fields are `title`, `category` (`LATEST_NEWS` or `OPEN_CALL`),
 `imageAlt`, `publishedAt` (an ISO 8601 instant such as
 `2026-11-17T09:00:00Z`), and `published`. New-format writes default to draft when
-no state has been set. Older clients may omit all five fields. An update preserves
+no state has been set. Every newly created row defaults to draft, including
+older multipart clients that omit all five fields. An update preserves
 omitted fields and the current image. Publishing needs a title, summary, category,
 publication timestamp, and alt text when an image exists. Future publication times
 are excluded from public reads until reached. The legacy Instagram URL field is
-still accepted and stored on all writes. The existing admin UI needs these inputs
-before editors can publish to the homepage through that UI.
+still accepted and stored on all writes. The reused admin workspace now exposes
+the publication fields and controls; hosting its protected API routes requires
+separate operator approval without widening the public read-only proxy rules.

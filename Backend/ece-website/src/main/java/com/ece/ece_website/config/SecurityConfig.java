@@ -11,6 +11,8 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
+import org.springframework.security.web.csrf.CookieCsrfTokenRepository;
+import org.springframework.security.web.csrf.CsrfTokenRequestAttributeHandler;
 
 @Configuration
 @EnableWebSecurity
@@ -24,14 +26,25 @@ public class SecurityConfig {
         public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
                 http
                                 .cors(cors -> cors.configurationSource(corsConfigurationSource()))
-                                .csrf(csrf -> csrf.disable())
+                                .csrf(csrf -> csrf.csrfTokenRepository(new CookieCsrfTokenRepository())
+                                        .csrfTokenRequestHandler(new CsrfTokenRequestAttributeHandler())
+                                        // Preserve existing bearer clients; browser News writes require CSRF.
+                                        .requireCsrfProtectionMatcher(request -> {
+                                                if (!request.getServletPath().startsWith("/news") ||
+                                                    java.util.Set.of("GET", "HEAD", "OPTIONS").contains(request.getMethod())) return false;
+                                                var cookies = request.getCookies();
+                                                return cookies != null && java.util.Arrays.stream(cookies)
+                                                        .anyMatch(cookie -> "cookie-auth".equals(cookie.getName()));
+                                        }))
                                 .headers(headers -> headers.frameOptions(frameOptions -> frameOptions.sameOrigin()))
                                 .authorizeHttpRequests(auth -> auth
                                                 .requestMatchers(
                                                                 org.springframework.web.cors.CorsUtils::isPreFlightRequest)
                                                 .permitAll()
                                                 .requestMatchers("/auth/register").hasAuthority(Role.ADMIN.name())
+                                                .requestMatchers("/auth/me").hasAuthority(Role.ADMIN.name())
                                                 .requestMatchers("/auth/**").permitAll()
+                                                .requestMatchers("/error").permitAll()
                                                 .requestMatchers(HttpMethod.GET, "/projects/**").permitAll()
                                                 .requestMatchers(HttpMethod.GET, "/news/**").permitAll()
                                                 .requestMatchers(HttpMethod.HEAD, "/news/**").permitAll()
@@ -47,6 +60,7 @@ public class SecurityConfig {
                                                 .anyRequest().authenticated())
                                 .sessionManagement(session -> session
                                                 .sessionCreationPolicy(SessionCreationPolicy.STATELESS))
+                                .exceptionHandling(errors -> errors.authenticationEntryPoint((request, response, exception) -> response.sendError(401)))
                                 .authenticationProvider(authenticationProvider)
                                 .addFilterBefore(jwtAuthFilter, UsernamePasswordAuthenticationFilter.class);
 

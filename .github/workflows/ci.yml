@@ -42,6 +42,8 @@ jobs:
       - run: npm run lint
       - run: npm run build
       - run: npm run typecheck
+      - run: npx playwright install --with-deps chromium
+      - run: npm test
       - name: Verify static export
         run: test -s out/index.html && test -s out/404.html && test -d out/_next/static
       - uses: actions/upload-artifact@v4

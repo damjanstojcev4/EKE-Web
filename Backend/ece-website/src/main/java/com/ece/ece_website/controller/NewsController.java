@@ -54,7 +54,9 @@ public class NewsController {
     public ResponseEntity<NewsResponseDTO> createNews(
             @ModelAttribute NewsWriteRequest request,
             @RequestParam(value = "image", required = false) MultipartFile imageFile) throws IOException {
-        return save(new News(), request, imageFile);
+        News news = new News();
+        news.setPublished(false);
+        return save(news, request, imageFile);
     }
 
     @PutMapping(value = "/{id}", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
@@ -90,8 +92,14 @@ public class NewsController {
         boolean hasNewImage = image != null && !image.isEmpty();
         validate(news, hasNewImage);
         if (hasNewImage) {
-            Files.createDirectories(NEWS_UPLOAD_DIR);
             String originalName = Objects.toString(image.getOriginalFilename(), "image");
+            String lowerName = originalName.toLowerCase(java.util.Locale.ROOT);
+            if (image.getSize() > 5 * 1024 * 1024 ||
+                    !java.util.Set.of("image/png", "image/jpeg", "image/webp", "image/gif").contains(Objects.toString(image.getContentType(), "")) ||
+                    !lowerName.matches(".*\\.(png|jpe?g|webp|gif)$")) {
+                throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Choose a PNG, JPG, WebP or GIF image of at most 5 MB");
+            }
+            Files.createDirectories(NEWS_UPLOAD_DIR);
             String filename = UUID.randomUUID() + "_" + originalName.replaceAll("[^a-zA-Z0-9._-]", "_");
             image.transferTo(NEWS_UPLOAD_DIR.resolve(filename));
             news.setImageFilePath(filename);
@@ -128,5 +136,11 @@ public class NewsController {
 
     private boolean blank(String value) {
         return value == null || value.isBlank();
+    }
+
+    @ExceptionHandler(ResponseStatusException.class)
+    public ResponseEntity<java.util.Map<String, String>> validationError(ResponseStatusException exception) {
+        return ResponseEntity.status(exception.getStatusCode())
+                .body(java.util.Map.of("message", Objects.toString(exception.getReason(), "Invalid News request")));
     }
 }
