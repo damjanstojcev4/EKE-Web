@@ -8,17 +8,20 @@ export default function ProjectCard({
   project: ProjectRecord;
 }) {
   const href = projectHref(p.slug);
+  const image = mediaUrl(p.image);
   return (
     <article className={styles.card}>
-      {mediaUrl(p.image) && (
-        <img
-          className={styles.projectImage}
-          src={mediaUrl(p.image)}
-          alt={p.imageAlt || ""}
-          width={420}
-          height={287}
-        />
-      )}
+      <div className={styles.projectVisual}>
+        {image && (
+          <img
+            className={styles.projectImage}
+            src={image}
+            alt={p.imageAlt || ""}
+            width={420}
+            height={287}
+          />
+        )}
+      </div>
       <div className={styles.projectInfo}>
         <h2>{p.title}</h2>
         <div className={styles.projectMeta}>
