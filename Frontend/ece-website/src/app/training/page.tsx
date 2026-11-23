@@ -1,4 +1,5 @@
-import type { Metadata } from "next";
+import { pageMetadata } from "@/lib/seo";
+import { BreadcrumbStructuredData } from "@/components/SeoStructuredData";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
 import { Button, Stripe } from "@/components/ui";
@@ -6,11 +7,7 @@ import SessionListings from "@/components/SessionListings";
 import { trainingThemes } from "@/data/training.mock";
 import styles from "./page.module.css";
 
-export const metadata: Metadata = {
-  title: "Training — EKE Bitola",
-  description:
-    "Building skills for lasting social impact through non-formal education, participatory learning, and practical exploration.",
-};
+export const metadata = pageMetadata("training");
 const asset = (file: string) =>
   `/assets/training-page/${encodeURIComponent(file)}`;
 
@@ -43,6 +40,7 @@ export default function TrainingPage() {
   return (
     <div className={styles.page}>
       <Header />
+      <BreadcrumbStructuredData page="training" />
       <main id="main">
         <section className={styles.hero} aria-labelledby="training-title">
           <div className={styles.heroArt} aria-hidden="true">

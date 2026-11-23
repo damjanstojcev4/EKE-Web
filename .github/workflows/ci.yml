@@ -10,6 +10,9 @@ on:
       existing_site_url:
         type: string
         default: ''
+      seo_environment:
+        type: string
+        default: 'staging'
 permissions:
   contents: read
 jobs:
@@ -31,6 +34,8 @@ jobs:
     env:
       NEXT_TELEMETRY_DISABLED: '1'
       NEXT_PUBLIC_EXISTING_SITE_URL: ${{ inputs.existing_site_url }}
+      PRODUCTION_SITE_URL: ${{ vars.PRODUCTION_FRONTEND_URL }}
+      SEO_ENVIRONMENT: ${{ inputs.seo_environment || 'staging' }}
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
@@ -40,7 +45,9 @@ jobs:
           cache-dependency-path: Frontend/ece-website/package-lock.json
       - run: npm ci
       - run: npm run lint
+      - run: npm run test:seo
       - run: npm run build
+      - run: npm run verify:seo
       - run: npm run typecheck
       - run: npx playwright install --with-deps chromium
       - run: npm test

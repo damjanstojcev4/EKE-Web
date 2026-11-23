@@ -1,26 +1,22 @@
-const words = ["People", "Ideas", "Communities", "People"];
+const words = ["Engage.", "Empower.", "Transform."];
 
 export default function HeroHeadline() {
   return (
     <h1 className="hero-title hero-title-animated">
       <span className="sr-only">
-        Learning That Moves People, Ideas and Communities Forward
+        Education That Engage. Empower. Transform.
       </span>
       <span aria-hidden="true" className="hero-heading-visual">
-        <span className="hero-heading-line">Learning That</span>
+        <span className="hero-heading-line">Education That</span>
         <span className="hero-heading-line hero-heading-middle">
-          <span>Moves</span>{" "}
           <span className="hero-word-window">
-            <span className="hero-word-track">
-              {words.map((word, index) => (
-                <span className="hero-word" key={`${word}-${index}`}>
+              {words.map((word) => (
+                <span className="hero-word" key={word}>
                   {word}
                 </span>
               ))}
-            </span>
           </span>
         </span>
-        <span className="hero-heading-line">Forward</span>
       </span>
     </h1>
   );

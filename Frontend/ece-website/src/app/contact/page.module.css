@@ -124,10 +124,15 @@ h2.label {
   background: transparent;
   color: white;
 }
-.download:hover,
-.partnerButton:hover,
-.submitRow button:hover {
-  box-shadow: 0 0 0 2px var(--light-blue);
+.download:is(:hover, :active, :focus-visible),
+.partnerButton:not([aria-disabled="true"]):is(:hover, :active, :focus-visible),
+.submitRow button:is(:hover, :active, :focus-visible) {
+  background: var(--light-blue);
+  color: var(--dark-blue);
+  border-color: var(--light-blue);
+}
+.uploadButton:is(:hover, :active, :focus-within) {
+  color: var(--tirkiz);
 }
 .enquiry {
   background: var(--dark-blue);

@@ -1,4 +1,5 @@
-import type { Metadata } from "next";
+import { pageMetadata } from "@/lib/seo";
+import { BreadcrumbStructuredData } from "@/components/SeoStructuredData";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
 import PartnerSection from "@/components/home/PartnerSection";
@@ -8,16 +9,13 @@ import EmphasizedText from "@/components/projects/EmphasizedText";
 import { programs, outputs, projectAsset } from "@/components/projects/content";
 import styles from "./page.module.css";
 
-export const metadata: Metadata = {
-  title: "Projects — EKE Bitola",
-  description:
-    "Explore EKE’s projects, international learning programs, and practical community resources.",
-};
+export const metadata = pageMetadata("projects");
 
 export default function ProjectsPage() {
   return (
     <div className={styles.page}>
       <Header />
+      <BreadcrumbStructuredData page="projects" />
       <main id="main">
         <section className={styles.hero} aria-labelledby="projects-heading">
           <div className={styles.heroArtwork} aria-hidden="true">

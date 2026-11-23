@@ -6,26 +6,26 @@ const areas = [
   [
     "youthHeading",
     "youthBody",
-    "expertise-youth-development.png",
-    "Young people together outdoors",
+    "sport-PE.webp",
+    "Sport and physical activity in community settings",
   ],
   [
     "digitalHeading",
     "digitalBody",
-    "expertise-digital-literacy.png",
-    "Learning with digital technology",
+    "youth-education.webp",
+    "Youth education and workshops",
   ],
   [
     "womenHeading",
     "womenBody",
-    "expertise-women-community.png",
-    "Women supporting one another",
+    "vocation-training.webp",
+    "Vocational education and training",
   ],
   [
     "prisonHeading",
     "prisonBody",
-    "expertise-prison-education.png",
-    "A conversation about social reintegration",
+    "adult-education.webp",
+    "Adult education and lifelong learning",
   ],
 ] as const;
 export default function ExpertiseSection() {

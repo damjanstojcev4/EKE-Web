@@ -107,8 +107,8 @@ export const opportunityPaths = [
   {
     id: "volunteering",
     title: "Volunteering",
-    image: "Rectangle 10.png",
-    alt: "Woman carrying a folder outside an office building",
+    image: "Mask group.webp",
+    alt: "Hands forming a heart together",
     text: "The fastest way to make a visible difference. Joining our volunteer network connects people across borders and backgrounds, focusing purely on shared experiences, mutual learning, and everyday community development.",
   },
   {
@@ -128,8 +128,8 @@ export const opportunityPaths = [
   {
     id: "mobility",
     title: "Mobility",
-    image: "Rectangle 12.png",
-    alt: "People and a scooter on a city street",
+    image: "global-residence-index-AX6s7zREtZE-unsplash 1.webp",
+    alt: "Traveler planning a trip with a map and passport",
     text: "An immersive way to expand your perspective through fast-paced international exchanges. Through Erasmus+ tracks, we connect local educators, youth workers, and adult learners with the latest methodologies across Europe, covering everything from artificial intelligence in the classroom to media literacy.",
   },
 ] as const;

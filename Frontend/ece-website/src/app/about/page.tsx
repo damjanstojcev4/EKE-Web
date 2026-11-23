@@ -1,4 +1,5 @@
-import type { Metadata } from "next";
+import { pageMetadata } from "@/lib/seo";
+import { BreadcrumbStructuredData } from "@/components/SeoStructuredData";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
 import PartnerSection from "@/components/home/PartnerSection";
@@ -11,17 +12,14 @@ import {
 } from "@/components/about/content";
 import styles from "./page.module.css";
 
-export const metadata: Metadata = {
-  title: "About us — EKE Bitola",
-  description:
-    "Meet European Cultural Epicenter Bitola: our mission, values, team and extended network.",
-};
+export const metadata = pageMetadata("about");
 const asset = (name: string) => `/assets/about/images/${name}`;
 
 export default function About() {
   return (
     <div className={styles.page}>
       <Header />
+      <BreadcrumbStructuredData page="about" />
       <main id="main">
         <section className={styles.hero} aria-labelledby="about-heading">
           <div className={styles.heroArtwork} aria-hidden="true">
@@ -40,12 +38,12 @@ export default function About() {
             community development, and international cooperation.
           </p>
           <div className={styles.pillars}>
-            {pillars.map((p) => (
+            {pillars.map((p, index) => (
               <article key={p.title}>
                 <img
                   src={asset(p.image)}
                   alt={p.title}
-                  width={p.image === "Rectangle 65.png" ? 553 : 578}
+                  width={index === 0 ? 553 : 578}
                   height={378}
                 />
                 <div>

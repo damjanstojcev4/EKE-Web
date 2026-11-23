@@ -1,4 +1,5 @@
-import type { Metadata } from "next";
+import { pageMetadata } from "@/lib/seo";
+import { BreadcrumbStructuredData } from "@/components/SeoStructuredData";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
 import PartnerSection from "@/components/home/PartnerSection";
@@ -6,11 +7,7 @@ import SessionListings from "@/components/SessionListings";
 import { opportunityPaths } from "@/data/opportunities.mock";
 import styles from "./page.module.css";
 
-export const metadata: Metadata = {
-  title: "Opportunities — EKE Bitola",
-  description:
-    "Explore opportunities to travel, volunteer, learn, lead, and contribute with EKE.",
-};
+export const metadata = pageMetadata("opportunities");
 const asset = (name: string) =>
   `/assets/opportunities-page/${encodeURIComponent(name)}`;
 
@@ -18,6 +15,7 @@ export default function OpportunitiesPage() {
   return (
     <div className={styles.page}>
       <Header />
+      <BreadcrumbStructuredData page="opportunities" />
       <main id="main">
         <section className={styles.hero} aria-labelledby="opportunities-title">
           <div className={styles.heroArtwork} aria-hidden="true">
@@ -37,7 +35,7 @@ export default function OpportunitiesPage() {
           </p>
           <img
             className={styles.heroPhoto}
-            src={asset("unsplash_Cecb0_8Hx-o.png")}
+            src={asset("img.webp")}
             alt="A group of young people standing together with arms around each other"
           />
         </section>
@@ -87,11 +85,9 @@ export default function OpportunitiesPage() {
           <div className={styles.pathGrid}>
             {opportunityPaths.map((path) => (
               <article className={styles.path} key={path.id}>
-                <img
-                  className={styles.pathPhoto}
-                  src={asset(path.image)}
-                  alt={path.alt}
-                />
+                <div className={styles.pathPhoto}>
+                  <img src={asset(path.image)} alt={path.alt} />
+                </div>
                 <div className={styles.pathBody}>
                   <img
                     className={styles.pathReflection}
@@ -102,7 +98,16 @@ export default function OpportunitiesPage() {
                   <p>{path.text}</p>
                 </div>
                 <h3>
-                  {path.id === "volunteering" || path.id === "internships" ? (
+                  {path.id === "volunteering" ? (
+                    <>
+                      <img
+                        className={styles.pathIcon}
+                        src={asset("svg1.svg")}
+                        alt=""
+                      />
+                      {path.title}
+                    </>
+                  ) : path.id === "internships" ? (
                     <>
                       <svg
                         className={styles.internIcon}

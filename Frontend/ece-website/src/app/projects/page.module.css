@@ -481,16 +481,6 @@
   height: calc(577 * var(--u));
   padding-top: calc(148 * var(--u));
 }
-.page :global(.header nav > a:nth-child(2))::before {
-  content: "";
-  position: absolute;
-  width: calc(8 * var(--u));
-  height: calc(8 * var(--u));
-  background: var(--light-blue);
-  top: calc(3 * var(--u));
-  left: calc(152 * var(--u));
-  border-radius: calc(2 * var(--u));
-}
 /* Desktop offsets measured from the supplied 1920px reference. Keep these
    adjustments separate from the content-driven tablet/mobile layouts. */
 @media (min-width: 1101px) {

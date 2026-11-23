@@ -2,17 +2,17 @@
 export const pillars = [
   {
     title: "Non-formal Education",
-    image: "Rectangle 65.png",
+    image: "card1.webp",
     text: "Making learning an everyday experience that transforms lives beyond the classroom.",
   },
   {
     title: "Community & Inclusion",
-    image: "Rectangle 67.png",
+    image: "card2.webp",
     text: "Building a society with second chances where no generation or background is left behind.",
   },
   {
     title: "Global Horizons",
-    image: "Rectangle 66.png",
+    image: "card3.webp",
     text: "Bridging local initiatives with boundless European networks and global opportunities.",
   },
 ];
@@ -22,16 +22,16 @@ export const values = [
     text: "School ends, but learning shouldn't. We build non-formal spaces that help people figures out their path, drop the labels, and keep growing at any age. By bringing quality education directly into places where it is usually missing, like prisons and correctional settings, we make sure a tough past doesn't block a better future.",
   },
   {
-    title: "Future-Ready Competences",
-    text: "The digital world moves fast. We help communities question what they encounter online and harness technology with a critical eye. Our workshops focus on practical realities, whether we are exploring artificial intelligence in youth work or helping older adults spot disinformation in rural towns.",
+    title: "Equality, Inclusion & Social Emancipation",
+    text: "Everyone should have the opportunity to participate, learn and develop their potential. We work with people who face economic, social, geographical or institutional barriers to education and participation. Our programmes aim to widen access, challenge discrimination and create conditions in which individuals can take a more active role in their own lives.",
   },
   {
-    title: "Active Citizenship & Solidarity",
-    text: "Real growth happens when you step up. We give citizens the practical tools to take community ownership and drive local change. Through local volunteering and European mobility projects, different generations swap ideas, activate public spaces, and build lasting solidarity.",
+    title: "Active Citizenship, Human Rights & Solidarity",
+    text: "Real growth happens when you step up. We encourage people of all ages to take an informed and active role in the communities they belong to by giving them practical tools to take community ownership and drive local change. Through non-formal education, local volunteering and European mobility projects, different generations swap ideas, activate public spaces, and build lasting solidarity.",
   },
   {
-    title: "Radical Inclusion",
-    text: "Opportunity should never depend on your background. We shape our entire programming around people facing genuine economic, social, or geographic barriers. From structured street workouts for marginalized urban youth to digital skills training for rural women, we make sure everyone counts.",
+    title: "Sustainability & Shared Responsibility",
+    text: "Social and environmental challenges require informed choices and collective effort. EKE promotes sustainable practices, healthy lifestyles and greater awareness of local and global issues, encouraging individuals and communities to contribute to solutions.",
   },
 ];
 export const members = [

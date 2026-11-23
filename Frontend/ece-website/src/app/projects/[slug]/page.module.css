@@ -289,6 +289,11 @@
   font-weight: 700;
   text-transform: uppercase;
 }
+.downloadButton:not([aria-disabled="true"]):is(:hover, :active, :focus-visible) {
+  background: var(--light-blue);
+  color: var(--dark-blue);
+  border-color: var(--light-blue);
+}
 .downloadButton[aria-disabled] {
   cursor: not-allowed;
 }

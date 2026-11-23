@@ -1,13 +1,10 @@
-import type { Metadata } from "next";
+import { pageMetadata } from "@/lib/seo";
+import { BreadcrumbStructuredData } from "@/components/SeoStructuredData";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
 import styles from "./page.module.css";
 
-export const metadata: Metadata = {
-  title: "Privacy Policy — EKE Bitola",
-  description:
-    "EKE Bitola’s privacy policy and contact information for privacy-related enquiries.",
-};
+export const metadata = pageMetadata("privacy");
 
 function OrganisationDetails() {
   return (
@@ -52,6 +49,7 @@ export default function PrivacyPolicyPage() {
         />
       </div>
       <Header />
+      <BreadcrumbStructuredData page="privacy" />
       <main id="main" className={styles.main}>
         <h1>Privacy Policy</h1>
         <div className={styles.divider} aria-hidden="true" />

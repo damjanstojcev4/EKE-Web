@@ -1,12 +1,15 @@
+import { pageMetadata } from "@/lib/seo";
+import { BreadcrumbStructuredData } from "@/components/SeoStructuredData";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
 import PublicNewsList from "@/components/news/PublicNewsList";
 import styles from "./page.module.css";
-export const metadata = { title: "News — EKE Bitola" };
+export const metadata = pageMetadata("news");
 export default function NewsPage() {
   return (
     <div className={styles.page}>
       <Header />
+      <BreadcrumbStructuredData page="news" />
       <main id="main">
         {" "}
         <section className={styles.hero} aria-labelledby="news-title">

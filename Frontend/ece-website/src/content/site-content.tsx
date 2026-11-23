@@ -84,9 +84,9 @@ export const siteContent = {
             Get in touch and discover how we can work together!
           </span>
         </p>
-        <p className="leading-[calc(50*var(--u))] mb-0">​</p>
-        <p className="leading-[calc(50*var(--u))] mb-0">​</p>
-        <p className="leading-[calc(50*var(--u))]">​</p>
+        <p className="leading-[calc(50*var(--u))] mb-0">&nbsp;</p>
+        <p className="leading-[calc(50*var(--u))] mb-0">&nbsp;</p>
+        <p className="leading-[calc(50*var(--u))]">&nbsp;</p>
       </>
     ),
   },
@@ -108,13 +108,13 @@ export const siteContent = {
           </span>
         </p>
         <p className="leading-[calc(50*var(--u))] mb-0 text-[calc(40*var(--u))]">
-          ​
+
         </p>
         <p className="leading-[calc(50*var(--u))] mb-0 text-[calc(40*var(--u))]">
-          ​
+
         </p>
         <p className="leading-[calc(50*var(--u))] text-[calc(40*var(--u))]">
-          ​
+
         </p>
       </>
     ),
@@ -124,7 +124,7 @@ export const siteContent = {
       "[word-break:break-word] font-normal leading-[calc(32*var(--u))] not-italic text-[calc(24*var(--u))] text-white",
     content: (
       <>
-        EKE has spent more than 14 years turning lifelong learning into
+        Since 2014 EKE Bitola has spent lifelong learning into
         real-world impact.
         <br aria-hidden />
         Working with partners across Europe, our non-formal education programs
@@ -145,7 +145,7 @@ export const siteContent = {
     content: (
       <>
         <p className="leading-[calc(72*var(--u))] mb-0 whitespace-pre">{`NEWS & OPPORTUNITIES `}</p>
-        <p className="leading-[calc(72*var(--u))] whitespace-pre">​</p>
+        <p className="leading-[calc(72*var(--u))] whitespace-pre">&nbsp;</p>
       </>
     ),
   },
@@ -274,8 +274,7 @@ export const siteContent = {
       "[word-break:break-word] font-bold leading-[0] not-italic text-[calc(36*var(--u)-2px)] text-[color:var(--dark-blue,#212c5d)] whitespace-pre-wrap",
     content: (
       <>
-        <span className="block leading-[calc(44*var(--u))] mb-0">{`⁠Digital & Media `}</span>
-        <span className="block leading-[calc(44*var(--u))]">{`Literacy `}</span>
+        <span className="block leading-[calc(44*var(--u))] mb-0">{`Youth Education`}</span>
       </>
     ),
   },
@@ -284,15 +283,15 @@ export const siteContent = {
       "[word-break:break-word] font-bold leading-[0] not-italic text-[calc(36*var(--u)-2px)] text-[color:var(--dark-blue,#212c5d)] whitespace-pre-wrap",
     content: (
       <>
-        <span className="block leading-[calc(44*var(--u))] mb-0">{`Women's Empowerment `}</span>
-        <span className="block leading-[calc(44*var(--u))]">{`& Community Development `}</span>
+        <span className="block leading-[calc(44*var(--u))] mb-0">{`Vocational Education`}</span>
+        <span className="block leading-[calc(44*var(--u))]">{`& Training`}</span>
       </>
     ),
   },
   prisonHeading: {
     className:
       "[word-break:break-word] font-bold leading-[calc(44*var(--u))] not-italic text-[calc(36*var(--u)-2px)] text-[color:var(--dark-blue,#212c5d)]",
-    content: <>{`Prison Education & Social Reintegration `}</>,
+    content: <>{`Adult Education`}</>,
   },
   heroHeading: {
     className:
@@ -308,7 +307,7 @@ export const siteContent = {
           <span className="leading-[calc(120*var(--u))] text-[#4da6ff]">{`Forward `}</span>
         </span>
         <span className="block leading-[calc(120*var(--u))] text-[calc(110*var(--u)-2px)]">
-          ​
+
         </span>
       </>
     ),
@@ -325,8 +324,8 @@ export const siteContent = {
       "[word-break:break-word] font-bold leading-[0] not-italic text-[calc(36*var(--u)-2px)] text-[color:var(--dark-blue,#212c5d)] whitespace-pre-wrap",
     content: (
       <>
-        <span className="block leading-[calc(44*var(--u))] mb-0">{`Youth Development `}</span>
-        <span className="block leading-[calc(44*var(--u))]">{`& Active Citizenship`}</span>
+        <span className="block leading-[calc(44*var(--u))] mb-0">{`Sport & Physical`}</span>
+        <span className="block leading-[calc(44*var(--u))]">{`Activity`}</span>
       </>
     ),
   },
@@ -345,18 +344,24 @@ export const siteContent = {
       "[word-break:break-word] font-normal leading-[0] not-italic text-[calc(18*var(--u))] text-[color:var(--white,white)] whitespace-pre-wrap",
     content: (
       <>
-        <p className="leading-[calc(32*var(--u))] mb-0 text-[#212c5d]">{`EKE draws on dialogue‑based projects on issues such as hate speech to help participants discover their voice and carry it with confidence into daily life. `}</p>
-        <p className="leading-[calc(32*var(--u))] mb-0">​</p>
-        <p className="text-[#212c5d]">
-          <span className="leading-[calc(32*var(--u))]">{`With `}</span>
+        <p className="leading-[calc(32*var(--u))] mb-0 text-[#212c5d]">
+          <span className="leading-[calc(32*var(--u))]">{`Through initiatives like `}</span>
           <span className="[word-break:break-word] font-bold leading-[calc(32*var(--u))] not-italic">
-            Time to Act!
+            {`Sport@Street`}
           </span>
-          <span className="leading-[calc(32*var(--u))]">
-            , EKE takes that spark into entrepreneurship, inviting young people
-            to set their ideas in motion through initiatives they can stand
-            behind and lead.
+          <span className="leading-[calc(32*var(--u))]">{` and `}</span>
+          <span className="[word-break:break-word] font-bold leading-[calc(32*var(--u))] not-italic">
+            {`Street Workout`}
           </span>
+          <span className="leading-[calc(32*var(--u))]">{`, EKE uses sport as a means of social inclusion, engaging young people from disadvantaged urban communities.`}</span>
+        </p>
+        <p className="leading-[calc(32*var(--u))] mb-0">&nbsp;</p>
+        <p className="text-[#212c5d]">
+          <span className="leading-[calc(32*var(--u))]">{`By bringing structured physical activity into community settings, this work makes sport an accessible part of everyday life and creates opportunities for young people who are often excluded from organised sporting activities. `}</span>
+          <span className="[word-break:break-word] font-bold leading-[calc(32*var(--u))] not-italic">
+            {`BeachGolf`}
+          </span>
+          <span className="leading-[calc(32*var(--u))]">{` extends this approach, creating opportunities for women to take part in sport and enjoy its social benefits.`}</span>
         </p>
       </>
     ),
@@ -366,17 +371,16 @@ export const siteContent = {
       "[word-break:break-word] font-normal leading-[0] not-italic text-[calc(18*var(--u))] text-[color:var(--white,white)] whitespace-pre-wrap",
     content: (
       <>
-        <p className="leading-[calc(32*var(--u))] mb-0 text-[#212c5d]">{`EKE’s digital and media literacy work spans generations, making technology feel safer and more approachable in everyday life. `}</p>
-        <p className="leading-[calc(32*var(--u))] mb-0">​</p>
+        <p className="leading-[calc(32*var(--u))] mb-0 text-[#212c5d]">
+          {`EKE's youth education programmes address issues that shape young people's lives, from discrimination and hate speech to entrepreneurship and active citizenship.`}
+        </p>
+        <p className="leading-[calc(32*var(--u))] mb-0">&nbsp;</p>
         <p className="text-[#212c5d]">
+          <span className="leading-[calc(32*var(--u))]">{`Through dialogue-based projects addressing topics such as hate speech, participants learn to recognise discrimination and engage more thoughtfully with the world around them. `}</span>
           <span className="[word-break:break-word] font-bold leading-[calc(32*var(--u))] not-italic">
-            Artificial Intelligence in Youth Work
+            {`With Time to Act!,`}
           </span>
-          <span className="leading-[calc(32*var(--u))]">{` looks at how emerging tools shape young people’s experiences, while `}</span>
-          <span className="[word-break:break-word] font-bold leading-[calc(32*var(--u))] not-italic">
-            Disinformation of Seniors in Rural Areas
-          </span>
-          <span className="leading-[calc(32*var(--u))]">{` offers older adults practical ways to question what they encounter online.`}</span>
+          <span className="leading-[calc(32*var(--u))]">{` EKE takes this learning further by encouraging young people to develop entrepreneurial ideas and turn them into initiatives they can lead.`}</span>
         </p>
       </>
     ),
@@ -386,20 +390,16 @@ export const siteContent = {
       "[word-break:break-word] font-normal leading-[0] not-italic text-[calc(18*var(--u))] text-[color:var(--white,white)] whitespace-pre-wrap",
     content: (
       <>
-        <p className="mb-0 text-[#212c5d]">
-          <span className="leading-[calc(32*var(--u))]">{`Through programmes like `}</span>
-          <span className="[word-break:break-word] font-bold leading-[calc(32*var(--u))] not-italic">
-            DigiWomen
-          </span>
-          <span className="leading-[calc(32*var(--u))]">{`, EKE helps women in rural areas build digital and entrepreneurial skills, opening paths toward work and independence that can be harder to reach outside larger towns. `}</span>
+        <p className="leading-[calc(32*var(--u))] mb-0 text-[#212c5d]">
+          {`EKE's work in vocational learning focuses on skills that can open up new possibilities in employment and professional development, aligned with the realities of the labour market.`}
         </p>
-        <p className="leading-[calc(32*var(--u))] mb-0">​</p>
+        <p className="leading-[calc(32*var(--u))] mb-0">&nbsp;</p>
         <p className="text-[#212c5d]">
-          <span className="[word-break:break-word] font-bold leading-[calc(32*var(--u))] not-italic">{`BeachGolf `}</span>
-          <span className="leading-[calc(32*var(--u))]">
-            carries that same spirit into everyday life, giving women space to
-            take part in sport and community life fully and on their own terms.
+          <span className="leading-[calc(32*var(--u))]">{`Through initiatives like `}</span>
+          <span className="[word-break:break-word] font-bold leading-[calc(32*var(--u))] not-italic">
+            {`DigiWomen`}
           </span>
+          <span className="leading-[calc(32*var(--u))]">{`, women in rural areas develop digital and entrepreneurial skills that can support their access to work and greater economic independence. EKE also works with educators and practitioners to strengthen their professional knowledge and introduce new approaches to their fields.`}</span>
         </p>
       </>
     ),
@@ -409,20 +409,15 @@ export const siteContent = {
       "[word-break:break-word] font-normal leading-[0] not-italic text-[calc(18*var(--u))] text-[color:var(--white,white)] whitespace-pre-wrap",
     content: (
       <>
-        <p className="mb-0 text-[#212c5d]">
-          <span className="leading-[calc(32*var(--u))]">{`Through long‑standing collaboration with correctional institutions and projects like `}</span>
-          <span className="[word-break:break-word] font-bold leading-[calc(32*var(--u))] not-italic">
-            Erasmus+ Pathways for Change
-          </span>
-          <span className="leading-[calc(32*var(--u))]">{`, EKE brings learning into places where it is often missing. `}</span>
+        <p className="leading-[calc(32*var(--u))] mb-0 text-[#212c5d]">
+          {`EKE develops learning opportunities for adults at different stages of life, with particular attention to groups who may have fewer opportunities to access education.`}
         </p>
-        <p className="leading-[calc(32*var(--u))] mb-0">​</p>
+        <p className="leading-[calc(32*var(--u))] mb-0">&nbsp;</p>
         <p className="text-[#212c5d]">
-          <span className="leading-[calc(32*var(--u))]">{`In 2025, that work reached a wider stage when EKE welcomed more than 130 educators, researchers and practitioners from Europe and beyond to Skopje for the `}</span>
           <span className="[word-break:break-word] font-bold leading-[calc(32*var(--u))] not-italic">
-            EPEA Training Conference
+            {`Disinformation of Seniors in Rural Areas (DISERA)`}
           </span>
-          <span className="leading-[calc(32*var(--u))]">.</span>
+          <span className="leading-[calc(32*var(--u))]">{` helps older adults strengthen their media literacy, improve their digital skills and recognise misleading information. Through tailored workshops and accessible learning materials, the project addresses digital exclusion and supports more informed participation in everyday life.`}</span>
         </p>
       </>
     ),

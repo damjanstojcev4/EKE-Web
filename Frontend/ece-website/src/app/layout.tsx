@@ -2,6 +2,8 @@ import type { Metadata } from "next";
 import localFont from "next/font/local";
 import "./globals.css";
 import TextReveals from "@/components/TextReveals";
+import { SiteStructuredData } from "@/components/SeoStructuredData";
+import { getSiteConfig, pageMetadata } from "@/lib/seo";
 const sans = localFont({
   src: "../../public/fonts/google-sans.ttf",
   variable: "--font-google-sans",
@@ -15,9 +17,8 @@ const flex = localFont({
   display: "swap",
 });
 export const metadata: Metadata = {
-  title: "EKE — Homepage design preview",
-  description: "An isolated preview of EKE's Figma homepage.",
-  robots: { index: false, follow: false },
+  ...pageMetadata("home"),
+  metadataBase: getSiteConfig().base,
   icons: { icon: "/assets/eke-logo-symbol.svg" },
 };
 export default function Layout({ children }: { children: React.ReactNode }) {
@@ -27,6 +28,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
           Suppression is limited to this element; child mismatches still warn. */}
       <body className={sans.variable + " " + flex.variable} suppressHydrationWarning>
         {children}
+        <SiteStructuredData />
         <TextReveals />
       </body>
     </html>

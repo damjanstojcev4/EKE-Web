@@ -120,7 +120,7 @@ export const communityNews: NewsArticle[] = [
     id: "digital-wellbeing-apv", slug: "apv-digital-well-being-exchange",
     title: "APV for Digital Well-Being Exchange",
     summary: "EKE hosted international partners from Spain, Türkiye, and Cyprus in Bitola for an Advance Planning Visit. This critical preparatory meeting finalized the administrative and pedagogical frameworks for our upcoming project Beyond Screens: Building Healthy Habits Together.",
-    image: "/assets/expertise-digital-literacy.png", imageAlt: "Placeholder: participants at a collaborative meeting", imagePlaceholder: true,
+    image: "/assets/youth-education.webp", imageAlt: "Placeholder: participants at a collaborative meeting", imagePlaceholder: true,
   },
 ];
 

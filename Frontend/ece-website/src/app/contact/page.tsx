@@ -1,4 +1,5 @@
-import type { Metadata } from "next";
+import { pageMetadata } from "@/lib/seo";
+import { BreadcrumbStructuredData } from "@/components/SeoStructuredData";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
 import { Arrow } from "@/components/ui";
@@ -6,16 +7,13 @@ import ContactForm from "@/components/contact/ContactForm";
 import PartnerFormNotice from "@/components/contact/PartnerFormNotice";
 import styles from "./page.module.css";
 
-export const metadata: Metadata = {
-  title: "Contact — EKE Bitola",
-  description:
-    "Connect with EKE to build a project, partner on a proposal, or join our network.",
-};
+export const metadata = pageMetadata("contact");
 
 export default function ContactPage() {
   return (
     <div className={styles.page}>
       <Header />
+      <BreadcrumbStructuredData page="contact" />
       <main id="main">
         <section className={styles.hero} aria-labelledby="contact-title">
           <p className={styles.label}>Contact</p>
