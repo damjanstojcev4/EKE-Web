@@ -71,8 +71,11 @@ for (const width of [390, 768, 1440, 1920]) {
     );
     await page.goto("/projects/");
     const cards = page.locator("#project-results article");
-    await expect(cards).toHaveCount(17);
-    await expect(page.locator("#project-results img")).toHaveCount(16);
+    await expect(cards).toHaveCount(9);
+    await expect(page.getByRole("button", { name: "Ongoing", exact: true })).toHaveAttribute("aria-pressed", "true");
+    await page.getByRole("button", { name: "Past", exact: true }).click();
+    await expect(cards).toHaveCount(8);
+    await expect(page.locator("#project-results img")).toHaveCount(8);
     await expect
       .poll(() =>
         page
@@ -159,3 +162,4 @@ for (const width of [390, 768, 1440, 1920]) {
       .screenshot({ path: testInfo.outputPath(`news-${width}.png`) });
   });
 }
+

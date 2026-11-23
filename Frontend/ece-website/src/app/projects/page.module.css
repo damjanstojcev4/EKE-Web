@@ -86,6 +86,10 @@
   padding-bottom: calc(118 * var(--u));
 }
 .filters {
+  position: sticky;
+  top: calc(145 * var(--u));
+  align-self: start;
+  z-index: 5;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
@@ -595,6 +599,9 @@
     gap: 25px;
   }
   .filters {
+    top: 104px;
+    padding-block: 12px;
+    background: #fafafa;
     flex-direction: row;
     gap: 25px;
   }

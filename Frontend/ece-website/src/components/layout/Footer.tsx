@@ -54,6 +54,11 @@ export default function Footer() {
             Belgradska 27, 7000 Bitola, North Macedonia
           </a>
         </div>
+        <p className="footer-association">
+          Association for Non-formal Education EUROPEAN
+          <br />
+          CULTURAL EPICENTER Bitola (EKE Bitola)
+        </p>
         <ContentBlock block={siteContent.registration} className="registration" />
       </div>
       <div className="footer-right">

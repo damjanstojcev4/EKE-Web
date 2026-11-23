@@ -1081,6 +1081,12 @@ button:not(:disabled):not([aria-disabled="true"]):is(:hover, :active, :focus-vis
   padding-top: calc(4 * var(--u));
   line-height: calc(22 * var(--u));
 }
+.footer-association {
+  margin: calc(19 * var(--u)) 0 0 calc(1 * var(--u));
+  font-size: calc(18 * var(--u));
+  font-weight: 600;
+  line-height: calc(26 * var(--u));
+}
 .registration {
   margin-left: calc(1 * var(--u));
   margin-top: calc(19 * var(--u));
@@ -1630,6 +1636,11 @@ button:not(:disabled):not([aria-disabled="true"]):is(:hover, :active, :focus-vis
   }
   .address strong {
     font-size: 18px;
+  }
+  .footer-association {
+    margin: 25px 0 0;
+    font-size: 16px;
+    line-height: 1.5;
   }
   .registration {
     width: auto;

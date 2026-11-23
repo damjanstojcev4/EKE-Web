@@ -6,10 +6,9 @@ import { usePathname } from "next/navigation";
 const textSelector = [
   "h1", "h2", "h3", "h4", "h5", "h6", "p", "blockquote",
   "figcaption", "li", "dt", "dd", ".content-block", ".hero-heading-line",
-  "footer nav a", "footer .address", "footer .social > strong",
   ".news-meta strong", ".news-meta time", "[data-text-reveal]",
 ].join(",");
-const excluded = "header, form, [aria-live], [role=status], [role=alert], [role=tooltip], .sr-only, [data-text-reveal=off]";
+const excluded = "header, footer, form, [aria-live], [role=status], [role=alert], [role=tooltip], .sr-only, [data-text-reveal=off]";
 
 /** Progressive enhancement: keep React's text, links and line wrapping intact. */
 export default function TextReveals() {

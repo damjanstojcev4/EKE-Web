@@ -6,17 +6,14 @@ import ProjectCard from "./ProjectCard";
 import styles from "@/app/projects/page.module.css";
 
 const filters = [
-  { id: "all", label: "All Projects" },
   { id: "ongoing", label: "Ongoing" },
   { id: "completed", label: "Past" },
 ] as const;
 export default function ProjectsList() {
-  const [filter, setFilter] = useState<(typeof filters)[number]["id"]>("all");
+  const [filter, setFilter] = useState<(typeof filters)[number]["id"]>("ongoing");
   const { data: projects, error } = useApi<ProjectRecord[]>("/projects/public");
   const visible = (projects || []).filter(
-    (project) =>
-      filter === "all" ||
-      (project.status === "ON_GOING" ? "ongoing" : "completed") === filter,
+    (project) => (project.status === "ON_GOING" ? "ongoing" : "completed") === filter,
   );
   return (
     <section className={styles.listing} aria-label="Projects">
