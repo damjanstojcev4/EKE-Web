@@ -2,7 +2,7 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { Arrow } from "@/components/ui";
-import { useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import { nav } from "@/data/navigation";
 export default function Header() {
   const pathname = usePathname();
@@ -13,9 +13,15 @@ export default function Header() {
       : pathname === path || Boolean(pathname?.startsWith(`${path}/`));
   };
   const dialog = useRef<HTMLDialogElement>(null);
+  const [isOpen, setIsOpen] = useState(false);
+  const previousOverflow = useRef("");
+  useEffect(() => () => {
+    document.body.style.overflow = previousOverflow.current;
+  }, []);
   const close = () => {
     dialog.current?.close();
-    document.body.style.overflow = "";
+    setIsOpen(false);
+    document.body.style.overflow = previousOverflow.current;
   };
   return (
     <>
@@ -45,8 +51,12 @@ export default function Header() {
           className="menu-toggle"
           aria-label="Open navigation menu"
           aria-haspopup="dialog"
+          aria-expanded={isOpen}
+          aria-controls="navigation-menu"
           onClick={() => {
+            previousOverflow.current = document.body.style.overflow;
             dialog.current?.showModal();
+            setIsOpen(true);
             document.body.style.overflow = "hidden";
           }}
         >
@@ -56,18 +66,27 @@ export default function Header() {
       </header>
       <dialog
         ref={dialog}
+        id="navigation-menu"
         className="menu-dialog"
         aria-label="Navigation menu"
         onClose={() => {
-          document.body.style.overflow = "";
+          setIsOpen(false);
+          document.body.style.overflow = previousOverflow.current;
         }}
         onClick={(e) => {
           if (e.target === dialog.current) close();
         }}
       >
         <div className="menu-inner">
-          <button className="menu-close" onClick={close}>
-            Close{" "}
+          <Link href="/#home" className="logo menu-logo" aria-label="EKE home" onClick={close}>
+            <img src="/assets/eke-logo-symbol.svg" alt="" />
+            <span>
+              <img src="/assets/eke-logo-wordmark.svg" alt="EKE" />
+              <img src="/assets/eke-logo-bitola.svg" alt="Bitola" />
+            </span>
+          </Link>
+          <button className="menu-close" onClick={close} aria-label="Close navigation menu">
+            <span>Close</span>{" "}
             <img src="/assets/menu-close.svg" alt="" width={28} height={28} />
           </button>
           <div className="menu-features">
@@ -96,7 +115,7 @@ export default function Header() {
             </Link>
           </div>
           <nav className="mobile-nav" aria-label="Mobile navigation">
-            {nav.map((item) => (
+            {nav.filter((item) => item.label !== "Home").map((item) => (
               <Link key={item.label} href={item.href} onClick={close} aria-current={isCurrentPage(item.href) ? "page" : undefined}>
                 <span className="nav-label">{item.label}</span>
               </Link>
@@ -121,6 +140,7 @@ export default function Header() {
               </div>
             </div>
           </div>
+          <p className="menu-tagline">Engage.Empower.<br />Transform.</p>
         </div>
       </dialog>
     </>
