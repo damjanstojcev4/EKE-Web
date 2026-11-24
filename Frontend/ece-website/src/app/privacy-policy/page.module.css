@@ -1,194 +1,30 @@
-.page {
-  position: relative;
-  isolation: isolate;
-  background: #fafafa;
-  overflow: clip;
-}
-.decorations {
-  position: absolute;
-  inset: 0;
-  overflow: hidden;
-  z-index: -1;
-  pointer-events: none;
-}
-.decorations img {
-  position: absolute;
-  max-width: none;
-}
-.first {
-  width: calc(1779 * var(--u));
-  left: 0;
-  top: 0;
-  /* The original export includes outlined date text. Mask just that text;
-     the date is rendered as accessible HTML, and the SVG stays untouched. */
-  clip-path: polygon(evenodd, 0 0, 100% 0, 100% 100%, 0 100%, 0 0, 9% 33%, 25% 33%, 25% 34.2%, 9% 34.2%, 9% 33%);
-}
-.second {
-  width: calc(1735 * var(--u));
-  left: 0;
-  top: calc(1310 * var(--u));
-}
-.third {
-  width: calc(1840 * var(--u));
-  left: calc(80 * var(--u));
-  top: calc(3532 * var(--u));
-}
-.main {
-  padding-top: calc(258 * var(--u));
-}
-.main h1 {
-  margin-left: calc(80 * var(--u));
-  font-size: calc(110 * var(--u) - 2px);
-  line-height: calc(140 * var(--u));
-  font-weight: 700;
-}
-.divider {
-  height: calc(23 * var(--u));
-  margin: calc(34 * var(--u)) calc(80 * var(--u)) 0;
-  background: linear-gradient(
-    to right,
-    var(--tirkiz) 0 calc(70 * var(--u)),
-    var(--light-blue) calc(70 * var(--u)) 100%
-  );
-}
-.document {
-  width: calc(880 * var(--u));
-  margin: calc(121 * var(--u)) 0 0 calc(170 * var(--u));
-  font-size: calc(20 * var(--u));
-  line-height: calc(32 * var(--u));
-  overflow-wrap: anywhere;
-}
-.updated {
-  font-weight: 700;
-  position: relative;
-  margin-bottom: calc(40 * var(--u));
-  text-indent: calc(-10 * var(--u));
-}
-.updated::before { transform: translateY(calc(-3 * var(--u))); }
+/* Keep shared-component compatibility scoped to this page until their migration.
+   Unlayered globals own Header/Footer sizing and focus, so ordinary utilities
+   cannot override them without changing shared components or global layers. */
 @media (min-width: 1101px) {
   .page :global(.footer) {
     margin-top: calc(-20 * var(--u));
     height: calc(600 * var(--u));
   }
 }
-.updated::before,
-.details li::before {
-  content: "";
-  position: absolute;
-  width: calc(14 * var(--u));
-  height: calc(14 * var(--u));
-  left: calc(-34 * var(--u));
-  top: calc(10 * var(--u));
-  background: var(--dark-blue);
-}
-.document section + section {
-  margin-top: calc(24 * var(--u));
-}
-.document h2 {
-  font-size: calc(32 * var(--u) - 2px);
-  line-height: calc(40 * var(--u));
-  font-weight: 700;
-}
-.document p + p,
-.document ul,
-.document ul + p {
-  margin-top: calc(32 * var(--u));
-}
-.document ul {
-  margin-bottom: 0;
-  padding-left: calc(30 * var(--u));
-  list-style: disc;
-}
-.document .details {
-  list-style: none;
-  padding-left: 0;
-}
-.details li {
-  position: relative;
-}
-.document a:hover {
-  text-decoration: underline;
-}
 .page a:focus-visible,
 .page button:focus-visible {
   outline: 2px solid var(--dark-blue);
   outline-offset: 4px;
 }
-@media (max-width: 1100px) {
-  .document {
-    font-size: 18px;
-    line-height: 1.6;
-    width: min(900px, calc(100% - 112px));
-    margin: 70px 56px 0;
-  }
-  .document h2 {
-    font-size: 26px;
-    line-height: 1.25;
-  }
-  .document section + section {
-    margin-top: 28px;
-  }
-  .document p + p,
-  .document ul,
-  .document ul + p {
-    margin-top: 24px;
-  }
-  .document ul {
-    padding-left: 26px;
-  }
-  .updated {
-    margin-bottom: 36px;
-  }
-  .updated::before,
-  .details li::before {
-    width: 9px;
-    height: 9px;
-    left: -20px;
-    top: 10px;
-  }
-}
-@media (max-width: 700px) {
-  .main {
-    padding-top: 145px;
-  }
-  .main h1 {
-    font-size: 40px;
-    line-height: 1.15;
-    margin: 0 24px;
-  }
-  .divider {
-    height: 8px;
-    margin: 24px 24px 0;
-    background: linear-gradient(
-      to right,
-      var(--tirkiz) 0 24px,
-      var(--light-blue) 24px 100%
-    );
-  }
-  .document {
-    width: auto;
-    margin: 48px 24px 0 40px;
-    font-size: 16px;
-    line-height: 1.6;
-  }
-  .document h2 {
-    font-size: 22px;
-  }
-  .updated {
-    font-size: 15px;
-  }
-  .decorations img {
-    width: 1000px;
-  }
-  .first {
-    left: -250px;
-  }
-  .second {
-    top: 1800px;
-    left: -350px;
-  }
-  .third {
-    top: 4000px;
-    left: -300px;
-  }
+/* Hide only the SVG's outlined date; accessible HTML supplies the date. */
+.first {
+  clip-path: polygon(
+    evenodd,
+    0 0,
+    100% 0,
+    100% 100%,
+    0 100%,
+    0 0,
+    9% 33%,
+    25% 33%,
+    25% 34.2%,
+    9% 34.2%,
+    9% 33%
+  );
 }

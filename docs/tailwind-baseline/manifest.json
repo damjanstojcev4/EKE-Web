@@ -1,0 +1,369 @@
+{
+  "base": "https://preview.ekebitola.org",
+  "capturedAt": "2026-11-23T23:56:05.089Z",
+  "browser": "158.0.4370.33",
+  "motion": "reduce",
+  "screens": [
+    {
+      "file": "desktop-home.png",
+      "url": "https://preview.ekebitola.org/",
+      "width": 1440,
+      "height": 1000,
+      "scrollWidth": 1440,
+      "scrollHeight": 7893,
+      "unit": "calc(100vw / 1920)",
+      "headerNav": "flex"
+    },
+    {
+      "file": "desktop-button-hover.png",
+      "url": "https://preview.ekebitola.org/",
+      "width": 1440,
+      "height": 1000,
+      "scrollWidth": 1440,
+      "scrollHeight": 7893,
+      "unit": "calc(100vw / 1920)",
+      "headerNav": "flex"
+    },
+    {
+      "file": "desktop-menu.png",
+      "url": "https://preview.ekebitola.org/",
+      "width": 1440,
+      "height": 1000,
+      "scrollWidth": 1440,
+      "scrollHeight": 7893,
+      "unit": "calc(100vw / 1920)",
+      "headerNav": "flex"
+    },
+    {
+      "file": "desktop-projects.png",
+      "url": "https://preview.ekebitola.org/projects/",
+      "width": 1440,
+      "height": 1000,
+      "scrollWidth": 1440,
+      "scrollHeight": 7594,
+      "unit": "calc(100vw / 1920)",
+      "headerNav": "flex"
+    },
+    {
+      "file": "desktop-projects-past.png",
+      "url": "https://preview.ekebitola.org/projects/",
+      "width": 1440,
+      "height": 1000,
+      "scrollWidth": 1440,
+      "scrollHeight": 12754,
+      "unit": "calc(100vw / 1920)",
+      "headerNav": "flex"
+    },
+    {
+      "file": "desktop-news.png",
+      "url": "https://preview.ekebitola.org/news/",
+      "width": 1440,
+      "height": 1000,
+      "scrollWidth": 1440,
+      "scrollHeight": 1252,
+      "unit": "calc(100vw / 1920)",
+      "headerNav": "flex"
+    },
+    {
+      "file": "desktop-contact.png",
+      "url": "https://preview.ekebitola.org/contact/",
+      "width": 1440,
+      "height": 1000,
+      "scrollWidth": 1440,
+      "scrollHeight": 1984,
+      "unit": "calc(100vw / 1920)",
+      "headerNav": "flex"
+    },
+    {
+      "file": "desktop-contact-errors.png",
+      "url": "https://preview.ekebitola.org/contact/",
+      "width": 1440,
+      "height": 1000,
+      "scrollWidth": 1440,
+      "scrollHeight": 2052,
+      "unit": "calc(100vw / 1920)",
+      "headerNav": "flex"
+    },
+    {
+      "file": "desktop-training.png",
+      "url": "https://preview.ekebitola.org/training/",
+      "width": 1440,
+      "height": 1000,
+      "scrollWidth": 1440,
+      "scrollHeight": 5926,
+      "unit": "calc(100vw / 1920)",
+      "headerNav": "flex"
+    },
+    {
+      "file": "desktop-about.png",
+      "url": "https://preview.ekebitola.org/about/",
+      "width": 1440,
+      "height": 1000,
+      "scrollWidth": 1440,
+      "scrollHeight": 7932,
+      "unit": "calc(100vw / 1920)",
+      "headerNav": "flex"
+    },
+    {
+      "file": "desktop-opportunities.png",
+      "url": "https://preview.ekebitola.org/opportunities/",
+      "width": 1440,
+      "height": 1000,
+      "scrollWidth": 1440,
+      "scrollHeight": 4217,
+      "unit": "calc(100vw / 1920)",
+      "headerNav": "flex"
+    },
+    {
+      "file": "desktop-privacy-policy.png",
+      "url": "https://preview.ekebitola.org/privacy-policy/",
+      "width": 1440,
+      "height": 1000,
+      "scrollWidth": 1440,
+      "scrollHeight": 5271,
+      "unit": "calc(100vw / 1920)",
+      "headerNav": "flex"
+    },
+    {
+      "file": "tablet-home.png",
+      "url": "https://preview.ekebitola.org/",
+      "width": 820,
+      "height": 1180,
+      "scrollWidth": 820,
+      "scrollHeight": 4509,
+      "unit": "calc(100vw / 1920)",
+      "headerNav": "flex"
+    },
+    {
+      "file": "tablet-button-hover.png",
+      "url": "https://preview.ekebitola.org/",
+      "width": 820,
+      "height": 1180,
+      "scrollWidth": 820,
+      "scrollHeight": 4509,
+      "unit": "calc(100vw / 1920)",
+      "headerNav": "flex"
+    },
+    {
+      "file": "tablet-menu.png",
+      "url": "https://preview.ekebitola.org/",
+      "width": 820,
+      "height": 1180,
+      "scrollWidth": 820,
+      "scrollHeight": 4509,
+      "unit": "calc(100vw / 1920)",
+      "headerNav": "flex"
+    },
+    {
+      "file": "tablet-projects.png",
+      "url": "https://preview.ekebitola.org/projects/",
+      "width": 820,
+      "height": 1180,
+      "scrollWidth": 820,
+      "scrollHeight": 6649,
+      "unit": "calc(100vw / 1920)",
+      "headerNav": "flex"
+    },
+    {
+      "file": "tablet-projects-past.png",
+      "url": "https://preview.ekebitola.org/projects/",
+      "width": 820,
+      "height": 1180,
+      "scrollWidth": 820,
+      "scrollHeight": 10920,
+      "unit": "calc(100vw / 1920)",
+      "headerNav": "flex"
+    },
+    {
+      "file": "tablet-news.png",
+      "url": "https://preview.ekebitola.org/news/",
+      "width": 820,
+      "height": 1180,
+      "scrollWidth": 820,
+      "scrollHeight": 1180,
+      "unit": "calc(100vw / 1920)",
+      "headerNav": "flex"
+    },
+    {
+      "file": "tablet-contact.png",
+      "url": "https://preview.ekebitola.org/contact/",
+      "width": 820,
+      "height": 1180,
+      "scrollWidth": 820,
+      "scrollHeight": 1485,
+      "unit": "calc(100vw / 1920)",
+      "headerNav": "flex"
+    },
+    {
+      "file": "tablet-contact-errors.png",
+      "url": "https://preview.ekebitola.org/contact/",
+      "width": 820,
+      "height": 1180,
+      "scrollWidth": 820,
+      "scrollHeight": 1557,
+      "unit": "calc(100vw / 1920)",
+      "headerNav": "flex"
+    },
+    {
+      "file": "tablet-training.png",
+      "url": "https://preview.ekebitola.org/training/",
+      "width": 820,
+      "height": 1180,
+      "scrollWidth": 820,
+      "scrollHeight": 5669,
+      "unit": "calc(100vw / 1920)",
+      "headerNav": "flex"
+    },
+    {
+      "file": "tablet-about.png",
+      "url": "https://preview.ekebitola.org/about/",
+      "width": 820,
+      "height": 1180,
+      "scrollWidth": 820,
+      "scrollHeight": 4517,
+      "unit": "calc(100vw / 1920)",
+      "headerNav": "flex"
+    },
+    {
+      "file": "tablet-opportunities.png",
+      "url": "https://preview.ekebitola.org/opportunities/",
+      "width": 820,
+      "height": 1180,
+      "scrollWidth": 820,
+      "scrollHeight": 4206,
+      "unit": "calc(100vw / 1920)",
+      "headerNav": "flex"
+    },
+    {
+      "file": "tablet-privacy-policy.png",
+      "url": "https://preview.ekebitola.org/privacy-policy/",
+      "width": 820,
+      "height": 1180,
+      "scrollWidth": 820,
+      "scrollHeight": 5972,
+      "unit": "calc(100vw / 1920)",
+      "headerNav": "flex"
+    },
+    {
+      "file": "mobile-home.png",
+      "url": "https://preview.ekebitola.org/",
+      "width": 390,
+      "height": 844,
+      "scrollWidth": 390,
+      "scrollHeight": 13920,
+      "unit": "1px",
+      "headerNav": "none"
+    },
+    {
+      "file": "mobile-button-hover.png",
+      "url": "https://preview.ekebitola.org/",
+      "width": 390,
+      "height": 844,
+      "scrollWidth": 390,
+      "scrollHeight": 13920,
+      "unit": "1px",
+      "headerNav": "none"
+    },
+    {
+      "file": "mobile-menu.png",
+      "url": "https://preview.ekebitola.org/",
+      "width": 390,
+      "height": 844,
+      "scrollWidth": 390,
+      "scrollHeight": 13920,
+      "unit": "1px",
+      "headerNav": "none"
+    },
+    {
+      "file": "mobile-projects.png",
+      "url": "https://preview.ekebitola.org/projects/",
+      "width": 390,
+      "height": 844,
+      "scrollWidth": 390,
+      "scrollHeight": 11801,
+      "unit": "1px",
+      "headerNav": "none"
+    },
+    {
+      "file": "mobile-projects-past.png",
+      "url": "https://preview.ekebitola.org/projects/",
+      "width": 390,
+      "height": 844,
+      "scrollWidth": 390,
+      "scrollHeight": 21821,
+      "unit": "1px",
+      "headerNav": "none"
+    },
+    {
+      "file": "mobile-news.png",
+      "url": "https://preview.ekebitola.org/news/",
+      "width": 390,
+      "height": 844,
+      "scrollWidth": 390,
+      "scrollHeight": 1912,
+      "unit": "1px",
+      "headerNav": "none"
+    },
+    {
+      "file": "mobile-contact.png",
+      "url": "https://preview.ekebitola.org/contact/",
+      "width": 390,
+      "height": 844,
+      "scrollWidth": 390,
+      "scrollHeight": 3658,
+      "unit": "1px",
+      "headerNav": "none"
+    },
+    {
+      "file": "mobile-contact-errors.png",
+      "url": "https://preview.ekebitola.org/contact/",
+      "width": 390,
+      "height": 844,
+      "scrollWidth": 390,
+      "scrollHeight": 3778,
+      "unit": "1px",
+      "headerNav": "none"
+    },
+    {
+      "file": "mobile-training.png",
+      "url": "https://preview.ekebitola.org/training/",
+      "width": 390,
+      "height": 844,
+      "scrollWidth": 390,
+      "scrollHeight": 9631,
+      "unit": "1px",
+      "headerNav": "none"
+    },
+    {
+      "file": "mobile-about.png",
+      "url": "https://preview.ekebitola.org/about/",
+      "width": 390,
+      "height": 844,
+      "scrollWidth": 390,
+      "scrollHeight": 16402,
+      "unit": "1px",
+      "headerNav": "none"
+    },
+    {
+      "file": "mobile-opportunities.png",
+      "url": "https://preview.ekebitola.org/opportunities/",
+      "width": 390,
+      "height": 844,
+      "scrollWidth": 390,
+      "scrollHeight": 7173,
+      "unit": "1px",
+      "headerNav": "none"
+    },
+    {
+      "file": "mobile-privacy-policy.png",
+      "url": "https://preview.ekebitola.org/privacy-policy/",
+      "width": 390,
+      "height": 844,
+      "scrollWidth": 390,
+      "scrollHeight": 8898,
+      "unit": "1px",
+      "headerNav": "none"
+    }
+  ],
+  "errors": []
+}

@@ -1,0 +1,12 @@
+/* Exact-value aliases only. Legacy variables and declarations remain unchanged. */
+@theme {
+  --color-brand-navy: #212c5d;
+  --color-brand-blue: #4da6ff;
+  --color-brand-turquoise: #00e2bc;
+  --color-surface: #fff;
+  --color-surface-muted: #fafafa;
+}
+@theme inline {
+  --font-brand-sans: var(--font-google-sans), Arial, sans-serif;
+  --font-brand-flex: var(--font-google-flex), sans-serif;
+}
