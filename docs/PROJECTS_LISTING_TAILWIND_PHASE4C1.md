@@ -1,5 +1,7 @@
 # Projects listing — Phase 4C.1 implementation checkpoint
 
+Follow-up: [Visual sign-off investigation](PROJECTS_LISTING_VISUAL_SIGNOFF_INVESTIGATION.md) records source-independent raster-state evidence, rejected repaint experiments and the two-reference review proposal. Approved references and strict thresholds remain unchanged; Phase 4C.2 remains NO-GO.
+
 **Strict initial-reference visual sign-off remains blocked by two capture-reproducibility failures.** The migrated page matches all 81 unchanged-checkpoint control PNGs exactly, but `769-ongoing` and `1099-empty` do not match the first capture set; the unchanged checkpoint reproduces those same failures. No initial reference has been replaced and no pixel tolerance has been granted. This is an implementation/review checkpoint, not an all-green acceptance claim or authorization for another page migration.
 
 Worktree: `D:\eke-web\.worktrees\frontend-tailwind-phase1`; branch `codex/frontend-tailwind-phase1`; original source checkpoint `53f718e7308ddb3e4bc59f45a6ec7ce12e7e02fd`. Audit/capture date: 24 November 2026, Europe/Skopje.

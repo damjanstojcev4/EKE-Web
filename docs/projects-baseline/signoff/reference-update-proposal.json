@@ -1,0 +1,23 @@
+{
+  "status": "REVIEW ONLY — NOT APPLIED",
+  "approvedReferencesModified": false,
+  "thresholdsModified": false,
+  "entries": [
+    {
+      "capture": "769-ongoing",
+      "approvedSha256": "6240ec2f5e75fbf4b9b177c6d6681e8aa0fa17e8321524bf7d195c46537e9082",
+      "proposedSha256": "27881d1a2e69460bac0e4e77afb22f898e8a5874fd1dee2fa1454b6f3eb7a98e",
+      "localCandidate": "review-candidates/769-ongoing.png",
+      "changedPixels": 5,
+      "maxChannelDifference": 1
+    },
+    {
+      "capture": "1099-empty",
+      "approvedSha256": "11e1cbaf5ec68100707e47c63c95da33fd0fd2a9d1ed2d130c3bbb1b055e5029",
+      "proposedSha256": "3916b8e11a92db6d2755b30d3212b9ac6d8ebcdcfa00c5023b4e01f95517d119",
+      "localCandidate": "review-candidates/1099-empty.png",
+      "changedPixels": 4279,
+      "maxChannelDifference": 6
+    }
+  ]
+}

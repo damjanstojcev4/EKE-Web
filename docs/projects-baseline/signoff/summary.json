@@ -1,0 +1,3749 @@
+{
+  "approvedPNGsIntact": true,
+  "readiness": {
+    "original": {
+      "captures": 28,
+      "errors": [],
+      "fixtureSha256": "5c2d7a3098561f4fcf6c8c39130c71c03f275a00f86ab762dcea3bf77be36db2",
+      "rendering": {
+        "browser": "158.0.4370.33",
+        "renderer": "ANGLE (Intel, Intel(R) UHD Graphics (0x00009BC4) Direct3D11 vs_5_0 ps_5_0, D3D11-27.20.100.9664)",
+        "backend": "GaneshGL"
+      },
+      "viewportsCorrect": true,
+      "fontsReady": true,
+      "imagesReady": true
+    },
+    "tailwind": {
+      "captures": 28,
+      "errors": [],
+      "fixtureSha256": "5c2d7a3098561f4fcf6c8c39130c71c03f275a00f86ab762dcea3bf77be36db2",
+      "rendering": {
+        "browser": "158.0.4370.33",
+        "renderer": "ANGLE (Intel, Intel(R) UHD Graphics (0x00009BC4) Direct3D11 vs_5_0 ps_5_0, D3D11-27.20.100.9664)",
+        "backend": "GaneshGL"
+      },
+      "viewportsCorrect": true,
+      "fontsReady": true,
+      "imagesReady": true
+    }
+  },
+  "cases": [
+    {
+      "width": 768,
+      "state": "empty",
+      "pngIdentical": true,
+      "detailsIdentical": true,
+      "originalSha256": "e4aa2aa813fddadd1c6b3f59ed13264ac459013734817f5587c39507ae622127",
+      "tailwindSha256": "e4aa2aa813fddadd1c6b3f59ed13264ac459013734817f5587c39507ae622127",
+      "matchesApproved": true
+    },
+    {
+      "width": 768,
+      "state": "ongoing",
+      "pngIdentical": true,
+      "detailsIdentical": true,
+      "originalSha256": "3cffb1308bcbf4cf286866e4acb9b1c9969097b9c0d5f999f821df07746a32d4",
+      "tailwindSha256": "3cffb1308bcbf4cf286866e4acb9b1c9969097b9c0d5f999f821df07746a32d4",
+      "matchesApproved": true
+    },
+    {
+      "width": 769,
+      "state": "empty",
+      "pngIdentical": true,
+      "detailsIdentical": true,
+      "originalSha256": "3e1617d69f13abd0e577d1371fbcedfc23e021982a70d9da8b2ffe3031ee2460",
+      "tailwindSha256": "3e1617d69f13abd0e577d1371fbcedfc23e021982a70d9da8b2ffe3031ee2460",
+      "matchesApproved": true
+    },
+    {
+      "width": 769,
+      "state": "ongoing",
+      "pngIdentical": true,
+      "detailsIdentical": true,
+      "originalSha256": "27881d1a2e69460bac0e4e77afb22f898e8a5874fd1dee2fa1454b6f3eb7a98e",
+      "tailwindSha256": "27881d1a2e69460bac0e4e77afb22f898e8a5874fd1dee2fa1454b6f3eb7a98e",
+      "matchesApproved": false
+    },
+    {
+      "width": 769,
+      "state": "repeat-0",
+      "pngIdentical": true,
+      "detailsIdentical": true,
+      "originalSha256": "27881d1a2e69460bac0e4e77afb22f898e8a5874fd1dee2fa1454b6f3eb7a98e",
+      "tailwindSha256": "27881d1a2e69460bac0e4e77afb22f898e8a5874fd1dee2fa1454b6f3eb7a98e",
+      "matchesApproved": false
+    },
+    {
+      "width": 769,
+      "state": "repeat-1",
+      "pngIdentical": true,
+      "detailsIdentical": true,
+      "originalSha256": "27881d1a2e69460bac0e4e77afb22f898e8a5874fd1dee2fa1454b6f3eb7a98e",
+      "tailwindSha256": "27881d1a2e69460bac0e4e77afb22f898e8a5874fd1dee2fa1454b6f3eb7a98e",
+      "matchesApproved": false
+    },
+    {
+      "width": 769,
+      "state": "repeat-2",
+      "pngIdentical": true,
+      "detailsIdentical": true,
+      "originalSha256": "27881d1a2e69460bac0e4e77afb22f898e8a5874fd1dee2fa1454b6f3eb7a98e",
+      "tailwindSha256": "27881d1a2e69460bac0e4e77afb22f898e8a5874fd1dee2fa1454b6f3eb7a98e",
+      "matchesApproved": false
+    },
+    {
+      "width": 769,
+      "state": "repeat-3",
+      "pngIdentical": true,
+      "detailsIdentical": true,
+      "originalSha256": "27881d1a2e69460bac0e4e77afb22f898e8a5874fd1dee2fa1454b6f3eb7a98e",
+      "tailwindSha256": "27881d1a2e69460bac0e4e77afb22f898e8a5874fd1dee2fa1454b6f3eb7a98e",
+      "matchesApproved": false
+    },
+    {
+      "width": 769,
+      "state": "reload",
+      "pngIdentical": true,
+      "detailsIdentical": true,
+      "originalSha256": "27881d1a2e69460bac0e4e77afb22f898e8a5874fd1dee2fa1454b6f3eb7a98e",
+      "tailwindSha256": "27881d1a2e69460bac0e4e77afb22f898e8a5874fd1dee2fa1454b6f3eb7a98e",
+      "matchesApproved": false
+    },
+    {
+      "width": 769,
+      "state": "scroll-warm",
+      "pngIdentical": true,
+      "detailsIdentical": true,
+      "originalSha256": "27881d1a2e69460bac0e4e77afb22f898e8a5874fd1dee2fa1454b6f3eb7a98e",
+      "tailwindSha256": "27881d1a2e69460bac0e4e77afb22f898e8a5874fd1dee2fa1454b6f3eb7a98e",
+      "matchesApproved": false
+    },
+    {
+      "width": 769,
+      "state": "resize-reset",
+      "pngIdentical": false,
+      "detailsIdentical": true,
+      "originalSha256": "27881d1a2e69460bac0e4e77afb22f898e8a5874fd1dee2fa1454b6f3eb7a98e",
+      "tailwindSha256": "6240ec2f5e75fbf4b9b177c6d6681e8aa0fa17e8321524bf7d195c46537e9082",
+      "matchesApproved": false
+    },
+    {
+      "width": 770,
+      "state": "empty",
+      "pngIdentical": true,
+      "detailsIdentical": true,
+      "originalSha256": "5df52ad5086bd3d43562d44d8dcdf6543ad61498d610d27b99fc5976a33ada43",
+      "tailwindSha256": "5df52ad5086bd3d43562d44d8dcdf6543ad61498d610d27b99fc5976a33ada43",
+      "matchesApproved": false
+    },
+    {
+      "width": 770,
+      "state": "ongoing",
+      "pngIdentical": true,
+      "detailsIdentical": true,
+      "originalSha256": "c51aa7c1df824ebe759434ac5834ec2ce964b868478595ea0e20a1c78d70d5f6",
+      "tailwindSha256": "c51aa7c1df824ebe759434ac5834ec2ce964b868478595ea0e20a1c78d70d5f6",
+      "matchesApproved": false
+    },
+    {
+      "width": 1098,
+      "state": "empty",
+      "pngIdentical": true,
+      "detailsIdentical": true,
+      "originalSha256": "7c78fd9fceee06ec59646ec32826d90e956a6904889f61b27d3d56a4357df5e9",
+      "tailwindSha256": "7c78fd9fceee06ec59646ec32826d90e956a6904889f61b27d3d56a4357df5e9",
+      "matchesApproved": false
+    },
+    {
+      "width": 1098,
+      "state": "ongoing",
+      "pngIdentical": true,
+      "detailsIdentical": true,
+      "originalSha256": "1b4ee54e5e3148eb8e5c154de5f739ce736e872c82cb6368cdc78eff6d61267f",
+      "tailwindSha256": "1b4ee54e5e3148eb8e5c154de5f739ce736e872c82cb6368cdc78eff6d61267f",
+      "matchesApproved": false
+    },
+    {
+      "width": 1099,
+      "state": "empty",
+      "pngIdentical": true,
+      "detailsIdentical": true,
+      "originalSha256": "3916b8e11a92db6d2755b30d3212b9ac6d8ebcdcfa00c5023b4e01f95517d119",
+      "tailwindSha256": "3916b8e11a92db6d2755b30d3212b9ac6d8ebcdcfa00c5023b4e01f95517d119",
+      "matchesApproved": false
+    },
+    {
+      "width": 1099,
+      "state": "ongoing",
+      "pngIdentical": true,
+      "detailsIdentical": true,
+      "originalSha256": "214c6531a0f9ed42fa2ba035cd45998014ec029fff49f07a4d0ece14840068fb",
+      "tailwindSha256": "214c6531a0f9ed42fa2ba035cd45998014ec029fff49f07a4d0ece14840068fb",
+      "matchesApproved": true
+    },
+    {
+      "width": 1099,
+      "state": "repeat-0",
+      "pngIdentical": true,
+      "detailsIdentical": true,
+      "originalSha256": "3916b8e11a92db6d2755b30d3212b9ac6d8ebcdcfa00c5023b4e01f95517d119",
+      "tailwindSha256": "3916b8e11a92db6d2755b30d3212b9ac6d8ebcdcfa00c5023b4e01f95517d119",
+      "matchesApproved": false
+    },
+    {
+      "width": 1099,
+      "state": "repeat-1",
+      "pngIdentical": true,
+      "detailsIdentical": true,
+      "originalSha256": "3916b8e11a92db6d2755b30d3212b9ac6d8ebcdcfa00c5023b4e01f95517d119",
+      "tailwindSha256": "3916b8e11a92db6d2755b30d3212b9ac6d8ebcdcfa00c5023b4e01f95517d119",
+      "matchesApproved": false
+    },
+    {
+      "width": 1099,
+      "state": "repeat-2",
+      "pngIdentical": true,
+      "detailsIdentical": true,
+      "originalSha256": "3916b8e11a92db6d2755b30d3212b9ac6d8ebcdcfa00c5023b4e01f95517d119",
+      "tailwindSha256": "3916b8e11a92db6d2755b30d3212b9ac6d8ebcdcfa00c5023b4e01f95517d119",
+      "matchesApproved": false
+    },
+    {
+      "width": 1099,
+      "state": "repeat-3",
+      "pngIdentical": true,
+      "detailsIdentical": true,
+      "originalSha256": "3916b8e11a92db6d2755b30d3212b9ac6d8ebcdcfa00c5023b4e01f95517d119",
+      "tailwindSha256": "3916b8e11a92db6d2755b30d3212b9ac6d8ebcdcfa00c5023b4e01f95517d119",
+      "matchesApproved": false
+    },
+    {
+      "width": 1099,
+      "state": "reload",
+      "pngIdentical": true,
+      "detailsIdentical": true,
+      "originalSha256": "3916b8e11a92db6d2755b30d3212b9ac6d8ebcdcfa00c5023b4e01f95517d119",
+      "tailwindSha256": "3916b8e11a92db6d2755b30d3212b9ac6d8ebcdcfa00c5023b4e01f95517d119",
+      "matchesApproved": false
+    },
+    {
+      "width": 1099,
+      "state": "scroll-warm",
+      "pngIdentical": true,
+      "detailsIdentical": true,
+      "originalSha256": "3916b8e11a92db6d2755b30d3212b9ac6d8ebcdcfa00c5023b4e01f95517d119",
+      "tailwindSha256": "3916b8e11a92db6d2755b30d3212b9ac6d8ebcdcfa00c5023b4e01f95517d119",
+      "matchesApproved": false
+    },
+    {
+      "width": 1099,
+      "state": "resize-reset",
+      "pngIdentical": false,
+      "detailsIdentical": true,
+      "originalSha256": "2ea857841a2bf8b29c90fcfcfd5833d4293756062ab79de834adf29b137a01ca",
+      "tailwindSha256": "11e1cbaf5ec68100707e47c63c95da33fd0fd2a9d1ed2d130c3bbb1b055e5029",
+      "matchesApproved": false
+    },
+    {
+      "width": 1100,
+      "state": "empty",
+      "pngIdentical": true,
+      "detailsIdentical": true,
+      "originalSha256": "e1cf7a7850bf4c44f195fabfbe52e9c4b019ee9beb499ef74f0909cfc9588675",
+      "tailwindSha256": "e1cf7a7850bf4c44f195fabfbe52e9c4b019ee9beb499ef74f0909cfc9588675",
+      "matchesApproved": true
+    },
+    {
+      "width": 1100,
+      "state": "ongoing",
+      "pngIdentical": true,
+      "detailsIdentical": true,
+      "originalSha256": "9fe54832d1bfe5cedd41394bedf63cedd2285471fd4cd9c8fb148844e93fe74e",
+      "tailwindSha256": "9fe54832d1bfe5cedd41394bedf63cedd2285471fd4cd9c8fb148844e93fe74e",
+      "matchesApproved": true
+    },
+    {
+      "width": 1101,
+      "state": "empty",
+      "pngIdentical": true,
+      "detailsIdentical": true,
+      "originalSha256": "b7faee03540ed4b99dbc54f7c1767a3999812ef0a8664249547c4f7719744c13",
+      "tailwindSha256": "b7faee03540ed4b99dbc54f7c1767a3999812ef0a8664249547c4f7719744c13",
+      "matchesApproved": true
+    },
+    {
+      "width": 1101,
+      "state": "ongoing",
+      "pngIdentical": true,
+      "detailsIdentical": true,
+      "originalSha256": "d1efb27a213d325bb56fdcfad2e2c7f2414070f4bdda959903c0d53af238c516",
+      "tailwindSha256": "d1efb27a213d325bb56fdcfad2e2c7f2414070f4bdda959903c0d53af238c516",
+      "matchesApproved": true
+    }
+  ],
+  "assets": [
+    {
+      "url": "/assets/eke-logo-symbol.svg",
+      "identical": true
+    },
+    {
+      "url": "/assets/eke-logo-wordmark.svg",
+      "identical": true
+    },
+    {
+      "url": "/assets/eke-logo-bitola.svg",
+      "identical": true
+    },
+    {
+      "url": "/assets/vector13.svg",
+      "identical": true
+    },
+    {
+      "url": "/assets/menu-close.svg",
+      "identical": true
+    },
+    {
+      "url": "/assets/menu-training.png",
+      "identical": true
+    },
+    {
+      "url": "/assets/basil-facebook-solid.svg",
+      "identical": true
+    },
+    {
+      "url": "/assets/vector.svg",
+      "identical": true
+    },
+    {
+      "url": "/assets/group.svg",
+      "identical": true
+    },
+    {
+      "url": "/assets/projects-page/Group.svg",
+      "identical": true
+    },
+    {
+      "url": "/assets/projects-page/43abb1dac1595d8095c017162a386718%201.png",
+      "identical": true
+    },
+    {
+      "url": "/assets/projects-page/image%204.png",
+      "identical": true
+    },
+    {
+      "url": "/assets/projects-page/image%205.png",
+      "identical": true
+    },
+    {
+      "url": "/assets/projects-page/image%203.png",
+      "identical": true
+    },
+    {
+      "url": "/assets/projects-page/Group%20648.png",
+      "identical": true
+    },
+    {
+      "url": "/assets/projects-page/Group%20674.png",
+      "identical": true
+    },
+    {
+      "url": "/assets/projects-page/Group%20(2).svg",
+      "identical": true
+    },
+    {
+      "url": "/assets/projects-page/Group%20(1).svg",
+      "identical": true
+    },
+    {
+      "url": "/assets/vector5.svg",
+      "identical": true
+    },
+    {
+      "url": "/assets/group3.svg",
+      "identical": true
+    },
+    {
+      "url": "/assets/group2.svg",
+      "identical": true
+    },
+    {
+      "url": "/assets/group4.svg",
+      "identical": true
+    },
+    {
+      "url": "/assets/line14.svg",
+      "identical": true
+    },
+    {
+      "url": "/assets/group5.svg",
+      "identical": true
+    },
+    {
+      "url": "/assets/vector2.svg",
+      "identical": true
+    },
+    {
+      "url": "/assets/vector1.svg",
+      "identical": true
+    },
+    {
+      "url": "/assets/group1.svg",
+      "identical": true
+    },
+    {
+      "url": "/assets/line13.svg",
+      "identical": true
+    },
+    {
+      "url": "/assets/projects-page/image%201.png",
+      "identical": true
+    },
+    {
+      "url": "/assets/menu-news.png",
+      "identical": true
+    },
+    {
+      "url": "/assets/projects-page/Rectangle%2066.png",
+      "identical": true
+    },
+    {
+      "url": "/assets/impact-figure.svg",
+      "identical": true
+    },
+    {
+      "url": "/assets/vector8.svg",
+      "identical": true
+    },
+    {
+      "url": "/assets/line6.svg",
+      "identical": true
+    },
+    {
+      "url": "/assets/vector4.svg",
+      "identical": true
+    },
+    {
+      "url": "/assets/line7.svg",
+      "identical": true
+    },
+    {
+      "url": "/assets/vector7.svg",
+      "identical": true
+    },
+    {
+      "url": "/assets/line10.svg",
+      "identical": true
+    },
+    {
+      "url": "/assets/line9.svg",
+      "identical": true
+    },
+    {
+      "url": "/assets/vector6.svg",
+      "identical": true
+    },
+    {
+      "url": "/assets/vector10.svg",
+      "identical": true
+    },
+    {
+      "url": "/assets/vector11.svg",
+      "identical": true
+    },
+    {
+      "url": "/assets/partnership-services-figure.svg",
+      "identical": true
+    },
+    {
+      "url": "/assets/line20.svg",
+      "identical": true
+    },
+    {
+      "url": "/assets/vector9.svg",
+      "identical": true
+    },
+    {
+      "url": "/assets/line8.svg",
+      "identical": true
+    },
+    {
+      "url": "/assets/line11.svg",
+      "identical": true
+    },
+    {
+      "url": "/assets/line12.svg",
+      "identical": true
+    },
+    {
+      "url": "/assets/about/assets/Group.svg",
+      "identical": true
+    },
+    {
+      "url": "/assets/about/images/card1.webp",
+      "identical": true
+    },
+    {
+      "url": "/assets/about/images/card2.webp",
+      "identical": true
+    },
+    {
+      "url": "/assets/about/images/card3.webp",
+      "identical": true
+    },
+    {
+      "url": "/assets/about/assets/Ellipse%205.svg",
+      "identical": true
+    },
+    {
+      "url": "/assets/about/assets/Group%2071.svg",
+      "identical": true
+    },
+    {
+      "url": "/assets/about/assets/Group%2037.svg",
+      "identical": true
+    },
+    {
+      "url": "/assets/about/assets/Group%2042.svg",
+      "identical": true
+    },
+    {
+      "url": "/assets/about/assets/Group%2041.svg",
+      "identical": true
+    },
+    {
+      "url": "/assets/about/assets/Vector.svg",
+      "identical": true
+    },
+    {
+      "url": "/assets/about/images/vele.webp",
+      "identical": true
+    },
+    {
+      "url": "/assets/about/images/ivana.webp",
+      "identical": true
+    },
+    {
+      "url": "/assets/about/images/sofija.webp",
+      "identical": true
+    },
+    {
+      "url": "/assets/about/images/dimitar.webp",
+      "identical": true
+    },
+    {
+      "url": "/assets/about/images/iskra.webp",
+      "identical": true
+    },
+    {
+      "url": "/assets/about/images/unsplash_M5k978V3qBc.webp",
+      "identical": true
+    },
+    {
+      "url": "/assets/about/assets/Vector1.svg",
+      "identical": true
+    },
+    {
+      "url": "/assets/about/images/milcho.webp",
+      "identical": true
+    },
+    {
+      "url": "/assets/about/images/damjan.webp",
+      "identical": true
+    },
+    {
+      "url": "/assets/opportunities-page/hero-svg.svg",
+      "identical": true
+    },
+    {
+      "url": "/assets/opportunities-page/img.webp",
+      "identical": true
+    },
+    {
+      "url": "/assets/opportunities-page/Group.svg",
+      "identical": true
+    },
+    {
+      "url": "/assets/opportunities-page/Group%20(1).svg",
+      "identical": true
+    },
+    {
+      "url": "/assets/opportunities-page/Mask%20group.webp",
+      "identical": true
+    },
+    {
+      "url": "/assets/opportunities-page/svg1.svg",
+      "identical": true
+    },
+    {
+      "url": "/assets/opportunities-page/Rectangle%2010.png",
+      "identical": true
+    },
+    {
+      "url": "/assets/opportunities-page/Rectangle%2011.png",
+      "identical": true
+    },
+    {
+      "url": "/assets/opportunities-page/Group%20(2).svg",
+      "identical": true
+    },
+    {
+      "url": "/assets/opportunities-page/global-residence-index-AX6s7zREtZE-unsplash%201.webp",
+      "identical": true
+    },
+    {
+      "url": "/assets/opportunities-page/Group%2084.svg",
+      "identical": true
+    },
+    {
+      "url": "/assets/contact-page/Mask%20group.webp",
+      "identical": true
+    },
+    {
+      "url": "/assets/privacy-policy/Group.svg",
+      "identical": true
+    },
+    {
+      "url": "/assets/privacy-policy/Group%20(1).svg",
+      "identical": true
+    },
+    {
+      "url": "/assets/training-page/Group.svg",
+      "identical": true
+    },
+    {
+      "url": "/assets/privacy-policy/Group%20(2).svg",
+      "identical": true
+    },
+    {
+      "url": "/assets/training-page/Rectangle%2066.png",
+      "identical": true
+    },
+    {
+      "url": "/assets/training-page/Rectangle%20190.png",
+      "identical": true
+    },
+    {
+      "url": "/assets/training-page/Group%2096.png",
+      "identical": true
+    },
+    {
+      "url": "/assets/training-page/Rectangle%20156.png",
+      "identical": true
+    },
+    {
+      "url": "/assets/training-page/Group%2097.png",
+      "identical": true
+    }
+  ],
+  "responsive": [
+    {
+      "width": 768,
+      "media": {
+        "(max-width:700px)": false,
+        "(max-width:1100px)": true,
+        "(min-width:1101px)": false,
+        "(prefers-reduced-motion: reduce)": true
+      },
+      "hero": {
+        "tag": "SECTION",
+        "text": "ProjectsLifelong Learning in ActionEKE began with a simple d",
+        "x": 0,
+        "y": 0,
+        "width": 768,
+        "height": 653.953125,
+        "display": "block",
+        "position": "relative",
+        "font": "",
+        "grid": "none",
+        "transform": "none"
+      },
+      "projects": {
+        "tag": "SECTION",
+        "text": "OngoingPast3 projects shown.Community learning 0Ongoing2025-",
+        "x": 32,
+        "y": 1088.453125,
+        "width": 704,
+        "height": 903.84375,
+        "display": "grid",
+        "position": "static",
+        "font": "",
+        "grid": "704px",
+        "transform": "none"
+      },
+      "cards": [
+        {
+          "tag": "ARTICLE",
+          "text": "Community learning 0Ongoing2025-01-15 – 2026-12-20A represen",
+          "x": 32,
+          "y": 1181.453125,
+          "width": 704,
+          "height": 194.296875,
+          "display": "grid",
+          "position": "relative",
+          "font": "",
+          "grid": "211.188px 176px 316.797px",
+          "transform": "none"
+        },
+        {
+          "tag": "ARTICLE",
+          "text": "A longer project title\nwith shared perspectivesOngoing2025-0",
+          "x": 32,
+          "y": 1398.140625,
+          "width": 704,
+          "height": 214.6875,
+          "display": "grid",
+          "position": "relative",
+          "font": "",
+          "grid": "211.188px 176px 316.797px",
+          "transform": "none"
+        },
+        {
+          "tag": "ARTICLE",
+          "text": "UnbrokenCommunityLearningProjectTitleForWrappingChecksOngoin",
+          "x": 32,
+          "y": 1635.21875,
+          "width": 704,
+          "height": 287.5,
+          "display": "grid",
+          "position": "relative",
+          "font": "",
+          "grid": "211.188px 176px 316.797px",
+          "transform": "none"
+        }
+      ]
+    },
+    {
+      "width": 769,
+      "media": {
+        "(max-width:700px)": false,
+        "(max-width:1100px)": true,
+        "(min-width:1101px)": false,
+        "(prefers-reduced-motion: reduce)": true
+      },
+      "hero": {
+        "tag": "SECTION",
+        "text": "ProjectsLifelong Learning in ActionEKE began with a simple d",
+        "x": 0,
+        "y": 0,
+        "width": 769,
+        "height": 654.1875,
+        "display": "block",
+        "position": "relative",
+        "font": "",
+        "grid": "none",
+        "transform": "none"
+      },
+      "projects": {
+        "tag": "SECTION",
+        "text": "OngoingPast3 projects shown.Community learning 0Ongoing2025-",
+        "x": 32.03125,
+        "y": 1088.6875,
+        "width": 704.9375,
+        "height": 904.234375,
+        "display": "grid",
+        "position": "static",
+        "font": "",
+        "grid": "704.938px",
+        "transform": "none"
+      },
+      "cards": [
+        {
+          "tag": "ARTICLE",
+          "text": "Community learning 0Ongoing2025-01-15 – 2026-12-20A represen",
+          "x": 32.03125,
+          "y": 1181.703125,
+          "width": 704.9375,
+          "height": 194.5,
+          "display": "grid",
+          "position": "relative",
+          "font": "",
+          "grid": "211.469px 176.234px 317.219px",
+          "transform": "none"
+        },
+        {
+          "tag": "ARTICLE",
+          "text": "A longer project title\nwith shared perspectivesOngoing2025-0",
+          "x": 32.03125,
+          "y": 1398.625,
+          "width": 704.9375,
+          "height": 214.703125,
+          "display": "grid",
+          "position": "relative",
+          "font": "",
+          "grid": "211.469px 176.234px 317.219px",
+          "transform": "none"
+        },
+        {
+          "tag": "ARTICLE",
+          "text": "UnbrokenCommunityLearningProjectTitleForWrappingChecksOngoin",
+          "x": 32.03125,
+          "y": 1635.75,
+          "width": 704.9375,
+          "height": 287.5,
+          "display": "grid",
+          "position": "relative",
+          "font": "",
+          "grid": "211.469px 176.234px 317.219px",
+          "transform": "none"
+        }
+      ]
+    },
+    {
+      "width": 770,
+      "media": {
+        "(max-width:700px)": false,
+        "(max-width:1100px)": true,
+        "(min-width:1101px)": false,
+        "(prefers-reduced-motion: reduce)": true
+      },
+      "hero": {
+        "tag": "SECTION",
+        "text": "ProjectsLifelong Learning in ActionEKE began with a simple d",
+        "x": 0,
+        "y": 0,
+        "width": 770,
+        "height": 654.421875,
+        "display": "block",
+        "position": "relative",
+        "font": "",
+        "grid": "none",
+        "transform": "none"
+      },
+      "projects": {
+        "tag": "SECTION",
+        "text": "OngoingPast3 projects shown.Community learning 0Ongoing2025-",
+        "x": 32.078125,
+        "y": 1088.921875,
+        "width": 705.84375,
+        "height": 904.625,
+        "display": "grid",
+        "position": "static",
+        "font": "",
+        "grid": "705.844px",
+        "transform": "none"
+      },
+      "cards": [
+        {
+          "tag": "ARTICLE",
+          "text": "Community learning 0Ongoing2025-01-15 – 2026-12-20A represen",
+          "x": 32.078125,
+          "y": 1181.96875,
+          "width": 705.84375,
+          "height": 194.6875,
+          "display": "grid",
+          "position": "relative",
+          "font": "",
+          "grid": "211.75px 176.453px 317.625px",
+          "transform": "none"
+        },
+        {
+          "tag": "ARTICLE",
+          "text": "A longer project title\nwith shared perspectivesOngoing2025-0",
+          "x": 32.078125,
+          "y": 1399.109375,
+          "width": 705.84375,
+          "height": 214.71875,
+          "display": "grid",
+          "position": "relative",
+          "font": "",
+          "grid": "211.75px 176.453px 317.625px",
+          "transform": "none"
+        },
+        {
+          "tag": "ARTICLE",
+          "text": "UnbrokenCommunityLearningProjectTitleForWrappingChecksOngoin",
+          "x": 32.078125,
+          "y": 1636.28125,
+          "width": 705.84375,
+          "height": 287.5,
+          "display": "grid",
+          "position": "relative",
+          "font": "",
+          "grid": "211.75px 176.453px 317.625px",
+          "transform": "none"
+        }
+      ]
+    },
+    {
+      "width": 1098,
+      "media": {
+        "(max-width:700px)": false,
+        "(max-width:1100px)": true,
+        "(min-width:1101px)": false,
+        "(prefers-reduced-motion: reduce)": true
+      },
+      "hero": {
+        "tag": "SECTION",
+        "text": "ProjectsLifelong Learning in ActionEKE began with a simple d",
+        "x": 0,
+        "y": 0,
+        "width": 1098,
+        "height": 702.0625,
+        "display": "block",
+        "position": "relative",
+        "font": "",
+        "grid": "none",
+        "transform": "none"
+      },
+      "projects": {
+        "tag": "SECTION",
+        "text": "OngoingPast3 projects shown.Community learning 0Ongoing2025-",
+        "x": 45.75,
+        "y": 1058.1875,
+        "width": 1006.5,
+        "height": 1034.046875,
+        "display": "grid",
+        "position": "static",
+        "font": "",
+        "grid": "1006.5px",
+        "transform": "none"
+      },
+      "cards": [
+        {
+          "tag": "ARTICLE",
+          "text": "Community learning 0Ongoing2025-01-15 – 2026-12-20A represen",
+          "x": 45.75,
+          "y": 1159.78125,
+          "width": 1006.5,
+          "height": 256.3125,
+          "display": "grid",
+          "position": "relative",
+          "font": "",
+          "grid": "301.938px 251.625px 452.922px",
+          "transform": "none"
+        },
+        {
+          "tag": "ARTICLE",
+          "text": "A longer project title\nwith shared perspectivesOngoing2025-0",
+          "x": 45.75,
+          "y": 1448.109375,
+          "width": 1006.5,
+          "height": 256.3125,
+          "display": "grid",
+          "position": "relative",
+          "font": "",
+          "grid": "301.938px 251.625px 452.922px",
+          "transform": "none"
+        },
+        {
+          "tag": "ARTICLE",
+          "text": "UnbrokenCommunityLearningProjectTitleForWrappingChecksOngoin",
+          "x": 45.75,
+          "y": 1736.4375,
+          "width": 1006.5,
+          "height": 256.3125,
+          "display": "grid",
+          "position": "relative",
+          "font": "",
+          "grid": "301.938px 251.625px 452.922px",
+          "transform": "none"
+        }
+      ]
+    },
+    {
+      "width": 1099,
+      "media": {
+        "(max-width:700px)": false,
+        "(max-width:1100px)": true,
+        "(min-width:1101px)": false,
+        "(prefers-reduced-motion: reduce)": true
+      },
+      "hero": {
+        "tag": "SECTION",
+        "text": "ProjectsLifelong Learning in ActionEKE began with a simple d",
+        "x": 0,
+        "y": 0,
+        "width": 1099,
+        "height": 702.296875,
+        "display": "block",
+        "position": "relative",
+        "font": "",
+        "grid": "none",
+        "transform": "none"
+      },
+      "projects": {
+        "tag": "SECTION",
+        "text": "OngoingPast3 projects shown.Community learning 0Ongoing2025-",
+        "x": 45.78125,
+        "y": 1058.421875,
+        "width": 1007.4375,
+        "height": 1034.828125,
+        "display": "grid",
+        "position": "static",
+        "font": "",
+        "grid": "1007.44px",
+        "transform": "none"
+      },
+      "cards": [
+        {
+          "tag": "ARTICLE",
+          "text": "Community learning 0Ongoing2025-01-15 – 2026-12-20A represen",
+          "x": 45.78125,
+          "y": 1160.03125,
+          "width": 1007.4375,
+          "height": 256.515625,
+          "display": "grid",
+          "position": "relative",
+          "font": "",
+          "grid": "302.219px 251.859px 453.344px",
+          "transform": "none"
+        },
+        {
+          "tag": "ARTICLE",
+          "text": "A longer project title\nwith shared perspectivesOngoing2025-0",
+          "x": 45.78125,
+          "y": 1448.59375,
+          "width": 1007.4375,
+          "height": 256.515625,
+          "display": "grid",
+          "position": "relative",
+          "font": "",
+          "grid": "302.219px 251.859px 453.344px",
+          "transform": "none"
+        },
+        {
+          "tag": "ARTICLE",
+          "text": "UnbrokenCommunityLearningProjectTitleForWrappingChecksOngoin",
+          "x": 45.78125,
+          "y": 1737.15625,
+          "width": 1007.4375,
+          "height": 256.515625,
+          "display": "grid",
+          "position": "relative",
+          "font": "",
+          "grid": "302.219px 251.859px 453.344px",
+          "transform": "none"
+        }
+      ]
+    },
+    {
+      "width": 1100,
+      "media": {
+        "(max-width:700px)": false,
+        "(max-width:1100px)": true,
+        "(min-width:1101px)": false,
+        "(prefers-reduced-motion: reduce)": true
+      },
+      "hero": {
+        "tag": "SECTION",
+        "text": "ProjectsLifelong Learning in ActionEKE began with a simple d",
+        "x": 0,
+        "y": 0,
+        "width": 1100,
+        "height": 702.53125,
+        "display": "block",
+        "position": "relative",
+        "font": "",
+        "grid": "none",
+        "transform": "none"
+      },
+      "projects": {
+        "tag": "SECTION",
+        "text": "OngoingPast3 projects shown.Community learning 0Ongoing2025-",
+        "x": 45.828125,
+        "y": 1058.65625,
+        "width": 1008.34375,
+        "height": 1035.578125,
+        "display": "grid",
+        "position": "static",
+        "font": "",
+        "grid": "1008.34px",
+        "transform": "none"
+      },
+      "cards": [
+        {
+          "tag": "ARTICLE",
+          "text": "Community learning 0Ongoing2025-01-15 – 2026-12-20A represen",
+          "x": 45.828125,
+          "y": 1160.296875,
+          "width": 1008.34375,
+          "height": 256.703125,
+          "display": "grid",
+          "position": "relative",
+          "font": "",
+          "grid": "302.5px 252.078px 453.75px",
+          "transform": "none"
+        },
+        {
+          "tag": "ARTICLE",
+          "text": "A longer project title\nwith shared perspectivesOngoing2025-0",
+          "x": 45.828125,
+          "y": 1449.078125,
+          "width": 1008.34375,
+          "height": 256.703125,
+          "display": "grid",
+          "position": "relative",
+          "font": "",
+          "grid": "302.5px 252.078px 453.75px",
+          "transform": "none"
+        },
+        {
+          "tag": "ARTICLE",
+          "text": "UnbrokenCommunityLearningProjectTitleForWrappingChecksOngoin",
+          "x": 45.828125,
+          "y": 1737.859375,
+          "width": 1008.34375,
+          "height": 256.703125,
+          "display": "grid",
+          "position": "relative",
+          "font": "",
+          "grid": "302.5px 252.078px 453.75px",
+          "transform": "none"
+        }
+      ]
+    },
+    {
+      "width": 1101,
+      "media": {
+        "(max-width:700px)": false,
+        "(max-width:1100px)": false,
+        "(min-width:1101px)": true,
+        "(prefers-reduced-motion: reduce)": true
+      },
+      "hero": {
+        "tag": "SECTION",
+        "text": "ProjectsLifelong Learning in ActionEKE began with a simple d",
+        "x": 0,
+        "y": 0,
+        "width": 1101,
+        "height": 680.09375,
+        "display": "block",
+        "position": "relative",
+        "font": "",
+        "grid": "none",
+        "transform": "none"
+      },
+      "projects": {
+        "tag": "SECTION",
+        "text": "OngoingPast3 projects shown.Community learning 0Ongoing2025-",
+        "x": 45.875,
+        "y": 990.3125,
+        "width": 1009.25,
+        "height": 784.96875,
+        "display": "grid",
+        "position": "static",
+        "font": "",
+        "grid": "187.5px 821.75px",
+        "transform": "none"
+      },
+      "cards": [
+        {
+          "tag": "ARTICLE",
+          "text": "Community learning 0Ongoing2025-01-15 – 2026-12-20A represen",
+          "x": 233.375,
+          "y": 1018.984375,
+          "width": 821.75,
+          "height": 196.671875,
+          "display": "grid",
+          "position": "relative",
+          "font": "",
+          "grid": "240.844px 239.125px 341.766px",
+          "transform": "none"
+        },
+        {
+          "tag": "ARTICLE",
+          "text": "A longer project title\nwith shared perspectivesOngoing2025-0",
+          "x": 233.375,
+          "y": 1247.765625,
+          "width": 821.75,
+          "height": 196.671875,
+          "display": "grid",
+          "position": "relative",
+          "font": "",
+          "grid": "240.844px 239.125px 341.766px",
+          "transform": "none"
+        },
+        {
+          "tag": "ARTICLE",
+          "text": "UnbrokenCommunityLearningProjectTitleForWrappingChecksOngoin",
+          "x": 233.375,
+          "y": 1476.546875,
+          "width": 821.75,
+          "height": 196.671875,
+          "display": "grid",
+          "position": "relative",
+          "font": "",
+          "grid": "240.844px 239.125px 341.766px",
+          "transform": "none"
+        }
+      ]
+    }
+  ],
+  "staging": {
+    "release": {
+      "status": 200,
+      "body": "dd76db4434f103cf8b7b93c20ccaea7190abd2e2-45292330641-1\n"
+    },
+    "captures": [
+      {
+        "width": 769,
+        "sha256": "3e1617d69f13abd0e577d1371fbcedfc23e021982a70d9da8b2ffe3031ee2460",
+        "details": {
+          "title": "Lifelong Learning\nin Action",
+          "fonts": "loaded",
+          "dpr": 1,
+          "images": [
+            {
+              "src": "/assets/eke-logo-symbol.svg",
+              "complete": true,
+              "naturalWidth": 62,
+              "naturalHeight": 58,
+              "rect": {
+                "x": 32.03125,
+                "y": 18.328125,
+                "width": 24.875,
+                "height": 23,
+                "top": 18.328125,
+                "right": 56.90625,
+                "bottom": 41.328125,
+                "left": 32.03125
+              }
+            },
+            {
+              "src": "/assets/eke-logo-wordmark.svg",
+              "complete": true,
+              "naturalWidth": 92,
+              "naturalHeight": 34,
+              "rect": {
+                "x": 60.78125,
+                "y": 22.453125,
+                "width": 36.890625,
+                "height": 13.28125,
+                "top": 22.453125,
+                "right": 97.671875,
+                "bottom": 35.734375,
+                "left": 60.78125
+              }
+            },
+            {
+              "src": "/assets/eke-logo-bitola.svg",
+              "complete": true,
+              "naturalWidth": 46,
+              "naturalHeight": 9,
+              "rect": {
+                "x": 69.96875,
+                "y": 37.921875,
+                "width": 18.515625,
+                "height": 3.5,
+                "top": 37.921875,
+                "right": 88.484375,
+                "bottom": 41.421875,
+                "left": 69.96875
+              }
+            },
+            {
+              "src": "/assets/vector13.svg",
+              "complete": true,
+              "naturalWidth": 16,
+              "naturalHeight": 20,
+              "rect": {
+                "x": 658.2353515625,
+                "y": 26.711572647094727,
+                "width": 8.154296875,
+                "height": 6.23310661315918,
+                "top": 26.711572647094727,
+                "right": 666.3896484375,
+                "bottom": 32.944679260253906,
+                "left": 658.2353515625
+              }
+            },
+            {
+              "src": "/assets/eke-logo-symbol.svg",
+              "complete": true,
+              "naturalWidth": 62,
+              "naturalHeight": 58,
+              "rect": {
+                "x": 0,
+                "y": 0,
+                "width": 0,
+                "height": 0,
+                "top": 0,
+                "right": 0,
+                "bottom": 0,
+                "left": 0
+              }
+            },
+            {
+              "src": "/assets/eke-logo-wordmark.svg",
+              "complete": true,
+              "naturalWidth": 92,
+              "naturalHeight": 34,
+              "rect": {
+                "x": 0,
+                "y": 0,
+                "width": 0,
+                "height": 0,
+                "top": 0,
+                "right": 0,
+                "bottom": 0,
+                "left": 0
+              }
+            },
+            {
+              "src": "/assets/eke-logo-bitola.svg",
+              "complete": true,
+              "naturalWidth": 46,
+              "naturalHeight": 9,
+              "rect": {
+                "x": 0,
+                "y": 0,
+                "width": 0,
+                "height": 0,
+                "top": 0,
+                "right": 0,
+                "bottom": 0,
+                "left": 0
+              }
+            },
+            {
+              "src": "/assets/menu-close.svg",
+              "complete": true,
+              "naturalWidth": 28,
+              "naturalHeight": 28,
+              "rect": {
+                "x": 0,
+                "y": 0,
+                "width": 0,
+                "height": 0,
+                "top": 0,
+                "right": 0,
+                "bottom": 0,
+                "left": 0
+              }
+            },
+            {
+              "src": "/assets/menu-news.png",
+              "complete": true,
+              "naturalWidth": 1024,
+              "naturalHeight": 683,
+              "rect": {
+                "x": 0,
+                "y": 0,
+                "width": 0,
+                "height": 0,
+                "top": 0,
+                "right": 0,
+                "bottom": 0,
+                "left": 0
+              }
+            },
+            {
+              "src": "/assets/menu-training.png",
+              "complete": true,
+              "naturalWidth": 1068,
+              "naturalHeight": 712,
+              "rect": {
+                "x": 0,
+                "y": 0,
+                "width": 0,
+                "height": 0,
+                "top": 0,
+                "right": 0,
+                "bottom": 0,
+                "left": 0
+              }
+            },
+            {
+              "src": "/assets/basil-facebook-solid.svg",
+              "complete": true,
+              "naturalWidth": 29,
+              "naturalHeight": 29,
+              "rect": {
+                "x": 0,
+                "y": 0,
+                "width": 0,
+                "height": 0,
+                "top": 0,
+                "right": 0,
+                "bottom": 0,
+                "left": 0
+              }
+            },
+            {
+              "src": "/assets/vector.svg",
+              "complete": true,
+              "naturalWidth": 34,
+              "naturalHeight": 34,
+              "rect": {
+                "x": 0,
+                "y": 0,
+                "width": 0,
+                "height": 0,
+                "top": 0,
+                "right": 0,
+                "bottom": 0,
+                "left": 0
+              }
+            },
+            {
+              "src": "/assets/group.svg",
+              "complete": true,
+              "naturalWidth": 34,
+              "naturalHeight": 51,
+              "rect": {
+                "x": 0,
+                "y": 0,
+                "width": 0,
+                "height": 0,
+                "top": 0,
+                "right": 0,
+                "bottom": 0,
+                "left": 0
+              }
+            },
+            {
+              "src": "/assets/vector2.svg",
+              "complete": true,
+              "naturalWidth": 34,
+              "naturalHeight": 34,
+              "rect": {
+                "x": 0,
+                "y": 0,
+                "width": 0,
+                "height": 0,
+                "top": 0,
+                "right": 0,
+                "bottom": 0,
+                "left": 0
+              }
+            },
+            {
+              "src": "/assets/vector1.svg",
+              "complete": true,
+              "naturalWidth": 45,
+              "naturalHeight": 34,
+              "rect": {
+                "x": 0,
+                "y": 0,
+                "width": 0,
+                "height": 0,
+                "top": 0,
+                "right": 0,
+                "bottom": 0,
+                "left": 0
+              }
+            },
+            {
+              "src": "/assets/projects-page/Group.svg",
+              "complete": true,
+              "naturalWidth": 1753,
+              "naturalHeight": 977,
+              "rect": {
+                "x": 66.875,
+                "y": 0,
+                "width": 702.113037109375,
+                "height": 391.308837890625,
+                "top": 0,
+                "right": 768.988037109375,
+                "bottom": 391.308837890625,
+                "left": 66.875
+              }
+            },
+            {
+              "src": "/assets/projects-page/Rectangle 66.png",
+              "complete": true,
+              "naturalWidth": 1760,
+              "naturalHeight": 378,
+              "rect": {
+                "x": 32.03125,
+                "y": 485.984375,
+                "width": 704.9375,
+                "height": 151.390625,
+                "top": 485.984375,
+                "right": 736.96875,
+                "bottom": 637.375,
+                "left": 32.03125
+              }
+            },
+            {
+              "src": "/assets/projects-page/image 4.png",
+              "complete": true,
+              "naturalWidth": 343,
+              "naturalHeight": 91,
+              "rect": {
+                "x": 68.53125,
+                "y": 2191.546875,
+                "width": 137.375,
+                "height": 36.4375,
+                "top": 2191.546875,
+                "right": 205.90625,
+                "bottom": 2227.984375,
+                "left": 68.53125
+              }
+            },
+            {
+              "src": "/assets/projects-page/43abb1dac1595d8095c017162a386718 1.png",
+              "complete": true,
+              "naturalWidth": 389,
+              "naturalHeight": 111,
+              "rect": {
+                "x": 50.109375,
+                "y": 2550.34375,
+                "width": 155.796875,
+                "height": 44.453125,
+                "top": 2550.34375,
+                "right": 205.90625,
+                "bottom": 2594.796875,
+                "left": 50.109375
+              }
+            },
+            {
+              "src": "/assets/projects-page/image 5.png",
+              "complete": true,
+              "naturalWidth": 163,
+              "naturalHeight": 152,
+              "rect": {
+                "x": 140.625,
+                "y": 2952.953125,
+                "width": 65.28125,
+                "height": 60.875,
+                "top": 2952.953125,
+                "right": 205.90625,
+                "bottom": 3013.828125,
+                "left": 140.625
+              }
+            },
+            {
+              "src": "/assets/projects-page/image 3.png",
+              "complete": true,
+              "naturalWidth": 417,
+              "naturalHeight": 137,
+              "rect": {
+                "x": 38.890625,
+                "y": 3318.765625,
+                "width": 167.015625,
+                "height": 54.859375,
+                "top": 3318.765625,
+                "right": 205.90625,
+                "bottom": 3373.625,
+                "left": 38.890625
+              }
+            },
+            {
+              "src": "/assets/projects-page/image 1.png",
+              "complete": true,
+              "naturalWidth": 222,
+              "naturalHeight": 125,
+              "rect": {
+                "x": 117,
+                "y": 3683.984375,
+                "width": 88.90625,
+                "height": 50.0625,
+                "top": 3683.984375,
+                "right": 205.90625,
+                "bottom": 3734.046875,
+                "left": 117
+              }
+            },
+            {
+              "src": "/assets/projects-page/Group 648.png",
+              "complete": true,
+              "naturalWidth": 711,
+              "naturalHeight": 378,
+              "rect": {
+                "x": 484.21875,
+                "y": 4176.859375,
+                "width": 284.765625,
+                "height": 151.390625,
+                "top": 4176.859375,
+                "right": 768.984375,
+                "bottom": 4328.25,
+                "left": 484.21875
+              }
+            },
+            {
+              "src": "/assets/projects-page/Group 674.png",
+              "complete": true,
+              "naturalWidth": 335,
+              "naturalHeight": 335,
+              "rect": {
+                "x": 556.3125,
+                "y": 4185.265625,
+                "width": 134.171875,
+                "height": 134.171875,
+                "top": 4185.265625,
+                "right": 690.484375,
+                "bottom": 4319.4375,
+                "left": 556.3125
+              }
+            },
+            {
+              "src": "/assets/projects-page/Group (1).svg",
+              "complete": true,
+              "naturalWidth": 1403,
+              "naturalHeight": 1514,
+              "rect": {
+                "x": 34.4375,
+                "y": 4313.4375,
+                "width": 561.9307250976562,
+                "height": 606.388671875,
+                "top": 4313.4375,
+                "right": 596.3682250976562,
+                "bottom": 4919.826171875,
+                "left": 34.4375
+              }
+            },
+            {
+              "src": "/assets/projects-page/Group (2).svg",
+              "complete": true,
+              "naturalWidth": 1573,
+              "naturalHeight": 1501,
+              "rect": {
+                "x": 34.4375,
+                "y": 4905.796875,
+                "width": 630.019287109375,
+                "height": 601.181640625,
+                "top": 4905.796875,
+                "right": 664.456787109375,
+                "bottom": 5506.978515625,
+                "left": 34.4375
+              }
+            },
+            {
+              "src": "/assets/vector5.svg",
+              "complete": true,
+              "naturalWidth": 26,
+              "naturalHeight": 35,
+              "rect": {
+                "x": 268.2253723144531,
+                "y": 6471.96826171875,
+                "width": 13.86175537109375,
+                "height": 10.5947265625,
+                "top": 6471.96826171875,
+                "right": 282.0871276855469,
+                "bottom": 6482.56298828125,
+                "left": 268.2253723144531
+              }
+            },
+            {
+              "src": "/assets/group2.svg",
+              "complete": true,
+              "naturalWidth": 116,
+              "naturalHeight": 198,
+              "rect": {
+                "x": 690.09375,
+                "y": 6493.9375,
+                "width": 46.484375,
+                "height": 79.328125,
+                "top": 6493.9375,
+                "right": 736.578125,
+                "bottom": 6573.265625,
+                "left": 690.09375
+              }
+            },
+            {
+              "src": "/assets/group3.svg",
+              "complete": true,
+              "naturalWidth": 118,
+              "naturalHeight": 156,
+              "rect": {
+                "x": 648.875,
+                "y": 6477.125,
+                "width": 47.390625,
+                "height": 62.546875,
+                "top": 6477.125,
+                "right": 696.265625,
+                "bottom": 6539.671875,
+                "left": 648.875
+              }
+            },
+            {
+              "src": "/assets/group4.svg",
+              "complete": true,
+              "naturalWidth": 128,
+              "naturalHeight": 151,
+              "rect": {
+                "x": 612.796875,
+                "y": 6517.921875,
+                "width": 51.453125,
+                "height": 60.578125,
+                "top": 6517.921875,
+                "right": 664.25,
+                "bottom": 6578.5,
+                "left": 612.796875
+              }
+            },
+            {
+              "src": "/assets/group5.svg",
+              "complete": true,
+              "naturalWidth": 122,
+              "naturalHeight": 146,
+              "rect": {
+                "x": 652.078125,
+                "y": 6543.1875,
+                "width": 49,
+                "height": 58.609375,
+                "top": 6543.1875,
+                "right": 701.078125,
+                "bottom": 6601.796875,
+                "left": 652.078125
+              }
+            },
+            {
+              "src": "/assets/line14.svg",
+              "complete": true,
+              "naturalWidth": 999,
+              "naturalHeight": 1,
+              "rect": {
+                "x": 32.03125,
+                "y": 6634.130859375,
+                "width": 400.109375,
+                "height": 1,
+                "top": 6634.130859375,
+                "right": 432.140625,
+                "bottom": 6635.130859375,
+                "left": 32.03125
+              }
+            },
+            {
+              "src": "/assets/basil-facebook-solid.svg",
+              "complete": true,
+              "naturalWidth": 29,
+              "naturalHeight": 29,
+              "rect": {
+                "x": 74.453125,
+                "y": 6641.515625,
+                "width": 11.609375,
+                "height": 11.609375,
+                "top": 6641.515625,
+                "right": 86.0625,
+                "bottom": 6653.125,
+                "left": 74.453125
+              }
+            },
+            {
+              "src": "/assets/vector.svg",
+              "complete": true,
+              "naturalWidth": 34,
+              "naturalHeight": 34,
+              "rect": {
+                "x": 97.6875,
+                "y": 6640.328125,
+                "width": 13.609375,
+                "height": 13.609375,
+                "top": 6640.328125,
+                "right": 111.296875,
+                "bottom": 6653.9375,
+                "left": 97.6875
+              }
+            },
+            {
+              "src": "/assets/group.svg",
+              "complete": true,
+              "naturalWidth": 34,
+              "naturalHeight": 51,
+              "rect": {
+                "x": 121.703125,
+                "y": 6640.328125,
+                "width": 13.609375,
+                "height": 20.421875,
+                "top": 6640.328125,
+                "right": 135.3125,
+                "bottom": 6660.75,
+                "left": 121.703125
+              }
+            },
+            {
+              "src": "/assets/vector2.svg",
+              "complete": true,
+              "naturalWidth": 34,
+              "naturalHeight": 34,
+              "rect": {
+                "x": 145.71875,
+                "y": 6640.328125,
+                "width": 13.609375,
+                "height": 13.609375,
+                "top": 6640.328125,
+                "right": 159.328125,
+                "bottom": 6653.9375,
+                "left": 145.71875
+              }
+            },
+            {
+              "src": "/assets/vector1.svg",
+              "complete": true,
+              "naturalWidth": 45,
+              "naturalHeight": 34,
+              "rect": {
+                "x": 169.734375,
+                "y": 6640.328125,
+                "width": 18.015625,
+                "height": 13.203125,
+                "top": 6640.328125,
+                "right": 187.75,
+                "bottom": 6653.53125,
+                "left": 169.734375
+              }
+            },
+            {
+              "src": "/assets/group1.svg",
+              "complete": true,
+              "naturalWidth": 2,
+              "naturalHeight": 1,
+              "rect": {
+                "x": 84.46875,
+                "y": 6660.34375,
+                "width": 0.671875,
+                "height": 0.46875,
+                "top": 6660.34375,
+                "right": 85.140625,
+                "bottom": 6660.8125,
+                "left": 84.46875
+              }
+            },
+            {
+              "src": "/assets/line13.svg",
+              "complete": true,
+              "naturalWidth": 999,
+              "naturalHeight": 1,
+              "rect": {
+                "x": 32.828125,
+                "y": 6658.349609375,
+                "width": 400.109375,
+                "height": 1,
+                "top": 6658.349609375,
+                "right": 432.9375,
+                "bottom": 6659.349609375,
+                "left": 32.828125
+              }
+            }
+          ]
+        }
+      },
+      {
+        "width": 1099,
+        "sha256": "3916b8e11a92db6d2755b30d3212b9ac6d8ebcdcfa00c5023b4e01f95517d119",
+        "details": {
+          "title": "Lifelong Learning\nin Action",
+          "fonts": "loaded",
+          "dpr": 1,
+          "images": [
+            {
+              "src": "/assets/eke-logo-symbol.svg",
+              "complete": true,
+              "naturalWidth": 62,
+              "naturalHeight": 58,
+              "rect": {
+                "x": 45.78125,
+                "y": 26.203125,
+                "width": 35.5625,
+                "height": 32.875,
+                "top": 26.203125,
+                "right": 81.34375,
+                "bottom": 59.078125,
+                "left": 45.78125
+              }
+            },
+            {
+              "src": "/assets/eke-logo-wordmark.svg",
+              "complete": true,
+              "naturalWidth": 92,
+              "naturalHeight": 34,
+              "rect": {
+                "x": 86.890625,
+                "y": 32.09375,
+                "width": 52.71875,
+                "height": 18.984375,
+                "top": 32.09375,
+                "right": 139.609375,
+                "bottom": 51.078125,
+                "left": 86.890625
+              }
+            },
+            {
+              "src": "/assets/eke-logo-bitola.svg",
+              "complete": true,
+              "naturalWidth": 46,
+              "naturalHeight": 9,
+              "rect": {
+                "x": 100.015625,
+                "y": 54.21875,
+                "width": 26.453125,
+                "height": 5.015625,
+                "top": 54.21875,
+                "right": 126.46875,
+                "bottom": 59.234375,
+                "left": 100.015625
+              }
+            },
+            {
+              "src": "/assets/vector13.svg",
+              "complete": true,
+              "naturalWidth": 16,
+              "naturalHeight": 20,
+              "rect": {
+                "x": 947.8763427734375,
+                "y": 38.178855895996094,
+                "width": 11.653564453125,
+                "height": 8.907913208007812,
+                "top": 38.178855895996094,
+                "right": 959.5299072265625,
+                "bottom": 47.086769104003906,
+                "left": 947.8763427734375
+              }
+            },
+            {
+              "src": "/assets/eke-logo-symbol.svg",
+              "complete": true,
+              "naturalWidth": 62,
+              "naturalHeight": 58,
+              "rect": {
+                "x": 0,
+                "y": 0,
+                "width": 0,
+                "height": 0,
+                "top": 0,
+                "right": 0,
+                "bottom": 0,
+                "left": 0
+              }
+            },
+            {
+              "src": "/assets/eke-logo-wordmark.svg",
+              "complete": true,
+              "naturalWidth": 92,
+              "naturalHeight": 34,
+              "rect": {
+                "x": 0,
+                "y": 0,
+                "width": 0,
+                "height": 0,
+                "top": 0,
+                "right": 0,
+                "bottom": 0,
+                "left": 0
+              }
+            },
+            {
+              "src": "/assets/eke-logo-bitola.svg",
+              "complete": true,
+              "naturalWidth": 46,
+              "naturalHeight": 9,
+              "rect": {
+                "x": 0,
+                "y": 0,
+                "width": 0,
+                "height": 0,
+                "top": 0,
+                "right": 0,
+                "bottom": 0,
+                "left": 0
+              }
+            },
+            {
+              "src": "/assets/menu-close.svg",
+              "complete": true,
+              "naturalWidth": 28,
+              "naturalHeight": 28,
+              "rect": {
+                "x": 0,
+                "y": 0,
+                "width": 0,
+                "height": 0,
+                "top": 0,
+                "right": 0,
+                "bottom": 0,
+                "left": 0
+              }
+            },
+            {
+              "src": "/assets/menu-news.png",
+              "complete": true,
+              "naturalWidth": 1024,
+              "naturalHeight": 683,
+              "rect": {
+                "x": 0,
+                "y": 0,
+                "width": 0,
+                "height": 0,
+                "top": 0,
+                "right": 0,
+                "bottom": 0,
+                "left": 0
+              }
+            },
+            {
+              "src": "/assets/menu-training.png",
+              "complete": true,
+              "naturalWidth": 1068,
+              "naturalHeight": 712,
+              "rect": {
+                "x": 0,
+                "y": 0,
+                "width": 0,
+                "height": 0,
+                "top": 0,
+                "right": 0,
+                "bottom": 0,
+                "left": 0
+              }
+            },
+            {
+              "src": "/assets/basil-facebook-solid.svg",
+              "complete": true,
+              "naturalWidth": 29,
+              "naturalHeight": 29,
+              "rect": {
+                "x": 0,
+                "y": 0,
+                "width": 0,
+                "height": 0,
+                "top": 0,
+                "right": 0,
+                "bottom": 0,
+                "left": 0
+              }
+            },
+            {
+              "src": "/assets/vector.svg",
+              "complete": true,
+              "naturalWidth": 34,
+              "naturalHeight": 34,
+              "rect": {
+                "x": 0,
+                "y": 0,
+                "width": 0,
+                "height": 0,
+                "top": 0,
+                "right": 0,
+                "bottom": 0,
+                "left": 0
+              }
+            },
+            {
+              "src": "/assets/group.svg",
+              "complete": true,
+              "naturalWidth": 34,
+              "naturalHeight": 51,
+              "rect": {
+                "x": 0,
+                "y": 0,
+                "width": 0,
+                "height": 0,
+                "top": 0,
+                "right": 0,
+                "bottom": 0,
+                "left": 0
+              }
+            },
+            {
+              "src": "/assets/vector2.svg",
+              "complete": true,
+              "naturalWidth": 34,
+              "naturalHeight": 34,
+              "rect": {
+                "x": 0,
+                "y": 0,
+                "width": 0,
+                "height": 0,
+                "top": 0,
+                "right": 0,
+                "bottom": 0,
+                "left": 0
+              }
+            },
+            {
+              "src": "/assets/vector1.svg",
+              "complete": true,
+              "naturalWidth": 45,
+              "naturalHeight": 34,
+              "rect": {
+                "x": 0,
+                "y": 0,
+                "width": 0,
+                "height": 0,
+                "top": 0,
+                "right": 0,
+                "bottom": 0,
+                "left": 0
+              }
+            },
+            {
+              "src": "/assets/projects-page/Group.svg",
+              "complete": true,
+              "naturalWidth": 1753,
+              "naturalHeight": 977,
+              "rect": {
+                "x": 95.578125,
+                "y": 0,
+                "width": 1003.409912109375,
+                "height": 559.2307739257812,
+                "top": 0,
+                "right": 1098.988037109375,
+                "bottom": 559.2307739257812,
+                "left": 95.578125
+              }
+            },
+            {
+              "src": "/assets/projects-page/Rectangle 66.png",
+              "complete": true,
+              "naturalWidth": 1760,
+              "naturalHeight": 378,
+              "rect": {
+                "x": 45.78125,
+                "y": 461.90625,
+                "width": 1007.4375,
+                "height": 216.359375,
+                "top": 461.90625,
+                "right": 1053.21875,
+                "bottom": 678.265625,
+                "left": 45.78125
+              }
+            },
+            {
+              "src": "/assets/projects-page/image 4.png",
+              "complete": true,
+              "naturalWidth": 343,
+              "naturalHeight": 91,
+              "rect": {
+                "x": 97.9375,
+                "y": 2127.96875,
+                "width": 196.328125,
+                "height": 52.078125,
+                "top": 2127.96875,
+                "right": 294.265625,
+                "bottom": 2180.046875,
+                "left": 97.9375
+              }
+            },
+            {
+              "src": "/assets/projects-page/43abb1dac1595d8095c017162a386718 1.png",
+              "complete": true,
+              "naturalWidth": 389,
+              "naturalHeight": 111,
+              "rect": {
+                "x": 71.609375,
+                "y": 2424.046875,
+                "width": 222.65625,
+                "height": 63.53125,
+                "top": 2424.046875,
+                "right": 294.265625,
+                "bottom": 2487.578125,
+                "left": 71.609375
+              }
+            },
+            {
+              "src": "/assets/projects-page/image 5.png",
+              "complete": true,
+              "naturalWidth": 163,
+              "naturalHeight": 152,
+              "rect": {
+                "x": 200.96875,
+                "y": 2738.125,
+                "width": 93.296875,
+                "height": 87,
+                "top": 2738.125,
+                "right": 294.265625,
+                "bottom": 2825.125,
+                "left": 200.96875
+              }
+            },
+            {
+              "src": "/assets/projects-page/image 3.png",
+              "complete": true,
+              "naturalWidth": 417,
+              "naturalHeight": 137,
+              "rect": {
+                "x": 55.578125,
+                "y": 3044.234375,
+                "width": 238.6875,
+                "height": 78.40625,
+                "top": 3044.234375,
+                "right": 294.265625,
+                "bottom": 3122.640625,
+                "left": 55.578125
+              }
+            },
+            {
+              "src": "/assets/projects-page/image 1.png",
+              "complete": true,
+              "naturalWidth": 222,
+              "naturalHeight": 125,
+              "rect": {
+                "x": 167.203125,
+                "y": 3349.484375,
+                "width": 127.0625,
+                "height": 71.546875,
+                "top": 3349.484375,
+                "right": 294.265625,
+                "bottom": 3421.03125,
+                "left": 167.203125
+              }
+            },
+            {
+              "src": "/assets/projects-page/Group 648.png",
+              "complete": true,
+              "naturalWidth": 711,
+              "naturalHeight": 378,
+              "rect": {
+                "x": 692.015625,
+                "y": 3813.5,
+                "width": 406.96875,
+                "height": 216.359375,
+                "top": 3813.5,
+                "right": 1098.984375,
+                "bottom": 4029.859375,
+                "left": 692.015625
+              }
+            },
+            {
+              "src": "/assets/projects-page/Group 674.png",
+              "complete": true,
+              "naturalWidth": 335,
+              "naturalHeight": 335,
+              "rect": {
+                "x": 795.046875,
+                "y": 3825.515625,
+                "width": 191.75,
+                "height": 191.75,
+                "top": 3825.515625,
+                "right": 986.796875,
+                "bottom": 4017.265625,
+                "left": 795.046875
+              }
+            },
+            {
+              "src": "/assets/projects-page/Group (1).svg",
+              "complete": true,
+              "naturalWidth": 1403,
+              "naturalHeight": 1514,
+              "rect": {
+                "x": 49.21875,
+                "y": 4008.6875,
+                "width": 803.0714111328125,
+                "height": 866.607421875,
+                "top": 4008.6875,
+                "right": 852.2901611328125,
+                "bottom": 4875.294921875,
+                "left": 49.21875
+              }
+            },
+            {
+              "src": "/assets/projects-page/Group (2).svg",
+              "complete": true,
+              "naturalWidth": 1573,
+              "naturalHeight": 1501,
+              "rect": {
+                "x": 49.21875,
+                "y": 4855.25,
+                "width": 900.378662109375,
+                "height": 859.166015625,
+                "top": 4855.25,
+                "right": 949.597412109375,
+                "bottom": 5714.416015625,
+                "left": 49.21875
+              }
+            },
+            {
+              "src": "/assets/vector5.svg",
+              "complete": true,
+              "naturalWidth": 26,
+              "naturalHeight": 35,
+              "rect": {
+                "x": 382.8917541503906,
+                "y": 6096.36669921875,
+                "width": 19.81024169921875,
+                "height": 15.1416015625,
+                "top": 6096.36669921875,
+                "right": 402.7019958496094,
+                "bottom": 6111.50830078125,
+                "left": 382.8917541503906
+              }
+            },
+            {
+              "src": "/assets/group2.svg",
+              "complete": true,
+              "naturalWidth": 116,
+              "naturalHeight": 198,
+              "rect": {
+                "x": 986.234375,
+                "y": 6128.171875,
+                "width": 66.4375,
+                "height": 113.359375,
+                "top": 6128.171875,
+                "right": 1052.671875,
+                "bottom": 6241.53125,
+                "left": 986.234375
+              }
+            },
+            {
+              "src": "/assets/group3.svg",
+              "complete": true,
+              "naturalWidth": 118,
+              "naturalHeight": 156,
+              "rect": {
+                "x": 927.328125,
+                "y": 6104.15625,
+                "width": 67.734375,
+                "height": 89.390625,
+                "top": 6104.15625,
+                "right": 995.0625,
+                "bottom": 6193.546875,
+                "left": 927.328125
+              }
+            },
+            {
+              "src": "/assets/group4.svg",
+              "complete": true,
+              "naturalWidth": 128,
+              "naturalHeight": 151,
+              "rect": {
+                "x": 875.765625,
+                "y": 6162.46875,
+                "width": 73.53125,
+                "height": 86.578125,
+                "top": 6162.46875,
+                "right": 949.296875,
+                "bottom": 6249.046875,
+                "left": 875.765625
+              }
+            },
+            {
+              "src": "/assets/group5.svg",
+              "complete": true,
+              "naturalWidth": 122,
+              "naturalHeight": 146,
+              "rect": {
+                "x": 931.90625,
+                "y": 6198.5625,
+                "width": 70.03125,
+                "height": 83.765625,
+                "top": 6198.5625,
+                "right": 1001.9375,
+                "bottom": 6282.328125,
+                "left": 931.90625
+              }
+            },
+            {
+              "src": "/assets/line14.svg",
+              "complete": true,
+              "naturalWidth": 999,
+              "naturalHeight": 1,
+              "rect": {
+                "x": 45.78125,
+                "y": 6328.537109375,
+                "width": 571.8125,
+                "height": 1,
+                "top": 6328.537109375,
+                "right": 617.59375,
+                "bottom": 6329.537109375,
+                "left": 45.78125
+              }
+            },
+            {
+              "src": "/assets/basil-facebook-solid.svg",
+              "complete": true,
+              "naturalWidth": 29,
+              "naturalHeight": 29,
+              "rect": {
+                "x": 106.421875,
+                "y": 6339.109375,
+                "width": 16.59375,
+                "height": 16.59375,
+                "top": 6339.109375,
+                "right": 123.015625,
+                "bottom": 6355.703125,
+                "left": 106.421875
+              }
+            },
+            {
+              "src": "/assets/vector.svg",
+              "complete": true,
+              "naturalWidth": 34,
+              "naturalHeight": 34,
+              "rect": {
+                "x": 139.625,
+                "y": 6337.40625,
+                "width": 19.453125,
+                "height": 19.453125,
+                "top": 6337.40625,
+                "right": 159.078125,
+                "bottom": 6356.859375,
+                "left": 139.625
+              }
+            },
+            {
+              "src": "/assets/group.svg",
+              "complete": true,
+              "naturalWidth": 34,
+              "naturalHeight": 51,
+              "rect": {
+                "x": 173.953125,
+                "y": 6337.40625,
+                "width": 19.453125,
+                "height": 29.1875,
+                "top": 6337.40625,
+                "right": 193.40625,
+                "bottom": 6366.59375,
+                "left": 173.953125
+              }
+            },
+            {
+              "src": "/assets/vector2.svg",
+              "complete": true,
+              "naturalWidth": 34,
+              "naturalHeight": 34,
+              "rect": {
+                "x": 208.28125,
+                "y": 6337.40625,
+                "width": 19.453125,
+                "height": 19.453125,
+                "top": 6337.40625,
+                "right": 227.734375,
+                "bottom": 6356.859375,
+                "left": 208.28125
+              }
+            },
+            {
+              "src": "/assets/vector1.svg",
+              "complete": true,
+              "naturalWidth": 45,
+              "naturalHeight": 34,
+              "rect": {
+                "x": 242.609375,
+                "y": 6337.40625,
+                "width": 25.75,
+                "height": 18.875,
+                "top": 6337.40625,
+                "right": 268.359375,
+                "bottom": 6356.28125,
+                "left": 242.609375
+              }
+            },
+            {
+              "src": "/assets/group1.svg",
+              "complete": true,
+              "naturalWidth": 2,
+              "naturalHeight": 1,
+              "rect": {
+                "x": 120.734375,
+                "y": 6366.015625,
+                "width": 0.96875,
+                "height": 0.671875,
+                "top": 6366.015625,
+                "right": 121.703125,
+                "bottom": 6366.6875,
+                "left": 120.734375
+              }
+            },
+            {
+              "src": "/assets/line13.svg",
+              "complete": true,
+              "naturalWidth": 999,
+              "naturalHeight": 1,
+              "rect": {
+                "x": 46.921875,
+                "y": 6363.583984375,
+                "width": 571.8125,
+                "height": 1,
+                "top": 6363.583984375,
+                "right": 618.734375,
+                "bottom": 6364.583984375,
+                "left": 46.921875
+              }
+            }
+          ]
+        }
+      }
+    ],
+    "assets": [
+      {
+        "url": "/assets/eke-logo-symbol.svg",
+        "status": 200,
+        "localSha256": "68475af95fbb2b0e4320db5f7f555b2815c36ed51b42730a0eac431586bd6f0e",
+        "stagingSha256": "37d534810b7e2ae471d1848e9a3941ff29a6fffc0317c5f8009f44ceb632026f",
+        "bytesIdentical": false,
+        "identicalIgnoringCRLF": true
+      },
+      {
+        "url": "/assets/eke-logo-wordmark.svg",
+        "status": 200,
+        "localSha256": "00792d1248c22b1f9b8aecebe1f4be41138227aef07eed2dfee6963a589bb5bb",
+        "stagingSha256": "df14168aec902a5876083a26e6d1c2c73d01774fecb7827f2d3cbd9f7875c1c7",
+        "bytesIdentical": false,
+        "identicalIgnoringCRLF": true
+      },
+      {
+        "url": "/assets/eke-logo-bitola.svg",
+        "status": 200,
+        "localSha256": "c79bf1c31fefc399b5582483a04e1dd44818d3a4ae5c4f78a54549078d29dd54",
+        "stagingSha256": "627e95d33cbaf8caf060bb9165084f4668a166df770278184ac027dddd13430c",
+        "bytesIdentical": false,
+        "identicalIgnoringCRLF": true
+      },
+      {
+        "url": "/assets/vector13.svg",
+        "status": 200,
+        "localSha256": "b1e08302052c63f7ebe144509a0bd8651072cc5fece90f0c5765063920f0f232",
+        "stagingSha256": "a49f6fb3a8abd4784a050e28b01df812f59826e133f47bde630e7e01f5959c7d",
+        "bytesIdentical": false,
+        "identicalIgnoringCRLF": true
+      },
+      {
+        "url": "/assets/menu-close.svg",
+        "status": 200,
+        "localSha256": "4d3902b0c521f14c63b06daf55c32e047d62934f60d7fe67ac361babaf98f8ac",
+        "stagingSha256": "caff6cc07b6b6fcf01f6d492590033c4f263a31c98bf3b3c153c6322db27e956",
+        "bytesIdentical": false,
+        "identicalIgnoringCRLF": true
+      },
+      {
+        "url": "/assets/menu-training.png",
+        "status": 200,
+        "localSha256": "0de6401aba0fe60c5909cbf412a00236c1309fcba948040720a3c211f991e8b7",
+        "stagingSha256": "0de6401aba0fe60c5909cbf412a00236c1309fcba948040720a3c211f991e8b7",
+        "bytesIdentical": true,
+        "identicalIgnoringCRLF": true
+      },
+      {
+        "url": "/assets/basil-facebook-solid.svg",
+        "status": 200,
+        "localSha256": "e989c7d959246c3194fb8695c5ea0f74257073b5543e09ed33724e69d9413e41",
+        "stagingSha256": "e3c659c002be63230262add8ac7e2607c5bc2e71cbeaabd6e84b91ff509ef9cf",
+        "bytesIdentical": false,
+        "identicalIgnoringCRLF": true
+      },
+      {
+        "url": "/assets/vector.svg",
+        "status": 200,
+        "localSha256": "565b57d8c7ac35134c2b0640e29925aa1e232c0997c0ac1870fb6b2efb1405ac",
+        "stagingSha256": "be2adab55b6454d3f017ecc9247afc916641ee1e479928430a1b68fb9571f30b",
+        "bytesIdentical": false,
+        "identicalIgnoringCRLF": true
+      },
+      {
+        "url": "/assets/group.svg",
+        "status": 200,
+        "localSha256": "781afbdd95a51dbdd0191cd22359592dd41cf653ee598674f4d4978480463323",
+        "stagingSha256": "9938427c64dd3df7fbdb7a057529cd6ac982d97b6a304dc66d35c6fa0d19a76b",
+        "bytesIdentical": false,
+        "identicalIgnoringCRLF": true
+      },
+      {
+        "url": "/assets/projects-page/Group.svg",
+        "status": 200,
+        "localSha256": "71f59fd78dabf7a517d0e6a7a93cdc2389e9721b7ed66a23b6cd3fb350405bbd",
+        "stagingSha256": "845820c0421f9802fecf1898a53c9a77d384a05873c39aa5ad18fbddf1d91d3a",
+        "bytesIdentical": false,
+        "identicalIgnoringCRLF": true
+      },
+      {
+        "url": "/assets/projects-page/Group%20648.png",
+        "status": 200,
+        "localSha256": "4085612c2432c2b437d631b215d1b44467274b28ca53063a0f66c2fb7c5eca3d",
+        "stagingSha256": "4085612c2432c2b437d631b215d1b44467274b28ca53063a0f66c2fb7c5eca3d",
+        "bytesIdentical": true,
+        "identicalIgnoringCRLF": true
+      },
+      {
+        "url": "/assets/projects-page/Group%20674.png",
+        "status": 200,
+        "localSha256": "68b0f83fcf2827deb079225d1df0099d5181d1b3fb57b84be449e58f84de3582",
+        "stagingSha256": "68b0f83fcf2827deb079225d1df0099d5181d1b3fb57b84be449e58f84de3582",
+        "bytesIdentical": true,
+        "identicalIgnoringCRLF": true
+      },
+      {
+        "url": "/assets/projects-page/Group%20(1).svg",
+        "status": 200,
+        "localSha256": "ef20e15e60a6bb2327fbe3bac7d56011f5835fd6b5edc602927f71859c4af06e",
+        "stagingSha256": "964c02cd81b5bbd69221d77d00c5a63320934f9188c8c581a8691083b1d94da3",
+        "bytesIdentical": false,
+        "identicalIgnoringCRLF": true
+      },
+      {
+        "url": "/assets/projects-page/Group%20(2).svg",
+        "status": 200,
+        "localSha256": "cc17d97f3ef854156b2bebdbaa66f1b3920faa7e6d437e8f3d33822fa98ff07e",
+        "stagingSha256": "ba1e1da0c6c85ef3db2c6e618682492339c6615c92034a70c50f08656b0b7a19",
+        "bytesIdentical": false,
+        "identicalIgnoringCRLF": true
+      },
+      {
+        "url": "/assets/vector5.svg",
+        "status": 200,
+        "localSha256": "504a18cd44ff2919c2707d55627c6fb7676b614f9e35f310ff837d53042d71b2",
+        "stagingSha256": "9ba0bc3a7df710d145ab2b1d4e776dd34066dc640e7d9fc7e9922b047d84632e",
+        "bytesIdentical": false,
+        "identicalIgnoringCRLF": true
+      },
+      {
+        "url": "/assets/group2.svg",
+        "status": 200,
+        "localSha256": "edce500559d2212a82137ee81d987e4a0be1ffe1f29fdaa337bf5de0ec7014bc",
+        "stagingSha256": "30f831f8e124ec5eba3326657a6c12e7cddb50347163e77cfe042c85a491b01d",
+        "bytesIdentical": false,
+        "identicalIgnoringCRLF": true
+      },
+      {
+        "url": "/assets/group3.svg",
+        "status": 200,
+        "localSha256": "7eb72d65b46a27a91bef80dd4630fba10f5d9b368caa02dc767327649c35bbd6",
+        "stagingSha256": "0fb6924649f0978cc968fdbf1d4ca25475503e2f092bc2439c24a7d8399f4ede",
+        "bytesIdentical": false,
+        "identicalIgnoringCRLF": true
+      },
+      {
+        "url": "/assets/group4.svg",
+        "status": 200,
+        "localSha256": "5af41bc56bd10fa8c8da779f09993f9488e25e137f04053d54b95129f0d140ee",
+        "stagingSha256": "2ed8710862d1623e0bb3b1a100f87aa510b436d244df13984371419cf6734f5a",
+        "bytesIdentical": false,
+        "identicalIgnoringCRLF": true
+      },
+      {
+        "url": "/assets/group5.svg",
+        "status": 200,
+        "localSha256": "a2cd2dc53477733d359f6705eb6435866e801554ce29fca8be521295f17d4054",
+        "stagingSha256": "4a552620a84e24ec45cd7bd3b765902aa067d6b6aa6ba53765e764405c91d03b",
+        "bytesIdentical": false,
+        "identicalIgnoringCRLF": true
+      },
+      {
+        "url": "/assets/line14.svg",
+        "status": 200,
+        "localSha256": "635d25a335a2be148f990b2d3d3780700933f25d1693badc8dfd93eac5fe4af7",
+        "stagingSha256": "d40778d86697966c69d66f32c3b82c22478451cbc1007c8c66a2e54fc3e42f0b",
+        "bytesIdentical": false,
+        "identicalIgnoringCRLF": true
+      },
+      {
+        "url": "/assets/vector2.svg",
+        "status": 200,
+        "localSha256": "683c0cecfadc4bda4bcfd1e6b54fb7fbeb17c0e464409e281be87155dc9b4317",
+        "stagingSha256": "65cd3bda09613626f3b40d56a7d34890923819bfaff746dc17f030ee1eaba8b1",
+        "bytesIdentical": false,
+        "identicalIgnoringCRLF": true
+      },
+      {
+        "url": "/assets/vector1.svg",
+        "status": 200,
+        "localSha256": "bd2f3988be4d95c7c44180d4acc79dcde42b437ac28f216970dc2789a67da294",
+        "stagingSha256": "01ec7c1e97815240e22ddc9a053ad20315e6b1fbad0c4f33f58a892f5a98001d",
+        "bytesIdentical": false,
+        "identicalIgnoringCRLF": true
+      },
+      {
+        "url": "/assets/group1.svg",
+        "status": 200,
+        "localSha256": "1bc76bbcd7b5dada662b11a3ec6f6960a74693037b3babb9610bcaf924437b5d",
+        "stagingSha256": "1ef359e780d517be02789a3adae08a2875c8e4d21f1631ab3daf5a0a34405c99",
+        "bytesIdentical": false,
+        "identicalIgnoringCRLF": true
+      },
+      {
+        "url": "/assets/line13.svg",
+        "status": 200,
+        "localSha256": "158d79575930a82a9133e4175af50ea13302a7ba9c13cfe11a809730d7eeb322",
+        "stagingSha256": "9df271af4bde6411fca2383a336a33fef1e2808f45217c5a4f248887644b27e1",
+        "bytesIdentical": false,
+        "identicalIgnoringCRLF": true
+      },
+      {
+        "url": "/assets/projects-page/image%204.png",
+        "status": 200,
+        "localSha256": "18ac03699e687298bbccc9742c5ba51238aa4b1578b1151eadda1a203c1fa057",
+        "stagingSha256": "18ac03699e687298bbccc9742c5ba51238aa4b1578b1151eadda1a203c1fa057",
+        "bytesIdentical": true,
+        "identicalIgnoringCRLF": true
+      },
+      {
+        "url": "/assets/projects-page/43abb1dac1595d8095c017162a386718%201.png",
+        "status": 200,
+        "localSha256": "d71ea5b91f187a86845214ece5ffa06786023b1acf5e37e9880041f43ce11e7e",
+        "stagingSha256": "d71ea5b91f187a86845214ece5ffa06786023b1acf5e37e9880041f43ce11e7e",
+        "bytesIdentical": true,
+        "identicalIgnoringCRLF": true
+      },
+      {
+        "url": "/assets/projects-page/image%205.png",
+        "status": 200,
+        "localSha256": "88fb1ff56c8c799a2c9e6aeaca3da05a3f2a3b9ad12ad4d798dcb250c1602ca5",
+        "stagingSha256": "88fb1ff56c8c799a2c9e6aeaca3da05a3f2a3b9ad12ad4d798dcb250c1602ca5",
+        "bytesIdentical": true,
+        "identicalIgnoringCRLF": true
+      },
+      {
+        "url": "/assets/projects-page/image%203.png",
+        "status": 200,
+        "localSha256": "8bb0f2d379d4417a92efa47f2df5d88d639e3822040200e94376581acb830a84",
+        "stagingSha256": "8bb0f2d379d4417a92efa47f2df5d88d639e3822040200e94376581acb830a84",
+        "bytesIdentical": true,
+        "identicalIgnoringCRLF": true
+      },
+      {
+        "url": "/assets/projects-page/image%201.png",
+        "status": 200,
+        "localSha256": "a4c8d3249f0ac0d7a2624222cb58666c3c290c00fda45a52380e8ef7c777b437",
+        "stagingSha256": "a4c8d3249f0ac0d7a2624222cb58666c3c290c00fda45a52380e8ef7c777b437",
+        "bytesIdentical": true,
+        "identicalIgnoringCRLF": true
+      },
+      {
+        "url": "/assets/menu-news.png",
+        "status": 200,
+        "localSha256": "eed2c1f63c2e63f725e5d9fc3e78d61675b15a8e2decd8c89a4053442bec3213",
+        "stagingSha256": "eed2c1f63c2e63f725e5d9fc3e78d61675b15a8e2decd8c89a4053442bec3213",
+        "bytesIdentical": true,
+        "identicalIgnoringCRLF": true
+      },
+      {
+        "url": "/assets/projects-page/Rectangle%2066.png",
+        "status": 200,
+        "localSha256": "dbe94efc15e8c59d2fabee57c5ae34c2db5dae84263ef38c249f2d4b63d43b94",
+        "stagingSha256": "dbe94efc15e8c59d2fabee57c5ae34c2db5dae84263ef38c249f2d4b63d43b94",
+        "bytesIdentical": true,
+        "identicalIgnoringCRLF": true
+      },
+      {
+        "url": "/_next/static/media/9fde1fddf961ee3f-s.p.ttf",
+        "status": 200,
+        "localSha256": "a9ac770798857d5e8ac593ced42b22e40a7c08cec98319f92b0eccc2783a77ba",
+        "stagingSha256": "a9ac770798857d5e8ac593ced42b22e40a7c08cec98319f92b0eccc2783a77ba",
+        "bytesIdentical": true,
+        "identicalIgnoringCRLF": true
+      },
+      {
+        "url": "/_next/static/media/39c38f8bd2b6fc56-s.p.ttf",
+        "status": 200,
+        "localSha256": "d0a87d835a944b8b40d0e82a5651bb59ab97b936a2aeed5946eb57e7b2a3a90a",
+        "stagingSha256": "d0a87d835a944b8b40d0e82a5651bb59ab97b936a2aeed5946eb57e7b2a3a90a",
+        "bytesIdentical": true,
+        "identicalIgnoringCRLF": true
+      },
+      {
+        "url": "/assets/about/assets/Group.svg",
+        "status": 200,
+        "localSha256": "bb3a6ac55dd782869e760517258fcdfd844aba869fe5164204855c5663f7e5c8",
+        "stagingSha256": "b7263bb69cd7dad39aa88c3f4dee905384cc505d121293e9aecf7722c80a5587",
+        "bytesIdentical": false,
+        "identicalIgnoringCRLF": true
+      },
+      {
+        "url": "/assets/about/images/card1.webp",
+        "status": 200,
+        "localSha256": "c5cbd9d7d8251a2c2321e6c0bc7c8632470f64295abce3b7816af8a0b20c562f",
+        "stagingSha256": "c5cbd9d7d8251a2c2321e6c0bc7c8632470f64295abce3b7816af8a0b20c562f",
+        "bytesIdentical": true,
+        "identicalIgnoringCRLF": true
+      },
+      {
+        "url": "/assets/about/images/card2.webp",
+        "status": 200,
+        "localSha256": "3cf714f6723e71d19e4f8e7c709258bde06ff13bc9c405c70f4051dc846ca18c",
+        "stagingSha256": "3cf714f6723e71d19e4f8e7c709258bde06ff13bc9c405c70f4051dc846ca18c",
+        "bytesIdentical": true,
+        "identicalIgnoringCRLF": true
+      },
+      {
+        "url": "/assets/about/assets/Group%2071.svg",
+        "status": 200,
+        "localSha256": "52b9adcd1348c9f969331d40abbaf3248851c0311371ea47401999e0557214dc",
+        "stagingSha256": "7e50040f38a23f7fca8f1182e517f3e20ab62328f75ab130371cf0a529cea6bb",
+        "bytesIdentical": false,
+        "identicalIgnoringCRLF": true
+      },
+      {
+        "url": "/assets/about/images/card3.webp",
+        "status": 200,
+        "localSha256": "8411d5778ea52a91378c6fae21552b1288ccd331f506bd6f9f954c83368e6e93",
+        "stagingSha256": "8411d5778ea52a91378c6fae21552b1288ccd331f506bd6f9f954c83368e6e93",
+        "bytesIdentical": true,
+        "identicalIgnoringCRLF": true
+      },
+      {
+        "url": "/assets/about/assets/Ellipse%205.svg",
+        "status": 200,
+        "localSha256": "ecb0278b67f74b3e54adff48548885f5663fc990fb5197d649fc09e496cb908d",
+        "stagingSha256": "a6881c3fb2cd081ec1b866843fa4d182520337722b0bc127e974924400651fd4",
+        "bytesIdentical": false,
+        "identicalIgnoringCRLF": true
+      },
+      {
+        "url": "/assets/about/assets/Group%2037.svg",
+        "status": 200,
+        "localSha256": "a00d5c501b97c345c1392c39c0e5eec3cc6342162101e6e6fe233f0fb8371ac5",
+        "stagingSha256": "4083631b4c20378005a5f6d6c603fddbf91f358e421bdad2bd6595bfe8b321f5",
+        "bytesIdentical": false,
+        "identicalIgnoringCRLF": true
+      },
+      {
+        "url": "/assets/about/assets/Group%2042.svg",
+        "status": 200,
+        "localSha256": "3dc4a96c4341f937e8ede92eca9210ecda33c061046308243fe8bdf0d50aed15",
+        "stagingSha256": "b5d071290cab667e9d984188863b28d029f80b407bf37b19de2a3d830e4f7a2d",
+        "bytesIdentical": false,
+        "identicalIgnoringCRLF": true
+      },
+      {
+        "url": "/assets/about/assets/Group%2041.svg",
+        "status": 200,
+        "localSha256": "ecb0278b67f74b3e54adff48548885f5663fc990fb5197d649fc09e496cb908d",
+        "stagingSha256": "a6881c3fb2cd081ec1b866843fa4d182520337722b0bc127e974924400651fd4",
+        "bytesIdentical": false,
+        "identicalIgnoringCRLF": true
+      },
+      {
+        "url": "/assets/about/assets/Vector.svg",
+        "status": 200,
+        "localSha256": "0845e34f7981c628fe24af97b3b5e573247f2657b579ae4af9b88665ff835080",
+        "stagingSha256": "12ed1476bd3c2e2bae7a42dec82fd4c17f4b81c435dcd8e3fbff5553eebd6fbf",
+        "bytesIdentical": false,
+        "identicalIgnoringCRLF": true
+      },
+      {
+        "url": "/assets/about/images/vele.webp",
+        "status": 200,
+        "localSha256": "607c1552d16efdf231c9f0d6487ae271d7d041ee6b1be727c3ff6b96e8b905f2",
+        "stagingSha256": "607c1552d16efdf231c9f0d6487ae271d7d041ee6b1be727c3ff6b96e8b905f2",
+        "bytesIdentical": true,
+        "identicalIgnoringCRLF": true
+      },
+      {
+        "url": "/assets/about/images/ivana.webp",
+        "status": 200,
+        "localSha256": "d8fee023782d1a8212d47687bde7f3077b83948c06b9762c02d07b198532e495",
+        "stagingSha256": "d8fee023782d1a8212d47687bde7f3077b83948c06b9762c02d07b198532e495",
+        "bytesIdentical": true,
+        "identicalIgnoringCRLF": true
+      },
+      {
+        "url": "/assets/about/images/sofija.webp",
+        "status": 200,
+        "localSha256": "00cbce2174886ac448f2dddb47fe7c66ec7ba3e96bb28a7ecf26ef37f26e7502",
+        "stagingSha256": "00cbce2174886ac448f2dddb47fe7c66ec7ba3e96bb28a7ecf26ef37f26e7502",
+        "bytesIdentical": true,
+        "identicalIgnoringCRLF": true
+      },
+      {
+        "url": "/assets/about/images/dimitar.webp",
+        "status": 200,
+        "localSha256": "9c7e227fd91e474d5f0543982fbead0459d13e3bddad36189d316ab32a30a27e",
+        "stagingSha256": "9c7e227fd91e474d5f0543982fbead0459d13e3bddad36189d316ab32a30a27e",
+        "bytesIdentical": true,
+        "identicalIgnoringCRLF": true
+      },
+      {
+        "url": "/assets/about/images/iskra.webp",
+        "status": 200,
+        "localSha256": "4d42d253a7668c9559ebb46eedfc5edb483e5228dfc29ec65dab1ee5eb8272ad",
+        "stagingSha256": "4d42d253a7668c9559ebb46eedfc5edb483e5228dfc29ec65dab1ee5eb8272ad",
+        "bytesIdentical": true,
+        "identicalIgnoringCRLF": true
+      },
+      {
+        "url": "/assets/about/images/unsplash_M5k978V3qBc.webp",
+        "status": 200,
+        "localSha256": "e23dbc8df6f85f4c723a9dae71d47d9df2ff4e2cd126d3d8296641e64061a4b7",
+        "stagingSha256": "e23dbc8df6f85f4c723a9dae71d47d9df2ff4e2cd126d3d8296641e64061a4b7",
+        "bytesIdentical": true,
+        "identicalIgnoringCRLF": true
+      },
+      {
+        "url": "/assets/about/assets/Vector1.svg",
+        "status": 200,
+        "localSha256": "5f6c9e690fba200e04e9cc7eb0827576d5e603c311bb4504befd015c045bd393",
+        "stagingSha256": "4a00f559979cdef81f9f26a630eba6a7608e5f1b5cc83d7f1a2b4c545f52741a",
+        "bytesIdentical": false,
+        "identicalIgnoringCRLF": true
+      },
+      {
+        "url": "/assets/vector4.svg",
+        "status": 200,
+        "localSha256": "83332a2ac8d5433ede7334d5039cb6e65405e07b282dbc95ec18373b09278727",
+        "stagingSha256": "c50592221f938a91279698e44718f7899b403f78da6cff114625bf76bdf8fe90",
+        "bytesIdentical": false,
+        "identicalIgnoringCRLF": true
+      },
+      {
+        "url": "/assets/about/images/milcho.webp",
+        "status": 200,
+        "localSha256": "4c658ab5b8d5263679e5455ce2adec9ba0151af65613e793981fda1843e05f9b",
+        "stagingSha256": "4c658ab5b8d5263679e5455ce2adec9ba0151af65613e793981fda1843e05f9b",
+        "bytesIdentical": true,
+        "identicalIgnoringCRLF": true
+      },
+      {
+        "url": "/assets/about/images/damjan.webp",
+        "status": 200,
+        "localSha256": "eb73f6a6b100319fe9d25c89d91573beb020e64f21d4b8ae26b75849a5b2a1cd",
+        "stagingSha256": "eb73f6a6b100319fe9d25c89d91573beb020e64f21d4b8ae26b75849a5b2a1cd",
+        "bytesIdentical": true,
+        "identicalIgnoringCRLF": true
+      },
+      {
+        "url": "/assets/opportunities-page/hero-svg.svg",
+        "status": 200,
+        "localSha256": "6db19ed567923a82d78cb5bac30e028830a11273a9d7ae511620e35f1a7d8594",
+        "stagingSha256": "3effd175960f1a0d90231a2108b9ea09b8c23e10f715cd3459ef0f1766a97f86",
+        "bytesIdentical": false,
+        "identicalIgnoringCRLF": true
+      },
+      {
+        "url": "/assets/opportunities-page/img.webp",
+        "status": 200,
+        "localSha256": "059368c429f340a92ffcf077ea16f03858854df942a02b1a9dd5a6b2991d6811",
+        "stagingSha256": "059368c429f340a92ffcf077ea16f03858854df942a02b1a9dd5a6b2991d6811",
+        "bytesIdentical": true,
+        "identicalIgnoringCRLF": true
+      },
+      {
+        "url": "/assets/opportunities-page/Group.svg",
+        "status": 200,
+        "localSha256": "7b5fc9e2c488ce8ee165f4126d3192cc811fc358c5d816e27d69fbbf61dde7a3",
+        "stagingSha256": "41bab70e6df9cdc06be2fa16833d9ad9833ac7ae108ff03e1d0745071d8060af",
+        "bytesIdentical": false,
+        "identicalIgnoringCRLF": true
+      },
+      {
+        "url": "/assets/opportunities-page/Group%20(1).svg",
+        "status": 200,
+        "localSha256": "055b5c5baf1ed2143c3aada2757b57837f56358c95bc969ca13cbf65d657eb3a",
+        "stagingSha256": "62c0538062b8b945d29f80951a29ebec2cefe5f99f606fbe2540551534f72e2d",
+        "bytesIdentical": false,
+        "identicalIgnoringCRLF": true
+      },
+      {
+        "url": "/assets/opportunities-page/Mask%20group.webp",
+        "status": 200,
+        "localSha256": "0ec531fc5f4a0783262018a453ecd9fc488a243dcea0d349ad6ee1c30fb0c607",
+        "stagingSha256": "0ec531fc5f4a0783262018a453ecd9fc488a243dcea0d349ad6ee1c30fb0c607",
+        "bytesIdentical": true,
+        "identicalIgnoringCRLF": true
+      },
+      {
+        "url": "/assets/opportunities-page/svg1.svg",
+        "status": 200,
+        "localSha256": "41f02f7a0f5725a391e0904cba4252fb786a8ac49851ada3178cb0208d6d14f8",
+        "stagingSha256": "97bcf7be4500ed2912180458b3d4f78c4f5ff7454db071b78b52c8f0d5e8ac1c",
+        "bytesIdentical": false,
+        "identicalIgnoringCRLF": true
+      },
+      {
+        "url": "/assets/opportunities-page/Rectangle%2010.png",
+        "status": 200,
+        "localSha256": "7f1f2cb8532e8534d052baddb4db8837ed1a8f57903a697f658e3693c0d4b6e2",
+        "stagingSha256": "7f1f2cb8532e8534d052baddb4db8837ed1a8f57903a697f658e3693c0d4b6e2",
+        "bytesIdentical": true,
+        "identicalIgnoringCRLF": true
+      },
+      {
+        "url": "/assets/opportunities-page/Rectangle%2011.png",
+        "status": 200,
+        "localSha256": "bac9e111bb44182f861c233d0f7e1345a5a56e90580868b47dc6295d9a3dec2d",
+        "stagingSha256": "bac9e111bb44182f861c233d0f7e1345a5a56e90580868b47dc6295d9a3dec2d",
+        "bytesIdentical": true,
+        "identicalIgnoringCRLF": true
+      },
+      {
+        "url": "/assets/opportunities-page/Group%20(2).svg",
+        "status": 200,
+        "localSha256": "946c81fc27f1d6cd6b2ec41b11eb69029fe9f260e3d78caca35b9326a84ec0fa",
+        "stagingSha256": "799bc19b32118f117733c95110aa27e15869d05816e838d5c7e825024ec0c6c9",
+        "bytesIdentical": false,
+        "identicalIgnoringCRLF": true
+      },
+      {
+        "url": "/assets/opportunities-page/global-residence-index-AX6s7zREtZE-unsplash%201.webp",
+        "status": 200,
+        "localSha256": "26c7d61903eb0a713447a4be04fac7e5f9653769f1bee3ea58c0ba2e1f4bbfdc",
+        "stagingSha256": "26c7d61903eb0a713447a4be04fac7e5f9653769f1bee3ea58c0ba2e1f4bbfdc",
+        "bytesIdentical": true,
+        "identicalIgnoringCRLF": true
+      },
+      {
+        "url": "/assets/opportunities-page/Group%2084.svg",
+        "status": 200,
+        "localSha256": "a5bcd53def2045419bd2c78b9168f541fe68cfeee23b4bad0aff1f33408833f5",
+        "stagingSha256": "874fdd00e5718bae7012f7c01553d38e2f3032535e13f0782ee81e3e4744e0c9",
+        "bytesIdentical": false,
+        "identicalIgnoringCRLF": true
+      },
+      {
+        "url": "/assets/impact-figure.svg",
+        "status": 200,
+        "localSha256": "fef2cf6d6fe3c897e9e98b6973e4aab52c2249b03f67fbff1cbf3bf85bf8ae23",
+        "stagingSha256": "135b7f3acf5bc47307dac38f157b4fee13785cab7a3e06cf7ba4c7f9f0cb603c",
+        "bytesIdentical": false,
+        "identicalIgnoringCRLF": true
+      },
+      {
+        "url": "/assets/vector8.svg",
+        "status": 200,
+        "localSha256": "d3e254b85ea5cd225aa4ac91a2534cac59f7a5de3093dbfc854f60633cbb919c",
+        "stagingSha256": "283c9c7e8237c3eda88f038e551cc18784d5d2809b17d2cb5ea5bbfde0859812",
+        "bytesIdentical": false,
+        "identicalIgnoringCRLF": true
+      },
+      {
+        "url": "/assets/line6.svg",
+        "status": 200,
+        "localSha256": "e77d6f1d137475bffb9b9d8281e77dd1ca168e54f031a463ef4f432eb24c82a3",
+        "stagingSha256": "f34c8bc79aa979fbe1ec009b5eb8251af03038961d22a346b7e38d31f24bdfbd",
+        "bytesIdentical": false,
+        "identicalIgnoringCRLF": true
+      },
+      {
+        "url": "/assets/line7.svg",
+        "status": 200,
+        "localSha256": "c0badff2c934aceb056e8990089993d2273f713b75eb4a3c96c39d21a0b7af16",
+        "stagingSha256": "5c5b6b57a3b2255e0190206c218fa1a72852f843a1fbc6b4909c30199394a6dd",
+        "bytesIdentical": false,
+        "identicalIgnoringCRLF": true
+      },
+      {
+        "url": "/assets/vector7.svg",
+        "status": 200,
+        "localSha256": "d3e254b85ea5cd225aa4ac91a2534cac59f7a5de3093dbfc854f60633cbb919c",
+        "stagingSha256": "283c9c7e8237c3eda88f038e551cc18784d5d2809b17d2cb5ea5bbfde0859812",
+        "bytesIdentical": false,
+        "identicalIgnoringCRLF": true
+      },
+      {
+        "url": "/assets/line10.svg",
+        "status": 200,
+        "localSha256": "c28a1f82698a93425ead360b9af15a4e36d916866e3478dde9c540564d0f6cb4",
+        "stagingSha256": "cf5a772ce1a4425a4ee06c3a9a2d86a1766da902166d5a55a3fe1a34d0997ae4",
+        "bytesIdentical": false,
+        "identicalIgnoringCRLF": true
+      },
+      {
+        "url": "/assets/line9.svg",
+        "status": 200,
+        "localSha256": "4912c7f0bde9960e8810dd181654998b4f85296c917f5d47f47bd04093f7b09a",
+        "stagingSha256": "648c074a0fd02522d27177f369de0d25725fff5ee794f9f7c20a78c903f5af8c",
+        "bytesIdentical": false,
+        "identicalIgnoringCRLF": true
+      },
+      {
+        "url": "/assets/line20.svg",
+        "status": 200,
+        "localSha256": "f4e695ce111e67174da41b17f4f9eed4b5e6120df7da950a122f926c518d4854",
+        "stagingSha256": "cebbe5e0bfe5a10442399464e63258c2894ac18f0eff94074735fc43f08d3c1e",
+        "bytesIdentical": false,
+        "identicalIgnoringCRLF": true
+      },
+      {
+        "url": "/assets/vector11.svg",
+        "status": 200,
+        "localSha256": "83332a2ac8d5433ede7334d5039cb6e65405e07b282dbc95ec18373b09278727",
+        "stagingSha256": "c50592221f938a91279698e44718f7899b403f78da6cff114625bf76bdf8fe90",
+        "bytesIdentical": false,
+        "identicalIgnoringCRLF": true
+      },
+      {
+        "url": "/assets/vector6.svg",
+        "status": 200,
+        "localSha256": "d3e254b85ea5cd225aa4ac91a2534cac59f7a5de3093dbfc854f60633cbb919c",
+        "stagingSha256": "283c9c7e8237c3eda88f038e551cc18784d5d2809b17d2cb5ea5bbfde0859812",
+        "bytesIdentical": false,
+        "identicalIgnoringCRLF": true
+      },
+      {
+        "url": "/assets/vector10.svg",
+        "status": 200,
+        "localSha256": "504a18cd44ff2919c2707d55627c6fb7676b614f9e35f310ff837d53042d71b2",
+        "stagingSha256": "9ba0bc3a7df710d145ab2b1d4e776dd34066dc640e7d9fc7e9922b047d84632e",
+        "bytesIdentical": false,
+        "identicalIgnoringCRLF": true
+      },
+      {
+        "url": "/assets/partnership-services-figure.svg",
+        "status": 200,
+        "localSha256": "f32d016a38d1ea0ea3b81f7306f2cfc67ce963e3df77bdb9c443bd52fb8d5cd5",
+        "stagingSha256": "5059799a9e38449a39c25d83d9fdf828d3908bd61dd8b22ffb800b5da8c4eb96",
+        "bytesIdentical": false,
+        "identicalIgnoringCRLF": true
+      },
+      {
+        "url": "/assets/vector9.svg",
+        "status": 200,
+        "localSha256": "7159cab8d0b273f070d98d7e4d7b5ddc96dbef033702c24b13c81d99177f2e49",
+        "stagingSha256": "8d78d0cdc87abf697dd400fbd187148dd083b8dc9c16c66f09a7bdd9d8a3924b",
+        "bytesIdentical": false,
+        "identicalIgnoringCRLF": true
+      },
+      {
+        "url": "/assets/line8.svg",
+        "status": 200,
+        "localSha256": "f924868fcfa101cb50483a6b7bcad02586906280b75852771ad4acae60f75b3f",
+        "stagingSha256": "01386f89e3f8b6d8c64c3872c923aa8ab5205ec165472ea0856e001b6045e946",
+        "bytesIdentical": false,
+        "identicalIgnoringCRLF": true
+      },
+      {
+        "url": "/assets/line11.svg",
+        "status": 200,
+        "localSha256": "9f263904ac3229217b1d83fc1db5a0dec39dafdee50246dc3c4894b8148b795c",
+        "stagingSha256": "ba70eb75b540c112888115bf6672b4219b890c5d09039f457d0228a93b7b9376",
+        "bytesIdentical": false,
+        "identicalIgnoringCRLF": true
+      },
+      {
+        "url": "/assets/line12.svg",
+        "status": 200,
+        "localSha256": "4b3f980295806e251bbc77752d11c22927c6beb8ab91ef46d13181a8c1b7c245",
+        "stagingSha256": "d833b05d196ac22a41995298cc911b9a2299a9aa6bed4d0ce01e0a9d1d194c41",
+        "bytesIdentical": false,
+        "identicalIgnoringCRLF": true
+      },
+      {
+        "url": "/assets/contact-page/Mask%20group.webp",
+        "status": 200,
+        "localSha256": "f8d33fdba2e112e7441a6951cec7eabfb82f9c28c37bcdd76d1952c06d20ae12",
+        "stagingSha256": "f8d33fdba2e112e7441a6951cec7eabfb82f9c28c37bcdd76d1952c06d20ae12",
+        "bytesIdentical": true,
+        "identicalIgnoringCRLF": true
+      },
+      {
+        "url": "/assets/training-page/Group.svg",
+        "status": 200,
+        "localSha256": "c860b7752b950e959b75fd21f10de848393512d9336b5cb49236919e9f65ebe8",
+        "stagingSha256": "5600a4c2285e5019e727e6443ed9e935bdc105ddd16f35870427aaa40464a1c6",
+        "bytesIdentical": false,
+        "identicalIgnoringCRLF": true
+      },
+      {
+        "url": "/assets/training-page/Rectangle%2066.png",
+        "status": 200,
+        "localSha256": "2cd5f8f7a1d5d52bd410f0c560611dd838e292a8b9f168016089c2f24f7699c0",
+        "stagingSha256": "2cd5f8f7a1d5d52bd410f0c560611dd838e292a8b9f168016089c2f24f7699c0",
+        "bytesIdentical": true,
+        "identicalIgnoringCRLF": true
+      },
+      {
+        "url": "/assets/training-page/Rectangle%20190.png",
+        "status": 200,
+        "localSha256": "8302d2c601a6b1c4be3a32ed2ee5096415392cb7ef1d2fa30d9f38cadb4abd7c",
+        "stagingSha256": "8302d2c601a6b1c4be3a32ed2ee5096415392cb7ef1d2fa30d9f38cadb4abd7c",
+        "bytesIdentical": true,
+        "identicalIgnoringCRLF": true
+      },
+      {
+        "url": "/assets/training-page/Group%2096.png",
+        "status": 200,
+        "localSha256": "091bd43bf63806e172ade554e312a2b317b7f07b73a277dda9f8219d1465987d",
+        "stagingSha256": "091bd43bf63806e172ade554e312a2b317b7f07b73a277dda9f8219d1465987d",
+        "bytesIdentical": true,
+        "identicalIgnoringCRLF": true
+      },
+      {
+        "url": "/assets/training-page/Group%2097.png",
+        "status": 200,
+        "localSha256": "1411fd6dfd71b3f01d6a9f345a2ea04bd81f1e2c8d0b4cabafb0dba470289be3",
+        "stagingSha256": "1411fd6dfd71b3f01d6a9f345a2ea04bd81f1e2c8d0b4cabafb0dba470289be3",
+        "bytesIdentical": true,
+        "identicalIgnoringCRLF": true
+      },
+      {
+        "url": "/assets/training-page/Rectangle%20156.png",
+        "status": 200,
+        "localSha256": "9ab4d2e70f3bb96a405795bedec8b53343cbddb5c33bbf39ce51745467da83a2",
+        "stagingSha256": "9ab4d2e70f3bb96a405795bedec8b53343cbddb5c33bbf39ce51745467da83a2",
+        "bytesIdentical": true,
+        "identicalIgnoringCRLF": true
+      },
+      {
+        "url": "/assets/privacy-policy/Group.svg",
+        "status": 200,
+        "localSha256": "f95bd39bdb46cca664e436be869a8964f62b7388b08aaf0b43cd5d71ad82cd2f",
+        "stagingSha256": "e389dc7126cf95580351d8374da6249e3dd8a7c62b82083729f811af4c4949db",
+        "bytesIdentical": false,
+        "identicalIgnoringCRLF": true
+      },
+      {
+        "url": "/assets/privacy-policy/Group%20(1).svg",
+        "status": 200,
+        "localSha256": "8deb26cfd6d9500df31ea82523bb9cbabe9ca0c6e284e7ebded4d798537fd3d2",
+        "stagingSha256": "9d305cee5b2e1d47126a3185dd166f03a31dffff4a0622bbcf2dcf604d124ee3",
+        "bytesIdentical": false,
+        "identicalIgnoringCRLF": true
+      },
+      {
+        "url": "/assets/privacy-policy/Group%20(2).svg",
+        "status": 200,
+        "localSha256": "7ed82b8d19355a75894f2769b0539c96d44930feace5db54a4d78f4e983ee639",
+        "stagingSha256": "1bdda4a83b72d8061aaff330d941dc31f41bf61fd0e2796b7a04f47e50cf0f22",
+        "bytesIdentical": false,
+        "identicalIgnoringCRLF": true
+      }
+    ]
+  },
+  "final": {
+    "cases": [
+      {
+        "key": "1920-empty",
+        "originalMatchesApproved": true,
+        "tailwindMatchesApproved": true,
+        "originalEqualsTailwind": true
+      },
+      {
+        "key": "1920-ongoing",
+        "originalMatchesApproved": true,
+        "tailwindMatchesApproved": true,
+        "originalEqualsTailwind": true
+      },
+      {
+        "key": "1920-past",
+        "originalMatchesApproved": true,
+        "tailwindMatchesApproved": true,
+        "originalEqualsTailwind": true
+      },
+      {
+        "key": "1440-empty",
+        "originalMatchesApproved": true,
+        "tailwindMatchesApproved": true,
+        "originalEqualsTailwind": true
+      },
+      {
+        "key": "1440-ongoing",
+        "originalMatchesApproved": true,
+        "tailwindMatchesApproved": true,
+        "originalEqualsTailwind": true
+      },
+      {
+        "key": "1440-past",
+        "originalMatchesApproved": true,
+        "tailwindMatchesApproved": true,
+        "originalEqualsTailwind": true
+      },
+      {
+        "key": "1440-live-ongoing",
+        "originalMatchesApproved": true,
+        "tailwindMatchesApproved": true,
+        "originalEqualsTailwind": true
+      },
+      {
+        "key": "1440-live-past",
+        "originalMatchesApproved": true,
+        "tailwindMatchesApproved": true,
+        "originalEqualsTailwind": true
+      },
+      {
+        "key": "1440-filter-hover",
+        "originalMatchesApproved": true,
+        "tailwindMatchesApproved": true,
+        "originalEqualsTailwind": true
+      },
+      {
+        "key": "1440-filter-focus",
+        "originalMatchesApproved": true,
+        "tailwindMatchesApproved": true,
+        "originalEqualsTailwind": true
+      },
+      {
+        "key": "1440-keyboard-ongoing",
+        "originalMatchesApproved": true,
+        "tailwindMatchesApproved": true,
+        "originalEqualsTailwind": true
+      },
+      {
+        "key": "1440-filter-active",
+        "originalMatchesApproved": true,
+        "tailwindMatchesApproved": true,
+        "originalEqualsTailwind": true
+      },
+      {
+        "key": "1440-past-selected",
+        "originalMatchesApproved": true,
+        "tailwindMatchesApproved": true,
+        "originalEqualsTailwind": true
+      },
+      {
+        "key": "1440-image-hover",
+        "originalMatchesApproved": true,
+        "tailwindMatchesApproved": true,
+        "originalEqualsTailwind": true
+      },
+      {
+        "key": "1440-link-hover",
+        "originalMatchesApproved": true,
+        "tailwindMatchesApproved": true,
+        "originalEqualsTailwind": true
+      },
+      {
+        "key": "1440-link-focus",
+        "originalMatchesApproved": true,
+        "tailwindMatchesApproved": true,
+        "originalEqualsTailwind": true
+      },
+      {
+        "key": "1440-sticky-middle",
+        "originalMatchesApproved": true,
+        "tailwindMatchesApproved": true,
+        "originalEqualsTailwind": true
+      },
+      {
+        "key": "1440-sticky-end",
+        "originalMatchesApproved": true,
+        "tailwindMatchesApproved": true,
+        "originalEqualsTailwind": true
+      },
+      {
+        "key": "1440-empty-ongoing",
+        "originalMatchesApproved": true,
+        "tailwindMatchesApproved": true,
+        "originalEqualsTailwind": true
+      },
+      {
+        "key": "1440-error",
+        "originalMatchesApproved": true,
+        "tailwindMatchesApproved": true,
+        "originalEqualsTailwind": true
+      },
+      {
+        "key": "1440-loading",
+        "originalMatchesApproved": true,
+        "tailwindMatchesApproved": true,
+        "originalEqualsTailwind": true
+      },
+      {
+        "key": "820-empty",
+        "originalMatchesApproved": true,
+        "tailwindMatchesApproved": true,
+        "originalEqualsTailwind": true
+      },
+      {
+        "key": "820-ongoing",
+        "originalMatchesApproved": true,
+        "tailwindMatchesApproved": true,
+        "originalEqualsTailwind": true
+      },
+      {
+        "key": "820-past",
+        "originalMatchesApproved": true,
+        "tailwindMatchesApproved": true,
+        "originalEqualsTailwind": true
+      },
+      {
+        "key": "820-live-ongoing",
+        "originalMatchesApproved": true,
+        "tailwindMatchesApproved": true,
+        "originalEqualsTailwind": true
+      },
+      {
+        "key": "820-live-past",
+        "originalMatchesApproved": true,
+        "tailwindMatchesApproved": true,
+        "originalEqualsTailwind": true
+      },
+      {
+        "key": "820-filter-hover",
+        "originalMatchesApproved": true,
+        "tailwindMatchesApproved": true,
+        "originalEqualsTailwind": true
+      },
+      {
+        "key": "820-filter-focus",
+        "originalMatchesApproved": true,
+        "tailwindMatchesApproved": true,
+        "originalEqualsTailwind": true
+      },
+      {
+        "key": "820-keyboard-ongoing",
+        "originalMatchesApproved": true,
+        "tailwindMatchesApproved": true,
+        "originalEqualsTailwind": true
+      },
+      {
+        "key": "820-filter-active",
+        "originalMatchesApproved": true,
+        "tailwindMatchesApproved": true,
+        "originalEqualsTailwind": true
+      },
+      {
+        "key": "820-past-selected",
+        "originalMatchesApproved": true,
+        "tailwindMatchesApproved": true,
+        "originalEqualsTailwind": true
+      },
+      {
+        "key": "820-image-hover",
+        "originalMatchesApproved": true,
+        "tailwindMatchesApproved": true,
+        "originalEqualsTailwind": true
+      },
+      {
+        "key": "820-link-hover",
+        "originalMatchesApproved": true,
+        "tailwindMatchesApproved": true,
+        "originalEqualsTailwind": true
+      },
+      {
+        "key": "820-link-focus",
+        "originalMatchesApproved": true,
+        "tailwindMatchesApproved": true,
+        "originalEqualsTailwind": true
+      },
+      {
+        "key": "820-sticky-middle",
+        "originalMatchesApproved": true,
+        "tailwindMatchesApproved": true,
+        "originalEqualsTailwind": true
+      },
+      {
+        "key": "820-sticky-end",
+        "originalMatchesApproved": true,
+        "tailwindMatchesApproved": true,
+        "originalEqualsTailwind": true
+      },
+      {
+        "key": "820-empty-ongoing",
+        "originalMatchesApproved": true,
+        "tailwindMatchesApproved": true,
+        "originalEqualsTailwind": true
+      },
+      {
+        "key": "820-error",
+        "originalMatchesApproved": true,
+        "tailwindMatchesApproved": true,
+        "originalEqualsTailwind": true
+      },
+      {
+        "key": "820-loading",
+        "originalMatchesApproved": true,
+        "tailwindMatchesApproved": true,
+        "originalEqualsTailwind": true
+      },
+      {
+        "key": "390-empty",
+        "originalMatchesApproved": true,
+        "tailwindMatchesApproved": true,
+        "originalEqualsTailwind": true
+      },
+      {
+        "key": "390-ongoing",
+        "originalMatchesApproved": true,
+        "tailwindMatchesApproved": true,
+        "originalEqualsTailwind": true
+      },
+      {
+        "key": "390-past",
+        "originalMatchesApproved": true,
+        "tailwindMatchesApproved": true,
+        "originalEqualsTailwind": true
+      },
+      {
+        "key": "390-live-ongoing",
+        "originalMatchesApproved": true,
+        "tailwindMatchesApproved": true,
+        "originalEqualsTailwind": true
+      },
+      {
+        "key": "390-live-past",
+        "originalMatchesApproved": true,
+        "tailwindMatchesApproved": true,
+        "originalEqualsTailwind": true
+      },
+      {
+        "key": "390-filter-hover",
+        "originalMatchesApproved": true,
+        "tailwindMatchesApproved": true,
+        "originalEqualsTailwind": true
+      },
+      {
+        "key": "390-filter-focus",
+        "originalMatchesApproved": true,
+        "tailwindMatchesApproved": true,
+        "originalEqualsTailwind": true
+      },
+      {
+        "key": "390-keyboard-ongoing",
+        "originalMatchesApproved": true,
+        "tailwindMatchesApproved": true,
+        "originalEqualsTailwind": true
+      },
+      {
+        "key": "390-filter-active",
+        "originalMatchesApproved": true,
+        "tailwindMatchesApproved": true,
+        "originalEqualsTailwind": true
+      },
+      {
+        "key": "390-past-selected",
+        "originalMatchesApproved": true,
+        "tailwindMatchesApproved": true,
+        "originalEqualsTailwind": true
+      },
+      {
+        "key": "390-image-hover",
+        "originalMatchesApproved": true,
+        "tailwindMatchesApproved": true,
+        "originalEqualsTailwind": true
+      },
+      {
+        "key": "390-link-hover",
+        "originalMatchesApproved": true,
+        "tailwindMatchesApproved": true,
+        "originalEqualsTailwind": true
+      },
+      {
+        "key": "390-link-focus",
+        "originalMatchesApproved": true,
+        "tailwindMatchesApproved": true,
+        "originalEqualsTailwind": true
+      },
+      {
+        "key": "390-sticky-middle",
+        "originalMatchesApproved": true,
+        "tailwindMatchesApproved": true,
+        "originalEqualsTailwind": true
+      },
+      {
+        "key": "390-sticky-end",
+        "originalMatchesApproved": true,
+        "tailwindMatchesApproved": true,
+        "originalEqualsTailwind": true
+      },
+      {
+        "key": "390-empty-ongoing",
+        "originalMatchesApproved": true,
+        "tailwindMatchesApproved": true,
+        "originalEqualsTailwind": true
+      },
+      {
+        "key": "390-error",
+        "originalMatchesApproved": true,
+        "tailwindMatchesApproved": true,
+        "originalEqualsTailwind": true
+      },
+      {
+        "key": "390-loading",
+        "originalMatchesApproved": true,
+        "tailwindMatchesApproved": true,
+        "originalEqualsTailwind": true
+      },
+      {
+        "key": "699-empty",
+        "originalMatchesApproved": true,
+        "tailwindMatchesApproved": true,
+        "originalEqualsTailwind": true
+      },
+      {
+        "key": "699-ongoing",
+        "originalMatchesApproved": true,
+        "tailwindMatchesApproved": true,
+        "originalEqualsTailwind": true
+      },
+      {
+        "key": "699-past",
+        "originalMatchesApproved": true,
+        "tailwindMatchesApproved": true,
+        "originalEqualsTailwind": true
+      },
+      {
+        "key": "700-empty",
+        "originalMatchesApproved": true,
+        "tailwindMatchesApproved": true,
+        "originalEqualsTailwind": true
+      },
+      {
+        "key": "700-ongoing",
+        "originalMatchesApproved": true,
+        "tailwindMatchesApproved": true,
+        "originalEqualsTailwind": true
+      },
+      {
+        "key": "700-past",
+        "originalMatchesApproved": true,
+        "tailwindMatchesApproved": true,
+        "originalEqualsTailwind": true
+      },
+      {
+        "key": "701-empty",
+        "originalMatchesApproved": true,
+        "tailwindMatchesApproved": true,
+        "originalEqualsTailwind": true
+      },
+      {
+        "key": "701-ongoing",
+        "originalMatchesApproved": true,
+        "tailwindMatchesApproved": true,
+        "originalEqualsTailwind": true
+      },
+      {
+        "key": "701-past",
+        "originalMatchesApproved": true,
+        "tailwindMatchesApproved": true,
+        "originalEqualsTailwind": true
+      },
+      {
+        "key": "768-empty",
+        "originalMatchesApproved": true,
+        "tailwindMatchesApproved": true,
+        "originalEqualsTailwind": true
+      },
+      {
+        "key": "768-ongoing",
+        "originalMatchesApproved": true,
+        "tailwindMatchesApproved": true,
+        "originalEqualsTailwind": true
+      },
+      {
+        "key": "768-past",
+        "originalMatchesApproved": true,
+        "tailwindMatchesApproved": true,
+        "originalEqualsTailwind": true
+      },
+      {
+        "key": "769-empty",
+        "originalMatchesApproved": true,
+        "tailwindMatchesApproved": true,
+        "originalEqualsTailwind": true
+      },
+      {
+        "key": "769-ongoing",
+        "originalMatchesApproved": false,
+        "tailwindMatchesApproved": false,
+        "originalEqualsTailwind": true
+      },
+      {
+        "key": "769-past",
+        "originalMatchesApproved": true,
+        "tailwindMatchesApproved": true,
+        "originalEqualsTailwind": true
+      },
+      {
+        "key": "1099-empty",
+        "originalMatchesApproved": false,
+        "tailwindMatchesApproved": false,
+        "originalEqualsTailwind": true
+      },
+      {
+        "key": "1099-ongoing",
+        "originalMatchesApproved": true,
+        "tailwindMatchesApproved": true,
+        "originalEqualsTailwind": true
+      },
+      {
+        "key": "1099-past",
+        "originalMatchesApproved": true,
+        "tailwindMatchesApproved": true,
+        "originalEqualsTailwind": true
+      },
+      {
+        "key": "1100-empty",
+        "originalMatchesApproved": true,
+        "tailwindMatchesApproved": true,
+        "originalEqualsTailwind": true
+      },
+      {
+        "key": "1100-ongoing",
+        "originalMatchesApproved": true,
+        "tailwindMatchesApproved": true,
+        "originalEqualsTailwind": true
+      },
+      {
+        "key": "1100-past",
+        "originalMatchesApproved": true,
+        "tailwindMatchesApproved": true,
+        "originalEqualsTailwind": true
+      },
+      {
+        "key": "1101-empty",
+        "originalMatchesApproved": true,
+        "tailwindMatchesApproved": true,
+        "originalEqualsTailwind": true
+      },
+      {
+        "key": "1101-ongoing",
+        "originalMatchesApproved": true,
+        "tailwindMatchesApproved": true,
+        "originalEqualsTailwind": true
+      },
+      {
+        "key": "1101-past",
+        "originalMatchesApproved": true,
+        "tailwindMatchesApproved": true,
+        "originalEqualsTailwind": true
+      }
+    ],
+    "control": {
+      "captures": 81,
+      "rendering": {
+        "browser": "158.0.4370.33",
+        "renderer": "ANGLE (Intel, Intel(R) UHD Graphics (0x00009BC4) Direct3D11 vs_5_0 ps_5_0, D3D11-27.20.100.9664)",
+        "backend": "GaneshGL"
+      },
+      "changed": [
+        "769-ongoing",
+        "1099-empty"
+      ],
+      "computedDifferences": [],
+      "behaviorDifferences": [],
+      "requestsUnchanged": true,
+      "liveUnchanged": true,
+      "liveMediaUnchanged": true,
+      "errors": []
+    },
+    "tailwind": {
+      "captures": 81,
+      "rendering": {
+        "browser": "158.0.4370.33",
+        "renderer": "ANGLE (Intel, Intel(R) UHD Graphics (0x00009BC4) Direct3D11 vs_5_0 ps_5_0, D3D11-27.20.100.9664)",
+        "backend": "GaneshGL"
+      },
+      "changed": [
+        "769-ongoing",
+        "1099-empty"
+      ],
+      "computedDifferences": [],
+      "behaviorDifferences": [],
+      "requestsUnchanged": true,
+      "liveUnchanged": true,
+      "liveMediaUnchanged": true,
+      "errors": []
+    },
+    "regression": [
+      {
+        "name": "news-components",
+        "exitCode": 0
+      },
+      {
+        "name": "projects",
+        "exitCode": 1
+      },
+      {
+        "name": "news-production",
+        "exitCode": 0
+      },
+      {
+        "name": "news-listing",
+        "exitCode": 0
+      },
+      {
+        "name": "privacy",
+        "exitCode": 0
+      },
+      {
+        "name": "privacy-edges",
+        "exitCode": 0
+      },
+      {
+        "name": "shared-routes",
+        "exitCode": 0
+      },
+      {
+        "name": "shared-gallery",
+        "exitCode": 0
+      },
+      {
+        "name": "shared-native",
+        "exitCode": 0
+      },
+      {
+        "name": "contact-software",
+        "exitCode": 0
+      },
+      {
+        "name": "contact-real",
+        "exitCode": 0
+      },
+      {
+        "name": "integration",
+        "exitCode": 0
+      }
+    ]
+  }
+}
