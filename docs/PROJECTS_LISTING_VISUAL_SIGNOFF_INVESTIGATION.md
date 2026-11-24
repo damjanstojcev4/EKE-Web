@@ -1,5 +1,7 @@
 # Phase 4C.1 visual sign-off investigation
 
+Historical investigation at checkpoint `5cb647c7`. The subsequent user-authorized reference review and verification are recorded in [Phase 4C.1 final sign-off](PROJECTS_LISTING_VISUAL_SIGNOFF.md); the findings and original evidence below are preserved unchanged.
+
 **NO-GO for Phase 4C.2.** The investigation isolates a capture-state discrepancy, with no Projects UI regression found. The strict approved-reference gate remains **79/81**, so this checkpoint does not grant visual acceptance. Two candidate reference updates are provided for review; none has been applied. All 818 prior comparisons and the seven-width Privacy pilot pass on their accepted reruns.
 
 24 November 2026, Europe/Skopje. Worktree `D:/eke-web/.worktrees/frontend-tailwind-phase1`, branch `codex/frontend-tailwind-phase1`. Migration checkpoint `5aeba7c0`; unchanged-source checkpoint `53f718e7`. Earlier checkpoints are preserved.

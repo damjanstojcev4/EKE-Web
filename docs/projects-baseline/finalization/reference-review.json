@@ -1,0 +1,69 @@
+{
+  "decision": "APPROVED for the two named raster-only references",
+  "authorization": "User finalization request following investigation checkpoint 5cb647c7",
+  "sourceCheckpoint": "53f718e7308ddb3e4bc59f45a6ec7ce12e7e02fd",
+  "renderer": {
+    "browser": "158.0.4370.33",
+    "renderer": "ANGLE (Intel, Intel(R) UHD Graphics (0x00009BC4) Direct3D11 vs_5_0 ps_5_0, D3D11-27.20.100.9664)",
+    "backend": "GaneshGL"
+  },
+  "sourceVerification": {
+    "checkpoint": "53f718e7",
+    "exitCode": 1,
+    "sourceHashesVerified": true
+  },
+  "review": [
+    {
+      "capture": "769-ongoing",
+      "oldSha256": "6240ec2f5e75fbf4b9b177c6d6681e8aa0fa17e8321524bf7d195c46537e9082",
+      "newSha256": "27881d1a2e69460bac0e4e77afb22f898e8a5874fd1dee2fa1454b6f3eb7a98e",
+      "dimensions": {
+        "width": 769,
+        "height": 7267
+      },
+      "pixels": 5,
+      "maxChannelDifference": 1,
+      "owners": {
+        "/assets/group3.svg": 1,
+        "/assets/group2.svg": 1,
+        "/assets/group4.svg": 1,
+        "/assets/group5.svg": 2
+      },
+      "unownedPixels": [],
+      "computedAndBehaviorIdentical": true,
+      "geometryIdenticalAcrossAll28Probes": true
+    },
+    {
+      "capture": "1099-empty",
+      "oldSha256": "11e1cbaf5ec68100707e47c63c95da33fd0fd2a9d1ed2d130c3bbb1b055e5029",
+      "newSha256": "3916b8e11a92db6d2755b30d3212b9ac6d8ebcdcfa00c5023b4e01f95517d119",
+      "dimensions": {
+        "width": 1099,
+        "height": 6541
+      },
+      "pixels": 4279,
+      "maxChannelDifference": 6,
+      "owners": {
+        "/assets/projects-page/Rectangle 66.png": 4155,
+        "/assets/projects-page/Group 648.png": 32,
+        "/assets/projects-page/Group 674.png": 58,
+        "/assets/group3.svg": 4,
+        "/assets/group2.svg": 1,
+        "/assets/group4.svg": 28,
+        "/assets/group5.svg": 1
+      },
+      "unownedPixels": [],
+      "computedAndBehaviorIdentical": true,
+      "geometryIdenticalAcrossAll28Probes": true
+    }
+  ],
+  "applicationChanged": false,
+  "thresholdsChanged": false,
+  "other79ReferencesChanged": false,
+  "applied": true,
+  "manifestChangesOnly": [
+    "1099-empty",
+    "769-ongoing"
+  ],
+  "all81PngHashesVerified": true
+}

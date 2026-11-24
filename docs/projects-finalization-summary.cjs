@@ -1,0 +1,34 @@
+const fs=require('node:fs'),path=require('node:path'),assert=require('node:assert/strict');
+const {createHash}=require('node:crypto'),{gunzipSync}=require('node:zlib'),{execFileSync}=require('node:child_process');
+const root=path.join(__dirname,'..'),base=path.join(__dirname,'projects-baseline'),out=path.join(base,'finalization');
+const read=file=>JSON.parse(fs.readFileSync(file)),manifest=file=>JSON.parse(gunzipSync(fs.readFileSync(file))),hash=b=>createHash('sha256').update(b).digest('hex');
+const old=manifest(path.join(out,'previous-references/manifest.json.gz')),approved=manifest(path.join(base,'before/manifest.json.gz'));
+assert(fs.readFileSync(path.join(out,'previous-references/manifest.json.gz')).equals(execFileSync('git',['show','5cb647c7:docs/projects-baseline/before/manifest.json.gz'],{cwd:root,maxBuffer:5*1024*1024})));
+const review=read(path.join(out,'reference-review.json'));assert.equal(review.applied,true);
+const changed=Object.keys(old.captures).filter(k=>old.captures[k]!==approved.captures[k]).sort();assert.deepEqual(changed,['1099-empty','769-ongoing']);
+const normalized=structuredClone(approved);normalized.captures=old.captures;assert.deepEqual(normalized,old);
+for(const [key,sha]of Object.entries(approved.captures))assert.equal(hash(fs.readFileSync(path.join(base,'before',key+'.png'))),sha);
+const captures={};
+for(const label of ['control','after']){
+ const value=manifest(path.join(base,label,'manifest.json.gz')),comparison=read(path.join(base,label,'comparison.json'));
+ assert.equal(comparison.captures,81);assert.deepEqual(comparison.changed,[]);assert.deepEqual(comparison.computedDifferences,[]);assert.deepEqual(comparison.behaviorDifferences,[]);assert.deepEqual(comparison.errors,[]);
+ assert(comparison.requestsUnchanged&&comparison.liveUnchanged&&comparison.liveMediaUnchanged);
+ for(const prop of ['captures','computed','behavior','requests','live','liveMedia','rendering'])assert.deepEqual(value[prop],approved[prop]);
+ assert.deepEqual(value.errors,[]);captures[label]=value;
+ fs.copyFileSync(path.join(base,label,'manifest.json.gz'),path.join(out,label+'-manifest.json.gz'));
+ fs.copyFileSync(path.join(base,label,'comparison.json'),path.join(out,label+'-comparison.json'));
+}
+assert.deepEqual(captures.control.captures,captures.after.captures);
+const replacementCaptureRetries=Object.fromEntries(Object.entries(captures).map(([label,value])=>[label,Object.fromEntries(changed.map(key=>{assert.equal(value.paintRetries[key],0);return [key,value.paintRetries[key]];}))]));
+const source=read(path.join(base,'control-summary.json'));assert.equal(source.exitCode,0);assert.equal(source.sourceHashesVerified,true);
+const regression=read(path.join(base,'regression.json'));assert.equal(regression.length,12);assert(regression.every(r=>r.exitCode===0));
+const integrationLog=fs.readFileSync(path.join(base,'integration.log'),'utf8').replace(/\x1b\[[0-9;]*m/g,'');assert(/\b18 passed\b/.test(integrationLog));
+const quality=read(path.join(out,'quality-results.json'));assert(quality.every(r=>r.exitCode===0));assert.equal(quality.length,4);
+const harness=fs.readFileSync(path.join(__dirname,'projects-check.cjs'));assert.equal(harness.toString().replace(/\r\n/g,'\n'),execFileSync('git',['show','5cb647c7:docs/projects-check.cjs'],{cwd:root,encoding:'utf8'}).replace(/\r\n/g,'\n'));
+execFileSync('git',['diff','--exit-code','5cb647c7','--','Frontend/ece-website/src'],{cwd:root});
+fs.copyFileSync(path.join(base,'control-summary.json'),path.join(out,'control-source-verification.json'));
+fs.copyFileSync(path.join(base,'regression.json'),path.join(out,'regression.json'));
+fs.copyFileSync(path.join(base,'source-audit.json'),path.join(out,'source-audit.json'));
+const comparisons=path.join(out,'prior-comparisons');fs.mkdirSync(comparisons,{recursive:true});for(const file of fs.readdirSync(path.join(base,'prior-comparisons')))if(file.endsWith('.json'))fs.copyFileSync(path.join(base,'prior-comparisons',file),path.join(comparisons,file));
+const result={decision:'GO for Phase 4C.2; no Project Details migration performed',updatedReferences:changed,other79PngsUnchanged:true,otherManifestFieldsUnchanged:true,all81ReferenceHashesVerified:true,unchangedSourceStrict:{cases:81,passed:81},tailwindStrict:{cases:81,passed:81},replacementCaptureRetries,originalTailwindExactParity:true,computedBehaviorRequestsDataMediaIdentical:true,sourceVerification:source,renderer:approved.rendering,regression,integration:{tests:18,passed:18},productionBuildsVerified:true,quality,applicationSourceUnchanged:true,strictCaptureHarnessUnchanged:true,harnessSha256:hash(harness),thresholdsChanged:false,maskingAdded:false};
+fs.writeFileSync(path.join(out,'verification.json'),JSON.stringify(result,null,2));console.log(JSON.stringify(result,null,2));
