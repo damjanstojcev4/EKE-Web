@@ -1,5 +1,7 @@
 # Privacy Policy visual baseline
 
+Projects listing's live/fixture/sticky-filter matrix and its open initial-reference reproducibility gate are documented in `docs/PROJECTS_LISTING_TAILWIND_PHASE4C1.md`. Run `node docs/projects-regression.cjs` from the worktree root after building. The Projects initial-reference comparison intentionally remains nonzero for two captures reproduced as failures on unchanged source; the independent control comparison is diagnostic and does not waive that gate.
+
 News detail's 84-state component/API matrix, 63-case final production matrix and PendingControl consumer coverage are documented in `docs/NEWS_DETAIL_TAILWIND_PHASE4B2.md`. Its full matrix uses a generated test-only Sidebar route; follow the documented install/build/test/remove/build sequence. The final export must contain no test route. Run `node docs/news-detail-regression.cjs` from the worktree root for final production comparisons and all prior suites, serially.
 
 News listing's fixture/live-empty matrix and pinned renderer guard are documented in `docs/NEWS_TAILWIND_PHASE4B1.md`. After building, run `node docs/news-check.cjs after` from the worktree root. It compares the immutable pre-migration Git-checkpoint manifest, with zero PNG, computed-style, behavior or API-request changes. It is a separate serial browser job; never run its before mode on migrated source.

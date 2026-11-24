@@ -1,0 +1,41 @@
+{
+  "capture": "tablet-3-focus",
+  "count": 2,
+  "maxChannelDifference": 1,
+  "pixels": [
+    {
+      "x": 105,
+      "y": 34,
+      "before": [
+        75,
+        160,
+        247,
+        255
+      ],
+      "after": [
+        75,
+        160,
+        248,
+        255
+      ]
+    },
+    {
+      "x": 106,
+      "y": 34,
+      "before": [
+        76,
+        162,
+        250,
+        255
+      ],
+      "after": [
+        76,
+        162,
+        251,
+        255
+      ]
+    }
+  ],
+  "computedDifferences": [],
+  "keyboardActivation": true
+}
