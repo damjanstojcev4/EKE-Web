@@ -1,6 +1,5 @@
 "use client";
 import { useRef, useState, type FormEvent } from "react";
-import styles from "@/app/contact/page.module.css";
 
 const fields = [
   {
@@ -87,20 +86,26 @@ export default function ContactForm() {
 
   return (
     <form
-      className={styles.form}
+      className="min-w-0"
       noValidate
       onSubmit={submit}
       aria-labelledby="enquiry-title"
       aria-describedby="submission-note"
     >
-      <h2 id="enquiry-title" className={styles.label}>
+      <h2
+        id="enquiry-title"
+        className="text-[length:calc(22*var(--u)_-_2px)] leading-[1.3] font-bold uppercase [@media(max-width:1100px)]:text-[length:14px]"
+      >
         Direct Enquiry
       </h2>
-      <div className={styles.fields}>
+      <div className="grid grid-cols-[repeat(2,_minmax(0,_1fr))] gap-x-[calc(39*var(--u))] gap-y-[calc(22*var(--u))] mt-[calc(55*var(--u))] [@media(max-width:768px)]:mt-[26px] [@media(max-width:768px)]:gap-[20px] [@media(max-width:480px)]:grid-cols-[1fr]">
         {fields.map((field) => (
-          <div key={field.name} className={styles.field}>
-            <div className={styles.inputLine}>
-              <label htmlFor={field.name}>
+          <div key={field.name}>
+            <div className="flex gap-[calc(13*var(--u))] items-center [border-bottom:1px_solid_#ffffff66] min-h-[calc(47*var(--u))] [&:has([aria-invalid=true])]:[border-color:#ffbdbd] [@media(max-width:1100px)]:flex-col [@media(max-width:1100px)]:items-stretch [@media(max-width:1100px)]:gap-[4px]">
+              <label
+                htmlFor={field.name}
+                className="shrink-0 text-[length:calc(20*var(--u))] text-brand-blue [@media(max-width:1100px)]:text-[length:16px]"
+              >
                 {field.label}
                 {field.required ? "*" : ""}
               </label>
@@ -118,33 +123,48 @@ export default function ContactForm() {
                 onInput={() =>
                   setErrors((previous) => ({ ...previous, [field.name]: "" }))
                 }
+                className="w-full min-w-0 [background:transparent] [border:0] text-surface [font-family:inherit] [font-style:inherit] [font-variant:inherit] [font-weight:inherit] [font-stretch:inherit] leading-[inherit] text-[length:calc(18*var(--u))] [padding:calc(8*var(--u))_0] placeholder:[color:#aab4d1] placeholder:opacity-100 [@media(max-width:1100px)]:text-[length:16px] [@media(max-width:768px)]:min-h-[44px]"
               />
             </div>
             {errors[field.name] && (
-              <p className={styles.error} id={`${field.name}-error`}>
+              <p
+                className="[color:#ffbdbd] text-[length:max(12px,_calc(16*var(--u)))] mt-[6px]!"
+                id={`${field.name}-error`}
+              >
                 {errors[field.name]}
               </p>
             )}
           </div>
         ))}
-        <fieldset className={styles.interest}>
-          <legend className={styles.srOnly}>Enquiry type</legend>
-          <label>
+        <fieldset className="flex flex-wrap gap-[calc(35*var(--u))] [border:0] [margin:calc(8*var(--u))_0_0] p-0 text-brand-blue text-[length:calc(20*var(--u))] [@media(max-width:1100px)]:text-[length:16px] [@media(max-width:768px)]:gap-[18px] [@media(max-width:768px)]:m-0">
+          <legend className="absolute w-[1px] h-[1px] p-0 [margin:-1px] overflow-hidden [clip-path:inset(50%)] whitespace-nowrap [border:0]">
+            Enquiry type
+          </legend>
+          <label className="flex items-center gap-[calc(13*var(--u))] [@media(max-width:1100px)]:min-h-[44px]">
             <input
               type="radio"
               name="interest"
               value="partner"
               defaultChecked
+              className="appearance-none w-[calc(22*var(--u))] h-[calc(22*var(--u))] [border:3px_solid_var(--color-brand-blue)] rounded-[50%] m-0 checked:[background:radial-gradient(circle,_var(--color-brand-blue)_0_35%,_transparent_40%)] [@media(max-width:1100px)]:w-[20px] [@media(max-width:1100px)]:h-[20px]"
             />{" "}
             Partner
           </label>
-          <label>
-            <input type="radio" name="interest" value="opportunities" />{" "}
+          <label className="flex items-center gap-[calc(13*var(--u))] [@media(max-width:1100px)]:min-h-[44px]">
+            <input
+              type="radio"
+              name="interest"
+              value="opportunities"
+              className="appearance-none w-[calc(22*var(--u))] h-[calc(22*var(--u))] [border:3px_solid_var(--color-brand-blue)] rounded-[50%] m-0 checked:[background:radial-gradient(circle,_var(--color-brand-blue)_0_35%,_transparent_40%)] [@media(max-width:1100px)]:w-[20px] [@media(max-width:1100px)]:h-[20px]"
+            />{" "}
             Opportunities
           </label>
         </fieldset>
-        <div className={styles.upload}>
-          <label className={styles.uploadButton} htmlFor="attachments">
+        <div className="flex items-center flex-wrap gap-[calc(17*var(--u))] mt-[calc(8*var(--u))] [@media(max-width:768px)]:gap-[10px] [@media(max-width:768px)]:m-0">
+          <label
+            className="[&:is(:hover,:active,:focus-within)]:text-brand-turquoise relative text-brand-blue underline text-[length:calc(20*var(--u))] cursor-pointer focus-within:[outline:2px_solid_var(--color-brand-turquoise)] focus-within:[outline-offset:4px] [@media(max-width:1100px)]:text-[length:16px] [@media(max-width:768px)]:[padding:10px_0]"
+            htmlFor="attachments"
+          >
             Upload file
             <input
               id="attachments"
@@ -160,35 +180,62 @@ export default function ContactForm() {
                 );
                 setErrors((previous) => ({ ...previous, attachments: "" }));
               }}
+              className="absolute [inset:0] opacity-0 w-full cursor-pointer"
             />
           </label>
-          <span id="file-help">PDF, DOC, DOCX (up to 5 MB each)</span>
+          <span
+            id="file-help"
+            className="text-[length:calc(16*var(--u))] [color:#aab4d1] [@media(max-width:1100px)]:text-[length:12px]"
+          >
+            PDF, DOC, DOCX (up to 5 MB each)
+          </span>
           {files.length > 0 && (
-            <p className={styles.fileNames}>{files.join(", ")}</p>
+            <p className="[overflow-wrap:anywhere] text-[length:14px]">
+              {files.join(", ")}
+            </p>
           )}
           {errors.attachments && (
-            <p className={styles.error} id="attachments-error">
+            <p
+              className="[color:#ffbdbd] text-[length:max(12px,_calc(16*var(--u)))] mt-[6px]!"
+              id="attachments-error"
+            >
               {errors.attachments}
             </p>
           )}
         </div>
       </div>
-      <label htmlFor="message" className={styles.srOnly}>
+      <label
+        htmlFor="message"
+        className="absolute w-[1px] h-[1px] p-0 [margin:-1px] overflow-hidden [clip-path:inset(50%)] whitespace-nowrap [border:0]"
+      >
         Your Message
       </label>
       <textarea
         id="message"
         name="message"
         placeholder="Your Message..."
-        className={styles.message}
+        className="block w-full h-[calc(184*var(--u))] mt-[calc(57*var(--u))] [padding:calc(28*var(--u))_calc(20*var(--u))] [border:1px_solid_#ddd] rounded-[calc(7*var(--u))] bg-surface text-brand-navy [font-family:inherit] [font-style:inherit] [font-variant:inherit] [font-weight:inherit] [font-stretch:inherit] leading-[inherit] text-[length:calc(18*var(--u))] resize-y placeholder:text-brand-navy placeholder:opacity-100 [@media(max-width:1100px)]:text-[length:16px] [@media(max-width:768px)]:mt-[30px] [@media(max-width:768px)]:h-[184px] [@media(max-width:768px)]:[padding:18px] [@media(max-width:768px)]:rounded-[6px]"
       />
-      <div className={styles.submitRow}>
-        <button type="submit">Submit</button>
-        <p id="submission-note" className={styles.notice}>
+      <div className="flex items-center gap-[calc(34*var(--u))] mt-[calc(16*var(--u))] [@media(max-width:768px)]:gap-[20px] [@media(max-width:768px)]:mt-[16px] [@media(max-width:768px)]:items-start">
+        <button
+          type="submit"
+          className="[&:is(:hover,:active,:focus-visible)]:bg-brand-blue [&:is(:hover,:active,:focus-visible)]:text-brand-navy! [&:is(:hover,:active,:focus-visible)]:[border-color:var(--color-brand-blue)] bg-surface text-brand-navy [border:0] rounded-[calc(5*var(--u))] [padding:calc(10*var(--u))_calc(25*var(--u))] text-[length:calc(18*var(--u))]! leading-[1.35]! font-bold! uppercase [@media(max-width:1100px)]:text-[length:14px]! [@media(max-width:1100px)]:min-h-[44px] [@media(max-width:768px)]:[padding:10px_22px] [@media(max-width:768px)]:rounded-[5px]"
+        >
+          Submit
+        </button>
+        <p
+          id="submission-note"
+          className="focus-visible:[outline:2px_solid_var(--color-brand-turquoise)] focus-visible:[outline-offset:4px] text-brand-turquoise text-[length:max(12px,_calc(18*var(--u)))] leading-[1.4] [@media(max-width:768px)]:text-[length:13px]"
+        >
           Preview only — submission unavailable.
         </p>
       </div>
-      <p ref={status} role="status" tabIndex={-1} className={styles.notice}>
+      <p
+        ref={status}
+        role="status"
+        tabIndex={-1}
+        className="focus-visible:[outline:2px_solid_var(--color-brand-turquoise)] focus-visible:[outline-offset:4px] text-brand-turquoise text-[length:max(12px,_calc(18*var(--u)))] leading-[1.4] [&:not(:empty)]:mt-[16px]! [@media(max-width:768px)]:text-[length:13px]"
+      >
         {notice}
       </p>
     </form>

@@ -1,0 +1,6 @@
+**/*.png
+# Detailed raw computed-style evidence stays local; lossless gzip references and
+# readable hash summaries are versioned to avoid ~20 MB repeated JSON files.
+**/manifest.json
+*.backup
+compiled-*.css

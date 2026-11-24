@@ -1,0 +1,30 @@
+{
+  "commit": "492c88645cc4b68c60fac456ea786a30e5055b41",
+  "sourceFiles": [
+    {
+      "file": "src/app/contact/page.tsx",
+      "identicalToCheckpoint": true
+    },
+    {
+      "file": "src/components/contact/ContactForm.tsx",
+      "identicalToCheckpoint": true
+    },
+    {
+      "file": "src/components/contact/PartnerFormNotice.tsx",
+      "identicalToCheckpoint": true
+    },
+    {
+      "file": "src/app/contact/page.module.css",
+      "identicalToCheckpoint": true
+    }
+  ],
+  "privacyFailures": {
+    "desktop": 916802,
+    "tablet": 311721,
+    "mobile": 276015
+  },
+  "referencesUpdated": false,
+  "softwareControlAlsoFailed": true,
+  "softwareDesktopChangedPixels": 1091989,
+  "status": "Unresolved prior-suite failure reproduced with unchanged Phase 3 Contact source; references retained"
+}

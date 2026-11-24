@@ -1,5 +1,7 @@
 # EKE Tailwind migration audit and plan
 
+> Phase 4A Contact implementation checkpoint: [scope, exact results and existing-suite blocker](CONTACT_TAILWIND_PHASE4A.md). Contact CSS is 319 → 4 declarations; 59 software and 59 default-Edge comparisons pass exactly; all 16 existing integration tests plus 2 Contact tests pass. The existing Privacy Policy visual suite fails identically on an unchanged Phase 3 control and remains unresolved; no approved snapshots were updated. Contact acceptance is scoped, not a declaration that the entire visual suite is green. Stop before further migrations.
+
 > Phase 3 shared UI migration completed: [dependency analysis, results and retained CSS](SHARED_UI_TAILWIND_PHASE3.md). Divider, Stripe and Button retain their APIs and DOM semantics. Accepted results: 324 exact shared-route/state comparisons after each component; 96 Button variant and 88 native-button/tooltip comparisons; original Privacy Policy snapshots still pass. Net 24 legacy declarations removed; 22 native About-button declarations retained intentionally. No further feature-page migration has started.
 
 > Phase 2 Privacy Policy pilot completed: [results and retained-CSS rationale](PRIVACY_POLICY_TAILWIND_PILOT.md). Three approved staging snapshots pass with zero changed pixels; four additional breakpoint-edge captures and all recorded computed/hover/focus values match. Page CSS reduced from 95 to 5 declarations. No other page migration has started.

@@ -1,0 +1,18 @@
+{
+  "browser": "158.0.4370.33",
+  "real": false,
+  "captures": {
+    "480-normal": "76aaf26ef1d1777457af74c8aefadadde73910624913a7628437eb3664fcbf43",
+    "481-normal": "c761d231e4327745a0ddd81f02c5cacae4f164e1f6b7245f4a5d21fe350fb8eb",
+    "768-normal": "01a1d3f5780440fe8a8d9dbbae41a2c93b133f7616b8f60336d5d4cd77608764",
+    "700-normal": "2c159b0a2b612f6acc41559c84682833634ca5a1efc66b151eb8c82fedebd5d4",
+    "701-normal": "f2969032cadcb44a0b53f33ee5e0d06dafa8e9203f75128edc66a0fb0bd906bc"
+  },
+  "computedHashes": {
+    "480-normal": "1411abd6a96bf28f0b532a507a1a3d7b3881f223c153768bc6530f405cc57ecc",
+    "481-normal": "d34c3ce2bc6e15cd738d0c402be33f2894b7d1b1f6f4b212a01f2dbdb95422e6",
+    "768-normal": "714f0324d3ed2c135d98c3b7d6c4fa1c5663969ca97aa45d996fd6d78e7bf9e8",
+    "700-normal": "e173da79a26d537b27ca1e5ce0d6388141b69fd3b952c4b1243526dfffc94d0b",
+    "701-normal": "900da04a8f08b79527428521606e06244c5341a704ceb75cddde07d9e886919c"
+  }
+}
