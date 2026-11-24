@@ -1,0 +1,156 @@
+{
+  "name": "phase3-local-intel",
+  "args": [
+    "--force_low_power_gpu"
+  ],
+  "browser": "158.0.4370.33",
+  "renderer": "ANGLE (Intel, Intel(R) UHD Graphics (0x00009BC4) Direct3D11 vs_5_0 ps_5_0, D3D11-27.20.100.9664)",
+  "backend": "GaneshGL",
+  "release": null,
+  "screens": [
+    {
+      "project": "desktop",
+      "referenceSha256": "1b212ddd936373b44ae692ba25862cc62931dcd57ca07b37cd4295fdecbb104f",
+      "actualSha256": "1b212ddd936373b44ae692ba25862cc62931dcd57ca07b37cd4295fdecbb104f",
+      "width": 1440,
+      "height": 5271,
+      "changedPixels": 0,
+      "maxChannelDifference": 0,
+      "metadata": {
+        "width": 1440,
+        "height": 1000,
+        "dpr": 1,
+        "scrollY": 0,
+        "scrollBehavior": "auto",
+        "font": "sans, \"sans Fallback\", Arial, sans-serif",
+        "fonts": [
+          {
+            "family": "sans",
+            "status": "loaded",
+            "weight": "400 700"
+          },
+          {
+            "family": "sans Fallback",
+            "status": "loaded",
+            "weight": "normal"
+          },
+          {
+            "family": "flex",
+            "status": "loaded",
+            "weight": "100 1000"
+          },
+          {
+            "family": "flex Fallback",
+            "status": "loaded",
+            "weight": "normal"
+          }
+        ],
+        "article": {
+          "width": 660,
+          "height": 4404
+        },
+        "background": "rgba(0, 0, 0, 0)"
+      },
+      "fontFiles": {
+        "/_next/static/media/9fde1fddf961ee3f-s.p.ttf": "a9ac770798857d5e8ac593ced42b22e40a7c08cec98319f92b0eccc2783a77ba",
+        "/_next/static/media/39c38f8bd2b6fc56-s.p.ttf": "d0a87d835a944b8b40d0e82a5651bb59ab97b936a2aeed5946eb57e7b2a3a90a"
+      }
+    },
+    {
+      "project": "tablet",
+      "referenceSha256": "a13d5996c19b6e4577979e3d156ee80ae93653f7811910bdc52af6ed4e800e79",
+      "actualSha256": "a13d5996c19b6e4577979e3d156ee80ae93653f7811910bdc52af6ed4e800e79",
+      "width": 820,
+      "height": 5972,
+      "changedPixels": 0,
+      "maxChannelDifference": 0,
+      "metadata": {
+        "width": 820,
+        "height": 1180,
+        "dpr": 1,
+        "scrollY": 0,
+        "scrollBehavior": "auto",
+        "font": "sans, \"sans Fallback\", Arial, sans-serif",
+        "fonts": [
+          {
+            "family": "sans",
+            "status": "loaded",
+            "weight": "400 700"
+          },
+          {
+            "family": "sans Fallback",
+            "status": "loaded",
+            "weight": "normal"
+          },
+          {
+            "family": "flex",
+            "status": "loaded",
+            "weight": "100 1000"
+          },
+          {
+            "family": "flex Fallback",
+            "status": "loaded",
+            "weight": "normal"
+          }
+        ],
+        "article": {
+          "width": 708,
+          "height": 5473.1875
+        },
+        "background": "rgba(0, 0, 0, 0)"
+      },
+      "fontFiles": {
+        "/_next/static/media/9fde1fddf961ee3f-s.p.ttf": "a9ac770798857d5e8ac593ced42b22e40a7c08cec98319f92b0eccc2783a77ba",
+        "/_next/static/media/39c38f8bd2b6fc56-s.p.ttf": "d0a87d835a944b8b40d0e82a5651bb59ab97b936a2aeed5946eb57e7b2a3a90a"
+      }
+    },
+    {
+      "project": "mobile",
+      "referenceSha256": "08190510ff295b72d49e1371722ff05cebb26f03720e077ccac11fc93d9bb498",
+      "actualSha256": "08190510ff295b72d49e1371722ff05cebb26f03720e077ccac11fc93d9bb498",
+      "width": 390,
+      "height": 8898,
+      "changedPixels": 0,
+      "maxChannelDifference": 0,
+      "metadata": {
+        "width": 390,
+        "height": 844,
+        "dpr": 1,
+        "scrollY": 0,
+        "scrollBehavior": "auto",
+        "font": "sans, \"sans Fallback\", Arial, sans-serif",
+        "fonts": [
+          {
+            "family": "sans",
+            "status": "loaded",
+            "weight": "400 700"
+          },
+          {
+            "family": "sans Fallback",
+            "status": "loaded",
+            "weight": "normal"
+          },
+          {
+            "family": "flex",
+            "status": "loaded",
+            "weight": "100 1000"
+          },
+          {
+            "family": "flex Fallback",
+            "status": "loaded",
+            "weight": "normal"
+          }
+        ],
+        "article": {
+          "width": 326,
+          "height": 7718.75
+        },
+        "background": "rgba(0, 0, 0, 0)"
+      },
+      "fontFiles": {
+        "/_next/static/media/9fde1fddf961ee3f-s.p.ttf": "a9ac770798857d5e8ac593ced42b22e40a7c08cec98319f92b0eccc2783a77ba",
+        "/_next/static/media/39c38f8bd2b6fc56-s.p.ttf": "d0a87d835a944b8b40d0e82a5651bb59ab97b936a2aeed5946eb57e7b2a3a90a"
+      }
+    }
+  ]
+}

@@ -12,6 +12,9 @@ export default defineConfig({
   use: {
     baseURL: "http://127.0.0.1:3199",
     channel: process.platform === "win32" ? "msedge" : undefined,
+    // Approved Privacy captures use Intel UHD / GaneshGL. On this hybrid-GPU
+    // host automatic selection can switch to NVIDIA / Graphite between runs.
+    launchOptions: { args: ["--force_low_power_gpu"] },
     locale: "en-GB",
     timezoneId: "Europe/Skopje",
     deviceScaleFactor: 1,

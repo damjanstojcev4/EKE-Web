@@ -1,0 +1,119 @@
+{
+  "applicationCheckpoint": "ef6cca674844f2e05cb5250dcdf1d8a301546d5f",
+  "phase3Control": {
+    "revision": "492c88645cc4b68c60fac456ea786a30e5055b41",
+    "sourceFiles": [
+      {
+        "file": "Frontend/ece-website/src/app/contact/page.module.css",
+        "existsInControl": true,
+        "identicalToCheckpoint": true
+      },
+      {
+        "file": "Frontend/ece-website/src/app/contact/page.tsx",
+        "existsInControl": true,
+        "identicalToCheckpoint": true
+      },
+      {
+        "file": "Frontend/ece-website/src/components/contact/ContactForm.tsx",
+        "existsInControl": true,
+        "identicalToCheckpoint": true
+      },
+      {
+        "file": "Frontend/ece-website/src/components/contact/PartnerFormNotice.tsx",
+        "existsInControl": true,
+        "identicalToCheckpoint": true
+      },
+      {
+        "file": "Frontend/ece-website/src/components/contact/contact.module.css",
+        "existsInControl": false,
+        "identicalToCheckpoint": true
+      }
+    ],
+    "checks": {
+      "nvidia": 1,
+      "intel": 0,
+      "playwright": 0
+    }
+  },
+  "applicationSourceModified": false,
+  "approvedReferencesModified": false,
+  "privacy": {
+    "playwrightPassed": 3,
+    "maxDiffPixels": 0,
+    "threshold": 0,
+    "pngs": [
+      {
+        "project": "desktop",
+        "sha256": "1b212ddd936373b44ae692ba25862cc62931dcd57ca07b37cd4295fdecbb104f",
+        "changedPixels": 0
+      },
+      {
+        "project": "tablet",
+        "sha256": "a13d5996c19b6e4577979e3d156ee80ae93653f7811910bdc52af6ed4e800e79",
+        "changedPixels": 0
+      },
+      {
+        "project": "mobile",
+        "sha256": "08190510ff295b72d49e1371722ff05cebb26f03720e077ccac11fc93d9bb498",
+        "changedPixels": 0
+      }
+    ],
+    "sevenWidthPilotPassed": 7
+  },
+  "shared": {
+    "routeMatrix": {
+      "phase": "button",
+      "browser": "158.0.4370.33",
+      "release": "dd76db4434f103cf8b7b93c20ccaea7190abd2e2-45292330641-1",
+      "captures": 324,
+      "changed": [],
+      "computedDifferences": [],
+      "apiUnchanged": true,
+      "errors": []
+    },
+    "gallery": {
+      "captures": 96,
+      "changed": [],
+      "computedDifferences": [],
+      "keyboardActivation": true
+    },
+    "native": {
+      "captures": 88,
+      "changed": [],
+      "computedDifferences": [],
+      "keyboardActivation": true
+    }
+  },
+  "contact": {
+    "software": {
+      "browser": "158.0.4370.33",
+      "real": false,
+      "captures": 59,
+      "changed": [],
+      "computedDifferences": [],
+      "behaviorDifferences": [],
+      "errors": [],
+      "blocked": []
+    },
+    "real": {
+      "browser": "158.0.4370.33",
+      "real": true,
+      "captures": 59,
+      "changed": [],
+      "computedDifferences": [],
+      "behaviorDifferences": [],
+      "errors": [],
+      "blocked": []
+    }
+  },
+  "acceptedPrimaryVisualComparisons": 629,
+  "checks": {
+    "integrationPassed": 18,
+    "build": "passed",
+    "lint": "passed",
+    "typecheck": "passed",
+    "seoUnitPassed": 4,
+    "seoExportPagesPassed": 13
+  },
+  "initialSharedTransient": "Recorded in shared-initial-finding.json; unchanged full rerun passed 324/324 exactly."
+}

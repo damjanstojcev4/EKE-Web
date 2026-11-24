@@ -1,0 +1,35 @@
+{
+  "revision": "492c88645cc4b68c60fac456ea786a30e5055b41",
+  "sourceFiles": [
+    {
+      "file": "Frontend/ece-website/src/app/contact/page.module.css",
+      "existsInControl": true,
+      "identicalToCheckpoint": true
+    },
+    {
+      "file": "Frontend/ece-website/src/app/contact/page.tsx",
+      "existsInControl": true,
+      "identicalToCheckpoint": true
+    },
+    {
+      "file": "Frontend/ece-website/src/components/contact/ContactForm.tsx",
+      "existsInControl": true,
+      "identicalToCheckpoint": true
+    },
+    {
+      "file": "Frontend/ece-website/src/components/contact/PartnerFormNotice.tsx",
+      "existsInControl": true,
+      "identicalToCheckpoint": true
+    },
+    {
+      "file": "Frontend/ece-website/src/components/contact/contact.module.css",
+      "existsInControl": false,
+      "identicalToCheckpoint": true
+    }
+  ],
+  "checks": {
+    "nvidia": 1,
+    "intel": 0,
+    "playwright": 0
+  }
+}

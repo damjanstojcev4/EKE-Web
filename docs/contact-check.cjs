@@ -14,7 +14,8 @@ const server=spawn(process.execPath,['scripts/serve.mjs'],{cwd:path.join(__dirna
 const hash=b=>crypto.createHash('sha256').update(b).digest('hex');
 (async()=>{let browser;try{
  await new Promise((ok,no)=>{server.stdout.once('data',ok);server.once('error',no)});
- browser=await chromium.launch({channel:'msedge',args:real?[]:['--disable-gpu']});
+ // Phase 4A real-browser references use NVIDIA; software references remain separate.
+ browser=await chromium.launch({channel:'msedge',args:real?['--force_high_performance_gpu']:['--disable-gpu']});
  const result={browser:browser.version(),real,captures:{},computed:{},behavior:{},errors:[],blocked:[]};
  for(const [width,height]of [[1440,1000],[820,1180],[390,844],[480,1000],[481,1000],[768,1000],[769,1000],[700,1000],[701,1000],[1100,1000],[1101,1000]]){
   if(edges&&![480,481,768,700,701].includes(width))continue;

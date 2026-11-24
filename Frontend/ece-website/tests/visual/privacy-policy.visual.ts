@@ -1,5 +1,25 @@
 import { test, expect } from "@playwright/test";
 
+test.beforeEach(async ({ browser }, testInfo) => {
+  const session = await browser.newBrowserCDPSession();
+  const { gpu } = await session.send("SystemInfo.getInfo");
+  await session.detach();
+  const rendering = {
+    browser: browser.version(),
+    renderer: gpu.auxAttributes?.glRenderer,
+    backend: gpu.auxAttributes?.skiaBackendType,
+  };
+  await testInfo.attach("rendering-profile", {
+    body: JSON.stringify(rendering, null, 2), contentType: "application/json",
+  });
+  // Fail explicitly on environment drift instead of accepting new references.
+  expect(rendering).toEqual({
+    browser: "158.0.4370.33",
+    renderer: "ANGLE (Intel, Intel(R) UHD Graphics (0x00009BC4) Direct3D11 vs_5_0 ps_5_0, D3D11-27.20.100.9664)",
+    backend: "GaneshGL",
+  });
+});
+
 test("Privacy Policy approved layout", async ({ page }) => {
   const errors: string[] = [];
   page.on("pageerror", error => errors.push(error.message));

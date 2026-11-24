@@ -14,7 +14,8 @@ const server = spawn(process.execPath, ['scripts/serve.mjs'], { cwd: root, env: 
  let browser;
  try {
   await new Promise((resolve, reject) => { server.stdout.once('data', resolve); server.once('error', reject); });
-  browser = await chromium.launch({ channel: 'msedge' });
+  // The original seven-width Privacy references use the Intel rendering profile.
+  browser = await chromium.launch({ channel: 'msedge', args: ['--force_low_power_gpu'] });
   const results = { browser: browser.version(), widths: [] };
   for (const [width, height] of [[1440,1000],[820,1180],[390,844],[700,1000],[701,1000],[1100,1000],[1101,1000]]) {
    const page = await browser.newPage({ viewport: { width, height }, deviceScaleFactor: 1, reducedMotion: 'reduce', locale: 'en-GB', timezoneId: 'Europe/Skopje', colorScheme: 'light' });

@@ -17,7 +17,8 @@ const html=variants.map((props,i)=>`<section style="padding:24px;background:${pr
 const server=spawn(process.execPath,['scripts/serve.mjs'],{cwd:root,env:{...process.env,PORT:'3204',API_PROXY_TARGET:''},stdio:'pipe'});
 (async()=>{let browser;try{
 await new Promise((ok,no)=>{server.stdout.once('data',ok);server.once('error',no)});
-browser=await chromium.launch({channel:'msedge'});const result={browser:browser.version(),variants,captures:{},computed:{}};
+// These approved Phase 3 images use the Intel adapter, not automatic hybrid-GPU selection.
+browser=await chromium.launch({channel:'msedge',args:['--force_low_power_gpu']});const result={browser:browser.version(),variants,captures:{},computed:{}};
 for(const [label,width,height]of [['desktop',1440,1000],['tablet',820,1180],['mobile',390,844]]){
  const page=await browser.newPage({viewport:{width,height},reducedMotion:'reduce',deviceScaleFactor:1,locale:'en-GB',timezoneId:'Europe/Skopje'});
  await page.goto('http://127.0.0.1:3204/'+(native?'about/':'privacy-policy/'),{waitUntil:'networkidle'});
