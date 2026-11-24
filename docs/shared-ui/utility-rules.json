@@ -1,0 +1,137 @@
+{
+  "Divider": {
+    "selector": ".original-divider",
+    "matched": [
+      {
+        "selector": ".pointer-events-none",
+        "properties": [
+          {
+            "name": "pointer-events",
+            "value": "none",
+            "important": false
+          },
+          {
+            "name": "pointer-events",
+            "value": "none",
+            "important": false
+          }
+        ]
+      },
+      {
+        "selector": ".opacity-50",
+        "properties": [
+          {
+            "name": "opacity",
+            "value": ".5",
+            "important": false
+          },
+          {
+            "name": "opacity",
+            "value": "0.5",
+            "important": false
+          }
+        ]
+      }
+    ]
+  },
+  "Stripe": {
+    "selector": ".stripe",
+    "matched": [
+      {
+        "selector": ".relative",
+        "properties": [
+          {
+            "name": "position",
+            "value": "relative",
+            "important": false
+          },
+          {
+            "name": "position",
+            "value": "relative",
+            "important": false
+          }
+        ]
+      },
+      {
+        "selector": ".flex",
+        "properties": [
+          {
+            "name": "display",
+            "value": "flex",
+            "important": false
+          },
+          {
+            "name": "display",
+            "value": "flex",
+            "important": false
+          }
+        ]
+      }
+    ]
+  },
+  "Stripe color": {
+    "selector": ".stripe > span:first-child",
+    "matched": [
+      {
+        "selector": ".bg-brand-turquoise",
+        "properties": [
+          {
+            "name": "background-color",
+            "value": "var(--color-brand-turquoise)",
+            "important": false
+          },
+          {
+            "name": "background-color",
+            "value": "var(--color-brand-turquoise)",
+            "important": false
+          }
+        ]
+      }
+    ]
+  },
+  "Button": {
+    "selector": "a.button",
+    "matched": [
+      {
+        "selector": ".bg-surface",
+        "properties": [
+          {
+            "name": "background-color",
+            "value": "var(--color-surface)",
+            "important": false
+          },
+          {
+            "name": "background-color",
+            "value": "var(--color-surface)",
+            "important": false
+          }
+        ]
+      },
+      {
+        "selector": ".font-bold",
+        "properties": [
+          {
+            "name": "--tw-font-weight",
+            "value": "var(--font-weight-bold)",
+            "important": false
+          },
+          {
+            "name": "font-weight",
+            "value": "var(--font-weight-bold)",
+            "important": false
+          },
+          {
+            "name": "--tw-font-weight",
+            "value": "var(--font-weight-bold)",
+            "important": false
+          },
+          {
+            "name": "font-weight",
+            "value": "var(--font-weight-bold)",
+            "important": false
+          }
+        ]
+      }
+    ]
+  }
+}

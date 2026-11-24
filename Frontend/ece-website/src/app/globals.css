@@ -70,7 +70,8 @@ main {
   align-items: flex-start;
   gap: calc(26 * var(--u));
 }
-.button {
+/* Compatibility for About document controls, which are native buttons rather than shared Button links. */
+button.button {
   display: inline-flex;
   align-items: center;
   gap: calc(16 * var(--u));
@@ -86,25 +87,8 @@ main {
   line-height: calc(53.859 * var(--u));
   text-transform: uppercase;
 }
-.button-light {
-  background: white;
-  color: #212c5d;
-  border-color: white;
-}
-.button-outline {
-  background: transparent;
-  color: #212c5d;
-}
-.button-outline.button-light {
-  color: white;
-}
 body button:where(:not(:disabled):not([aria-disabled="true"])):is(:hover, :active, :focus-visible) {
   color: var(--light-blue);
-}
-.button:not(:disabled):not([aria-disabled="true"]):is(:hover, :active, :focus-visible) {
-  background: var(--light-blue);
-  border-color: var(--light-blue);
-  color: var(--dark-blue);
 }
 .button:not(:disabled):not([aria-disabled="true"]):is(:hover, :active, :focus-visible) .original-arrow img {
   filter: brightness(0) saturate(100%) invert(16%) sepia(23%) saturate(1979%) hue-rotate(191deg) brightness(94%) contrast(94%);
@@ -147,26 +131,6 @@ button:not(:disabled):not([aria-disabled="true"]):is(:hover, :active, :focus-vis
 .arrow-nav {
   width: calc(19.32 * var(--u));
   height: calc(14.49 * var(--u));
-}
-.original-divider {
-  position: absolute;
-  height: auto;
-  max-width: none;
-  pointer-events: none;
-}
-.stripe {
-  display: flex;
-  position: relative;
-  height: calc(23 * var(--u));
-  z-index: 2;
-}
-.stripe span:first-child {
-  width: calc(311 * var(--u));
-  background: #00e2bc;
-}
-.stripe span:last-child {
-  flex: 1;
-  background: #4da6ff;
 }
 .skip-link {
   position: fixed;
@@ -1215,7 +1179,7 @@ button:not(:disabled):not([aria-disabled="true"]):is(:hover, :active, :focus-vis
   .hero-intro .actions {
     margin-top: 30px;
   }
-  .button {
+  button.button {
     font-size: 16px;
     min-height: 56px;
     line-height: 30px;
@@ -1228,9 +1192,6 @@ button:not(:disabled):not([aria-disabled="true"]):is(:hover, :active, :focus-vis
     bottom: 0;
     width: calc(100% - 48px);
     height: 15px;
-  }
-  .stripe span:first-child {
-    width: 25%;
   }
   .impact,
   .expertise,
@@ -1711,16 +1672,11 @@ html {
 body {
   font-optical-sizing: none;
 }
-/* Align exported half-pixel strokes with Figma's centered stroke rasterization. */
-.original-divider {
-  transform: translateY(calc(-1 * var(--u)));
-  opacity: 0.5;
-}
 @media (max-width: 700px) {
   .content-block {
     white-space: normal !important;
   }
-  .button {
+  button.button {
     max-width: 100%;
     white-space: normal;
     text-align: left;

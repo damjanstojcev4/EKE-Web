@@ -1,0 +1,15 @@
+{
+  "phase": "divider",
+  "browser": "158.0.4370.33",
+  "release": "dd76db4434f103cf8b7b93c20ccaea7190abd2e2-45292330641-1",
+  "captures": 324,
+  "changed": [
+    "desktop-homepage-preview",
+    "desktop-opportunities",
+    "tablet-home",
+    "tablet-homepage-preview"
+  ],
+  "computedDifferences": [],
+  "apiUnchanged": true,
+  "errors": []
+}

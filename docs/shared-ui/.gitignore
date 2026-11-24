@@ -1,0 +1,4 @@
+# Local visual evidence is retained on disk; manifests pin exact image hashes.
+# Attach PNG evidence as review artifacts rather than adding every capture to Git.
+**/*.png
+*.migration-backup

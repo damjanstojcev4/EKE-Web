@@ -1,5 +1,7 @@
 # Privacy Policy visual baseline
 
+Shared UI's opt-in real-API capture and actual-component gallery suites are documented in `docs/SHARED_UI_TAILWIND_PHASE3.md` at repository root. Run browser suites serially. Their separate software-rendered whole-page reference does not replace these approved Privacy Policy images.
+
 Run from the frontend directory after `npm run build`:
 
 ```powershell
