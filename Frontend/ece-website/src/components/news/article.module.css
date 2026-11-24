@@ -1,0 +1,20 @@
+/* Shared rich-content markup also serves Projects. Scope News typography here. */
+.body > p,.body > h2,.body > ul { margin-bottom: calc(28 * var(--u)); }
+.body h2 { font: inherit; font-weight: 700; font-size: calc(1em - 2px); }
+.body ul { list-style: disc; padding-left: calc(30 * var(--u)); }
+.body li { margin-bottom: calc(28 * var(--u)); }
+.body li > span { font-weight: 500; }
+.body li p { margin: 0; }
+.body > :last-child { margin-bottom: 0; }
+.body button { padding: 0; text-align: left; }
+
+/* Preserve the route's existing shared Footer/legacy Arrow overrides. */
+.page > :global(.footer) { padding-top: calc(98 * var(--u)); }
+@media (max-width: 768px) {
+  .body > p,.body > h2,.body > ul,.body li { margin-bottom: 24px; }
+  .body ul { padding-left: 24px; }
+  .page :global(.arrow-button),.page :global(.arrow-down) { width: 30px; height: 30px; }
+  .page :global(.arrow-button img) { transform: translate(-50%,-50%) rotate(90deg) scale(.8); }
+  .page :global(.arrow-down img) { transform: translate(-50%,-50%) rotate(180deg) scale(.8); }
+  .page > :global(.footer) { padding-top: 60px; }
+}

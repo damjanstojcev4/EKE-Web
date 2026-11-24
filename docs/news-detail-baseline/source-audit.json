@@ -1,0 +1,98 @@
+{
+  "checkpoint": "8ddb6b4ba8cb205d59c2e2f1fddd24f191c496e2",
+  "before": {
+    "rules": 97,
+    "declarations": 273
+  },
+  "pendingBefore": {
+    "rules": 4,
+    "declarations": 21
+  },
+  "after": {
+    "rules": 15,
+    "declarations": 20
+  },
+  "oldRouteStylesheetsRemoved": true,
+  "logicUnchangedExceptStyling": {
+    "PublicArticle": true,
+    "ArticleSidebar": true,
+    "ArticleShare": true,
+    "PendingControl": true
+  },
+  "invariants": {
+    "src/app/news/[slug]/page.tsx": {
+      "sha256": "e029aa87f771513a583820d648461aa74f727080750cb4257923b90d93ccb9d0",
+      "unchanged": true
+    },
+    "src/app/news/page.tsx": {
+      "sha256": "67399aa10ad222ec9457346146f1d73f8e8979122b57d68d6991dadcfec54982",
+      "unchanged": true
+    },
+    "src/components/news/PublicNewsList.tsx": {
+      "sha256": "feb9f14233f4e94e859a9c37208ef2cf4b3b3de75ea8dda561903d94a886ec92",
+      "unchanged": true
+    },
+    "src/components/news/ArticleContent.tsx": {
+      "sha256": "c8e0fcecab3254e8b86f4b134933509be541b6591577e11e388200aeae19c2f7",
+      "unchanged": true
+    },
+    "src/lib/api/news.ts": {
+      "sha256": "ec6f5a10e90c4bc896656e8883e4c980a2d77cc2cc5b4fb8f911894cb963f631",
+      "unchanged": true
+    },
+    "src/lib/api/client.ts": {
+      "sha256": "28ed288b562f7147b6eee9a7c5aff14070a8fc710550ccfddb611e8b5ca0d82a",
+      "unchanged": true
+    },
+    "src/lib/api/use-api.ts": {
+      "sha256": "30791472545e7c0993c99ef0deb7406c273e842d498c603d4ea6725e30c0a8a6",
+      "unchanged": true
+    },
+    "src/lib/news-publication.ts": {
+      "sha256": "6d24920ab4ecffdb10aa956061221ee8189b9761e271976cd8c9f6c78b0284dc",
+      "unchanged": true
+    },
+    "src/lib/admin-api.ts": {
+      "sha256": "ad59076f6e4c9bc90ab76bf8cf264bc80def0ce8e6dbd363b29a9f9d66a8df32",
+      "unchanged": true
+    },
+    "src/types/news.ts": {
+      "sha256": "c65d093c7065db8bce058dc66a41a5f79001445a256a0155a31f50683d1ab8c4",
+      "unchanged": true
+    },
+    "src/content/route-manifest.json": {
+      "sha256": "009e7829593b14e1c8ec75a9718064e07b5103bf90c418b972f9c490e08d8f1a",
+      "unchanged": true
+    },
+    "src/components/project-details/PublicProject.tsx": {
+      "sha256": "bd2dd1d5c01d8239773c6d48683b6a143fef83d62077e31591c091f5c8195a5b",
+      "unchanged": true
+    },
+    "src/app/projects/[slug]/page.module.css": {
+      "sha256": "b2f616afbcd3b047a717fac39645ab29495749c209f5a6feee91fc8bcc9e13d4",
+      "unchanged": true
+    },
+    "src/components/layout/Header.tsx": {
+      "sha256": "b7f880fc7d5ac6b25d4463369ee3a49b10b1376448edbbff9686cb7143b5f050",
+      "unchanged": true
+    },
+    "src/components/layout/Footer.tsx": {
+      "sha256": "1205cb276fa494522332fdfb59cb0721c24a77b1d07eb6582a14b0d5c22afae3",
+      "unchanged": true
+    },
+    "src/app/globals.css": {
+      "sha256": "189880a190d0179f2544282b839f3450536608082e81ee006af13789dad21b4e",
+      "unchanged": true
+    },
+    "src/styles/theme.css": {
+      "sha256": "fa70e170d553e89eb6f2967c3559998b1b15dbd75049ffcd28c7d8134a979e47",
+      "unchanged": true
+    },
+    "src/components/ui.tsx": {
+      "sha256": "85e5a20de65e1dfe968bdbb08cdedd6023d9cadd0e10078050ecb2447b709fa0",
+      "unchanged": true
+    }
+  },
+  "testRouteRemoved": true,
+  "testExportRemoved": true
+}
