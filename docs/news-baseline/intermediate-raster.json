@@ -1,0 +1,52 @@
+[
+  {
+    "name": "shared-tablet-about",
+    "changedPixels": 1,
+    "maxChannelDifference": 2,
+    "pixels": [
+      {
+        "x": 261,
+        "y": 445,
+        "before": [
+          159,
+          158,
+          156,
+          255
+        ],
+        "after": [
+          160,
+          159,
+          158,
+          255
+        ]
+      }
+    ],
+    "referenceSha256": "7a9cbd04b7654ba87bbbc1052c6d158beb69b3d1abbb542e0f4824424e0d42ce",
+    "actualSha256": "769b32ab4c5f79e452818d6c5e88a96dc80e89204a8c18885d67075b19aae414"
+  },
+  {
+    "name": "contact-download-focus",
+    "changedPixels": 1,
+    "maxChannelDifference": 1,
+    "pixels": [
+      {
+        "x": 1273,
+        "y": 637,
+        "before": [
+          135,
+          162,
+          193,
+          255
+        ],
+        "after": [
+          135,
+          162,
+          192,
+          255
+        ]
+      }
+    ],
+    "referenceSha256": "12891f9a6b1cb171b9c9cfee89ced8c2749700f19e4bf7997c2beb73ba9597d5",
+    "actualSha256": "1500040d42605f43e8f9c4cb1f4f83b6bb1fd2550e632a2285f9c02495d2ebf1"
+  }
+]

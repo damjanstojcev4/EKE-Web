@@ -1,5 +1,7 @@
 # Privacy Policy visual baseline
 
+News listing's fixture/live-empty matrix and pinned renderer guard are documented in `docs/NEWS_TAILWIND_PHASE4B1.md`. After building, run `node docs/news-check.cjs after` from the worktree root. It compares the immutable pre-migration Git-checkpoint manifest, with zero PNG, computed-style, behavior or API-request changes. It is a separate serial browser job; never run its before mode on migrated source.
+
 Shared UI's opt-in real-API capture and actual-component gallery suites are documented in `docs/SHARED_UI_TAILWIND_PHASE3.md` at repository root. Run browser suites serially. Their separate software-rendered whole-page reference does not replace these approved Privacy Policy images.
 
 Run from the frontend directory after `npm run build`:
