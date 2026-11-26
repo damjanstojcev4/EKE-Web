@@ -37,8 +37,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @SpringBootTest(properties = {
         "spring.datasource.url=jdbc:h2:mem:news_api;DB_CLOSE_DELAY=-1",
         "spring.jpa.hibernate.ddl-auto=create-drop",
-        "spring.h2.console.enabled=false",
-        "spring.mail.password=local-test"
+        "spring.h2.console.enabled=false"
 })
 @AutoConfigureMockMvc
 class NewsApiTests {
