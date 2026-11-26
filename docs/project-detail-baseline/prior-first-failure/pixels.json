@@ -1,0 +1,31 @@
+{
+  "capture": "1440-download-focus",
+  "pixels": 1,
+  "maxChannelDifference": 1,
+  "bounds": {
+    "left": 1273,
+    "top": 637,
+    "right": 1273,
+    "bottom": 637
+  },
+  "samples": [
+    {
+      "x": 1273,
+      "y": 637,
+      "before": [
+        135,
+        162,
+        193,
+        255
+      ],
+      "after": [
+        135,
+        162,
+        192,
+        255
+      ]
+    }
+  ],
+  "referenceSha256": "12891f9a6b1cb171b9c9cfee89ced8c2749700f19e4bf7997c2beb73ba9597d5",
+  "actualSha256": "1500040d42605f43e8f9c4cb1f4f83b6bb1fd2550e632a2285f9c02495d2ebf1"
+}

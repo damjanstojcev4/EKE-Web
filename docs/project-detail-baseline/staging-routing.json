@@ -1,0 +1,28 @@
+[
+  {
+    "path": "/release-id.txt",
+    "status": 200,
+    "contentType": "text/plain",
+    "release": "dd76db4434f103cf8b7b93c20ccaea7190abd2e2-45292330641-1"
+  },
+  {
+    "path": "/projects/unavailable/",
+    "status": 200,
+    "contentType": "text/html"
+  },
+  {
+    "path": "/projects/project-19427333-8e5d-4cf8-9992-3312d725b9f9/",
+    "status": 404,
+    "contentType": "text/html"
+  },
+  {
+    "path": "/api/projects/slug/unavailable",
+    "status": 404,
+    "contentType": "application/json"
+  },
+  {
+    "path": "/api/projects/slug/project-19427333-8e5d-4cf8-9992-3312d725b9f9",
+    "status": 200,
+    "contentType": "application/json"
+  }
+]

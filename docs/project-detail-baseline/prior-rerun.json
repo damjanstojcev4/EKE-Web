@@ -1,0 +1,23 @@
+{
+  "suite": "news-listing",
+  "command": "node docs/project-detail-edge.cjs docs/projects-regression.cjs news-listing",
+  "date": "2026-11-26",
+  "initialChanged": [
+    "1100-populated"
+  ],
+  "initialPixels": 11,
+  "initialMaxChannelDifference": 1,
+  "recheckChanged": [
+    "820-category-focus"
+  ],
+  "recheckPixels": 10,
+  "recheckMaxChannelDifference": 1,
+  "finalCaptures": 42,
+  "finalExitCode": 0,
+  "changed": [],
+  "computedDifferences": [],
+  "behaviorDifferences": [],
+  "referenceChanged": false,
+  "thresholdChanged": false,
+  "applicationChangedBetweenRuns": false
+}

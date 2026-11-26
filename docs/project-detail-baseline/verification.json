@@ -1,0 +1,222 @@
+{
+  "phase": "4C.2",
+  "status": "COMPLETE",
+  "recommendation": "GO",
+  "sourceCheckpoint": "81ae68bd",
+  "detailVisuals": {
+    "cases": 96,
+    "exact": 96,
+    "computedDifferences": 0,
+    "behaviorDifferences": 0,
+    "originalTailwindExactParity": true,
+    "allPngHashesVerified": true
+  },
+  "priorVisuals": {
+    "listing": 81,
+    "earlier": 818,
+    "privacyPilot": 7,
+    "total": 906,
+    "allPassed": true,
+    "failedSuites": []
+  },
+  "totalDistinctVisualComparisons": 1002,
+  "integration": {
+    "passed": 18,
+    "total": 18
+  },
+  "buildLintTypeScriptSeo": "PASS",
+  "seo": {
+    "unitTests": 4,
+    "exportedPages": 13
+  },
+  "css": {
+    "before": {
+      "rules": 109,
+      "declarations": 302
+    },
+    "after": {
+      "rules": 10,
+      "declarations": 25
+    },
+    "removedDeclarations": 277
+  },
+  "renderer": {
+    "browser": "158.0.4370.33",
+    "renderer": "ANGLE (Intel, Intel(R) UHD Graphics (0x00009BC4) Direct3D11 vs_5_0 ps_5_0, D3D11-27.20.100.9664)",
+    "backend": "GaneshGL"
+  },
+  "liveProjects": 17,
+  "fixturesInProduction": false,
+  "existingApprovedReferencesChanged": false,
+  "comparisonThresholdsChanged": false,
+  "pixelMasksAdded": false,
+  "legacyRouteCssRemoved": true,
+  "applicationScopeOnlyDetailStyling": true,
+  "protectedSourcesUnchanged": true,
+  "regression": [
+    {
+      "name": "prior-visuals-and-integration",
+      "exitCode": 0,
+      "initialFullRunExitCode": 1,
+      "acceptedAfterExactUnchangedRerun": "node docs/project-detail-edge.cjs docs/projects-regression.cjs news-listing"
+    },
+    {
+      "name": "project-details",
+      "exitCode": 0
+    },
+    {
+      "name": "source-audit",
+      "exitCode": 0
+    },
+    {
+      "name": "lint",
+      "exitCode": 0
+    },
+    {
+      "name": "typecheck",
+      "exitCode": 0
+    },
+    {
+      "name": "seo-tests",
+      "exitCode": 0
+    },
+    {
+      "name": "seo-export",
+      "exitCode": 0
+    }
+  ],
+  "priorRegression": [
+    {
+      "name": "news-components",
+      "exitCode": 0
+    },
+    {
+      "name": "projects",
+      "exitCode": 0
+    },
+    {
+      "name": "news-production",
+      "exitCode": 0
+    },
+    {
+      "name": "news-listing",
+      "exitCode": 0
+    },
+    {
+      "name": "privacy",
+      "exitCode": 0
+    },
+    {
+      "name": "privacy-edges",
+      "exitCode": 0
+    },
+    {
+      "name": "shared-routes",
+      "exitCode": 0
+    },
+    {
+      "name": "shared-gallery",
+      "exitCode": 0
+    },
+    {
+      "name": "shared-native",
+      "exitCode": 0
+    },
+    {
+      "name": "contact-software",
+      "exitCode": 0
+    },
+    {
+      "name": "contact-real",
+      "exitCode": 0
+    },
+    {
+      "name": "integration",
+      "exitCode": 0
+    }
+  ],
+  "stagingRouting": [
+    {
+      "path": "/release-id.txt",
+      "status": 200,
+      "contentType": "text/plain",
+      "release": "dd76db4434f103cf8b7b93c20ccaea7190abd2e2-45292330641-1"
+    },
+    {
+      "path": "/projects/unavailable/",
+      "status": 200,
+      "contentType": "text/html"
+    },
+    {
+      "path": "/projects/project-19427333-8e5d-4cf8-9992-3312d725b9f9/",
+      "status": 404,
+      "contentType": "text/html"
+    },
+    {
+      "path": "/api/projects/slug/unavailable",
+      "status": 404,
+      "contentType": "application/json"
+    },
+    {
+      "path": "/api/projects/slug/project-19427333-8e5d-4cf8-9992-3312d725b9f9",
+      "status": 200,
+      "contentType": "application/json"
+    }
+  ],
+  "stopAfter": "Project Details; no next-page migration, PR, merge or deployment",
+  "initialFullPipeline": [
+    {
+      "name": "prior-visuals-and-integration",
+      "exitCode": 1
+    },
+    {
+      "name": "project-details",
+      "exitCode": 0
+    },
+    {
+      "name": "source-audit",
+      "exitCode": 0
+    },
+    {
+      "name": "lint",
+      "exitCode": 0
+    },
+    {
+      "name": "typecheck",
+      "exitCode": 0
+    },
+    {
+      "name": "seo-tests",
+      "exitCode": 0
+    },
+    {
+      "name": "seo-export",
+      "exitCode": 0
+    }
+  ],
+  "unchangedPriorRerun": {
+    "suite": "news-listing",
+    "command": "node docs/project-detail-edge.cjs docs/projects-regression.cjs news-listing",
+    "date": "2026-11-26",
+    "initialChanged": [
+      "1100-populated"
+    ],
+    "initialPixels": 11,
+    "initialMaxChannelDifference": 1,
+    "recheckChanged": [
+      "820-category-focus"
+    ],
+    "recheckPixels": 10,
+    "recheckMaxChannelDifference": 1,
+    "finalCaptures": 42,
+    "finalExitCode": 0,
+    "changed": [],
+    "computedDifferences": [],
+    "behaviorDifferences": [],
+    "referenceChanged": false,
+    "thresholdChanged": false,
+    "applicationChangedBetweenRuns": false
+  },
+  "verificationDate": "2026-11-26",
+  "timezone": "Europe/Skopje"
+}
