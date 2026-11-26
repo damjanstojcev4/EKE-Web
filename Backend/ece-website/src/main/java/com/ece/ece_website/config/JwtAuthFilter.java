@@ -91,7 +91,6 @@ public class JwtAuthFilter extends OncePerRequestFilter {
                 (path.startsWith("/projects") && "GET".equalsIgnoreCase(method)) ||
                 (path.equals("/news/homepage") && read) ||
                 (path.startsWith("/uploads") && !path.startsWith("/uploads/news/") && read) ||
-                (path.startsWith("/messages") && "POST".equalsIgnoreCase(method)) ||
                 path.startsWith("/h2-console");
     }
 

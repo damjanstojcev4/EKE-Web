@@ -4,14 +4,14 @@ import styles from "@/app/contact/page.module.css";
 
 const fields = [
   {
-    name: "firstName",
+    name: "first_name",
     label: "First Name",
     placeholder: "Carlos",
     required: true,
     autoComplete: "given-name",
   },
   {
-    name: "lastName",
+    name: "last_name",
     label: "Last Name",
     placeholder: "Rodriguez",
     required: true,
@@ -45,17 +45,18 @@ const fields = [
     required: true,
   },
 ];
-const pendingMessage =
-  "Preview only: submission is unavailable until integration is complete. Nothing has been sent.";
 
 export default function ContactForm() {
   const [errors, setErrors] = useState<Record<string, string>>({});
   const [files, setFiles] = useState<string[]>([]);
   const [notice, setNotice] = useState("");
+  const [sending, setSending] = useState(false);
+  const submitting = useRef(false);
   const status = useRef<HTMLParagraphElement>(null);
 
-  function submit(event: FormEvent<HTMLFormElement>) {
+  async function submit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
+    if (submitting.current) return;
     const form = event.currentTarget;
     const nextErrors: Record<string, string> = {};
     for (const field of fields) {
@@ -65,14 +66,14 @@ export default function ContactForm() {
       else if (field.type === "email" && input.validity.typeMismatch)
         nextErrors[field.name] = "Enter a valid email address.";
     }
-    const upload = form.elements.namedItem("attachments") as HTMLInputElement;
+    const upload = form.elements.namedItem("documentation") as HTMLInputElement;
     if (
       Array.from(upload.files ?? []).some(
         (file) =>
           !/\.(pdf|doc|docx)$/i.test(file.name) || file.size > 5 * 1024 * 1024,
       )
     ) {
-      nextErrors.attachments =
+      nextErrors.documentation =
         "Choose PDF, DOC or DOCX files, up to 5 MB each.";
     }
     setErrors(nextErrors);
@@ -80,7 +81,30 @@ export default function ContactForm() {
     const first = Object.keys(nextErrors)[0];
     if (first) (form.elements.namedItem(first) as HTMLInputElement).focus();
     else {
-      setNotice(pendingMessage);
+      submitting.current = true;
+      setSending(true);
+      try {
+        const body = new FormData(form);
+        if (!upload.files?.length) body.delete("documentation");
+        const response = await fetch(
+          "https://n8n.myceliumagency.cloud/webhook/eke-mail",
+          {
+            method: "POST",
+            body,
+          },
+        );
+        if (!response.ok) throw new Error("Submission failed");
+        form.reset();
+        setFiles([]);
+        setNotice("Thank you. Your enquiry has been sent successfully.");
+      } catch {
+        setNotice(
+          "Your enquiry could not be sent. Please try again or email contact@ekebitola.org.",
+        );
+      } finally {
+        submitting.current = false;
+        setSending(false);
+      }
       requestAnimationFrame(() => status.current?.focus());
     }
   }
@@ -88,6 +112,7 @@ export default function ContactForm() {
   return (
     <form
       className={styles.form}
+      aria-busy={sending}
       noValidate
       onSubmit={submit}
       aria-labelledby="enquiry-title"
@@ -132,33 +157,36 @@ export default function ContactForm() {
           <label>
             <input
               type="radio"
-              name="interest"
+              name="partner_opportunity"
               value="partner"
               defaultChecked
             />{" "}
             Partner
           </label>
           <label>
-            <input type="radio" name="interest" value="opportunities" />{" "}
+            <input
+              type="radio"
+              name="partner_opportunity"
+              value="opportunities"
+            />{" "}
             Opportunities
           </label>
         </fieldset>
         <div className={styles.upload}>
-          <label className={styles.uploadButton} htmlFor="attachments">
+          <label className={styles.uploadButton} htmlFor="documentation">
             Upload file
             <input
-              id="attachments"
-              name="attachments"
+              id="documentation"
+              name="documentation"
               type="file"
-              multiple
               accept=".pdf,.doc,.docx"
-              aria-describedby={`file-help${errors.attachments ? " attachments-error" : ""}`}
-              aria-invalid={!!errors.attachments}
+              aria-describedby={`file-help${errors.documentation ? " documentation-error" : ""}`}
+              aria-invalid={!!errors.documentation}
               onChange={(event) => {
                 setFiles(
                   Array.from(event.target.files ?? []).map((file) => file.name),
                 );
-                setErrors((previous) => ({ ...previous, attachments: "" }));
+                setErrors((previous) => ({ ...previous, documentation: "" }));
               }}
             />
           </label>
@@ -166,9 +194,9 @@ export default function ContactForm() {
           {files.length > 0 && (
             <p className={styles.fileNames}>{files.join(", ")}</p>
           )}
-          {errors.attachments && (
-            <p className={styles.error} id="attachments-error">
-              {errors.attachments}
+          {errors.documentation && (
+            <p className={styles.error} id="documentation-error">
+              {errors.documentation}
             </p>
           )}
         </div>
@@ -183,9 +211,11 @@ export default function ContactForm() {
         className={styles.message}
       />
       <div className={styles.submitRow}>
-        <button type="submit">Submit</button>
+        <button type="submit" disabled={sending}>
+          {sending ? "Sending…" : "Submit"}
+        </button>
         <p id="submission-note" className={styles.notice}>
-          Preview only — submission unavailable.
+          We will respond to the email address you provide.
         </p>
       </div>
       <p ref={status} role="status" tabIndex={-1} className={styles.notice}>

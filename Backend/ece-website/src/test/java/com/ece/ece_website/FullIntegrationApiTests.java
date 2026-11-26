@@ -104,16 +104,16 @@ class FullIntegrationApiTests {
   }
  }
 
- @Test void allManagementWritesRequireAdminAndCookieCsrfAndMessagesArePrivate() throws Exception {
+ @Test void allManagementWritesRequireAdminAndCookieCsrf() throws Exception {
   for(String path:List.of("/projects","/news","/opportunities/admin","/training/admin")) {
    mvc.perform(post(path).servletPath(path)).andExpect(status().isUnauthorized());
    mvc.perform(post(path).servletPath(path).with(user("reader").authorities(()->"USER"))).andExpect(status().isForbidden());
    mvc.perform(post(path).servletPath(path).with(user("editor").authorities(()->"ADMIN")).cookie(new Cookie("cookie-auth","test"))).andExpect(status().isForbidden());
   }
-  for(String path:List.of("/opportunities/admin","/training/admin","/messages/")) {
+  for(String path:List.of("/opportunities/admin","/training/admin")) {
    mvc.perform(get(path)).andExpect(status().isUnauthorized());
    mvc.perform(get(path).with(user("reader").authorities(()->"USER"))).andExpect(status().isForbidden());
   }
-  mvc.perform(delete("/messages/1")).andExpect(status().isUnauthorized());
+  mvc.perform(post("/messages/").with(user("editor").authorities(()->"ADMIN"))).andExpect(status().isNotFound());
  }
 }

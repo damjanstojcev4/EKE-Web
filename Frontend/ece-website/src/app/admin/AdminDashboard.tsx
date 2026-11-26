@@ -21,7 +21,7 @@ import {
   type Publication,
 } from "@/lib/news-publication";
 
-type Section = "projects" | "news" | "messages" | "opportunities" | "training";
+type Section = "projects" | "news" | "opportunities" | "training";
 type Entry = {
   placement: string;
   mediaKind: string;
@@ -64,13 +64,6 @@ type Entry = {
   legacy: boolean;
 };
 type ProjectRecord = import("@/lib/api/projects").ProjectRecord;
-type MessageRecord = {
-  id: number;
-  fullName: string;
-  email: string;
-  subject: string;
-  yourMessage: string;
-};
 type DeleteTarget = { id: string; kind: Section; label: string };
 const blank: Entry = {
   placement: "LATEST",
@@ -201,11 +194,6 @@ function Icon({ name }: { name: string }) {
           <rect x="4" y="3" width="16" height="18" rx="2" />
           <path d="M8 7h8M8 11h8M8 15h4M8 18h8" />
         </>
-      ) : name === "messages" ? (
-        <>
-          <rect x="3" y="5" width="18" height="14" rx="3" />
-          <path d="m3 7 9 6 9-6" />
-        </>
       ) : (
         <>
           <circle cx="10" cy="10" r="6" />
@@ -225,7 +213,6 @@ export default function AdminDashboard() {
     "loading" | "ready" | "error" | "denied"
   >("loading");
   const [entries, setEntries] = useState<Entry[]>([]);
-  const [messages, setMessages] = useState<MessageRecord[]>([]);
   const [loading, setLoading] = useState(true);
   const [loaded, setLoaded] = useState(false);
   const [section, setSection] = useState<Section>("news");
@@ -254,7 +241,6 @@ export default function AdminDashboard() {
         (cause.status === 401 || cause.status === 403)
       ) {
         setEntries([]);
-        setMessages([]);
         setEditor(null);
         setAdmin(null);
         setLoaded(false);
@@ -351,7 +337,7 @@ export default function AdminDashboard() {
           ...current.filter((e) => e.kind !== "projects"),
           ...projects.map(projectEntry),
         ]);
-      } else setMessages(await apiRequest<MessageRecord[]>("/messages/"));
+      }
     } catch (cause) {
       handleError(cause);
     } finally {
@@ -390,7 +376,6 @@ export default function AdminDashboard() {
       clearUploads();
       setEditor(null);
       setEntries([]);
-      setMessages([]);
       setAdmin(null);
       setAccess("loading");
       router.replace("/login/");
@@ -575,16 +560,11 @@ export default function AdminDashboard() {
         `/${deleting.kind}/${encodeURIComponent(deleting.id)}`,
         { method: "DELETE" },
       );
-      if (deleting.kind === "messages")
-        setMessages((current) =>
-          current.filter((m) => String(m.id) !== deleting.id),
-        );
-      else
-        setEntries((current) =>
-          current.filter(
-            (e) => !(e.id === deleting.id && e.kind === deleting.kind),
-          ),
-        );
+      setEntries((current) =>
+        current.filter(
+          (e) => !(e.id === deleting.id && e.kind === deleting.kind),
+        ),
+      );
       setNotice("Item deleted successfully.");
       dialog.current?.close();
     } catch (cause) {
@@ -614,11 +594,6 @@ export default function AdminDashboard() {
       (filter === "all" || e.status === filter) &&
       `${e.title} ${e.summary}`.toLowerCase().includes(query.toLowerCase()),
   );
-  const visibleMessages = messages.filter((m) =>
-    `${m.fullName} ${m.email} ${m.subject} ${m.yourMessage}`
-      .toLowerCase()
-      .includes(query.toLowerCase()),
-  );
   const projectCount = entries.filter((e) => e.kind === "projects").length;
   const newsCount = entries.filter((e) => e.kind === "news").length;
   const sectionName =
@@ -628,9 +603,7 @@ export default function AdminDashboard() {
         ? "News"
         : section === "opportunities"
           ? "Opportunities"
-          : section === "training"
-            ? "Training"
-            : "Messages";
+          : "Training";
 
   if (access !== "ready")
     return (
@@ -689,40 +662,34 @@ export default function AdminDashboard() {
         </Link>
         <div className={s.workspaceLabel}>CONTENT WORKSPACE</div>
         <nav aria-label="Admin navigation">
-          {(
-            [
-              "projects",
-              "news",
-              "opportunities",
-              "training",
-              "messages",
-            ] as const
-          ).map((item) => (
-            <button
-              key={item}
-              disabled={busy}
-              aria-current={section === item ? "page" : undefined}
-              className={section === item ? s.active : ""}
-              onClick={() => navigate(item)}
-            >
-              <Icon name={item} />
-              <span>{item[0].toUpperCase() + item.slice(1)}</span>
-              <small>
-                {loaded
-                  ? item === "projects"
-                    ? projectCount
-                    : item === "news"
-                      ? newsCount
-                      : item === "messages" ? messages.length : ""
-                  : "—"}
-              </small>
-            </button>
-          ))}
+          {(["projects", "news", "opportunities", "training"] as const).map(
+            (item) => (
+              <button
+                key={item}
+                disabled={busy}
+                aria-current={section === item ? "page" : undefined}
+                className={section === item ? s.active : ""}
+                onClick={() => navigate(item)}
+              >
+                <Icon name={item} />
+                <span>{item[0].toUpperCase() + item.slice(1)}</span>
+                <small>
+                  {loaded
+                    ? item === "projects"
+                      ? projectCount
+                      : item === "news"
+                        ? newsCount
+                        : ""
+                    : "—"}
+                </small>
+              </button>
+            ),
+          )}
         </nav>
         <div className={s.sidebarBottom}>
           <div className={s.previewCard}>
             <span className={s.dot} /> EKE administration
-            <p>Manage your projects, stories and community messages.</p>
+            <p>Manage your projects, stories and programmes.</p>
           </div>
           <Link href="/">
             View website <span aria-hidden="true">↗</span>
@@ -770,10 +737,10 @@ export default function AdminDashboard() {
                   <p>
                     {editor
                       ? "Bring your story to life. Complete the details below."
-                      : "Your projects, stories and conversations. All in one place."}
+                      : "Your projects, stories and programmes. All in one place."}
                   </p>
                 </div>
-                {!editor && section !== "messages" && (
+                {!editor && (
                   <button
                     className={s.primary}
                     disabled={!loaded || loading || busy}
@@ -1249,7 +1216,7 @@ export default function AdminDashboard() {
                       </>
                     )}
                     <label className={s.upload}>
-                       Cover image
+                      Cover image
                       <span>PNG, JPG, WebP or GIF · up to 5 MB</span>
                       {editor.image && (
                         <img src={editor.image} alt="Selected cover" />
@@ -1322,12 +1289,6 @@ export default function AdminDashboard() {
                           newsCount,
                           "Keep your community inspired",
                         ],
-                        [
-                          "messages",
-                          "Messages",
-                          messages.length,
-                          "Your community’s conversations",
-                        ],
                       ] as const
                     ).map(([key, label, count, caption]) => (
                       <button
@@ -1358,17 +1319,11 @@ export default function AdminDashboard() {
                           {loaded
                             ? section === "projects"
                               ? projectCount
-                              : section === "news"
-                                ? newsCount
-                                : messages.length
+                              : newsCount
                             : "—"}
                         </span>
                       </h2>
-                      <p>
-                        {section === "messages"
-                          ? "Your community’s conversations"
-                          : "Manage the content that tells your story"}
-                      </p>
+                      <p>Manage the content that tells your story</p>
                     </div>
                     <div className={s.toolbar}>
                       <div className={s.filters} aria-label="Filter projects">
@@ -1387,11 +1342,7 @@ export default function AdminDashboard() {
                             </button>
                           ))
                         ) : (
-                          <span>
-                            {section === "messages"
-                              ? "All messages"
-                              : "All news stories"}
-                          </span>
+                          <span>All news stories</span>
                         )}
                       </div>
                       <label className={s.search}>
@@ -1414,43 +1365,7 @@ export default function AdminDashboard() {
                         <h3>Content is unavailable.</h3>
                         <p>Please retry to load your workspace.</p>
                       </div>
-                    ) : section === "messages" && visibleMessages.length ? (
-                      <div className={s.messages}>
-                        {visibleMessages.map((message) => (
-                          <article className={s.message} key={message.id}>
-                            <div>
-                              <h3>{message.subject || "Contact message"}</h3>
-                              <button
-                                className={s.textDelete}
-                                aria-label={`Delete message from ${message.fullName}`}
-                                onClick={() =>
-                                  confirmDelete({
-                                    id: String(message.id),
-                                    kind: "messages",
-                                    label:
-                                      message.subject ||
-                                      `Message from ${message.fullName}`,
-                                  })
-                                }
-                              >
-                                Delete
-                              </button>
-                            </div>
-                            <p className={s.sender}>
-                              {message.fullName} ·{" "}
-                              <a
-                                href={`mailto:${encodeURIComponent(message.email)}`}
-                              >
-                                {message.email}
-                              </a>
-                            </p>
-                            <p className={s.messageBody}>
-                              {message.yourMessage}
-                            </p>
-                          </article>
-                        ))}
-                      </div>
-                    ) : section !== "messages" && visible.length ? (
+                    ) : visible.length ? (
                       <div className={s.rows}>
                         {visible.map((entry) => (
                           <article
@@ -1520,9 +1435,7 @@ export default function AdminDashboard() {
                         <p>
                           {query || filter !== "all"
                             ? "Try another search or change your filters."
-                            : section === "messages"
-                              ? "Messages from the contact form will appear here."
-                              : "Add your first item to get started."}
+                            : "Add your first item to get started."}
                         </p>
                         {(query || filter !== "all") && (
                           <button
@@ -1538,12 +1451,7 @@ export default function AdminDashboard() {
                       </div>
                     )}
                     <div className={s.listFooter}>
-                      Showing{" "}
-                      {loaded
-                        ? section === "messages"
-                          ? visibleMessages.length
-                          : visible.length
-                        : "—"}{" "}
+                      Showing {loaded ? visible.length : "—"}{" "}
                       {section === "news" ? "news stories" : section}
                       <span>EKE content workspace</span>
                     </div>
@@ -1571,13 +1479,7 @@ export default function AdminDashboard() {
         aria-labelledby="delete-title"
       >
         <h2 id="delete-title">
-          Delete this{" "}
-          {deleting?.kind === "news"
-            ? "news item"
-            : deleting?.kind === "messages"
-              ? "message"
-              : "project"}
-          ?
+          Delete this {deleting?.kind === "news" ? "news item" : "project"}?
         </h2>
         <p>
           “{deleting?.label}” will be permanently removed. This cannot be

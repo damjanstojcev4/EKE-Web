@@ -3,7 +3,7 @@
 Reused from `feat/admin-preview` and extended for Phase 1 News publishing. The
 static `/admin/` route verifies the existing HttpOnly JWT session through
 `/api/auth/me`; unauthenticated editors return to `/login/`. News loads first and
-independently of projects/messages. Backend ADMIN authorization protects writes.
+independently of projects. Backend ADMIN authorization protects writes.
 
 News forms preserve summary, Instagram link and existing image and expose title,
 category, alt text, draft/published/scheduled state and local publication time.
