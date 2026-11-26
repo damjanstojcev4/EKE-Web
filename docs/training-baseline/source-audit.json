@@ -1,0 +1,971 @@
+{
+  "checkpoint": "1c18dd26",
+  "before": {
+    "rules": 174,
+    "declarations": 537
+  },
+  "after": {
+    "rules": 5,
+    "declarations": 7
+  },
+  "logic": {
+    "src/app/training/page.tsx": true,
+    "src/components/SessionListings.tsx": true
+  },
+  "invariants": {
+    "src/components/layout/Header.tsx": {
+      "sha256": "b7f880fc7d5ac6b25d4463369ee3a49b10b1376448edbbff9686cb7143b5f050",
+      "unchanged": true
+    },
+    "src/components/layout/Footer.tsx": {
+      "sha256": "1205cb276fa494522332fdfb59cb0721c24a77b1d07eb6582a14b0d5c22afae3",
+      "unchanged": true
+    },
+    "src/components/ui.tsx": {
+      "sha256": "85e5a20de65e1dfe968bdbb08cdedd6023d9cadd0e10078050ecb2447b709fa0",
+      "unchanged": true
+    },
+    "src/app/globals.css": {
+      "sha256": "189880a190d0179f2544282b839f3450536608082e81ee006af13789dad21b4e",
+      "unchanged": true
+    },
+    "src/styles/theme.css": {
+      "sha256": "fa70e170d553e89eb6f2967c3559998b1b15dbd75049ffcd28c7d8134a979e47",
+      "unchanged": true
+    },
+    "src/app/opportunities/page.tsx": {
+      "sha256": "94764b9069ca48d70d8c132f51e84a96e04b7e5b8e3a8a252b1c5c5c567abc3f",
+      "unchanged": true
+    },
+    "src/app/opportunities/page.module.css": {
+      "sha256": "765fef3fe4e679c0c23e5c110dd5af5d7abbba0a52b525db20888330140d3d5b",
+      "unchanged": true
+    },
+    "src/data/training.mock.ts": {
+      "sha256": "75bb23488a546b8199ccf93319771473bbfd5e464320b7a9e50a48f7333c1696",
+      "unchanged": true
+    },
+    "src/lib/api/sessions.ts": {
+      "sha256": "4a114c9edba7f873c2e6895604fe7c8c76acb53ef2144ff3a6367345c1b8fdca",
+      "unchanged": true
+    },
+    "src/lib/api/use-api.ts": {
+      "sha256": "30791472545e7c0993c99ef0deb7406c273e842d498c603d4ea6725e30c0a8a6",
+      "unchanged": true
+    },
+    "src/lib/api/client.ts": {
+      "sha256": "28ed288b562f7147b6eee9a7c5aff14070a8fc710550ccfddb611e8b5ca0d82a",
+      "unchanged": true
+    },
+    "src/lib/admin-api.ts": {
+      "sha256": "ad59076f6e4c9bc90ab76bf8cf264bc80def0ce8e6dbd363b29a9f9d66a8df32",
+      "unchanged": true
+    },
+    "src/lib/seo.ts": {
+      "sha256": "21822e4d3b41a2cbdcc5c8861cb8e0006e090fefd6cfb0da0677872b987616b2",
+      "unchanged": true
+    },
+    "src/components/SeoStructuredData.tsx": {
+      "sha256": "f50406524f6788ec78740a474115b65b4323c723becaf446bc516b96e71337c9",
+      "unchanged": true
+    },
+    "src/content/route-manifest.json": {
+      "sha256": "009e7829593b14e1c8ec75a9718064e07b5103bf90c418b972f9c490e08d8f1a",
+      "unchanged": true
+    },
+    "package.json": {
+      "sha256": "b486f894ff776151b432c364db3da8c12ecf392cf23ce4fb4753c636db428af8",
+      "unchanged": true
+    },
+    "package-lock.json": {
+      "sha256": "b280131a66d45e5178c259935a157f1339e81f90a3914e032bf014b95b447ab8",
+      "unchanged": true
+    }
+  },
+  "selectors": [
+    {
+      "selector": ".page",
+      "media": null,
+      "declarations": 2
+    },
+    {
+      "selector": ".label",
+      "media": null,
+      "declarations": 4
+    },
+    {
+      "selector": ".hero",
+      "media": null,
+      "declarations": 6
+    },
+    {
+      "selector": ".heroArt",
+      "media": null,
+      "declarations": 5
+    },
+    {
+      "selector": ".heroArt img",
+      "media": null,
+      "declarations": 3
+    },
+    {
+      "selector": ".hero h1",
+      "media": null,
+      "declarations": 5
+    },
+    {
+      "selector": ".heroCopy",
+      "media": null,
+      "declarations": 6
+    },
+    {
+      "selector": ".heroImage",
+      "media": null,
+      "declarations": 4
+    },
+    {
+      "selector": ".heroImage > img",
+      "media": null,
+      "declarations": 4
+    },
+    {
+      "selector": ".heroImage :global(.stripe)",
+      "media": null,
+      "declarations": 1
+    },
+    {
+      "selector": ".heroImage :global(.stripe span:first-child)",
+      "media": null,
+      "declarations": 1
+    },
+    {
+      "selector": ".introduction",
+      "media": null,
+      "declarations": 4
+    },
+    {
+      "selector": ".introduction p",
+      "media": null,
+      "declarations": 2
+    },
+    {
+      "selector": ".methods",
+      "media": null,
+      "declarations": 5
+    },
+    {
+      "selector": ".method",
+      "media": null,
+      "declarations": 3
+    },
+    {
+      "selector": ".methodCard",
+      "media": null,
+      "declarations": 5
+    },
+    {
+      "selector": ".methodCard > img",
+      "media": null,
+      "declarations": 4
+    },
+    {
+      "selector": ".methodLabel",
+      "media": null,
+      "declarations": 9
+    },
+    {
+      "selector": ".methodCard h2",
+      "media": null,
+      "declarations": 4
+    },
+    {
+      "selector": ".methodCopy",
+      "media": null,
+      "declarations": 4
+    },
+    {
+      "selector": ".methodCopy > p:first-child",
+      "media": null,
+      "declarations": 2
+    },
+    {
+      "selector": ".methodCopy > p + p",
+      "media": null,
+      "declarations": 3
+    },
+    {
+      "selector": ".themes",
+      "media": null,
+      "declarations": 1
+    },
+    {
+      "selector": ".themeRow",
+      "media": null,
+      "declarations": 6
+    },
+    {
+      "selector": ".themeRow::after",
+      "media": null,
+      "declarations": 10
+    },
+    {
+      "selector": ".themeBanner",
+      "media": null,
+      "declarations": 4
+    },
+    {
+      "selector": ".themeIllustration",
+      "media": null,
+      "declarations": 3
+    },
+    {
+      "selector": ".themePhoto",
+      "media": null,
+      "declarations": 4
+    },
+    {
+      "selector": ".themeCopy",
+      "media": null,
+      "declarations": 2
+    },
+    {
+      "selector": ".themeRow:not(:nth-child(3)) .theme:nth-child(2) .themeCopy",
+      "media": "(min-width: 1101px)",
+      "declarations": 1
+    },
+    {
+      "selector": ".themeRow:nth-child(3) .theme:nth-child(2) .themeCopy",
+      "media": "(min-width: 1101px)",
+      "declarations": 1
+    },
+    {
+      "selector": ".themeCopy h2,\n.tailored h2",
+      "media": null,
+      "declarations": 4
+    },
+    {
+      "selector": ".themeCopy > p:last-child",
+      "media": null,
+      "declarations": 4
+    },
+    {
+      "selector": ".themeRow:nth-child(2)",
+      "media": null,
+      "declarations": 2
+    },
+    {
+      "selector": ".themeRow:nth-child(2) .theme:nth-child(2) h2",
+      "media": null,
+      "declarations": 1
+    },
+    {
+      "selector": ".themeRow:nth-child(3)",
+      "media": null,
+      "declarations": 3
+    },
+    {
+      "selector": ".themeRow:nth-child(3) .themeCopy",
+      "media": null,
+      "declarations": 2
+    },
+    {
+      "selector": ".themeRow:nth-child(3) h2",
+      "media": null,
+      "declarations": 1
+    },
+    {
+      "selector": ".tailored",
+      "media": null,
+      "declarations": 6
+    },
+    {
+      "selector": ".tailoredHeading",
+      "media": null,
+      "declarations": 1
+    },
+    {
+      "selector": ".tailored h2",
+      "media": null,
+      "declarations": 2
+    },
+    {
+      "selector": ".tailoredCopy",
+      "media": null,
+      "declarations": 5
+    },
+    {
+      "selector": ".sessions",
+      "media": null,
+      "declarations": 1
+    },
+    {
+      "selector": ".sessions > h2",
+      "media": null,
+      "declarations": 7
+    },
+    {
+      "selector": ".sessionList",
+      "media": null,
+      "declarations": 1
+    },
+    {
+      "selector": ".session",
+      "media": null,
+      "declarations": 3
+    },
+    {
+      "selector": ".session::before",
+      "media": null,
+      "declarations": 9
+    },
+    {
+      "selector": ".facts",
+      "media": null,
+      "declarations": 4
+    },
+    {
+      "selector": ".facts > div",
+      "media": null,
+      "declarations": 4
+    },
+    {
+      "selector": ".facts dt",
+      "media": null,
+      "declarations": 5
+    },
+    {
+      "selector": ".facts dt::before,\n.sessionContent li::before",
+      "media": null,
+      "declarations": 7
+    },
+    {
+      "selector": ".facts dd",
+      "media": null,
+      "declarations": 5
+    },
+    {
+      "selector": ".sessionBody",
+      "media": null,
+      "declarations": 8
+    },
+    {
+      "selector": ".countdown",
+      "media": null,
+      "declarations": 3
+    },
+    {
+      "selector": ".countdown strong",
+      "media": null,
+      "declarations": 4
+    },
+    {
+      "selector": ".countdown span",
+      "media": null,
+      "declarations": 2
+    },
+    {
+      "selector": ".sessionAside > p",
+      "media": null,
+      "declarations": 10
+    },
+    {
+      "selector": ".sessionContent h3",
+      "media": null,
+      "declarations": 8
+    },
+    {
+      "selector": ".sessionContent > p",
+      "media": null,
+      "declarations": 3
+    },
+    {
+      "selector": ".sessionContent ul",
+      "media": null,
+      "declarations": 9
+    },
+    {
+      "selector": ".sessionContent li",
+      "media": null,
+      "declarations": 2
+    },
+    {
+      "selector": ".status",
+      "media": null,
+      "declarations": 3
+    },
+    {
+      "selector": ".status button,\nbutton.status,\n.loadMore button",
+      "media": null,
+      "declarations": 7
+    },
+    {
+      "selector": ".status button",
+      "media": null,
+      "declarations": 1
+    },
+    {
+      "selector": ".registrationLink",
+      "media": null,
+      "declarations": 10
+    },
+    {
+      "selector": ".countdown time",
+      "media": null,
+      "declarations": 3
+    },
+    {
+      "selector": ".closed",
+      "media": null,
+      "declarations": 2
+    },
+    {
+      "selector": ".session:first-child .closed",
+      "media": null,
+      "declarations": 3
+    },
+    {
+      "selector": ".unavailable button",
+      "media": null,
+      "declarations": 1
+    },
+    {
+      "selector": ".unavailable > span",
+      "media": null,
+      "declarations": 13
+    },
+    {
+      "selector": ".unavailable:hover > span,\n.unavailable:focus-within > span",
+      "media": null,
+      "declarations": 1
+    },
+    {
+      "selector": ".session:last-of-type",
+      "media": null,
+      "declarations": 1
+    },
+    {
+      "selector": ".showing",
+      "media": null,
+      "declarations": 4
+    },
+    {
+      "selector": ".loadMore",
+      "media": null,
+      "declarations": 3
+    },
+    {
+      "selector": ".loadMore button",
+      "media": null,
+      "declarations": 1
+    },
+    {
+      "selector": ".closing",
+      "media": null,
+      "declarations": 2
+    },
+    {
+      "selector": ".closing > p",
+      "media": null,
+      "declarations": 3
+    },
+    {
+      "selector": ".closing > div",
+      "media": null,
+      "declarations": 2
+    },
+    {
+      "selector": ".page :global(.footer)",
+      "media": null,
+      "declarations": 1
+    },
+    {
+      "selector": ".label",
+      "media": "(max-width: 1100px)",
+      "declarations": 2
+    },
+    {
+      "selector": ".hero",
+      "media": "(max-width: 1100px)",
+      "declarations": 3
+    },
+    {
+      "selector": ".heroArt",
+      "media": "(max-width: 1100px)",
+      "declarations": 1
+    },
+    {
+      "selector": ".heroArt img",
+      "media": "(max-width: 1100px)",
+      "declarations": 3
+    },
+    {
+      "selector": ".hero h1",
+      "media": "(max-width: 1100px)",
+      "declarations": 3
+    },
+    {
+      "selector": ".heroCopy",
+      "media": "(max-width: 1100px)",
+      "declarations": 5
+    },
+    {
+      "selector": ".heroImage",
+      "media": "(max-width: 1100px)",
+      "declarations": 3
+    },
+    {
+      "selector": ".heroImage > img",
+      "media": "(max-width: 1100px)",
+      "declarations": 2
+    },
+    {
+      "selector": ".heroImage :global(.stripe)",
+      "media": "(max-width: 1100px)",
+      "declarations": 2
+    },
+    {
+      "selector": ".introduction",
+      "media": "(max-width: 1100px)",
+      "declarations": 4
+    },
+    {
+      "selector": ".introduction p",
+      "media": "(max-width: 1100px)",
+      "declarations": 2
+    },
+    {
+      "selector": ".methods",
+      "media": "(max-width: 1100px)",
+      "declarations": 3
+    },
+    {
+      "selector": ".method",
+      "media": "(max-width: 1100px)",
+      "declarations": 2
+    },
+    {
+      "selector": ".methodCard",
+      "media": "(max-width: 1100px)",
+      "declarations": 3
+    },
+    {
+      "selector": ".methodCard > img",
+      "media": "(max-width: 1100px)",
+      "declarations": 2
+    },
+    {
+      "selector": ".methodLabel",
+      "media": "(max-width: 1100px)",
+      "declarations": 6
+    },
+    {
+      "selector": ".methodCard h2",
+      "media": "(max-width: 1100px)",
+      "declarations": 3
+    },
+    {
+      "selector": ".methodCard h2 br",
+      "media": "(max-width: 1100px)",
+      "declarations": 1
+    },
+    {
+      "selector": ".methodCopy",
+      "media": "(max-width: 1100px)",
+      "declarations": 2
+    },
+    {
+      "selector": ".methodCopy > p:first-child",
+      "media": "(max-width: 1100px)",
+      "declarations": 2
+    },
+    {
+      "selector": ".methodCopy > p + p",
+      "media": "(max-width: 1100px)",
+      "declarations": 3
+    },
+    {
+      "selector": ".themes",
+      "media": "(max-width: 1100px)",
+      "declarations": 1
+    },
+    {
+      "selector": ".themeRow,\n  .themeRow:nth-child(2),\n  .themeRow:nth-child(3)",
+      "media": "(max-width: 1100px)",
+      "declarations": 3
+    },
+    {
+      "selector": ".themeBanner",
+      "media": "(max-width: 1100px)",
+      "declarations": 2
+    },
+    {
+      "selector": ".themeIllustration",
+      "media": "(max-width: 1100px)",
+      "declarations": 2
+    },
+    {
+      "selector": ".themePhoto",
+      "media": "(max-width: 1100px)",
+      "declarations": 4
+    },
+    {
+      "selector": ".themeCopy,\n  .themeRow:nth-child(3) .themeCopy,\n  .themeRow .theme:nth-child(2) .themeCopy",
+      "media": "(max-width: 1100px)",
+      "declarations": 2
+    },
+    {
+      "selector": ".themeCopy h2,\n  .tailored h2",
+      "media": "(max-width: 1100px)",
+      "declarations": 3
+    },
+    {
+      "selector": ".themeRow:nth-child(2) .theme:nth-child(2) h2,\n  .themeRow:nth-child(3) h2",
+      "media": "(max-width: 1100px)",
+      "declarations": 1
+    },
+    {
+      "selector": ".themeCopy > p:last-child",
+      "media": "(max-width: 1100px)",
+      "declarations": 4
+    },
+    {
+      "selector": ".themeRow::after",
+      "media": "(max-width: 1100px)",
+      "declarations": 2
+    },
+    {
+      "selector": ".tailored",
+      "media": "(max-width: 1100px)",
+      "declarations": 4
+    },
+    {
+      "selector": ".tailoredHeading",
+      "media": "(max-width: 1100px)",
+      "declarations": 1
+    },
+    {
+      "selector": ".tailored h2 br",
+      "media": "(max-width: 1100px)",
+      "declarations": 1
+    },
+    {
+      "selector": ".tailoredCopy",
+      "media": "(max-width: 1100px)",
+      "declarations": 4
+    },
+    {
+      "selector": ".sessions > h2",
+      "media": "(max-width: 1100px)",
+      "declarations": 4
+    },
+    {
+      "selector": ".sessionList",
+      "media": "(max-width: 1100px)",
+      "declarations": 1
+    },
+    {
+      "selector": ".session",
+      "media": "(max-width: 1100px)",
+      "declarations": 1
+    },
+    {
+      "selector": ".session::before",
+      "media": "(max-width: 1100px)",
+      "declarations": 5
+    },
+    {
+      "selector": ".facts",
+      "media": "(max-width: 1100px)",
+      "declarations": 2
+    },
+    {
+      "selector": ".facts > div",
+      "media": "(max-width: 1100px)",
+      "declarations": 4
+    },
+    {
+      "selector": ".facts dt",
+      "media": "(max-width: 1100px)",
+      "declarations": 3
+    },
+    {
+      "selector": ".facts dt::before,\n  .sessionContent li::before",
+      "media": "(max-width: 1100px)",
+      "declarations": 3
+    },
+    {
+      "selector": ".facts dd",
+      "media": "(max-width: 1100px)",
+      "declarations": 4
+    },
+    {
+      "selector": ".sessionBody",
+      "media": "(max-width: 1100px)",
+      "declarations": 5
+    },
+    {
+      "selector": ".countdown",
+      "media": "(max-width: 1100px)",
+      "declarations": 2
+    },
+    {
+      "selector": ".countdown strong",
+      "media": "(max-width: 1100px)",
+      "declarations": 2
+    },
+    {
+      "selector": ".countdown span",
+      "media": "(max-width: 1100px)",
+      "declarations": 2
+    },
+    {
+      "selector": ".sessionAside > p",
+      "media": "(max-width: 1100px)",
+      "declarations": 5
+    },
+    {
+      "selector": ".sessionContent h3",
+      "media": "(max-width: 1100px)",
+      "declarations": 5
+    },
+    {
+      "selector": ".sessionContent > p",
+      "media": "(max-width: 1100px)",
+      "declarations": 3
+    },
+    {
+      "selector": ".sessionContent ul",
+      "media": "(max-width: 1100px)",
+      "declarations": 4
+    },
+    {
+      "selector": ".sessionContent li",
+      "media": "(max-width: 1100px)",
+      "declarations": 1
+    },
+    {
+      "selector": ".status",
+      "media": "(max-width: 1100px)",
+      "declarations": 2
+    },
+    {
+      "selector": ".status button,\n  button.status,\n  .loadMore button",
+      "media": "(max-width: 1100px)",
+      "declarations": 4
+    },
+    {
+      "selector": ".showing",
+      "media": "(max-width: 1100px)",
+      "declarations": 3
+    },
+    {
+      "selector": ".loadMore",
+      "media": "(max-width: 1100px)",
+      "declarations": 1
+    },
+    {
+      "selector": ".closing",
+      "media": "(max-width: 1100px)",
+      "declarations": 2
+    },
+    {
+      "selector": ".closing > p",
+      "media": "(max-width: 1100px)",
+      "declarations": 3
+    },
+    {
+      "selector": ".closing > div",
+      "media": "(max-width: 1100px)",
+      "declarations": 1
+    },
+    {
+      "selector": ".page :global(.footer)",
+      "media": "(max-width: 1100px)",
+      "declarations": 2
+    },
+    {
+      "selector": ".hero",
+      "media": "(max-width: 700px)",
+      "declarations": 1
+    },
+    {
+      "selector": ".hero h1",
+      "media": "(max-width: 700px)",
+      "declarations": 1
+    },
+    {
+      "selector": ".hero h1 br",
+      "media": "(max-width: 700px)",
+      "declarations": 1
+    },
+    {
+      "selector": ".heroImage > img",
+      "media": "(max-width: 700px)",
+      "declarations": 1
+    },
+    {
+      "selector": ".heroArt img",
+      "media": "(max-width: 700px)",
+      "declarations": 1
+    },
+    {
+      "selector": ".introduction",
+      "media": "(max-width: 700px)",
+      "declarations": 2
+    },
+    {
+      "selector": ".methods",
+      "media": "(max-width: 700px)",
+      "declarations": 2
+    },
+    {
+      "selector": ".method",
+      "media": "(max-width: 700px)",
+      "declarations": 2
+    },
+    {
+      "selector": ".methodCopy",
+      "media": "(max-width: 700px)",
+      "declarations": 4
+    },
+    {
+      "selector": ".methodCard",
+      "media": "(max-width: 700px)",
+      "declarations": 1
+    },
+    {
+      "selector": ".themes",
+      "media": "(max-width: 700px)",
+      "declarations": 1
+    },
+    {
+      "selector": ".themeRow,\n  .themeRow:nth-child(2),\n  .themeRow:nth-child(3)",
+      "media": "(max-width: 700px)",
+      "declarations": 3
+    },
+    {
+      "selector": ".themeCopy,\n  .themeRow:nth-child(3) .themeCopy,\n  .themeRow .theme:nth-child(2) .themeCopy",
+      "media": "(max-width: 700px)",
+      "declarations": 1
+    },
+    {
+      "selector": ".themeCopy h2,\n  .tailored h2",
+      "media": "(max-width: 700px)",
+      "declarations": 1
+    },
+    {
+      "selector": ".tailored",
+      "media": "(max-width: 700px)",
+      "declarations": 3
+    },
+    {
+      "selector": ".tailoredHeading",
+      "media": "(max-width: 700px)",
+      "declarations": 1
+    },
+    {
+      "selector": ".tailoredCopy",
+      "media": "(max-width: 700px)",
+      "declarations": 2
+    },
+    {
+      "selector": ".sessions > h2",
+      "media": "(max-width: 700px)",
+      "declarations": 2
+    },
+    {
+      "selector": ".sessionList",
+      "media": "(max-width: 700px)",
+      "declarations": 1
+    },
+    {
+      "selector": ".facts",
+      "media": "(max-width: 700px)",
+      "declarations": 2
+    },
+    {
+      "selector": ".facts > div",
+      "media": "(max-width: 700px)",
+      "declarations": 2
+    },
+    {
+      "selector": ".facts dd",
+      "media": "(max-width: 700px)",
+      "declarations": 3
+    },
+    {
+      "selector": ".facts dt",
+      "media": "(max-width: 700px)",
+      "declarations": 1
+    },
+    {
+      "selector": ".session",
+      "media": "(max-width: 700px)",
+      "declarations": 1
+    },
+    {
+      "selector": ".session::before",
+      "media": "(max-width: 700px)",
+      "declarations": 3
+    },
+    {
+      "selector": ".sessionBody",
+      "media": "(max-width: 700px)",
+      "declarations": 3
+    },
+    {
+      "selector": ".sessionAside",
+      "media": "(max-width: 700px)",
+      "declarations": 3
+    },
+    {
+      "selector": ".countdown",
+      "media": "(max-width: 700px)",
+      "declarations": 4
+    },
+    {
+      "selector": ".countdown strong",
+      "media": "(max-width: 700px)",
+      "declarations": 1
+    },
+    {
+      "selector": ".sessionAside > p",
+      "media": "(max-width: 700px)",
+      "declarations": 7
+    },
+    {
+      "selector": ".sessionContent h3",
+      "media": "(max-width: 700px)",
+      "declarations": 2
+    },
+    {
+      "selector": ".sessionContent ul",
+      "media": "(max-width: 700px)",
+      "declarations": 2
+    },
+    {
+      "selector": ".closing",
+      "media": "(max-width: 700px)",
+      "declarations": 1
+    },
+    {
+      "selector": ".closing > p",
+      "media": "(max-width: 700px)",
+      "declarations": 1
+    }
+  ],
+  "legacyRouteCssRemoved": true,
+  "legacyTrainingImportRemoved": true,
+  "remainingDependencies": [
+    "Training feature CSS: contextual Stripe/Footer compatibility only",
+    "Global resets, --u/--s and font variables; centralized theme tokens",
+    "Unchanged Header/Footer/shared Button/Stripe styles",
+    "SessionListings retains the pre-existing Opportunities stylesheet for its unchanged Opportunities branch"
+  ],
+  "dormantRemoved": [
+    "showing",
+    "loadMore",
+    "unavailable",
+    "button.status and status button (active action is an anchor/span)"
+  ]
+}

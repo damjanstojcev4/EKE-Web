@@ -290,6 +290,8 @@ Planning estimate for one experienced frontend engineer: **15–25 engineering d
 
 ## 13. Acceptance criteria
 
+Phase 4D Training implementation is tracked in [Training — Phase 4D](TRAINING_TAILWIND_PHASE4D.md). Its authored CSS is reduced from 537 to 7 declarations. All 1,002 previous visual comparisons have accepted exact current results; all 18 integration tests and build/lint/TypeScript/SEO checks passed. Training has 78/78 exact source-parity matches and 3/3 exact live CMS cases, but only 74/78 initial-reference PNGs match; all four variants also occur byte-for-byte on unchanged source. **NO-GO for the next feature** until Training's baseline/control repeatability is resolved. Earlier acceptance and approved references remain preserved.
+
 - [ ] Matching staging source release and content revision identified; deployed CMS/admin/API/hosting boundaries documented.
 - [ ] Baseline screenshots reviewed for desktop/tablet/mobile, interactions and relevant breakpoint boundaries; unavailable states explicitly completed or tracked as release blockers.
 - [ ] No approved visual changes: identical text, assets, crop, typography, section geometry, wrapping, colors, focus/hover/active states and responsive behavior; strict pinned-environment diffs pass with any noise exceptions individually justified.

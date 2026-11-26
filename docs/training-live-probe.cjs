@@ -1,0 +1,2 @@
+const fs=require('node:fs');
+(async()=>{const url='https://preview.ekebitola.org/api/training/sessions';try{const r=await fetch(url,{signal:AbortSignal.timeout(45000)}),body=await r.json(),result={url,status:r.status,body};fs.writeFileSync(__dirname+'/training-baseline/live-probe.json',JSON.stringify(result,null,2));console.log({status:r.status,count:Array.isArray(body)?body.length:null});if(r.status!==200)process.exitCode=1;}catch(e){console.error(e);process.exitCode=1;}})();

@@ -1,0 +1,47 @@
+{
+  "701": {
+    "region": "top 2400 rows; fixed editorial content above sessions",
+    "initialVersusControl": {
+      "pixels": 566,
+      "max": 1
+    },
+    "initialVersusNextNavigation": {
+      "pixels": 566,
+      "max": 1
+    },
+    "controlVersusNextNavigation": {
+      "pixels": 0,
+      "max": 0
+    }
+  },
+  "1100": {
+    "region": "top 2400 rows; fixed editorial content above sessions",
+    "initialVersusControl": {
+      "pixels": 2557,
+      "max": 12
+    },
+    "initialVersusNextNavigation": {
+      "pixels": 4630,
+      "max": 1
+    },
+    "controlVersusNextNavigation": {
+      "pixels": 3026,
+      "max": 12
+    }
+  },
+  "1440": {
+    "region": "top 2400 rows; fixed editorial content above sessions",
+    "initialVersusControl": {
+      "pixels": 6255,
+      "max": 12
+    },
+    "initialVersusNextNavigation": {
+      "pixels": 0,
+      "max": 0
+    },
+    "controlVersusNextNavigation": {
+      "pixels": 6255,
+      "max": 12
+    }
+  }
+}
