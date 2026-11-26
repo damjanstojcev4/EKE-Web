@@ -1,0 +1,50 @@
+[
+  {
+    "key": "1440-long",
+    "name": "border-top",
+    "file": "1440-long-border-top-overlay.png",
+    "region": {
+      "x": 1277,
+      "y": 1304,
+      "width": 163,
+      "height": 128
+    },
+    "pixels": 1
+  },
+  {
+    "key": "1440-long",
+    "name": "border-bottom",
+    "file": "1440-long-border-bottom-overlay.png",
+    "region": {
+      "x": 1277,
+      "y": 1651,
+      "width": 163,
+      "height": 128
+    },
+    "pixels": 1
+  },
+  {
+    "key": "1100-populated",
+    "name": "border",
+    "file": "1100-populated-border-overlay.png",
+    "region": {
+      "x": 957,
+      "y": 1724,
+      "width": 143,
+      "height": 128
+    },
+    "pixels": 1
+  },
+  {
+    "key": "1101-error",
+    "name": "photograph",
+    "file": "1101-error-photograph-overlay.png",
+    "region": {
+      "x": 80,
+      "y": 420,
+      "width": 320,
+      "height": 256
+    },
+    "pixels": 410
+  }
+]

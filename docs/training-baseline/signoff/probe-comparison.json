@@ -1,0 +1,545 @@
+{
+  "browserUnchanged": true,
+  "rendererUnchanged": true,
+  "backendUnchanged": true,
+  "cases": {
+    "1440-long": {
+      "originalFrames": {
+        "0a8b4a4b4fc8c6aefad2be4c8ff4fef4ab1a9ebb4e8f181071fd28d91e27959e": 15
+      },
+      "migratedFrames": {
+        "0a8b4a4b4fc8c6aefad2be4c8ff4fef4ab1a9ebb4e8f181071fd28d91e27959e": 15
+      },
+      "standardStylesAndGeometryUnchanged": false,
+      "usedFontsUnchanged": true,
+      "originalGeometryStable": true,
+      "originalStylesStable": true,
+      "differences": [
+        {
+          "repeat": 0,
+          "index": 87,
+          "original": {
+            "tag": "ARTICLE",
+            "text": null,
+            "rect": {
+              "x": 60,
+              "y": 4488,
+              "width": 1320,
+              "height": 532.5,
+              "top": 4488,
+              "right": 1380,
+              "bottom": 5020.5,
+              "left": 60
+            },
+            "standardStyleHash": "4414116759d93312d48a89edc0404d87ca89e7481c0337219459d16465289850",
+            "fontFamily": "sans, \"sans Fallback\", Arial, sans-serif",
+            "fontSize": "16px",
+            "background": "none"
+          },
+          "migrated": {
+            "tag": "ARTICLE",
+            "text": null,
+            "rect": {
+              "x": 60,
+              "y": 4488,
+              "width": 1320,
+              "height": 532.5,
+              "top": 4488,
+              "right": 1380,
+              "bottom": 5020.5,
+              "left": 60
+            },
+            "standardStyleHash": "a7af5fcaf7da77fc51f0a4a7a2a0945361c0968f9a5f68ee4d88d6af236994b6",
+            "fontFamily": "sans, \"sans Fallback\", Arial, sans-serif",
+            "fontSize": "16px",
+            "background": "none"
+          }
+        },
+        {
+          "repeat": 1,
+          "index": 87,
+          "original": {
+            "tag": "ARTICLE",
+            "text": null,
+            "rect": {
+              "x": 60,
+              "y": 4488,
+              "width": 1320,
+              "height": 532.5,
+              "top": 4488,
+              "right": 1380,
+              "bottom": 5020.5,
+              "left": 60
+            },
+            "standardStyleHash": "4414116759d93312d48a89edc0404d87ca89e7481c0337219459d16465289850",
+            "fontFamily": "sans, \"sans Fallback\", Arial, sans-serif",
+            "fontSize": "16px",
+            "background": "none"
+          },
+          "migrated": {
+            "tag": "ARTICLE",
+            "text": null,
+            "rect": {
+              "x": 60,
+              "y": 4488,
+              "width": 1320,
+              "height": 532.5,
+              "top": 4488,
+              "right": 1380,
+              "bottom": 5020.5,
+              "left": 60
+            },
+            "standardStyleHash": "a7af5fcaf7da77fc51f0a4a7a2a0945361c0968f9a5f68ee4d88d6af236994b6",
+            "fontFamily": "sans, \"sans Fallback\", Arial, sans-serif",
+            "fontSize": "16px",
+            "background": "none"
+          }
+        },
+        {
+          "repeat": 2,
+          "index": 87,
+          "original": {
+            "tag": "ARTICLE",
+            "text": null,
+            "rect": {
+              "x": 60,
+              "y": 4488,
+              "width": 1320,
+              "height": 532.5,
+              "top": 4488,
+              "right": 1380,
+              "bottom": 5020.5,
+              "left": 60
+            },
+            "standardStyleHash": "4414116759d93312d48a89edc0404d87ca89e7481c0337219459d16465289850",
+            "fontFamily": "sans, \"sans Fallback\", Arial, sans-serif",
+            "fontSize": "16px",
+            "background": "none"
+          },
+          "migrated": {
+            "tag": "ARTICLE",
+            "text": null,
+            "rect": {
+              "x": 60,
+              "y": 4488,
+              "width": 1320,
+              "height": 532.5,
+              "top": 4488,
+              "right": 1380,
+              "bottom": 5020.5,
+              "left": 60
+            },
+            "standardStyleHash": "a7af5fcaf7da77fc51f0a4a7a2a0945361c0968f9a5f68ee4d88d6af236994b6",
+            "fontFamily": "sans, \"sans Fallback\", Arial, sans-serif",
+            "fontSize": "16px",
+            "background": "none"
+          }
+        }
+      ]
+    },
+    "701-populated": {
+      "originalFrames": {
+        "362f7aa2e701821b88a0fb7109480dbafbcc52c32c41b0520bad5a8186b3bcff": 15
+      },
+      "migratedFrames": {
+        "362f7aa2e701821b88a0fb7109480dbafbcc52c32c41b0520bad5a8186b3bcff": 15
+      },
+      "standardStylesAndGeometryUnchanged": false,
+      "usedFontsUnchanged": true,
+      "originalGeometryStable": true,
+      "originalStylesStable": true,
+      "differences": [
+        {
+          "repeat": 0,
+          "index": 87,
+          "original": {
+            "tag": "ARTICLE",
+            "text": null,
+            "rect": {
+              "x": 40,
+              "y": 4985.453125,
+              "width": 621,
+              "height": 493.703125,
+              "top": 4985.453125,
+              "right": 661,
+              "bottom": 5479.15625,
+              "left": 40
+            },
+            "standardStyleHash": "d66967fdfc869077a0196642fe1cb88d7e722cebb0b45a1b4fd89d4fb7a9c506",
+            "fontFamily": "sans, \"sans Fallback\", Arial, sans-serif",
+            "fontSize": "16px",
+            "background": "none"
+          },
+          "migrated": {
+            "tag": "ARTICLE",
+            "text": null,
+            "rect": {
+              "x": 40,
+              "y": 4985.453125,
+              "width": 621,
+              "height": 493.703125,
+              "top": 4985.453125,
+              "right": 661,
+              "bottom": 5479.15625,
+              "left": 40
+            },
+            "standardStyleHash": "55180e63e0533aa3fed784735c6f9a26ff40869eb8382f811a2465df71b63085",
+            "fontFamily": "sans, \"sans Fallback\", Arial, sans-serif",
+            "fontSize": "16px",
+            "background": "none"
+          }
+        },
+        {
+          "repeat": 1,
+          "index": 87,
+          "original": {
+            "tag": "ARTICLE",
+            "text": null,
+            "rect": {
+              "x": 40,
+              "y": 4985.453125,
+              "width": 621,
+              "height": 493.703125,
+              "top": 4985.453125,
+              "right": 661,
+              "bottom": 5479.15625,
+              "left": 40
+            },
+            "standardStyleHash": "d66967fdfc869077a0196642fe1cb88d7e722cebb0b45a1b4fd89d4fb7a9c506",
+            "fontFamily": "sans, \"sans Fallback\", Arial, sans-serif",
+            "fontSize": "16px",
+            "background": "none"
+          },
+          "migrated": {
+            "tag": "ARTICLE",
+            "text": null,
+            "rect": {
+              "x": 40,
+              "y": 4985.453125,
+              "width": 621,
+              "height": 493.703125,
+              "top": 4985.453125,
+              "right": 661,
+              "bottom": 5479.15625,
+              "left": 40
+            },
+            "standardStyleHash": "55180e63e0533aa3fed784735c6f9a26ff40869eb8382f811a2465df71b63085",
+            "fontFamily": "sans, \"sans Fallback\", Arial, sans-serif",
+            "fontSize": "16px",
+            "background": "none"
+          }
+        },
+        {
+          "repeat": 2,
+          "index": 87,
+          "original": {
+            "tag": "ARTICLE",
+            "text": null,
+            "rect": {
+              "x": 40,
+              "y": 4985.453125,
+              "width": 621,
+              "height": 493.703125,
+              "top": 4985.453125,
+              "right": 661,
+              "bottom": 5479.15625,
+              "left": 40
+            },
+            "standardStyleHash": "d66967fdfc869077a0196642fe1cb88d7e722cebb0b45a1b4fd89d4fb7a9c506",
+            "fontFamily": "sans, \"sans Fallback\", Arial, sans-serif",
+            "fontSize": "16px",
+            "background": "none"
+          },
+          "migrated": {
+            "tag": "ARTICLE",
+            "text": null,
+            "rect": {
+              "x": 40,
+              "y": 4985.453125,
+              "width": 621,
+              "height": 493.703125,
+              "top": 4985.453125,
+              "right": 661,
+              "bottom": 5479.15625,
+              "left": 40
+            },
+            "standardStyleHash": "55180e63e0533aa3fed784735c6f9a26ff40869eb8382f811a2465df71b63085",
+            "fontFamily": "sans, \"sans Fallback\", Arial, sans-serif",
+            "fontSize": "16px",
+            "background": "none"
+          }
+        }
+      ]
+    },
+    "1100-populated": {
+      "originalFrames": {
+        "ed10cc32c7aa870d57d2d05cc4d0d7bff156bfabf62743d98019b67975ad359d": 15
+      },
+      "migratedFrames": {
+        "ed10cc32c7aa870d57d2d05cc4d0d7bff156bfabf62743d98019b67975ad359d": 14,
+        "6355a3caba6a52190af16d18921abdab55d6e8cfe0079b136f3f7b56bbcfb577": 1
+      },
+      "standardStylesAndGeometryUnchanged": false,
+      "usedFontsUnchanged": true,
+      "originalGeometryStable": true,
+      "originalStylesStable": true,
+      "differences": [
+        {
+          "repeat": 0,
+          "index": 87,
+          "original": {
+            "tag": "ARTICLE",
+            "text": null,
+            "rect": {
+              "x": 40,
+              "y": 3885.8125,
+              "width": 1020,
+              "height": 412.734375,
+              "top": 3885.8125,
+              "right": 1060,
+              "bottom": 4298.546875,
+              "left": 40
+            },
+            "standardStyleHash": "716fdbc69a07d410a5cd21ec1362c531eb7d1a0a99607d8553da769b100864d6",
+            "fontFamily": "sans, \"sans Fallback\", Arial, sans-serif",
+            "fontSize": "16px",
+            "background": "none"
+          },
+          "migrated": {
+            "tag": "ARTICLE",
+            "text": null,
+            "rect": {
+              "x": 40,
+              "y": 3885.8125,
+              "width": 1020,
+              "height": 412.734375,
+              "top": 3885.8125,
+              "right": 1060,
+              "bottom": 4298.546875,
+              "left": 40
+            },
+            "standardStyleHash": "480eaff5100077fe55a15b3759a4ae258e66d094f6ea67d4e617b7d8acb09ce7",
+            "fontFamily": "sans, \"sans Fallback\", Arial, sans-serif",
+            "fontSize": "16px",
+            "background": "none"
+          }
+        },
+        {
+          "repeat": 1,
+          "index": 87,
+          "original": {
+            "tag": "ARTICLE",
+            "text": null,
+            "rect": {
+              "x": 40,
+              "y": 3885.8125,
+              "width": 1020,
+              "height": 412.734375,
+              "top": 3885.8125,
+              "right": 1060,
+              "bottom": 4298.546875,
+              "left": 40
+            },
+            "standardStyleHash": "716fdbc69a07d410a5cd21ec1362c531eb7d1a0a99607d8553da769b100864d6",
+            "fontFamily": "sans, \"sans Fallback\", Arial, sans-serif",
+            "fontSize": "16px",
+            "background": "none"
+          },
+          "migrated": {
+            "tag": "ARTICLE",
+            "text": null,
+            "rect": {
+              "x": 40,
+              "y": 3885.8125,
+              "width": 1020,
+              "height": 412.734375,
+              "top": 3885.8125,
+              "right": 1060,
+              "bottom": 4298.546875,
+              "left": 40
+            },
+            "standardStyleHash": "480eaff5100077fe55a15b3759a4ae258e66d094f6ea67d4e617b7d8acb09ce7",
+            "fontFamily": "sans, \"sans Fallback\", Arial, sans-serif",
+            "fontSize": "16px",
+            "background": "none"
+          }
+        },
+        {
+          "repeat": 2,
+          "index": 87,
+          "original": {
+            "tag": "ARTICLE",
+            "text": null,
+            "rect": {
+              "x": 40,
+              "y": 3885.8125,
+              "width": 1020,
+              "height": 412.734375,
+              "top": 3885.8125,
+              "right": 1060,
+              "bottom": 4298.546875,
+              "left": 40
+            },
+            "standardStyleHash": "716fdbc69a07d410a5cd21ec1362c531eb7d1a0a99607d8553da769b100864d6",
+            "fontFamily": "sans, \"sans Fallback\", Arial, sans-serif",
+            "fontSize": "16px",
+            "background": "none"
+          },
+          "migrated": {
+            "tag": "ARTICLE",
+            "text": null,
+            "rect": {
+              "x": 40,
+              "y": 3885.8125,
+              "width": 1020,
+              "height": 412.734375,
+              "top": 3885.8125,
+              "right": 1060,
+              "bottom": 4298.546875,
+              "left": 40
+            },
+            "standardStyleHash": "480eaff5100077fe55a15b3759a4ae258e66d094f6ea67d4e617b7d8acb09ce7",
+            "fontFamily": "sans, \"sans Fallback\", Arial, sans-serif",
+            "fontSize": "16px",
+            "background": "none"
+          }
+        }
+      ]
+    },
+    "1101-error": {
+      "originalFrames": {
+        "ec1c9c8f9ad90d73f0382bfb255815623de71209e676175633722b45f5bf614c": 15
+      },
+      "migratedFrames": {
+        "ec1c9c8f9ad90d73f0382bfb255815623de71209e676175633722b45f5bf614c": 14,
+        "c4201207b1ffc402e07ceb60cef14d5b22b56078ca45bc10f55e772347b0fd85": 1
+      },
+      "standardStylesAndGeometryUnchanged": false,
+      "usedFontsUnchanged": true,
+      "originalGeometryStable": true,
+      "originalStylesStable": true,
+      "differences": [
+        {
+          "repeat": 0,
+          "index": 87,
+          "original": {
+            "tag": "ARTICLE",
+            "text": null,
+            "rect": {
+              "x": 45.875,
+              "y": 3431.40625,
+              "width": 1009.25,
+              "height": 407.140625,
+              "top": 3431.40625,
+              "right": 1055.125,
+              "bottom": 3838.546875,
+              "left": 45.875
+            },
+            "standardStyleHash": "2f2f9cb5bf967d82e9696e0999a82f14482441ace761e4c49f9617f867e1d8e0",
+            "fontFamily": "sans, \"sans Fallback\", Arial, sans-serif",
+            "fontSize": "16px",
+            "background": "none"
+          },
+          "migrated": {
+            "tag": "ARTICLE",
+            "text": null,
+            "rect": {
+              "x": 45.875,
+              "y": 3431.40625,
+              "width": 1009.25,
+              "height": 407.140625,
+              "top": 3431.40625,
+              "right": 1055.125,
+              "bottom": 3838.546875,
+              "left": 45.875
+            },
+            "standardStyleHash": "6cb9b0755977eeb7085f91469b4f8a00d28d5d775a7809f603641c6fc422c153",
+            "fontFamily": "sans, \"sans Fallback\", Arial, sans-serif",
+            "fontSize": "16px",
+            "background": "none"
+          }
+        },
+        {
+          "repeat": 1,
+          "index": 87,
+          "original": {
+            "tag": "ARTICLE",
+            "text": null,
+            "rect": {
+              "x": 45.875,
+              "y": 3431.40625,
+              "width": 1009.25,
+              "height": 407.140625,
+              "top": 3431.40625,
+              "right": 1055.125,
+              "bottom": 3838.546875,
+              "left": 45.875
+            },
+            "standardStyleHash": "2f2f9cb5bf967d82e9696e0999a82f14482441ace761e4c49f9617f867e1d8e0",
+            "fontFamily": "sans, \"sans Fallback\", Arial, sans-serif",
+            "fontSize": "16px",
+            "background": "none"
+          },
+          "migrated": {
+            "tag": "ARTICLE",
+            "text": null,
+            "rect": {
+              "x": 45.875,
+              "y": 3431.40625,
+              "width": 1009.25,
+              "height": 407.140625,
+              "top": 3431.40625,
+              "right": 1055.125,
+              "bottom": 3838.546875,
+              "left": 45.875
+            },
+            "standardStyleHash": "6cb9b0755977eeb7085f91469b4f8a00d28d5d775a7809f603641c6fc422c153",
+            "fontFamily": "sans, \"sans Fallback\", Arial, sans-serif",
+            "fontSize": "16px",
+            "background": "none"
+          }
+        },
+        {
+          "repeat": 2,
+          "index": 87,
+          "original": {
+            "tag": "ARTICLE",
+            "text": null,
+            "rect": {
+              "x": 45.875,
+              "y": 3431.40625,
+              "width": 1009.25,
+              "height": 407.140625,
+              "top": 3431.40625,
+              "right": 1055.125,
+              "bottom": 3838.546875,
+              "left": 45.875
+            },
+            "standardStyleHash": "2f2f9cb5bf967d82e9696e0999a82f14482441ace761e4c49f9617f867e1d8e0",
+            "fontFamily": "sans, \"sans Fallback\", Arial, sans-serif",
+            "fontSize": "16px",
+            "background": "none"
+          },
+          "migrated": {
+            "tag": "ARTICLE",
+            "text": null,
+            "rect": {
+              "x": 45.875,
+              "y": 3431.40625,
+              "width": 1009.25,
+              "height": 407.140625,
+              "top": 3431.40625,
+              "right": 1055.125,
+              "bottom": 3838.546875,
+              "left": 45.875
+            },
+            "standardStyleHash": "6cb9b0755977eeb7085f91469b4f8a00d28d5d775a7809f603641c6fc422c153",
+            "fontFamily": "sans, \"sans Fallback\", Arial, sans-serif",
+            "fontSize": "16px",
+            "background": "none"
+          }
+        }
+      ]
+    }
+  }
+}

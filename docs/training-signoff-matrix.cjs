@@ -1,0 +1,5 @@
+// Isolate sign-off evidence from the preserved Phase 4D runs and references.
+const fs=require('node:fs'),Module=require('node:module'),arg=process.argv.find(a=>a.startsWith('--run=')),run=arg?.slice(6);
+if(!run||!/^[a-z0-9-]+$/.test(run))throw Error('Supply --run=<unique-name>');if(process.argv[2]!=='after')throw Error('Sign-off runs compare only; references are reviewed separately');
+if(fs.existsSync(__dirname+'/training-baseline/signoff/'+run+'/manifest.json.gz'))throw Error('Refusing to replace sign-off evidence');
+let source=fs.readFileSync(__dirname+'/training-check.cjs','utf8');const original="dir=path.join(base,process.argv.includes('--control')?'control':phase)";if(!source.includes(original))throw Error('Capture protocol changed; review wrapper');source='const signoffRun='+JSON.stringify(run)+';\n'+source.replace(original,"dir=path.join(base,'signoff',signoffRun)");const runtime=new Module(__filename,module);runtime.filename=__filename;runtime.paths=module.paths;runtime._compile(source,__filename);

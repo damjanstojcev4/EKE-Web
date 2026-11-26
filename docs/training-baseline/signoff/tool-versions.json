@@ -1,0 +1,7 @@
+{
+  "node": "v24.20.0",
+  "playwrightTest": "1.64.1",
+  "playwrightCore": "1.64.1",
+  "testMatchesLock": true,
+  "coreMatchesLock": true
+}

@@ -1,5 +1,7 @@
 # Training — Phase 4D
 
+**Visual sign-off completed after this implementation checkpoint.** See [Training visual sign-off](TRAINING_VISUAL_SIGNOFF_PHASE4D.md) for the four reviewed original-source reference corrections, strict 78/78 original and migrated passes, complete verification and **GO for Opportunities**. The initial NO-GO results below remain historical evidence from `cbb18e86`; the current decision is recorded by `training-signoff-summary.cjs`.
+
 Worktree `D:/eke-web/.worktrees/frontend-tailwind-phase1`, branch `codex/frontend-tailwind-phase1`; unchanged-source checkpoint `1c18dd26`. Verification date: 26 November 2026 (Europe/Skopje).
 
 ## Audit and styling ownership

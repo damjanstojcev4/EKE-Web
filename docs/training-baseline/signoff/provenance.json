@@ -1,0 +1,106 @@
+{
+  "originalSourceCheckpoint": "1c18dd26",
+  "migrationCheckpoint": "cbb18e86",
+  "originalReferenceCheckpoint": "cbb18e86",
+  "originalReferenceManifestSha256": "2e36dea14eae95bb05c3b94d3912baa2b2d8a70ae9ad27d2de5dc424ed48129c",
+  "originalRendering": {
+    "browser": "158.0.4370.33",
+    "renderer": "ANGLE (Intel, Intel(R) UHD Graphics (0x00009BC4) Direct3D11 vs_5_0 ps_5_0, D3D11-27.20.100.9664)",
+    "backend": "GaneshGL"
+  },
+  "currentOriginalRendering": {
+    "browser": "158.0.4370.33",
+    "renderer": "ANGLE (Intel, Intel(R) UHD Graphics (0x00009BC4) Direct3D11 vs_5_0 ps_5_0, D3D11-27.20.100.9664)",
+    "backend": "GaneshGL"
+  },
+  "originalViewportRecords": {
+    "1440-long": {
+      "width": 1440,
+      "height": 1000,
+      "dpr": 1
+    },
+    "701-populated": {
+      "width": 701,
+      "height": 1000,
+      "dpr": 1
+    },
+    "1100-populated": {
+      "width": 1100,
+      "height": 1000,
+      "dpr": 1
+    },
+    "1101-error": {
+      "width": 1101,
+      "height": 1000,
+      "dpr": 1
+    }
+  },
+  "captureProtocol": {
+    "dpr": 1,
+    "locale": "en-GB",
+    "timezone": "Europe/Skopje",
+    "scheme": "light",
+    "motion": "reduce",
+    "clock": "2026-11-26T12:00:00Z",
+    "readiness": "fonts.ready, image decode, manual scroll restoration, scroll to zero, two animation frames",
+    "initialReferenceSelection": "single first ready PNG; no repeated-frame establishment",
+    "comparison": "one accepted SHA-256 per case; normal five-second exact paint-settling loop",
+    "flagsChanged": false,
+    "thresholdChanged": false
+  },
+  "assets": {
+    "public/fonts/google-sans.ttf": {
+      "sha256": "d0a87d835a944b8b40d0e82a5651bb59ab97b936a2aeed5946eb57e7b2a3a90a",
+      "gitBlobSha256": "d0a87d835a944b8b40d0e82a5651bb59ab97b936a2aeed5946eb57e7b2a3a90a",
+      "comparison": "binary bytes",
+      "unchangedSinceOriginal": true
+    },
+    "public/fonts/google-sans-flex.ttf": {
+      "sha256": "a9ac770798857d5e8ac593ced42b22e40a7c08cec98319f92b0eccc2783a77ba",
+      "gitBlobSha256": "a9ac770798857d5e8ac593ced42b22e40a7c08cec98319f92b0eccc2783a77ba",
+      "comparison": "binary bytes",
+      "unchangedSinceOriginal": true
+    },
+    "public/assets/training-page/Group 96.png": {
+      "sha256": "091bd43bf63806e172ade554e312a2b317b7f07b73a277dda9f8219d1465987d",
+      "gitBlobSha256": "091bd43bf63806e172ade554e312a2b317b7f07b73a277dda9f8219d1465987d",
+      "comparison": "binary bytes",
+      "unchangedSinceOriginal": true
+    },
+    "public/assets/training-page/Group 97.png": {
+      "sha256": "1411fd6dfd71b3f01d6a9f345a2ea04bd81f1e2c8d0b4cabafb0dba470289be3",
+      "gitBlobSha256": "1411fd6dfd71b3f01d6a9f345a2ea04bd81f1e2c8d0b4cabafb0dba470289be3",
+      "comparison": "binary bytes",
+      "unchangedSinceOriginal": true
+    },
+    "public/assets/training-page/Group.svg": {
+      "sha256": "c860b7752b950e959b75fd21f10de848393512d9336b5cb49236919e9f65ebe8",
+      "gitBlobSha256": "5600a4c2285e5019e727e6443ed9e935bdc105ddd16f35870427aaa40464a1c6",
+      "comparison": "text content after Git checkout line-ending normalization",
+      "unchangedSinceOriginal": true
+    },
+    "public/assets/training-page/Rectangle 156.png": {
+      "sha256": "9ab4d2e70f3bb96a405795bedec8b53343cbddb5c33bbf39ce51745467da83a2",
+      "gitBlobSha256": "9ab4d2e70f3bb96a405795bedec8b53343cbddb5c33bbf39ce51745467da83a2",
+      "comparison": "binary bytes",
+      "unchangedSinceOriginal": true
+    },
+    "public/assets/training-page/Rectangle 190.png": {
+      "sha256": "8302d2c601a6b1c4be3a32ed2ee5096415392cb7ef1d2fa30d9f38cadb4abd7c",
+      "gitBlobSha256": "8302d2c601a6b1c4be3a32ed2ee5096415392cb7ef1d2fa30d9f38cadb4abd7c",
+      "comparison": "binary bytes",
+      "unchangedSinceOriginal": true
+    },
+    "public/assets/training-page/Rectangle 66.png": {
+      "sha256": "2cd5f8f7a1d5d52bd410f0c560611dd838e292a8b9f168016089c2f24f7699c0",
+      "gitBlobSha256": "2cd5f8f7a1d5d52bd410f0c560611dd838e292a8b9f168016089c2f24f7699c0",
+      "comparison": "binary bytes",
+      "unchangedSinceOriginal": true
+    }
+  },
+  "originalProvenanceLimitations": [
+    "Initial manifest did not record individual platform font usage or full driver attributes; current repeated probe records them",
+    "LayerTree events were not emitted in the probe; no compositor-layer causal claim is made",
+    "Exact internal driver/Skia raster mechanism is not isolated"
+  ]
+}
