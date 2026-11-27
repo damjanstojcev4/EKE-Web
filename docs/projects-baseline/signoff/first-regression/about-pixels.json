@@ -1,0 +1,15 @@
+{
+  "capture": "tablet-about",
+  "dimensions": [
+    820,
+    4517
+  ],
+  "pixels": 1,
+  "maxChannelDifference": 2,
+  "bounds": [
+    261,
+    445,
+    261,
+    445
+  ]
+}

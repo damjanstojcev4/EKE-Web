@@ -1,0 +1,5 @@
+*.png
+**/*.png
+source-inventory.json
+signoff/probe-*/result.json
+!signoff/*-overlay.png

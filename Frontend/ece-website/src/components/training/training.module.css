@@ -1,0 +1,21 @@
+/* Contextual shared Stripe and Footer compatibility. */
+
+.heroImage :global(.stripe) {
+  margin-top: calc(20 * var(--u));
+}
+.heroImage :global(.stripe span:first-child) {
+  width: calc(162 * var(--u));
+}
+.page :global(.footer) {
+  height: calc(549 * var(--u));
+}
+@media (max-width: 1100px) {
+  .heroImage :global(.stripe) {
+    height: 12px;
+    margin-top: 14px;
+  }
+  .page :global(.footer) {
+    height: auto;
+    padding-bottom: 70px;
+  }
+}

@@ -1,0 +1,327 @@
+{
+  "migrationCheckpoint": "cbb18e86",
+  "review": {
+    "review": "reference-review.md",
+    "reviewedBy": "Codex, manual evidence review under user authorization",
+    "sourceCheckpoint": "1c18dd26",
+    "oldManifestSha256": "2e36dea14eae95bb05c3b94d3912baa2b2d8a70ae9ad27d2de5dc424ed48129c",
+    "changed": [
+      {
+        "key": "1440-long",
+        "old": "1aba42c1e6c0dc1c0b874e43d2058593d5096081a47dc3db154594be21f4fa52",
+        "accepted": "0a8b4a4b4fc8c6aefad2be4c8ff4fef4ab1a9ebb4e8f181071fd28d91e27959e",
+        "source": "original-proposal/1440-long.png"
+      },
+      {
+        "key": "701-populated",
+        "old": "eaabe76a4cc72b7b6408e64541c4df0566815e35ca34ef2e0f053e0150be6073",
+        "accepted": "362f7aa2e701821b88a0fb7109480dbafbcc52c32c41b0520bad5a8186b3bcff",
+        "source": "original-proposal/701-populated.png"
+      },
+      {
+        "key": "1100-populated",
+        "old": "6355a3caba6a52190af16d18921abdab55d6e8cfe0079b136f3f7b56bbcfb577",
+        "accepted": "ed10cc32c7aa870d57d2d05cc4d0d7bff156bfabf62743d98019b67975ad359d",
+        "source": "original-proposal/1100-populated.png"
+      },
+      {
+        "key": "1101-error",
+        "old": "c4201207b1ffc402e07ceb60cef14d5b22b56078ca45bc10f55e772347b0fd85",
+        "accepted": "ec1c9c8f9ad90d73f0382bfb255815623de71209e676175633722b45f5bf614c",
+        "source": "original-proposal/1101-error.png"
+      }
+    ],
+    "unchangedCaptures": 74,
+    "metadataChanged": [],
+    "acceptedManifestSha256": "bc531d90323b759acadab9c38eac02b6705559f085de39785ff834ffcf466e8d"
+  },
+  "referenceSet": {
+    "count": 78,
+    "changed": [
+      "1440-long",
+      "701-populated",
+      "1100-populated",
+      "1101-error"
+    ],
+    "unchanged": 74,
+    "metadataDifferences": [],
+    "singleHashPerCase": true,
+    "thresholdChanges": false,
+    "browserFlagChanges": false
+  },
+  "original": {
+    "cases": 78,
+    "expectedCount": 78,
+    "comparison": {
+      "captures": 78,
+      "rendering": {
+        "browser": "158.0.4370.33",
+        "renderer": "ANGLE (Intel, Intel(R) UHD Graphics (0x00009BC4) Direct3D11 vs_5_0 ps_5_0, D3D11-27.20.100.9664)",
+        "backend": "GaneshGL"
+      },
+      "changed": [],
+      "computedDifferences": [],
+      "behaviorDifferences": [],
+      "requestsUnchanged": true,
+      "fixturesUnchanged": true,
+      "liveUnchanged": true,
+      "liveListUnchanged": true,
+      "mediaUnchanged": true,
+      "errors": []
+    },
+    "hashFailures": [],
+    "referenceDifferences": [],
+    "paintRetries": {
+      "1920-short": 1,
+      "1920-error": 1,
+      "820-populated": 1,
+      "820-long": 1,
+      "820-short": 1,
+      "701-populated": 1,
+      "701-long": 1,
+      "768-populated": 1,
+      "1100-long": 1
+    }
+  },
+  "migrated": {
+    "cases": 78,
+    "expectedCount": 78,
+    "comparison": {
+      "captures": 78,
+      "rendering": {
+        "browser": "158.0.4370.33",
+        "renderer": "ANGLE (Intel, Intel(R) UHD Graphics (0x00009BC4) Direct3D11 vs_5_0 ps_5_0, D3D11-27.20.100.9664)",
+        "backend": "GaneshGL"
+      },
+      "changed": [],
+      "computedDifferences": [],
+      "behaviorDifferences": [],
+      "requestsUnchanged": true,
+      "fixturesUnchanged": true,
+      "liveUnchanged": true,
+      "liveListUnchanged": true,
+      "mediaUnchanged": true,
+      "errors": []
+    },
+    "hashFailures": [],
+    "referenceDifferences": [],
+    "paintRetries": {
+      "820-populated": 1,
+      "699-populated": 1,
+      "769-short": 1,
+      "1099-long": 1,
+      "1099-short": 1,
+      "1101-populated": 1,
+      "1101-long": 1
+    }
+  },
+  "live": {
+    "cases": 3,
+    "expectedCount": 3,
+    "comparison": {
+      "captures": 3,
+      "rendering": {
+        "browser": "158.0.4370.33",
+        "renderer": "ANGLE (Intel, Intel(R) UHD Graphics (0x00009BC4) Direct3D11 vs_5_0 ps_5_0, D3D11-27.20.100.9664)",
+        "backend": "GaneshGL"
+      },
+      "changed": [],
+      "computedDifferences": [],
+      "behaviorDifferences": [],
+      "requestsUnchanged": true,
+      "fixturesUnchanged": true,
+      "liveUnchanged": true,
+      "liveListUnchanged": true,
+      "mediaUnchanged": true,
+      "errors": []
+    },
+    "hashFailures": [],
+    "referenceDifferences": [],
+    "paintRetries": {}
+  },
+  "prior": {
+    "rawSuites": [
+      {
+        "name": "news-components",
+        "exitCode": 0
+      },
+      {
+        "name": "projects",
+        "exitCode": 0
+      },
+      {
+        "name": "news-production",
+        "exitCode": 0
+      },
+      {
+        "name": "news-listing",
+        "exitCode": 0
+      },
+      {
+        "name": "privacy",
+        "exitCode": 0
+      },
+      {
+        "name": "privacy-edges",
+        "exitCode": 0
+      },
+      {
+        "name": "shared-routes",
+        "exitCode": 0
+      },
+      {
+        "name": "shared-gallery",
+        "exitCode": 0
+      },
+      {
+        "name": "shared-native",
+        "exitCode": 0
+      },
+      {
+        "name": "contact-software",
+        "exitCode": 0
+      },
+      {
+        "name": "contact-real",
+        "exitCode": 1
+      },
+      {
+        "name": "integration",
+        "exitCode": 0
+      }
+    ],
+    "acceptedSuites": [
+      {
+        "name": "news-components",
+        "exitCode": 0
+      },
+      {
+        "name": "projects",
+        "exitCode": 0
+      },
+      {
+        "name": "news-production",
+        "exitCode": 0
+      },
+      {
+        "name": "news-listing",
+        "exitCode": 0
+      },
+      {
+        "name": "privacy",
+        "exitCode": 0
+      },
+      {
+        "name": "privacy-edges",
+        "exitCode": 0
+      },
+      {
+        "name": "shared-routes",
+        "exitCode": 0
+      },
+      {
+        "name": "shared-gallery",
+        "exitCode": 0
+      },
+      {
+        "name": "shared-native",
+        "exitCode": 0
+      },
+      {
+        "name": "contact-software",
+        "exitCode": 0
+      },
+      {
+        "name": "contact-real",
+        "exitCode": 0
+      },
+      {
+        "name": "integration",
+        "exitCode": 0
+      }
+    ],
+    "exactComparisons": 1002,
+    "required": 1002,
+    "detail": {
+      "name": "project-details",
+      "exitCode": 0
+    },
+    "rechecks": [
+      {
+        "suite": "contact-real",
+        "exitCode": 1,
+        "comparison": {
+          "browser": "158.0.4370.33",
+          "real": true,
+          "captures": 59,
+          "changed": [
+            "1440-download-focus"
+          ],
+          "computedDifferences": [],
+          "behaviorDifferences": [],
+          "errors": [],
+          "blocked": []
+        }
+      },
+      {
+        "suite": "contact-real",
+        "run": "2",
+        "exitCode": 0,
+        "comparison": {
+          "browser": "158.0.4370.33",
+          "real": true,
+          "captures": 59,
+          "changed": [],
+          "computedDifferences": [],
+          "behaviorDifferences": [],
+          "errors": [],
+          "blocked": []
+        }
+      }
+    ],
+    "recheck": {
+      "suite": "contact-real",
+      "run": "2",
+      "exitCode": 0,
+      "comparison": {
+        "browser": "158.0.4370.33",
+        "real": true,
+        "captures": 59,
+        "changed": [],
+        "computedDifferences": [],
+        "behaviorDifferences": [],
+        "errors": [],
+        "blocked": []
+      }
+    }
+  },
+  "quality": [
+    {
+      "name": "live-cms",
+      "exitCode": 0
+    },
+    {
+      "name": "source-audit",
+      "exitCode": 0
+    },
+    {
+      "name": "lint",
+      "exitCode": 0
+    },
+    {
+      "name": "typecheck",
+      "exitCode": 0
+    },
+    {
+      "name": "seo-tests",
+      "exitCode": 0
+    },
+    {
+      "name": "seo-export",
+      "exitCode": 0
+    }
+  ],
+  "sourceUnchanged": true,
+  "recommendation": "GO",
+  "reasons": []
+}

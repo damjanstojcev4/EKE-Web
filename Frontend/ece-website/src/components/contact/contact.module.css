@@ -1,0 +1,16 @@
+/* Contact-wide focus policy includes the unchanged shared Header/Footer. */
+.page input:focus-visible,
+.page textarea:focus-visible,
+.page button:focus-visible,
+.page a:focus-visible {
+  outline: 2px solid var(--tirkiz);
+  outline-offset: 4px;
+}
+
+/* Keep the existing page-specific shared Footer geometry until its migration. */
+@media (min-width: 769px) {
+  .page :global(.footer) {
+    padding-top: calc(103 * var(--u));
+    height: calc(502 * var(--u));
+  }
+}

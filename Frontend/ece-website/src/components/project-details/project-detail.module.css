@@ -1,0 +1,52 @@
+/* Artwork composition, measured optical shifts and shared-component context only. */
+.artwork {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  overflow: hidden;
+  pointer-events: none;
+}
+.artwork img {
+  position: absolute;
+  left: calc(163 * var(--u));
+  top: 0;
+  max-width: none;
+  transform: scale(var(--s));
+  transform-origin: top left;
+}
+.facts :global(.stripe span:first-child) {
+  width: calc(162 * var(--u));
+}
+.partnerGrid img {
+  max-width: none;
+  transform: scale(var(--s));
+  transform-origin: top left;
+}
+.page :global(.footer) {
+  padding-top: calc(121 * var(--u));
+  height: calc(556 * var(--u));
+}
+@media (min-width: 1101px) {
+  .logo img {
+    transform: translateY(calc(-8 * var(--u)));
+  }
+  .summaryInner > div:last-child {
+    transform: translateY(calc(-8 * var(--u)));
+  }
+}
+@media (max-width: 1100px) {
+  .partnerGrid img {
+    transform: none;
+    width: 100%;
+    height: auto;
+  }
+  .page :global(.footer) {
+    height: auto;
+    min-height: calc(556 * var(--u));
+  }
+}
+@media (max-width: 700px) {
+  .page :global(.footer) {
+    padding-top: 75px;
+  }
+}

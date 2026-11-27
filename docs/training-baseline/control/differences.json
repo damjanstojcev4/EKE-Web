@@ -1,0 +1,35 @@
+{
+  "1440-populated": {
+    "differences": [],
+    "pixels": 6255,
+    "maxChannelDelta": 12,
+    "bounds": {
+      "left": 61,
+      "top": 1368,
+      "right": 1373,
+      "bottom": 2124
+    }
+  },
+  "1440-long": {
+    "differences": [],
+    "pixels": 2931,
+    "maxChannelDelta": 12,
+    "bounds": {
+      "left": 61,
+      "top": 1368,
+      "right": 1373,
+      "bottom": 1998
+    }
+  },
+  "1101-error": {
+    "differences": [],
+    "pixels": 5186,
+    "maxChannelDelta": 1,
+    "bounds": {
+      "left": 46,
+      "top": 439,
+      "right": 1054,
+      "bottom": 3592
+    }
+  }
+}

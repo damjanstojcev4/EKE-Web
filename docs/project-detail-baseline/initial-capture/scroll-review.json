@@ -1,0 +1,85 @@
+{
+  "reason": "History scroll restoration raced the full-page capture. New Detail normal-state captures are explicitly at scrollY=0; hover/focus/keyboard retain real scroll.",
+  "sourceCheckpoint": "81ae68bd",
+  "applicationStylingChanged": false,
+  "thresholdsChanged": false,
+  "earlierPhaseReferencesChanged": false,
+  "review": [
+    {
+      "key": "820-live",
+      "oldScrollY": 1146,
+      "newScrollY": 0,
+      "oldSha256": "d6ea55db33969ce2417f7b9d615a43d3853fee9572ecd4a6d90a8b2936ea75aa",
+      "newSha256": "3897f6407da5fd77ed64ffa9e21589a53a97fb0859a4dcf1b2b435c89bf805b1",
+      "stylesIncludingDimensionsAndTransformsIdentical": true,
+      "documentPositionAndOtherBehaviorIdentical": true,
+      "viewportRects": [
+        {
+          "old": {
+            "x": 69.609375,
+            "y": -1146,
+            "width": 750.3854370117188,
+            "height": 389.9271240234375,
+            "top": -1146,
+            "right": 819.9948120117188,
+            "bottom": -756.0728759765625,
+            "left": 69.609375
+          },
+          "corrected": {
+            "x": 69.609375,
+            "y": 0,
+            "width": 750.3854370117188,
+            "height": 389.9270935058594,
+            "top": 0,
+            "right": 819.9948120117188,
+            "bottom": 389.9270935058594,
+            "left": 69.609375
+          }
+        }
+      ]
+    },
+    {
+      "key": "390-live",
+      "oldScrollY": 2285,
+      "newScrollY": 0,
+      "oldSha256": "c884dc6774c6009f96c72dbc1c0923244cb11294bfb514387c02cd209f2a8c67",
+      "newSha256": "af7035ce5758106fdd17e9508b9dbb2278ea6676ca4486db2172a6ba2f21110a",
+      "stylesIncludingDimensionsAndTransformsIdentical": true,
+      "documentPositionAndOtherBehaviorIdentical": true,
+      "viewportRects": [
+        {
+          "old": {
+            "x": 163,
+            "y": -2285,
+            "width": 1757,
+            "height": 913,
+            "top": -2285,
+            "right": 1920,
+            "bottom": -1372,
+            "left": 163
+          },
+          "corrected": {
+            "x": 163,
+            "y": 0,
+            "width": 1757,
+            "height": 913,
+            "top": 0,
+            "right": 1920,
+            "bottom": 913,
+            "left": 163
+          }
+        }
+      ]
+    },
+    {
+      "key": "390-loading",
+      "oldScrollY": 88,
+      "newScrollY": 0,
+      "oldSha256": "ea0c4598840fa9e88c719819f707a20c465ceff549e75ee603148e24049181e7",
+      "newSha256": "19930d9fb5109d189cf200fc7b9821404c40dcdda224028ab95094ca8decece2",
+      "stylesIncludingDimensionsAndTransformsIdentical": true,
+      "documentPositionAndOtherBehaviorIdentical": true,
+      "viewportRects": []
+    }
+  ]
+}

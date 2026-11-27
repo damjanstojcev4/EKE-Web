@@ -1,0 +1,18 @@
+{
+  "captures": 81,
+  "rendering": {
+    "browser": "158.0.4370.33",
+    "renderer": "ANGLE (Intel, Intel(R) UHD Graphics (0x00009BC4) Direct3D11 vs_5_0 ps_5_0, D3D11-27.20.100.9664)",
+    "backend": "GaneshGL"
+  },
+  "changed": [
+    "769-ongoing",
+    "1099-empty"
+  ],
+  "computedDifferences": [],
+  "behaviorDifferences": [],
+  "requestsUnchanged": true,
+  "liveUnchanged": true,
+  "liveMediaUnchanged": true,
+  "errors": []
+}

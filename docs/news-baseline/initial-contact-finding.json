@@ -1,0 +1,32 @@
+{
+  "browser": "158.0.4370.33",
+  "real": true,
+  "captures": 59,
+  "changed": [
+    "1440-download-focus"
+  ],
+  "computedDifferences": [],
+  "behaviorDifferences": [],
+  "errors": [],
+  "blocked": [],
+  "changedPixels": 1,
+  "maxChannelDifference": 1,
+  "pixels": [
+    {
+      "x": 1273,
+      "y": 637,
+      "before": [
+        135,
+        162,
+        193,
+        255
+      ],
+      "after": [
+        135,
+        162,
+        192,
+        255
+      ]
+    }
+  ]
+}

@@ -1,0 +1,15 @@
+{
+  "suite": "contact-real",
+  "run": "2",
+  "exitCode": 0,
+  "comparison": {
+    "browser": "158.0.4370.33",
+    "real": true,
+    "captures": 59,
+    "changed": [],
+    "computedDifferences": [],
+    "behaviorDifferences": [],
+    "errors": [],
+    "blocked": []
+  }
+}

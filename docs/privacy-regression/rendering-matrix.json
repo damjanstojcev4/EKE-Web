@@ -1,0 +1,165 @@
+[
+  {
+    "source": "local",
+    "args": [
+      "--use-angle=d3d11"
+    ],
+    "browser": "158.0.4370.33",
+    "renderer": "ANGLE (NVIDIA, NVIDIA GeForce GTX 1650 (0x00001F99) Direct3D11 vs_5_0 ps_5_0, D3D11-32.0.16.1088)",
+    "backend": "GraphiteDawnD3D11",
+    "comparison": {
+      "count": 1031396,
+      "max": 104,
+      "width": 1440,
+      "height": 5271
+    }
+  },
+  {
+    "source": "local",
+    "args": [
+      "--use-angle=gl"
+    ],
+    "browser": "158.0.4370.33",
+    "renderer": "ANGLE (Google, Vulkan 1.3.0 (SwiftShader Device (Subzero) (0x0000C0DE)), SwiftShader driver-5.0.0)",
+    "backend": "None",
+    "comparison": {
+      "count": 1304601,
+      "max": 77,
+      "width": 1440,
+      "height": 5271
+    }
+  },
+  {
+    "source": "local",
+    "args": [
+      "--use-angle=d3d11on12"
+    ],
+    "browser": "158.0.4370.33",
+    "renderer": "ANGLE (NVIDIA, NVIDIA GeForce GTX 1650 (0x00001F99) Direct3D11on12 vs_5_0 ps_5_0, D3D11-32.0.16.1088)",
+    "backend": "GraphiteDawnD3D11",
+    "comparison": {
+      "count": 1031395,
+      "max": 104,
+      "width": 1440,
+      "height": 5271
+    }
+  },
+  {
+    "source": "local",
+    "args": [
+      "--use-angle=vulkan"
+    ],
+    "browser": "158.0.4370.33",
+    "renderer": "ANGLE (NVIDIA, Vulkan 1.4.341 (NVIDIA NVIDIA GeForce GTX 1650 (0x00001F99)), NVIDIA-610.88.0.0)",
+    "backend": "GaneshGL",
+    "comparison": {
+      "count": 1217467,
+      "max": 77,
+      "width": 1440,
+      "height": 5271
+    }
+  },
+  {
+    "source": "local",
+    "args": [
+      "--enable-gpu-rasterization"
+    ],
+    "browser": "158.0.4370.33",
+    "renderer": "ANGLE (NVIDIA, NVIDIA GeForce GTX 1650 (0x00001F99) Direct3D11 vs_5_0 ps_5_0, D3D11-32.0.16.1088)",
+    "backend": "GraphiteDawnD3D11",
+    "comparison": {
+      "count": 1031396,
+      "max": 104,
+      "width": 1440,
+      "height": 5271
+    }
+  },
+  {
+    "source": "local",
+    "args": [
+      "--disable-skia-renderer"
+    ],
+    "browser": "158.0.4370.33",
+    "renderer": "ANGLE (NVIDIA, NVIDIA GeForce GTX 1650 (0x00001F99) Direct3D11 vs_5_0 ps_5_0, D3D11-32.0.16.1088)",
+    "backend": "GraphiteDawnD3D11",
+    "comparison": {
+      "count": 1031396,
+      "max": 104,
+      "width": 1440,
+      "height": 5271
+    }
+  },
+  {
+    "source": "local",
+    "args": [
+      "--disable-features=SkiaGraphite"
+    ],
+    "browser": "158.0.4370.33",
+    "renderer": "ANGLE (NVIDIA, NVIDIA GeForce GTX 1650 (0x00001F99) Direct3D11 vs_5_0 ps_5_0, D3D11-32.0.16.1088)",
+    "backend": "GaneshGL",
+    "comparison": {
+      "count": 1008465,
+      "max": 56,
+      "width": 1440,
+      "height": 5271
+    }
+  },
+  {
+    "source": "local",
+    "args": [
+      "--disable-gpu-rasterization"
+    ],
+    "browser": "158.0.4370.33",
+    "renderer": "ANGLE (NVIDIA, NVIDIA GeForce GTX 1650 (0x00001F99) Direct3D11 vs_5_0 ps_5_0, D3D11-32.0.16.1088)",
+    "backend": "GraphiteDawnD3D11",
+    "comparison": {
+      "count": 1217468,
+      "max": 77,
+      "width": 1440,
+      "height": 5271
+    }
+  },
+  {
+    "source": "local",
+    "args": [
+      "--use-angle=warp"
+    ],
+    "browser": "158.0.4370.33",
+    "renderer": "ANGLE (Google, Vulkan 1.3.0 (SwiftShader Device (Subzero) (0x0000C0DE)), SwiftShader driver-5.0.0)",
+    "backend": "None",
+    "comparison": {
+      "count": 1304601,
+      "max": 77,
+      "width": 1440,
+      "height": 5271
+    }
+  },
+  {
+    "source": "local",
+    "args": [
+      "--force_low_power_gpu"
+    ],
+    "browser": "158.0.4370.33",
+    "renderer": "ANGLE (Intel, Intel(R) UHD Graphics (0x00009BC4) Direct3D11 vs_5_0 ps_5_0, D3D11-27.20.100.9664)",
+    "backend": "GaneshGL",
+    "comparison": {
+      "count": 0,
+      "max": 0,
+      "width": 1440,
+      "height": 5271
+    }
+  },
+  {
+    "source": "staging",
+    "args": [],
+    "browser": "158.0.4370.33",
+    "renderer": "ANGLE (NVIDIA, NVIDIA GeForce GTX 1650 (0x00001F99) Direct3D11 vs_5_0 ps_5_0, D3D11-32.0.16.1088)",
+    "backend": "GraphiteDawnD3D11",
+    "comparison": {
+      "count": 1031396,
+      "max": 104,
+      "width": 1440,
+      "height": 5271
+    }
+  }
+]

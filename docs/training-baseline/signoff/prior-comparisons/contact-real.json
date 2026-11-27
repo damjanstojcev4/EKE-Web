@@ -1,0 +1,13 @@
+{
+  "browser": "158.0.4370.33",
+  "real": true,
+  "captures": 59,
+  "changed": [
+    "1440-download-focus",
+    "820-message-focus"
+  ],
+  "computedDifferences": [],
+  "behaviorDifferences": [],
+  "errors": [],
+  "blocked": []
+}

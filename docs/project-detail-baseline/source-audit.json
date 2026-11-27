@@ -1,0 +1,666 @@
+{
+  "checkpoint": "81ae68bd",
+  "before": {
+    "rules": 109,
+    "declarations": 302
+  },
+  "after": {
+    "rules": 10,
+    "declarations": 25
+  },
+  "selectors": [
+    {
+      "selector": ".page",
+      "media": null,
+      "declarations": 2
+    },
+    {
+      "selector": ".hero",
+      "media": null,
+      "declarations": 4
+    },
+    {
+      "selector": ".artwork",
+      "media": null,
+      "declarations": 5
+    },
+    {
+      "selector": ".artwork img",
+      "media": null,
+      "declarations": 6
+    },
+    {
+      "selector": ".label",
+      "media": null,
+      "declarations": 4
+    },
+    {
+      "selector": ".hero h1",
+      "media": null,
+      "declarations": 5
+    },
+    {
+      "selector": ".facts",
+      "media": null,
+      "declarations": 6
+    },
+    {
+      "selector": ".facts :global(.stripe span:first-child)",
+      "media": null,
+      "declarations": 1
+    },
+    {
+      "selector": ".firstRow,\n.secondRow",
+      "media": null,
+      "declarations": 2
+    },
+    {
+      "selector": ".firstRow",
+      "media": null,
+      "declarations": 1
+    },
+    {
+      "selector": ".secondRow",
+      "media": null,
+      "declarations": 2
+    },
+    {
+      "selector": ".firstRow > div,\n.secondRow > div",
+      "media": null,
+      "declarations": 4
+    },
+    {
+      "selector": ".firstRow > div:first-child,\n.secondRow > div:first-child",
+      "media": null,
+      "declarations": 2
+    },
+    {
+      "selector": ".secondRow > div",
+      "media": null,
+      "declarations": 2
+    },
+    {
+      "selector": ".firstRow > div::before,\n.secondRow > div::before,\n.topics::before",
+      "media": null,
+      "declarations": 7
+    },
+    {
+      "selector": ".firstRow > div:first-child::before,\n.secondRow > div:first-child::before",
+      "media": null,
+      "declarations": 1
+    },
+    {
+      "selector": ".secondRow > div::before",
+      "media": null,
+      "declarations": 2
+    },
+    {
+      "selector": ".firstRow > div:nth-child(3)",
+      "media": null,
+      "declarations": 1
+    },
+    {
+      "selector": ".firstRow > div:nth-child(3)::before",
+      "media": null,
+      "declarations": 1
+    },
+    {
+      "selector": ".facts dd",
+      "media": null,
+      "declarations": 2
+    },
+    {
+      "selector": ".status",
+      "media": null,
+      "declarations": 1
+    },
+    {
+      "selector": ".dates > div",
+      "media": null,
+      "declarations": 3
+    },
+    {
+      "selector": ".topics",
+      "media": null,
+      "declarations": 3
+    },
+    {
+      "selector": ".topics::before",
+      "media": null,
+      "declarations": 2
+    },
+    {
+      "selector": ".topics ul",
+      "media": null,
+      "declarations": 5
+    },
+    {
+      "selector": ".topics li",
+      "media": null,
+      "declarations": 4
+    },
+    {
+      "selector": ".summary",
+      "media": null,
+      "declarations": 4
+    },
+    {
+      "selector": ".summaryInner",
+      "media": null,
+      "declarations": 8
+    },
+    {
+      "selector": ".logo",
+      "media": null,
+      "declarations": 7
+    },
+    {
+      "selector": ".logo img",
+      "media": null,
+      "declarations": 2
+    },
+    {
+      "selector": ".summary h2",
+      "media": null,
+      "declarations": 4
+    },
+    {
+      "selector": ".summary p",
+      "media": null,
+      "declarations": 3
+    },
+    {
+      "selector": ".narrative",
+      "media": null,
+      "declarations": 2
+    },
+    {
+      "selector": ".textSection",
+      "media": null,
+      "declarations": 4
+    },
+    {
+      "selector": ".textSection::before,\n.textSection:last-child::after",
+      "media": null,
+      "declarations": 7
+    },
+    {
+      "selector": ".textSection:nth-child(2)",
+      "media": null,
+      "declarations": 2
+    },
+    {
+      "selector": ".textSection:last-child",
+      "media": null,
+      "declarations": 3
+    },
+    {
+      "selector": ".textSection:last-child::after",
+      "media": null,
+      "declarations": 2
+    },
+    {
+      "selector": ".textSection h2,\n.resources h2",
+      "media": null,
+      "declarations": 4
+    },
+    {
+      "selector": ".textSection > div",
+      "media": null,
+      "declarations": 4
+    },
+    {
+      "selector": ".textSection p,\n.resources p",
+      "media": null,
+      "declarations": 2
+    },
+    {
+      "selector": ".resources",
+      "media": null,
+      "declarations": 7
+    },
+    {
+      "selector": ".partners,\n.download",
+      "media": null,
+      "declarations": 3
+    },
+    {
+      "selector": ".partners",
+      "media": null,
+      "declarations": 2
+    },
+    {
+      "selector": ".partners > div:first-child",
+      "media": null,
+      "declarations": 1
+    },
+    {
+      "selector": ".partners p",
+      "media": null,
+      "declarations": 1
+    },
+    {
+      "selector": ".partnerGrid",
+      "media": null,
+      "declarations": 3
+    },
+    {
+      "selector": ".partnerGrid > div",
+      "media": null,
+      "declarations": 2
+    },
+    {
+      "selector": ".partnerGrid img",
+      "media": null,
+      "declarations": 3
+    },
+    {
+      "selector": ".download",
+      "media": null,
+      "declarations": 3
+    },
+    {
+      "selector": ".downloadButton",
+      "media": null,
+      "declarations": 13
+    },
+    {
+      "selector": ".downloadButton:not([aria-disabled=\"true\"]):is(:hover, :active, :focus-visible)",
+      "media": null,
+      "declarations": 3
+    },
+    {
+      "selector": ".downloadButton[aria-disabled]",
+      "media": null,
+      "declarations": 1
+    },
+    {
+      "selector": ".unavailable",
+      "media": null,
+      "declarations": 2
+    },
+    {
+      "selector": ".unavailable > span",
+      "media": null,
+      "declarations": 10
+    },
+    {
+      "selector": ".unavailable:hover > span,\n.unavailable:focus-within > span",
+      "media": null,
+      "declarations": 1
+    },
+    {
+      "selector": ".page :global(.footer)",
+      "media": null,
+      "declarations": 2
+    },
+    {
+      "selector": ".pending",
+      "media": null,
+      "declarations": 2
+    },
+    {
+      "selector": ".pending h1",
+      "media": null,
+      "declarations": 1
+    },
+    {
+      "selector": ".pending p",
+      "media": null,
+      "declarations": 1
+    },
+    {
+      "selector": ".pending a",
+      "media": null,
+      "declarations": 1
+    },
+    {
+      "selector": ".logo img",
+      "media": "(min-width: 1101px)",
+      "declarations": 1
+    },
+    {
+      "selector": ".textSection:first-child",
+      "media": "(min-width: 1101px)",
+      "declarations": 1
+    },
+    {
+      "selector": ".textSection:nth-child(2)",
+      "media": "(min-width: 1101px)",
+      "declarations": 1
+    },
+    {
+      "selector": ".download > div:first-child > p",
+      "media": "(min-width: 1101px)",
+      "declarations": 1
+    },
+    {
+      "selector": ".secondRow",
+      "media": "(min-width: 1101px)",
+      "declarations": 1
+    },
+    {
+      "selector": ".topics",
+      "media": "(min-width: 1101px)",
+      "declarations": 1
+    },
+    {
+      "selector": ".topics li",
+      "media": "(min-width: 1101px)",
+      "declarations": 1
+    },
+    {
+      "selector": ".summaryInner > div:last-child",
+      "media": "(min-width: 1101px)",
+      "declarations": 1
+    },
+    {
+      "selector": ".hero",
+      "media": "(max-width: 1100px)",
+      "declarations": 2
+    },
+    {
+      "selector": ".hero h1",
+      "media": "(max-width: 1100px)",
+      "declarations": 4
+    },
+    {
+      "selector": ".label",
+      "media": "(max-width: 1100px)",
+      "declarations": 2
+    },
+    {
+      "selector": ".facts",
+      "media": "(max-width: 1100px)",
+      "declarations": 4
+    },
+    {
+      "selector": ".firstRow,\n  .secondRow",
+      "media": "(max-width: 1100px)",
+      "declarations": 3
+    },
+    {
+      "selector": ".firstRow > div,\n  .secondRow > div,\n  .firstRow > div:first-child,\n  .secondRow > div:first-child,\n  .firstRow > div:nth-child(3)",
+      "media": "(max-width: 1100px)",
+      "declarations": 3
+    },
+    {
+      "selector": ".firstRow > div::before,\n  .secondRow > div::before,\n  .firstRow > div:nth-child(3)::before,\n  .topics::before",
+      "media": "(max-width: 1100px)",
+      "declarations": 4
+    },
+    {
+      "selector": ".dates > div",
+      "media": "(max-width: 1100px)",
+      "declarations": 1
+    },
+    {
+      "selector": ".topics",
+      "media": "(max-width: 1100px)",
+      "declarations": 2
+    },
+    {
+      "selector": ".topics ul",
+      "media": "(max-width: 1100px)",
+      "declarations": 3
+    },
+    {
+      "selector": ".topics li",
+      "media": "(max-width: 1100px)",
+      "declarations": 3
+    },
+    {
+      "selector": ".summary",
+      "media": "(max-width: 1100px)",
+      "declarations": 2
+    },
+    {
+      "selector": ".summaryInner",
+      "media": "(max-width: 1100px)",
+      "declarations": 4
+    },
+    {
+      "selector": ".logo",
+      "media": "(max-width: 1100px)",
+      "declarations": 2
+    },
+    {
+      "selector": ".logo img",
+      "media": "(max-width: 1100px)",
+      "declarations": 1
+    },
+    {
+      "selector": ".summary h2",
+      "media": "(max-width: 1100px)",
+      "declarations": 3
+    },
+    {
+      "selector": ".summary p",
+      "media": "(max-width: 1100px)",
+      "declarations": 2
+    },
+    {
+      "selector": ".narrative",
+      "media": "(max-width: 1100px)",
+      "declarations": 2
+    },
+    {
+      "selector": ".textSection,\n  .textSection:nth-child(2),\n  .textSection:last-child",
+      "media": "(max-width: 1100px)",
+      "declarations": 2
+    },
+    {
+      "selector": ".textSection h2,\n  .resources h2",
+      "media": "(max-width: 1100px)",
+      "declarations": 2
+    },
+    {
+      "selector": ".textSection > div",
+      "media": "(max-width: 1100px)",
+      "declarations": 3
+    },
+    {
+      "selector": ".textSection p,\n  .resources p",
+      "media": "(max-width: 1100px)",
+      "declarations": 2
+    },
+    {
+      "selector": ".resources",
+      "media": "(max-width: 1100px)",
+      "declarations": 4
+    },
+    {
+      "selector": ".partners,\n  .download",
+      "media": "(max-width: 1100px)",
+      "declarations": 4
+    },
+    {
+      "selector": ".partnerGrid",
+      "media": "(max-width: 1100px)",
+      "declarations": 2
+    },
+    {
+      "selector": ".partnerGrid > div",
+      "media": "(max-width: 1100px)",
+      "declarations": 3
+    },
+    {
+      "selector": ".partnerGrid img",
+      "media": "(max-width: 1100px)",
+      "declarations": 3
+    },
+    {
+      "selector": ".downloadButton",
+      "media": "(max-width: 1100px)",
+      "declarations": 5
+    },
+    {
+      "selector": ".page :global(.footer)",
+      "media": "(max-width: 1100px)",
+      "declarations": 2
+    },
+    {
+      "selector": ".hero",
+      "media": "(max-width: 700px)",
+      "declarations": 1
+    },
+    {
+      "selector": ".hero h1",
+      "media": "(max-width: 700px)",
+      "declarations": 4
+    },
+    {
+      "selector": ".firstRow,\n  .secondRow",
+      "media": "(max-width: 700px)",
+      "declarations": 1
+    },
+    {
+      "selector": ".summary",
+      "media": "(max-width: 700px)",
+      "declarations": 1
+    },
+    {
+      "selector": ".summaryInner",
+      "media": "(max-width: 700px)",
+      "declarations": 2
+    },
+    {
+      "selector": ".logo",
+      "media": "(max-width: 700px)",
+      "declarations": 2
+    },
+    {
+      "selector": ".narrative",
+      "media": "(max-width: 700px)",
+      "declarations": 1
+    },
+    {
+      "selector": ".textSection > div",
+      "media": "(max-width: 700px)",
+      "declarations": 2
+    },
+    {
+      "selector": ".resources",
+      "media": "(max-width: 700px)",
+      "declarations": 1
+    },
+    {
+      "selector": ".partners,\n  .download",
+      "media": "(max-width: 700px)",
+      "declarations": 1
+    },
+    {
+      "selector": ".page :global(.footer)",
+      "media": "(max-width: 700px)",
+      "declarations": 1
+    }
+  ],
+  "originalConsumers": [
+    "src/components/project-details/PublicProject.tsx"
+  ],
+  "originalClassConsumers": [
+    "page",
+    "pending",
+    "hero",
+    "artwork",
+    "label",
+    "facts",
+    "firstRow",
+    "secondRow",
+    "topics",
+    "summary",
+    "summaryInner",
+    "logo",
+    "narrative",
+    "resources",
+    "partners",
+    "partnerGrid",
+    "download",
+    "downloadButton"
+  ],
+  "unusedClassSelectors": [
+    "status",
+    "dates",
+    "textSection",
+    "unavailable"
+  ],
+  "projectImageHasNoImporter": true,
+  "listingStylesShared": false,
+  "logicUnchangedExceptStyling": true,
+  "invariants": {
+    "src/app/projects/[slug]/page.tsx": {
+      "sha256": "34a19cff6011974e977fa60e0dddc2c65c757296481c0ae275c3003aabbc9ede",
+      "unchanged": true
+    },
+    "src/components/project-details/ProjectImage.tsx": {
+      "sha256": "37085f4ce222044712e9566b689603a269dff82fdd39c3cd325f77f4c88a381f",
+      "unchanged": true
+    },
+    "src/components/news/ArticleContent.tsx": {
+      "sha256": "c8e0fcecab3254e8b86f4b134933509be541b6591577e11e388200aeae19c2f7",
+      "unchanged": true
+    },
+    "src/components/news/PendingControl.tsx": {
+      "sha256": "ada1e8ee3cb56deffa76f50ebbdc1f9959c66538d548e2700c4297c4f7cf3f92",
+      "unchanged": true
+    },
+    "src/lib/api/projects.ts": {
+      "sha256": "230d8c72e04b739835a78163422f081563a2af6deac457f394e192deede8221f",
+      "unchanged": true
+    },
+    "src/lib/api/news.ts": {
+      "sha256": "ec6f5a10e90c4bc896656e8883e4c980a2d77cc2cc5b4fb8f911894cb963f631",
+      "unchanged": true
+    },
+    "src/lib/api/client.ts": {
+      "sha256": "28ed288b562f7147b6eee9a7c5aff14070a8fc710550ccfddb611e8b5ca0d82a",
+      "unchanged": true
+    },
+    "src/lib/api/use-api.ts": {
+      "sha256": "30791472545e7c0993c99ef0deb7406c273e842d498c603d4ea6725e30c0a8a6",
+      "unchanged": true
+    },
+    "src/content/route-manifest.json": {
+      "sha256": "009e7829593b14e1c8ec75a9718064e07b5103bf90c418b972f9c490e08d8f1a",
+      "unchanged": true
+    },
+    "src/components/layout/Header.tsx": {
+      "sha256": "b7f880fc7d5ac6b25d4463369ee3a49b10b1376448edbbff9686cb7143b5f050",
+      "unchanged": true
+    },
+    "src/components/layout/Footer.tsx": {
+      "sha256": "1205cb276fa494522332fdfb59cb0721c24a77b1d07eb6582a14b0d5c22afae3",
+      "unchanged": true
+    },
+    "src/components/ui.tsx": {
+      "sha256": "85e5a20de65e1dfe968bdbb08cdedd6023d9cadd0e10078050ecb2447b709fa0",
+      "unchanged": true
+    },
+    "src/app/globals.css": {
+      "sha256": "189880a190d0179f2544282b839f3450536608082e81ee006af13789dad21b4e",
+      "unchanged": true
+    },
+    "src/styles/theme.css": {
+      "sha256": "fa70e170d553e89eb6f2967c3559998b1b15dbd75049ffcd28c7d8134a979e47",
+      "unchanged": true
+    },
+    "src/app/projects/page.tsx": {
+      "sha256": "48103685bc9a1375816cad1d7d85fe3cabf4c9af2eb6afc1af72013c6e664fad",
+      "unchanged": true
+    },
+    "src/components/projects/ProjectsList.tsx": {
+      "sha256": "183a5c1dc31b909ec2f2b5127d5054bb62d7fe12f21b7d0f31acfd4adcdb43f6",
+      "unchanged": true
+    },
+    "src/components/projects/ProjectCard.tsx": {
+      "sha256": "86f1ba46d07c74486e40701efce369f916ec4bd47ff18c618bf2c4b301e2bda5",
+      "unchanged": true
+    },
+    "src/components/projects/projects.module.css": {
+      "sha256": "92d9785c6915923cd338e68515edfa75ead5388c83eb9c36f6f211410f92846e",
+      "unchanged": true
+    }
+  },
+  "legacyRouteCssRemoved": true,
+  "legacyRouteCssUnimported": true
+}

@@ -1,0 +1,34 @@
+[
+  {
+    "name": "privacy",
+    "exitCode": 0
+  },
+  {
+    "name": "privacy-edges",
+    "exitCode": 0
+  },
+  {
+    "name": "shared-routes",
+    "exitCode": 0
+  },
+  {
+    "name": "shared-gallery",
+    "exitCode": 0
+  },
+  {
+    "name": "shared-native",
+    "exitCode": 0
+  },
+  {
+    "name": "contact-software",
+    "exitCode": 0
+  },
+  {
+    "name": "contact-real",
+    "exitCode": 0
+  },
+  {
+    "name": "integration",
+    "exitCode": 0
+  }
+]

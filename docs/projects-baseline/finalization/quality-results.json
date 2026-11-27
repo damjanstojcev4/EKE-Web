@@ -1,0 +1,39 @@
+[
+  {
+    "name": "lint",
+    "command": [
+      "node",
+      "node_modules/eslint/bin/eslint.js",
+      "src"
+    ],
+    "exitCode": 0
+  },
+  {
+    "name": "typecheck",
+    "command": [
+      "node",
+      "node_modules/typescript/bin/tsc",
+      "--noEmit"
+    ],
+    "exitCode": 0
+  },
+  {
+    "name": "test:seo",
+    "command": [
+      "node",
+      "--experimental-strip-types",
+      "--test",
+      "tests/seo.test.mjs"
+    ],
+    "exitCode": 0
+  },
+  {
+    "name": "verify:seo",
+    "command": [
+      "node",
+      "--experimental-strip-types",
+      "scripts/verify-seo.mjs"
+    ],
+    "exitCode": 0
+  }
+]

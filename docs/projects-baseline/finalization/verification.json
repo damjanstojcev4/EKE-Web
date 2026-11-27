@@ -1,0 +1,139 @@
+{
+  "decision": "GO for Phase 4C.2; no Project Details migration performed",
+  "updatedReferences": [
+    "1099-empty",
+    "769-ongoing"
+  ],
+  "other79PngsUnchanged": true,
+  "otherManifestFieldsUnchanged": true,
+  "all81ReferenceHashesVerified": true,
+  "unchangedSourceStrict": {
+    "cases": 81,
+    "passed": 81
+  },
+  "tailwindStrict": {
+    "cases": 81,
+    "passed": 81
+  },
+  "replacementCaptureRetries": {
+    "control": {
+      "1099-empty": 0,
+      "769-ongoing": 0
+    },
+    "after": {
+      "1099-empty": 0,
+      "769-ongoing": 0
+    }
+  },
+  "originalTailwindExactParity": true,
+  "computedBehaviorRequestsDataMediaIdentical": true,
+  "sourceVerification": {
+    "checkpoint": "53f718e7",
+    "exitCode": 0,
+    "sourceHashesVerified": true
+  },
+  "renderer": {
+    "browser": "158.0.4370.33",
+    "renderer": "ANGLE (Intel, Intel(R) UHD Graphics (0x00009BC4) Direct3D11 vs_5_0 ps_5_0, D3D11-27.20.100.9664)",
+    "backend": "GaneshGL"
+  },
+  "regression": [
+    {
+      "name": "news-components",
+      "exitCode": 0
+    },
+    {
+      "name": "projects",
+      "exitCode": 0
+    },
+    {
+      "name": "news-production",
+      "exitCode": 0
+    },
+    {
+      "name": "news-listing",
+      "exitCode": 0
+    },
+    {
+      "name": "privacy",
+      "exitCode": 0
+    },
+    {
+      "name": "privacy-edges",
+      "exitCode": 0
+    },
+    {
+      "name": "shared-routes",
+      "exitCode": 0
+    },
+    {
+      "name": "shared-gallery",
+      "exitCode": 0
+    },
+    {
+      "name": "shared-native",
+      "exitCode": 0
+    },
+    {
+      "name": "contact-software",
+      "exitCode": 0
+    },
+    {
+      "name": "contact-real",
+      "exitCode": 0
+    },
+    {
+      "name": "integration",
+      "exitCode": 0
+    }
+  ],
+  "integration": {
+    "tests": 18,
+    "passed": 18
+  },
+  "productionBuildsVerified": true,
+  "quality": [
+    {
+      "name": "lint",
+      "command": [
+        "node",
+        "node_modules/eslint/bin/eslint.js",
+        "src"
+      ],
+      "exitCode": 0
+    },
+    {
+      "name": "typecheck",
+      "command": [
+        "node",
+        "node_modules/typescript/bin/tsc",
+        "--noEmit"
+      ],
+      "exitCode": 0
+    },
+    {
+      "name": "test:seo",
+      "command": [
+        "node",
+        "--experimental-strip-types",
+        "--test",
+        "tests/seo.test.mjs"
+      ],
+      "exitCode": 0
+    },
+    {
+      "name": "verify:seo",
+      "command": [
+        "node",
+        "--experimental-strip-types",
+        "scripts/verify-seo.mjs"
+      ],
+      "exitCode": 0
+    }
+  ],
+  "applicationSourceUnchanged": true,
+  "strictCaptureHarnessUnchanged": true,
+  "harnessSha256": "a99894b4a4653b31048bddfe7ea9efaaa517ca592e87d4d45940eb5a962ab150",
+  "thresholdsChanged": false,
+  "maskingAdded": false
+}

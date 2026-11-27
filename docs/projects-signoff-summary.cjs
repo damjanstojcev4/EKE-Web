@@ -1,0 +1,18 @@
+const fs=require('node:fs'),path=require('node:path'),{gzipSync,gunzipSync}=require('node:zlib');
+const base=path.join(__dirname,'projects-baseline'),dir=path.join(base,'signoff');
+const read=file=>JSON.parse(fs.readFileSync(file));
+const probes=Object.fromEntries(['original','tailwind'].map(label=>[label,read(path.join(dir,label,'probe.json'))]));
+for(const [label,value]of Object.entries(probes))fs.writeFileSync(path.join(dir,label,'probe.json.gz'),gzipSync(JSON.stringify(value)));
+const original=probes.original,tailwind=probes.tailwind;
+const cases=original.cases.map(a=>{const b=tailwind.cases.find(b=>b.width===a.width&&b.name===a.name);return {width:a.width,state:a.name,pngIdentical:a.sha256===b.sha256,detailsIdentical:JSON.stringify(a.details)===JSON.stringify(b.details),originalSha256:a.sha256,tailwindSha256:b.sha256,matchesApproved:a.matchesReference&&b.matchesReference};});
+const readiness=Object.fromEntries(Object.entries(probes).map(([label,p])=>[label,{captures:p.cases.length,errors:p.errors,fixtureSha256:p.fixturesSha256,rendering:p.rendering,viewportsCorrect:p.cases.every(c=>c.details.viewport.innerWidth===c.width&&c.details.viewport.innerHeight===1000&&c.details.viewport.dpr===1&&c.details.viewport.visualScale===1&&c.details.viewport.scrollWidth===c.width),fontsReady:p.cases.every(c=>c.details.fonts.status==='loaded'),imagesReady:p.cases.every(c=>c.details.images.every(i=>i.complete&&i.naturalWidth>0&&i.naturalHeight>0))}]));
+const assets=Object.keys(original.assets).filter(url=>!url.includes('/_next/')).map(url=>({url,identical:original.assets[url].sha256===tailwind.assets[url]?.sha256}));
+const responsive=tailwind.cases.filter(c=>c.name==='ongoing').map(c=>({width:c.width,media:c.details.media,hero:c.details.layout[0],projects:c.details.layout.find(e=>e.text.startsWith('Ongoing')),cards:c.details.layout.filter(e=>e.tag==='ARTICLE')}));
+const current=Object.fromEntries(['before','control','after'].map(label=>[label,JSON.parse(gunzipSync(fs.readFileSync(path.join(base,label,'manifest.json.gz'))))]));
+const {createHash}=require('node:crypto');
+const approvedPNGsIntact=Object.entries(current.before.captures).every(([key,hash])=>createHash('sha256').update(fs.readFileSync(path.join(base,'before',key+'.png'))).digest('hex')===hash);
+if(!approvedPNGsIntact)throw Error('Approved capture integrity failed');
+const finalCases=Object.keys(current.before.captures).map(key=>({key,originalMatchesApproved:current.control.captures[key]===current.before.captures[key],tailwindMatchesApproved:current.after.captures[key]===current.before.captures[key],originalEqualsTailwind:current.control.captures[key]===current.after.captures[key]}));
+const result={approvedPNGsIntact,readiness,cases,assets,responsive,staging:{release:tailwind.stagingRelease,captures:tailwind.staging,assets:read(path.join(dir,'tailwind/staging-assets.json'))},final:{cases:finalCases,control:read(path.join(base,'control/comparison.json')),tailwind:read(path.join(base,'after/comparison.json')),regression:read(path.join(base,'regression.json'))}};
+fs.writeFileSync(path.join(dir,'summary.json'),JSON.stringify(result,null,2));
+console.log(JSON.stringify({readiness,probeDifferences:cases.filter(c=>!c.pngIdentical||!c.detailsIdentical),assetDifferences:assets.filter(a=>!a.identical),finalDifferences:finalCases.filter(c=>!c.originalMatchesApproved||!c.tailwindMatchesApproved),final:result.final.regression},null,2));

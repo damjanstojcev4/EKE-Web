@@ -1,0 +1,58 @@
+[
+  {
+    "name": "initial",
+    "sha256": "1500040d42605f43e8f9c4cb1f4f83b6bb1fd2550e632a2285f9c02495d2ebf1",
+    "matchesReference": false,
+    "scrollY": 562,
+    "width": 1440,
+    "height": 1000
+  },
+  {
+    "name": "wait",
+    "sha256": "1500040d42605f43e8f9c4cb1f4f83b6bb1fd2550e632a2285f9c02495d2ebf1",
+    "matchesReference": false,
+    "scrollY": 562,
+    "width": 1440,
+    "height": 1000
+  },
+  {
+    "name": "animations-disabled",
+    "sha256": "1500040d42605f43e8f9c4cb1f4f83b6bb1fd2550e632a2285f9c02495d2ebf1",
+    "matchesReference": false,
+    "scrollY": 562,
+    "width": 1440,
+    "height": 1000
+  },
+  {
+    "name": "foreground",
+    "sha256": "1500040d42605f43e8f9c4cb1f4f83b6bb1fd2550e632a2285f9c02495d2ebf1",
+    "matchesReference": false,
+    "scrollY": 562,
+    "width": 1440,
+    "height": 1000
+  },
+  {
+    "name": "scroll-reset",
+    "sha256": "1500040d42605f43e8f9c4cb1f4f83b6bb1fd2550e632a2285f9c02495d2ebf1",
+    "matchesReference": false,
+    "scrollY": 562,
+    "width": 1440,
+    "height": 1000
+  },
+  {
+    "name": "width-reset",
+    "sha256": "1500040d42605f43e8f9c4cb1f4f83b6bb1fd2550e632a2285f9c02495d2ebf1",
+    "matchesReference": false,
+    "scrollY": 562,
+    "width": 1440,
+    "height": 1000
+  },
+  {
+    "name": "height-reset",
+    "sha256": "1500040d42605f43e8f9c4cb1f4f83b6bb1fd2550e632a2285f9c02495d2ebf1",
+    "matchesReference": false,
+    "scrollY": 562,
+    "width": 1440,
+    "height": 1000
+  }
+]

@@ -1,0 +1,38 @@
+[
+  {
+    "name": "training",
+    "exitCode": 0
+  },
+  {
+    "name": "prior-visuals-and-integration",
+    "exitCode": 1
+  },
+  {
+    "name": "project-details",
+    "exitCode": 0
+  },
+  {
+    "name": "live-cms",
+    "exitCode": 0
+  },
+  {
+    "name": "source-audit",
+    "exitCode": 0
+  },
+  {
+    "name": "lint",
+    "exitCode": 0
+  },
+  {
+    "name": "typecheck",
+    "exitCode": 0
+  },
+  {
+    "name": "seo-tests",
+    "exitCode": 0
+  },
+  {
+    "name": "seo-export",
+    "exitCode": 0
+  }
+]

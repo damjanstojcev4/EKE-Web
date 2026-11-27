@@ -1,0 +1,14 @@
+{
+  "case": "1440-download-focus",
+  "profile": "default Edge",
+  "pixels": 1,
+  "maxChannelDifference": 1,
+  "bounds": {
+    "minx": 1273,
+    "miny": 637,
+    "maxx": 1273,
+    "maxy": 637
+  },
+  "computedDifferences": 0,
+  "behaviorDifferences": 0
+}

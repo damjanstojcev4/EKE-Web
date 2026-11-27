@@ -1,0 +1,35 @@
+{
+  "review": "reference-review.md",
+  "reviewedBy": "Codex, manual evidence review under user authorization",
+  "sourceCheckpoint": "1c18dd26",
+  "oldManifestSha256": "2e36dea14eae95bb05c3b94d3912baa2b2d8a70ae9ad27d2de5dc424ed48129c",
+  "changed": [
+    {
+      "key": "1440-long",
+      "old": "1aba42c1e6c0dc1c0b874e43d2058593d5096081a47dc3db154594be21f4fa52",
+      "accepted": "0a8b4a4b4fc8c6aefad2be4c8ff4fef4ab1a9ebb4e8f181071fd28d91e27959e",
+      "source": "original-proposal/1440-long.png"
+    },
+    {
+      "key": "701-populated",
+      "old": "eaabe76a4cc72b7b6408e64541c4df0566815e35ca34ef2e0f053e0150be6073",
+      "accepted": "362f7aa2e701821b88a0fb7109480dbafbcc52c32c41b0520bad5a8186b3bcff",
+      "source": "original-proposal/701-populated.png"
+    },
+    {
+      "key": "1100-populated",
+      "old": "6355a3caba6a52190af16d18921abdab55d6e8cfe0079b136f3f7b56bbcfb577",
+      "accepted": "ed10cc32c7aa870d57d2d05cc4d0d7bff156bfabf62743d98019b67975ad359d",
+      "source": "original-proposal/1100-populated.png"
+    },
+    {
+      "key": "1101-error",
+      "old": "c4201207b1ffc402e07ceb60cef14d5b22b56078ca45bc10f55e772347b0fd85",
+      "accepted": "ec1c9c8f9ad90d73f0382bfb255815623de71209e676175633722b45f5bf614c",
+      "source": "original-proposal/1101-error.png"
+    }
+  ],
+  "unchangedCaptures": 74,
+  "metadataChanged": [],
+  "acceptedManifestSha256": "bc531d90323b759acadab9c38eac02b6705559f085de39785ff834ffcf466e8d"
+}

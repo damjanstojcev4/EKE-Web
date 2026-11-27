@@ -1,0 +1,30 @@
+[
+  {
+    "name": "live-original-build",
+    "exitCode": 0
+  },
+  {
+    "name": "live-original-normalize",
+    "exitCode": 0
+  },
+  {
+    "name": "live-before",
+    "exitCode": 0
+  },
+  {
+    "name": "live-control",
+    "exitCode": 0
+  },
+  {
+    "name": "live-restored-build",
+    "exitCode": 0
+  },
+  {
+    "name": "live-restored-normalize",
+    "exitCode": 0
+  },
+  {
+    "name": "live-after",
+    "exitCode": 0
+  }
+]

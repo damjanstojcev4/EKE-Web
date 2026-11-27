@@ -1,0 +1,50 @@
+[
+  {
+    "name": "news-components",
+    "exitCode": 0
+  },
+  {
+    "name": "projects",
+    "exitCode": 0
+  },
+  {
+    "name": "news-production",
+    "exitCode": 0
+  },
+  {
+    "name": "news-listing",
+    "exitCode": 0
+  },
+  {
+    "name": "privacy",
+    "exitCode": 0
+  },
+  {
+    "name": "privacy-edges",
+    "exitCode": 0
+  },
+  {
+    "name": "shared-routes",
+    "exitCode": 0
+  },
+  {
+    "name": "shared-gallery",
+    "exitCode": 0
+  },
+  {
+    "name": "shared-native",
+    "exitCode": 0
+  },
+  {
+    "name": "contact-software",
+    "exitCode": 0
+  },
+  {
+    "name": "contact-real",
+    "exitCode": 1
+  },
+  {
+    "name": "integration",
+    "exitCode": 0
+  }
+]

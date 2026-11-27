@@ -1,0 +1,14 @@
+{
+  "src/app/contact/page.tsx": {
+    "contentElementsAndAttributesUnchanged": true,
+    "validationAndFieldDefinitionsUnchanged": true
+  },
+  "src/components/contact/ContactForm.tsx": {
+    "contentElementsAndAttributesUnchanged": true,
+    "validationAndFieldDefinitionsUnchanged": true
+  },
+  "src/components/contact/PartnerFormNotice.tsx": {
+    "contentElementsAndAttributesUnchanged": true,
+    "validationAndFieldDefinitionsUnchanged": true
+  }
+}

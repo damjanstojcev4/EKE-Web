@@ -1,0 +1,136 @@
+{
+  "release": "dd76db4434f103cf8b7b93c20ccaea7190abd2e2-45292330641-1",
+  "routes": [
+    {
+      "route": "/projects/",
+      "status": 200,
+      "text": "Skip to content\nABOUT\nPROJECTS\nOPPORTUNITIES\n\nPROJECTS\n\nLifelong Learning\nin Action\n\nEKE began with a simple desire to bring the life-changing experiences of international learning back home to Bitola. Today, that original spark has matured into a trusted network of educators, researchers, and community change-makers. We believe that learning is a continuous process that belongs to everyone, which is why we build inclusive projects where every participant is seen, heard, and supported.\n\nThe value of our work lies in the practical footprints we leave behind in our communities. Through creative workshops, street sports, and international mobility, we provide local leaders with the resources they need to run purposeful activities independently. Exploring our project history and specialized outputs shows exactly how these sustainable, local roots help us build a more resilient society.\n\nONGOING\nPAST\n\n0 projects shown.\n\nNo projects match this filter.\n\nPROGRAMS\n\nHow International\nExchange Builds\nThe Foundation For\nOur Local Initiatives\n\nFounded in Bitola by alumni of the Erasmus+ program, EKE grew out of a desire to share the horizon-expanding experiences we gained abroad with our own community. Since 2012, our team has grown that early vision into a reliable network of European partnerships, welcoming community spaces, and hands-on international learning programs.\n\nWe design projects that meet people exactly where they are. Rather than keeping European ideals confined to policy papers, we bring them to life in workshops, creative training, and community initiatives. Each program listed below represents a distinct chapter of that ongoing effort.\n\nEuropean Solidarity Corps\n\nThe European Solidarity Corps stands as the European Union’s primary funding framework for volunteering and solidarity initiatives across Europe and neighboring regions. Open to young adults aged 18 to 30, the program fully structures cross-border placements lasting anywhere from 2 weeks to 12 months, intentionally designed to eliminate financial barriers by fully covering accommodation, pocket money, travel, and health insurance. Holding the official European Solidarity Corps Quality Label since 20",
+      "selects": [],
+      "errors": []
+    },
+    {
+      "route": "/news/",
+      "status": 200,
+      "text": "Skip to content\nABOUT\nPROJECTS\nOPPORTUNITIES\n\nLATEST FROM EKE\n\nCommunity Updates & Shared\nInsights\n\nDiscover how EKE nurtures sustainable change from the ground up. Dig into our open calls, network briefs, first-hand stories, and open-source resources created to help fresh ideas take root and blossom into real-world solutions.\n\nCategory \nAll news\nLatest news\nOpen calls\n\nNo published news yet.\n\nPrevious\n0 / 0\nNext\n\nPeople, ideas and communities move forward when non-formal learning and international perspectives cross paths to turn shared knowledge into collective power.\n\nHome\nAbout\nProjects\nOpportunities\nNews\nTraining\nContact\nSocial\nAddress\nBelgradska 27, 7000 Bitola, North Macedonia\n\nAssociation for Non-formal Education EUROPEAN\nCULTURAL EPICENTER Bitola (EKE Bitola)\n\nOrganisation ID (OID):  E10014747\n\nParticipant Identification Code (PIC):  948224859\n\nUnique Business Registration Number (ЕМБС): 6820255\n\nTax Identification Number (ЕДБ): 4002012529802\n\nENGAGE. EMPOWER. TRANSFORM.\nPrivacy Policy\n\n© 2026 EKE Bitola. All Rights Reserved.\n\nCreated by Damar Digital Studio",
+      "selects": [
+        {
+          "label": null,
+          "options": [
+            {
+              "label": "All news",
+              "value": ""
+            },
+            {
+              "label": "Latest news",
+              "value": "LATEST_NEWS"
+            },
+            {
+              "label": "Open calls",
+              "value": "OPEN_CALL"
+            }
+          ]
+        }
+      ],
+      "errors": []
+    },
+    {
+      "route": "/projects/cre-active/",
+      "status": 404,
+      "text": "404\nThis page could not be found.",
+      "selects": [],
+      "errors": [
+        {
+          "url": "https://preview.ekebitola.org/projects/cre-active/",
+          "status": 404
+        }
+      ]
+    },
+    {
+      "route": "/news/european-solidarity-corps-hungary/",
+      "status": 404,
+      "text": "404\nThis page could not be found.",
+      "selects": [],
+      "errors": [
+        {
+          "url": "https://preview.ekebitola.org/news/european-solidarity-corps-hungary/",
+          "status": 404
+        }
+      ]
+    }
+  ],
+  "breakpoints": [
+    {
+      "width": 480,
+      "unit": "1px",
+      "nav": "none",
+      "scrollWidth": 480
+    },
+    {
+      "width": 481,
+      "unit": "1px",
+      "nav": "none",
+      "scrollWidth": 481
+    },
+    {
+      "width": 700,
+      "unit": "1px",
+      "nav": "none",
+      "scrollWidth": 700
+    },
+    {
+      "width": 701,
+      "unit": "calc(100vw / 1920)",
+      "nav": "flex",
+      "scrollWidth": 701
+    },
+    {
+      "width": 768,
+      "unit": "calc(100vw / 1920)",
+      "nav": "flex",
+      "scrollWidth": 768
+    },
+    {
+      "width": 769,
+      "unit": "calc(100vw / 1920)",
+      "nav": "flex",
+      "scrollWidth": 769
+    },
+    {
+      "width": 1000,
+      "unit": "calc(100vw / 1920)",
+      "nav": "flex",
+      "scrollWidth": 1000
+    },
+    {
+      "width": 1001,
+      "unit": "calc(100vw / 1920)",
+      "nav": "flex",
+      "scrollWidth": 1001
+    },
+    {
+      "width": 1100,
+      "unit": "calc(100vw / 1920)",
+      "nav": "flex",
+      "scrollWidth": 1100
+    },
+    {
+      "width": 1101,
+      "unit": "calc(100vw / 1920)",
+      "nav": "flex",
+      "scrollWidth": 1101
+    },
+    {
+      "width": 1500,
+      "unit": "calc(100vw / 1920)",
+      "nav": "flex",
+      "scrollWidth": 1500
+    },
+    {
+      "width": 1501,
+      "unit": "calc(100vw / 1920)",
+      "nav": "flex",
+      "scrollWidth": 1501
+    }
+  ],
+  "releaseAfter": "dd76db4434f103cf8b7b93c20ccaea7190abd2e2-45292330641-1"
+}

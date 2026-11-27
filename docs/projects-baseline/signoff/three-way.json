@@ -1,0 +1,114 @@
+{
+  "order": [
+    "approved reference",
+    "unchanged original",
+    "Tailwind migration"
+  ],
+  "renderers": {
+    "before": {
+      "browser": "158.0.4370.33",
+      "renderer": "ANGLE (Intel, Intel(R) UHD Graphics (0x00009BC4) Direct3D11 vs_5_0 ps_5_0, D3D11-27.20.100.9664)",
+      "backend": "GaneshGL"
+    },
+    "control": {
+      "browser": "158.0.4370.33",
+      "renderer": "ANGLE (Intel, Intel(R) UHD Graphics (0x00009BC4) Direct3D11 vs_5_0 ps_5_0, D3D11-27.20.100.9664)",
+      "backend": "GaneshGL"
+    },
+    "after": {
+      "browser": "158.0.4370.33",
+      "renderer": "ANGLE (Intel, Intel(R) UHD Graphics (0x00009BC4) Direct3D11 vs_5_0 ps_5_0, D3D11-27.20.100.9664)",
+      "backend": "GaneshGL"
+    }
+  },
+  "findings": [
+    {
+      "key": "769-ongoing",
+      "dimensions": {
+        "width": 769,
+        "height": 7267
+      },
+      "bounds": {
+        "left": 613,
+        "top": 6973,
+        "right": 724,
+        "bottom": 7027
+      },
+      "bands": {
+        "6900": 2,
+        "7000": 3
+      },
+      "sameHero": {},
+      "comparisons": {
+        "control": {
+          "pixels": 5,
+          "maxChannelDifference": 1,
+          "computedDifferences": [],
+          "behaviorIdentical": true
+        },
+        "after": {
+          "pixels": 5,
+          "maxChannelDifference": 1,
+          "computedDifferences": [],
+          "behaviorIdentical": true
+        }
+      },
+      "originalEqualsTailwind": true,
+      "hashes": {
+        "before": "6240ec2f5e75fbf4b9b177c6d6681e8aa0fa17e8321524bf7d195c46537e9082",
+        "control": "27881d1a2e69460bac0e4e77afb22f898e8a5874fd1dee2fa1454b6f3eb7a98e",
+        "after": "27881d1a2e69460bac0e4e77afb22f898e8a5874fd1dee2fa1454b6f3eb7a98e"
+      }
+    },
+    {
+      "key": "1099-empty",
+      "dimensions": {
+        "width": 1099,
+        "height": 6541
+      },
+      "bounds": {
+        "left": 46,
+        "top": 509,
+        "right": 1050,
+        "bottom": 6208
+      },
+      "bands": {
+        "500": 2210,
+        "600": 1945,
+        "3800": 41,
+        "3900": 9,
+        "4000": 40,
+        "6100": 33,
+        "6200": 1
+      },
+      "sameHero": {
+        "before-empty-vs-ongoing": 4155,
+        "before-empty-vs-past": 0,
+        "control-empty-vs-ongoing": 0,
+        "control-empty-vs-past": 4155,
+        "after-empty-vs-ongoing": 0,
+        "after-empty-vs-past": 4155
+      },
+      "comparisons": {
+        "control": {
+          "pixels": 4279,
+          "maxChannelDifference": 6,
+          "computedDifferences": [],
+          "behaviorIdentical": true
+        },
+        "after": {
+          "pixels": 4279,
+          "maxChannelDifference": 6,
+          "computedDifferences": [],
+          "behaviorIdentical": true
+        }
+      },
+      "originalEqualsTailwind": true,
+      "hashes": {
+        "before": "11e1cbaf5ec68100707e47c63c95da33fd0fd2a9d1ed2d130c3bbb1b055e5029",
+        "control": "3916b8e11a92db6d2755b30d3212b9ac6d8ebcdcfa00c5023b4e01f95517d119",
+        "after": "3916b8e11a92db6d2755b30d3212b9ac6d8ebcdcfa00c5023b4e01f95517d119"
+      }
+    }
+  ]
+}

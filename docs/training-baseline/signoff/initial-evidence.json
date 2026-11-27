@@ -1,0 +1,203 @@
+{
+  "1440-long": {
+    "viewport": {
+      "width": 1440,
+      "height": 1000,
+      "dpr": 1
+    },
+    "screenshot": [
+      1440,
+      6874
+    ],
+    "originalControl": "control",
+    "hashes": {
+      "reference": "1aba42c1e6c0dc1c0b874e43d2058593d5096081a47dc3db154594be21f4fa52",
+      "original": "0a8b4a4b4fc8c6aefad2be4c8ff4fef4ab1a9ebb4e8f181071fd28d91e27959e",
+      "migrated": "0a8b4a4b4fc8c6aefad2be4c8ff4fef4ab1a9ebb4e8f181071fd28d91e27959e"
+    },
+    "pixels": 2931,
+    "maxChannelDelta": 12,
+    "bounds": {
+      "left": 61,
+      "top": 1368,
+      "right": 1373,
+      "bottom": 1998
+    },
+    "histogram": {
+      "1": 2929,
+      "12": 2
+    },
+    "imageCounts": {
+      "outside image rectangles": 1354,
+      "/assets/training-page/Rectangle%20190.png": 1577
+    },
+    "crop": {
+      "x": 160,
+      "y": 1472,
+      "width": 320,
+      "height": 256
+    },
+    "panels": [
+      "reference",
+      "unchanged original = migrated",
+      "50% overlay",
+      "exact changed-pixel mask"
+    ],
+    "rendering": {
+      "browser": "158.0.4370.33",
+      "renderer": "ANGLE (Intel, Intel(R) UHD Graphics (0x00009BC4) Direct3D11 vs_5_0 ps_5_0, D3D11-27.20.100.9664)",
+      "backend": "GaneshGL"
+    }
+  },
+  "701-populated": {
+    "viewport": {
+      "width": 701,
+      "height": 1000,
+      "dpr": 1
+    },
+    "screenshot": [
+      701,
+      9882
+    ],
+    "originalControl": "initial-control",
+    "hashes": {
+      "reference": "eaabe76a4cc72b7b6408e64541c4df0566815e35ca34ef2e0f053e0150be6073",
+      "original": "362f7aa2e701821b88a0fb7109480dbafbcc52c32c41b0520bad5a8186b3bcff",
+      "migrated": "362f7aa2e701821b88a0fb7109480dbafbcc52c32c41b0520bad5a8186b3bcff"
+    },
+    "pixels": 566,
+    "maxChannelDelta": 1,
+    "bounds": {
+      "left": 41,
+      "top": 1528,
+      "right": 173,
+      "bottom": 1575
+    },
+    "histogram": {
+      "1": 566
+    },
+    "imageCounts": {
+      "/assets/training-page/Rectangle%20190.png": 279,
+      "outside image rectangles": 287
+    },
+    "crop": {
+      "x": 0,
+      "y": 1472,
+      "width": 320,
+      "height": 256
+    },
+    "panels": [
+      "reference",
+      "unchanged original = migrated",
+      "50% overlay",
+      "exact changed-pixel mask"
+    ],
+    "rendering": {
+      "browser": "158.0.4370.33",
+      "renderer": "ANGLE (Intel, Intel(R) UHD Graphics (0x00009BC4) Direct3D11 vs_5_0 ps_5_0, D3D11-27.20.100.9664)",
+      "backend": "GaneshGL"
+    }
+  },
+  "1100-populated": {
+    "viewport": {
+      "width": 1100,
+      "height": 1000,
+      "dpr": 1
+    },
+    "screenshot": [
+      1100,
+      8218
+    ],
+    "originalControl": "initial-control",
+    "hashes": {
+      "reference": "6355a3caba6a52190af16d18921abdab55d6e8cfe0079b136f3f7b56bbcfb577",
+      "original": "ed10cc32c7aa870d57d2d05cc4d0d7bff156bfabf62743d98019b67975ad359d",
+      "migrated": "ed10cc32c7aa870d57d2d05cc4d0d7bff156bfabf62743d98019b67975ad359d"
+    },
+    "pixels": 2557,
+    "maxChannelDelta": 12,
+    "bounds": {
+      "left": 41,
+      "top": 1271,
+      "right": 1053,
+      "bottom": 1788
+    },
+    "histogram": {
+      "1": 2556,
+      "12": 1
+    },
+    "imageCounts": {
+      "outside image rectangles": 1230,
+      "/assets/training-page/Rectangle%20190.png": 1327
+    },
+    "crop": {
+      "x": 0,
+      "y": 1216,
+      "width": 320,
+      "height": 256
+    },
+    "panels": [
+      "reference",
+      "unchanged original = migrated",
+      "50% overlay",
+      "exact changed-pixel mask"
+    ],
+    "rendering": {
+      "browser": "158.0.4370.33",
+      "renderer": "ANGLE (Intel, Intel(R) UHD Graphics (0x00009BC4) Direct3D11 vs_5_0 ps_5_0, D3D11-27.20.100.9664)",
+      "backend": "GaneshGL"
+    }
+  },
+  "1101-error": {
+    "viewport": {
+      "width": 1101,
+      "height": 1000,
+      "dpr": 1
+    },
+    "screenshot": [
+      1101,
+      4536
+    ],
+    "originalControl": "control",
+    "hashes": {
+      "reference": "c4201207b1ffc402e07ceb60cef14d5b22b56078ca45bc10f55e772347b0fd85",
+      "original": "ec1c9c8f9ad90d73f0382bfb255815623de71209e676175633722b45f5bf614c",
+      "migrated": "ec1c9c8f9ad90d73f0382bfb255815623de71209e676175633722b45f5bf614c"
+    },
+    "pixels": 5186,
+    "maxChannelDelta": 1,
+    "bounds": {
+      "left": 46,
+      "top": 439,
+      "right": 1054,
+      "bottom": 3592
+    },
+    "histogram": {
+      "1": 5186
+    },
+    "imageCounts": {
+      "/assets/training-page/Group.svg": 5,
+      "/assets/training-page/Rectangle%2066.png": 1395,
+      "outside image rectangles": 2138,
+      "/assets/training-page/Rectangle%20190.png": 1636,
+      "/assets/training-page/Rectangle%20156.png": 12
+    },
+    "crop": {
+      "x": 32,
+      "y": 1088,
+      "width": 320,
+      "height": 256
+    },
+    "panels": [
+      "reference",
+      "unchanged original = migrated",
+      "50% overlay",
+      "exact changed-pixel mask"
+    ],
+    "rendering": {
+      "browser": "158.0.4370.33",
+      "renderer": "ANGLE (Intel, Intel(R) UHD Graphics (0x00009BC4) Direct3D11 vs_5_0 ps_5_0, D3D11-27.20.100.9664)",
+      "backend": "GaneshGL"
+    }
+  }
+}

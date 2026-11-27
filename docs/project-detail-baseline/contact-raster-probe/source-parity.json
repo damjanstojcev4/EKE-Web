@@ -1,0 +1,19 @@
+{
+  "originalProbeSha256": "1500040d42605f43e8f9c4cb1f4f83b6bb1fd2550e632a2285f9c02495d2ebf1",
+  "migratedProbeSha256": "1500040d42605f43e8f9c4cb1f4f83b6bb1fd2550e632a2285f9c02495d2ebf1",
+  "probePixelsIdentical": true,
+  "viewportOriginal": {
+    "width": 1440,
+    "height": 1000,
+    "scrollY": 562,
+    "dpr": 1
+  },
+  "viewportMigrated": {
+    "width": 1440,
+    "height": 1000,
+    "scrollY": 562,
+    "dpr": 1
+  },
+  "elementCount": 21,
+  "differences": []
+}

@@ -2,6 +2,76 @@ import { test, expect } from "@playwright/test";
 
 const webhook = "**/api/enquiries";
 
+test("enquiry validates fields and documentation before sending", async ({ page }) => {
+  let requests = 0;
+  await page.route(webhook, (route) => {
+    requests++;
+    return route.fulfill({ status: 200, json: { message: "Workflow was started" } });
+  });
+  await page.goto("/contact/");
+  const submit = page.getByRole("button", { name: "Submit", exact: true });
+  await submit.click();
+  await expect(page.locator("#first_name")).toBeFocused();
+  await page.getByLabel("First Name").fill("Audit");
+  await page.getByLabel("Last Name").fill("Test");
+  await page.getByLabel("Subject").fill("Local verification only");
+  await page.locator("#email").fill("invalid");
+  await submit.click();
+  await expect(page.locator("#email")).toBeFocused();
+  await expect(page.locator("#email-error")).toHaveText("Enter a valid email address.");
+  await page.locator("#email").fill("audit@example.invalid");
+  const upload = page.getByLabel("Upload file");
+  for (const file of [
+    { name: "blocked.exe", buffer: Buffer.from("local test") },
+    { name: "oversize.pdf", buffer: Buffer.alloc(5 * 1024 * 1024 + 1) },
+  ]) {
+    await upload.setInputFiles({ ...file, mimeType: "application/octet-stream" });
+    await submit.click();
+    await expect(upload).toBeFocused();
+    await expect(page.locator("#documentation-error")).toHaveText(
+      "Choose PDF, DOC or DOCX files, up to 5 MB each.",
+    );
+  }
+  expect(requests).toBe(0);
+  await upload.setInputFiles({ name: "limit.pdf", mimeType: "application/pdf", buffer: Buffer.alloc(5 * 1024 * 1024) });
+  await submit.click();
+  await expect(page.getByRole("status")).toContainText("sent successfully");
+  await expect(page.getByRole("status")).toBeFocused();
+  expect(requests).toBe(1);
+});
+
+test("enquiry preserves opportunity selection and prevents duplicate submissions", async ({ page }) => {
+  let requests = 0;
+  let payload = "";
+  let release!: () => void;
+  const pending = new Promise<void>((resolve) => { release = resolve; });
+  await page.route(webhook, async (route) => {
+    requests++;
+    payload = route.request().postDataBuffer()!.toString();
+    await pending;
+    await route.fulfill({ status: 200, json: { message: "Workflow was started" } });
+  });
+  await page.goto("/contact/");
+  await page.getByLabel("First Name").fill("Audit");
+  await page.getByLabel("Last Name").fill("Test");
+  await page.locator("#email").fill("audit@example.invalid");
+  await page.getByLabel("Subject").fill("Local verification only");
+  await page.locator('input[value="opportunities"]').check();
+  await expect(page.locator('input[value="partner"]')).not.toBeChecked();
+  const form = page.locator("form");
+  await page.getByRole("button", { name: "Submit", exact: true }).click();
+  await expect(page.getByRole("button", { name: "Sending…", exact: true })).toBeDisabled();
+  await expect(form).toHaveAttribute("aria-busy", "true");
+  await form.evaluate((element) => (element as HTMLFormElement).requestSubmit());
+  await expect.poll(() => requests).toBe(1);
+  release();
+  await expect(page.getByRole("status")).toContainText("sent successfully");
+  await expect(form).toHaveAttribute("aria-busy", "false");
+  expect(requests).toBe(1);
+  expect(payload).toContain('name="partner_opportunity"\r\n\r\nopportunities');
+  expect(payload).not.toContain('name="documentation"');
+});
+
 test("admin navigation no longer exposes contact messages", async ({ page }) => {
   await page.route("**/api/**", (route) => {
     const path = new URL(route.request().url()).pathname;

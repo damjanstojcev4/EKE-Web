@@ -1,0 +1,35 @@
+{
+  "1440-populated": {
+    "differences": [],
+    "pixels": 6255,
+    "maxChannelDelta": 12,
+    "bounds": {
+      "left": 61,
+      "top": 1368,
+      "right": 1373,
+      "bottom": 2124
+    }
+  },
+  "701-populated": {
+    "differences": [],
+    "pixels": 566,
+    "maxChannelDelta": 1,
+    "bounds": {
+      "left": 41,
+      "top": 1528,
+      "right": 173,
+      "bottom": 1575
+    }
+  },
+  "1100-populated": {
+    "differences": [],
+    "pixels": 2557,
+    "maxChannelDelta": 12,
+    "bounds": {
+      "left": 41,
+      "top": 1271,
+      "right": 1053,
+      "bottom": 1788
+    }
+  }
+}

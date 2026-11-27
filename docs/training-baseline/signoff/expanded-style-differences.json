@@ -1,0 +1,113 @@
+{
+  "geometryDifferences": [],
+  "styleDifferences": [
+    {
+      "key": "1440-long",
+      "repeat": 0,
+      "index": 87,
+      "tag": "ARTICLE",
+      "property": "align-content",
+      "original": "start",
+      "migrated": "flow-start"
+    },
+    {
+      "key": "701-populated",
+      "repeat": 0,
+      "index": 87,
+      "tag": "ARTICLE",
+      "property": "align-content",
+      "original": "start",
+      "migrated": "flow-start"
+    },
+    {
+      "key": "1100-populated",
+      "repeat": 0,
+      "index": 87,
+      "tag": "ARTICLE",
+      "property": "align-content",
+      "original": "start",
+      "migrated": "flow-start"
+    },
+    {
+      "key": "1101-error",
+      "repeat": 0,
+      "index": 87,
+      "tag": "ARTICLE",
+      "property": "align-content",
+      "original": "start",
+      "migrated": "flow-start"
+    },
+    {
+      "key": "1440-long",
+      "repeat": 1,
+      "index": 87,
+      "tag": "ARTICLE",
+      "property": "align-content",
+      "original": "start",
+      "migrated": "flow-start"
+    },
+    {
+      "key": "701-populated",
+      "repeat": 1,
+      "index": 87,
+      "tag": "ARTICLE",
+      "property": "align-content",
+      "original": "start",
+      "migrated": "flow-start"
+    },
+    {
+      "key": "1100-populated",
+      "repeat": 1,
+      "index": 87,
+      "tag": "ARTICLE",
+      "property": "align-content",
+      "original": "start",
+      "migrated": "flow-start"
+    },
+    {
+      "key": "1101-error",
+      "repeat": 1,
+      "index": 87,
+      "tag": "ARTICLE",
+      "property": "align-content",
+      "original": "start",
+      "migrated": "flow-start"
+    },
+    {
+      "key": "1440-long",
+      "repeat": 2,
+      "index": 87,
+      "tag": "ARTICLE",
+      "property": "align-content",
+      "original": "start",
+      "migrated": "flow-start"
+    },
+    {
+      "key": "701-populated",
+      "repeat": 2,
+      "index": 87,
+      "tag": "ARTICLE",
+      "property": "align-content",
+      "original": "start",
+      "migrated": "flow-start"
+    },
+    {
+      "key": "1100-populated",
+      "repeat": 2,
+      "index": 87,
+      "tag": "ARTICLE",
+      "property": "align-content",
+      "original": "start",
+      "migrated": "flow-start"
+    },
+    {
+      "key": "1101-error",
+      "repeat": 2,
+      "index": 87,
+      "tag": "ARTICLE",
+      "property": "align-content",
+      "original": "start",
+      "migrated": "flow-start"
+    }
+  ]
+}

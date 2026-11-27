@@ -1,0 +1,1 @@
+const fs=require('node:fs'),Module=require('node:module');const source=fs.readFileSync(__dirname+'/training-contact-finding.cjs','utf8').replaceAll('training-baseline/contact-first-failure','training-baseline/signoff/contact-first-failure');const runtime=new Module(__filename,module);runtime.filename=__filename;runtime.paths=module.paths;runtime._compile(source,__filename);

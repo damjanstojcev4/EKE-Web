@@ -1,0 +1,26 @@
+[
+  {
+    "name": "original-build",
+    "exitCode": 0
+  },
+  {
+    "name": "original-normalize",
+    "exitCode": 0
+  },
+  {
+    "name": "probe",
+    "exitCode": 0
+  },
+  {
+    "name": "matrix",
+    "exitCode": 1
+  },
+  {
+    "name": "restored-build",
+    "exitCode": 0
+  },
+  {
+    "name": "restored-normalize",
+    "exitCode": 0
+  }
+]

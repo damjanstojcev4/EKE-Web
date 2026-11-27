@@ -1,0 +1,94 @@
+{
+  "checkpoint": "120bd52dff3e298c56863d6c2d486d17ad342aaa",
+  "before": {
+    "rules": 137,
+    "declarations": 369
+  },
+  "after": {
+    "rules": 4,
+    "declarations": 21
+  },
+  "pendingRulesUnchanged": true,
+  "invariants": {
+    "src/lib/api/news.ts": {
+      "sha256": "ec6f5a10e90c4bc896656e8883e4c980a2d77cc2cc5b4fb8f911894cb963f631",
+      "unchanged": true
+    },
+    "src/lib/api/client.ts": {
+      "sha256": "28ed288b562f7147b6eee9a7c5aff14070a8fc710550ccfddb611e8b5ca0d82a",
+      "unchanged": true
+    },
+    "src/lib/api/use-api.ts": {
+      "sha256": "30791472545e7c0993c99ef0deb7406c273e842d498c603d4ea6725e30c0a8a6",
+      "unchanged": true
+    },
+    "src/lib/news-publication.ts": {
+      "sha256": "6d24920ab4ecffdb10aa956061221ee8189b9761e271976cd8c9f6c78b0284dc",
+      "unchanged": true
+    },
+    "src/lib/admin-api.ts": {
+      "sha256": "ad59076f6e4c9bc90ab76bf8cf264bc80def0ce8e6dbd363b29a9f9d66a8df32",
+      "unchanged": true
+    },
+    "src/content/route-manifest.json": {
+      "sha256": "009e7829593b14e1c8ec75a9718064e07b5103bf90c418b972f9c490e08d8f1a",
+      "unchanged": true
+    },
+    "src/app/news/[slug]/page.tsx": {
+      "sha256": "e029aa87f771513a583820d648461aa74f727080750cb4257923b90d93ccb9d0",
+      "unchanged": true
+    },
+    "src/app/news/[slug]/page.module.css": {
+      "sha256": "928177142cc0ddc96706d202216cddf4c0b759874691a9acb954bcc29d6b9b41",
+      "unchanged": true
+    },
+    "src/components/news/PendingControl.tsx": {
+      "sha256": "c469b1f713262656b9619a88772aaf0fbb3af846aa42fc0ef8b86e9c52cf82fc",
+      "unchanged": true
+    },
+    "src/components/layout/Header.tsx": {
+      "sha256": "b7f880fc7d5ac6b25d4463369ee3a49b10b1376448edbbff9686cb7143b5f050",
+      "unchanged": true
+    },
+    "src/components/layout/Footer.tsx": {
+      "sha256": "1205cb276fa494522332fdfb59cb0721c24a77b1d07eb6582a14b0d5c22afae3",
+      "unchanged": true
+    },
+    "src/app/contact/page.tsx": {
+      "sha256": "55759c0e4bc3f818724025a38c809f5361f28669fa8112279936c9753ecd0269",
+      "unchanged": true
+    },
+    "src/components/contact/ContactForm.tsx": {
+      "sha256": "46dc1052843365de5fe3e7f738ed4a7bac5e29828c5aa7b740fc0fc80cabeeaf",
+      "unchanged": true
+    },
+    "src/components/contact/PartnerFormNotice.tsx": {
+      "sha256": "0b7b7470498d4984613292964c645842a2dc174eaa0ed9650e635389fda34115",
+      "unchanged": true
+    },
+    "src/components/contact/contact.module.css": {
+      "sha256": "9e35d85ababa4762d9ca1c8a7d5841b6767def662cba40f5d10f7d73fe151ee1",
+      "unchanged": true
+    },
+    "src/app/about/page.tsx": {
+      "sha256": "7697be9e02cfb4d44d101137d1740388eb2b6c431ec9ef11be271e54eac7c86d",
+      "unchanged": true
+    },
+    "src/app/about/page.module.css": {
+      "sha256": "c65c65e018088a9a884b5946f33549ae54718abf290fb4448e65c8c42254b5ca",
+      "unchanged": true
+    },
+    "src/app/globals.css": {
+      "sha256": "189880a190d0179f2544282b839f3450536608082e81ee006af13789dad21b4e",
+      "unchanged": true
+    },
+    "src/styles/theme.css": {
+      "sha256": "fa70e170d553e89eb6f2967c3559998b1b15dbd75049ffcd28c7d8134a979e47",
+      "unchanged": true
+    },
+    "src/components/ui.tsx": {
+      "sha256": "85e5a20de65e1dfe968bdbb08cdedd6023d9cadd0e10078050ecb2447b709fa0",
+      "unchanged": true
+    }
+  }
+}
