@@ -1,6 +1,6 @@
 import { test, expect } from "@playwright/test";
 
-const webhook = "https://n8n.myceliumagency.cloud/webhook/eke-mail";
+const webhook = "**/api/enquiries";
 
 test("admin navigation no longer exposes contact messages", async ({ page }) => {
   await page.route("**/api/**", (route) => {

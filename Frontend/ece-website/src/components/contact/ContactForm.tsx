@@ -87,7 +87,7 @@ export default function ContactForm() {
         const body = new FormData(form);
         if (!upload.files?.length) body.delete("documentation");
         const response = await fetch(
-          "https://n8n.myceliumagency.cloud/webhook/eke-mail",
+          "/api/enquiries",
           {
             method: "POST",
             body,
