@@ -139,5 +139,11 @@ for attempt in {1..6}; do
   sleep 5
 done
 [[ "$healthy" == true ]]
+if [[ "$environment" == staging && -s "$base/releases/$release/projects/details/index.html" ]]; then
+  # A reload command can finish while old Nginx workers still serve the old routes.
+  # Check an existing project, shell bytes, APIs, RSC and assets with bounded retry.
+  test -s "$incoming/check-project-details.py"
+  python3 "$incoming/check-project-details.py" --export-root "$base/releases/$release" --base-url "$url"
+fi
 echo "Activated $environment release $release"
 # Keep all releases and incoming artifacts for operator-reviewed retention/rollback.

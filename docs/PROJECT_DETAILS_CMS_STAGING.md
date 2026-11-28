@@ -104,35 +104,67 @@ Frontend/ece-website/test-results/full-stack/: projects-list-{width}.png,
 project-details-{width}.png, project-admin.png. Captures scroll through existing
 reveal animations first. Baselines/thresholds are unchanged. The historical pinned
 pixel runner was attempted but refused to run because approved Edge 158.0.4370.33
-is absent; exact historical raster parity is therefore unverified. Native Nginx
-syntax/host validation remains an activation check, not a claimed local result.
+is absent; exact historical raster parity is therefore unverified. Subsequent
+isolated native-Nginx validation is recorded in the focused 404 diagnosis below;
+it does not activate a live release.
 
-## Staging activation (instructions only; nothing deployed)
+## Staging activation (requires approval)
 
-Backend deployment IS required for clearing fields/removing media. No new database
-migration is required; preserve existing H2 and uploads. If the host predates the
-baseline's schema, follow the existing 001-004 migration procedure independently.
-Do not run the removed 005 migration or change Hibernate to create/create-drop.
+The first activation was rolled back after a smoke check hit an old Nginx worker
+immediately after reload. See [the focused diagnosis and native-Nginx regression
+evidence](PROJECT_DETAILS_NGINX_404.md). A successful reload command is not route
+readiness. Use the bounded, content-verified check below; do not roll back on the
+first transient response or replace it with a fixed sleep.
+
+PR #17's backend deployment IS required for clearing fields/removing media; this
+readiness correction changes no application code. No database migration is required
+on the verified host. Preserve existing H2/uploads and stop on schema validation
+failure; do not migrate, reset or change Hibernate to create/create-drop.
 
 After separate release authorization:
 
 1. Record current frontend/backend release targets and back up staging H2/uploads
    using the established maintenance procedure. Retain the existing Nginx backup.
-2. Release through the existing Deploy staging workflow after approved merge into
-   staging: select staging and deploy_backend=true. Keep the existing infrastructure,
-   backend-enabled and pipeline gates. No new workflow/service configuration is needed.
-3. Once out/projects/details/index.html is present in the active static release,
-   copy deploy/staging/eke-staging-project-details.conf to
+   Pause only the existing Deploy staging workflow before any approved merge,
+   so its automatic frontend-only push run cannot race the combined activation.
+   Leave production workflows and existing environment gates unchanged.
+2. Before the approved workflow activation, validate the candidate static export
+   using `python3 deploy/test-project-details-nginx.py --export-root /path/to/out`.
+   This uses a disposable Unix socket, not a TCP port or system service. On the
+   staging host, `--api-origin http://127.0.0.1:18081` checks existing public records
+   through the real API; no CMS writes occur. Do not replace current release pointers.
+3. Install the unchanged deploy/staging/eke-staging-project-details.conf at
    /etc/nginx/snippets/eke-staging-project-details.conf. Add this include ONLY
    inside the existing preview.ekebitola.org HTTPS server, alongside current
    API/static rules (do not replace them):
 
        include /etc/nginx/snippets/eke-staging-project-details.conf;
 
+   Install this routing BEFORE the workflow, since the workflow now requires an
+   existing project's clean details URL to pass before declaring activation complete.
+   The old static release need not contain the shell during this preparation;
+   successful content readiness is required once the new release is selected.
    Inspect existing exact/^~ project locations for precedence conflicts. Run
    sudo nginx -t, then sudo systemctl reload nginx only on success. Keep the
    existing server root, backend port, TLS, noindex and API proxy unchanged.
-4. Read-only smoke-check an existing record via listing, clean detail URL, direct
+4. Release through the existing Deploy staging workflow after approved merge into
+   staging: re-enable that workflow, select staging and deploy_backend=true.
+   Keep the existing infrastructure,
+   backend-enabled and pipeline gates. No new workflow/service configuration is needed.
+   The staging activation script now runs `check-project-details.py` inside its
+   existing rollback trap. It selects an existing public slug and requires two
+   complete successful checks, up to 15 attempts one second apart. It compares
+   shell/listing/RSC/JS/CSS bytes with the selected export and verifies both APIs.
+   Permanent failure still restores the old frontend/backend pointers. The operator
+   must also restore the backed-up staging Nginx configuration on failed activation.
+5. After any approved Nginx reload with the candidate release already active, run:
+
+       python3 deploy/staging/check-project-details.py \
+         --export-root /srv/eke-staging/current \
+         --base-url https://preview.ekebitola.org
+
+   Do not use a single immediate curl as the final activation result.
+6. Read-only smoke-check an existing record via listing, clean detail URL, direct
    refresh, return link, images/documents and News. Verify /projects/index.txt is
    still an RSC/static payload. Live temporary-data CRUD requires its own approval.
 
@@ -148,6 +180,7 @@ release remains active. No additional running services are required.
 HTML metadata stays generic/project-list based and noindex for these detail shells;
 server-rendered per-project SEO is unavailable with this static architecture.
 Client not-found states normally have HTTP 200 at clean detail URLs; API misses
-still return 404. Query URLs need no Nginx change. No merge, deployment, VPS access,
-production change or live staging CRUD occurred. GitHub CI status is recorded in
-the PR/final handoff after pushing the corrected commit.
+still return 404. Query URLs need no Nginx change. PR #17 was merged, its first
+activation failed and was rolled back. This readiness fix performs only read-only
+live diagnostics and isolated tests: no new merge, deployment, production change
+or live staging CRUD. GitHub CI status is recorded in its review handoff.

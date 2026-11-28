@@ -42,6 +42,10 @@ ssh "${options[@]}" "$remote" "test -d '$base/incoming' && test ! -L '$base' && 
 printf '%s\n' "$release" > "$site/release-id.txt"
 tar -C "$site" -czf "$scratch/site.tar.gz" .
 scp "${options[@]}" "$scratch/site.tar.gz" "$remote:$base/incoming/$release/site.tar.gz"
+if [[ "$DEPLOY_ENV" == staging && -s "$site/projects/details/index.html" ]]; then
+  # Operator-only readiness helper; never put it in the public static export.
+  scp "${options[@]}" "$(dirname "$0")/staging/check-project-details.py" "$remote:$base/incoming/$release/check-project-details.py"
+fi
 if [[ "$backend_enabled" == true ]]; then
   scp "${options[@]}" "$backend/app.jar" "$backend/source-id" "$remote:$base/incoming/$release/"
 fi
