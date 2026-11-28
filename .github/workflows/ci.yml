@@ -53,6 +53,19 @@ jobs:
       - run: npm test
       - name: Verify static export
         run: test -s out/index.html && test -s out/404.html && test -d out/_next/static
+      - name: Verify export and graceful reload with native Nginx
+        shell: bash
+        run: |
+          # Extract the binary without installing/starting a system service or TCP listener.
+          sudo apt-get update
+          nginx_bundle="$RUNNER_TEMP/project-details-nginx"
+          mkdir -p "$nginx_bundle/packages"
+          cd "$nginx_bundle/packages"
+          apt-get download nginx
+          for package in ./*.deb; do dpkg-deb -x "$package" "$nginx_bundle"; done
+          python3 "$GITHUB_WORKSPACE/deploy/test-project-details-nginx.py" \
+            --nginx "$nginx_bundle/usr/sbin/nginx" \
+            --export-root "$GITHUB_WORKSPACE/Frontend/ece-website/out"
       - uses: actions/upload-artifact@v4
         with:
           name: frontend

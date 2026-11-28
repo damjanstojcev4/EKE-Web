@@ -48,6 +48,18 @@ grep -q 'app.jar' "$MOCK_TRANSFER_LOG"
 grep -q "'true'$" "$MOCK_TRANSFER_LOG"
 echo 'Staging backend artifacts require an explicit activation request.'
 
+# The details readiness helper is transferred only for an export containing its shell.
+mkdir -p "$scratch/projects/details"
+printf shell > "$scratch/projects/details/index.html"
+: > "$MOCK_TRANSFER_LOG"
+GITHUB_REF=refs/heads/staging BACKEND_ENABLED=true BACKEND_REQUESTED=true \
+  bash "$root/deploy/release.sh" "$scratch" "$scratch"
+grep -q 'check-project-details.py' "$MOCK_TRANSFER_LOG"
+: > "$MOCK_TRANSFER_LOG"
+GITHUB_REF=refs/heads/main DEPLOY_ENV=production BACKEND_ENABLED=false \
+  bash "$root/deploy/release.sh" "$scratch" "$scratch"
+if grep -q 'check-project-details.py' "$MOCK_TRANSFER_LOG"; then exit 1; fi
+
 # Real symlink/atomic rename tests require Linux (same platform as deployment).
 [[ "$(uname -s)" == Linux ]] || { echo 'Activation fixtures require Linux; covered in CI.'; exit 0; }
 cat > "$scratch/bin/curl" <<'MOCK'
@@ -147,3 +159,22 @@ MOCK_HEALTH=ok bash "$scratch/activate.sh" staging "$MOCK_RELEASE" https://examp
 [[ "$(readlink "$TEST_BASE-backend/current")" == "$TEST_BASE-backend/releases/old" ]]
 [[ "$(wc -l < "$MOCK_SERVICE_LOG")" == "$before" ]]
 echo 'Activation, backend rollback, frontend rollback and unchanged-backend tests passed.'
+
+# Once the details shell exists, readiness must run inside the existing rollback trap.
+for outcome in success failure; do
+  fixture "details_$outcome"
+  mkdir -p "$scratch/payload/projects/details"
+  printf shell > "$scratch/payload/projects/details/index.html"
+  tar -czf "$TEST_BASE/incoming/$MOCK_RELEASE/site.tar.gz" -C "$scratch/payload" .
+  printf 'import sys\nassert "--export-root" in sys.argv and "--base-url" in sys.argv\nraise SystemExit(%s)\n' \
+    "$([[ "$outcome" == success ]] && echo 0 || echo 1)" > "$TEST_BASE/incoming/$MOCK_RELEASE/check-project-details.py"
+  if [[ "$outcome" == success ]]; then
+    MOCK_HEALTH=ok bash "$scratch/activate.sh" staging "$MOCK_RELEASE" https://example.invalid true
+    [[ "$(readlink "$TEST_BASE/current")" == "$TEST_BASE/releases/$MOCK_RELEASE" ]]
+  else
+    if MOCK_HEALTH=ok bash "$scratch/activate.sh" staging "$MOCK_RELEASE" https://example.invalid true; then exit 1; fi
+    [[ "$(readlink "$TEST_BASE/current")" == "$TEST_BASE/releases/old" ]]
+    [[ "$(readlink "$TEST_BASE-backend/current")" == "$TEST_BASE-backend/releases/old" ]]
+  fi
+done
+echo 'Project Details readiness is required and failure restores frontend/backend pointers.'
