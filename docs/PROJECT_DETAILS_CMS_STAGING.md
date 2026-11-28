@@ -125,6 +125,9 @@ After separate release authorization:
 
 1. Record current frontend/backend release targets and back up staging H2/uploads
    using the established maintenance procedure. Retain the existing Nginx backup.
+   Pause only the existing Deploy staging workflow before any approved merge,
+   so its automatic frontend-only push run cannot race the combined activation.
+   Leave production workflows and existing environment gates unchanged.
 2. Before the approved workflow activation, validate the candidate static export
    using `python3 deploy/test-project-details-nginx.py --export-root /path/to/out`.
    This uses a disposable Unix socket, not a TCP port or system service. On the
@@ -145,7 +148,8 @@ After separate release authorization:
    sudo nginx -t, then sudo systemctl reload nginx only on success. Keep the
    existing server root, backend port, TLS, noindex and API proxy unchanged.
 4. Release through the existing Deploy staging workflow after approved merge into
-   staging: select staging and deploy_backend=true. Keep the existing infrastructure,
+   staging: re-enable that workflow, select staging and deploy_backend=true.
+   Keep the existing infrastructure,
    backend-enabled and pipeline gates. No new workflow/service configuration is needed.
    The staging activation script now runs `check-project-details.py` inside its
    existing rollback trap. It selects an existing public slug and requires two

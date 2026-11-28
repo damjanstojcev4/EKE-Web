@@ -111,8 +111,9 @@ bash deploy/test-release.sh
 
 No activation, merge or deployment is authorized for this fix task. After separate
 approval, follow the updated order in [the staging runbook](PROJECT_DETAILS_CMS_STAGING.md):
-fresh backup/release recording, isolated candidate test, staging-only original Nginx
-include + `nginx -t` + reload, then the existing workflow with `deploy_backend=true`.
+fresh backup/release recording, pause only the staging workflow during the approved
+merge, isolated candidate test, staging-only original Nginx include + `nginx -t` +
+reload, then re-enable the existing workflow and dispatch with `deploy_backend=true`.
 The workflow's bounded detail readiness check replaces the immediate one-shot curl.
 After any later reload, the same checker can be invoked manually against the active
 export. It performs GET requests only; authenticated admin/CRUD remains with the user.
