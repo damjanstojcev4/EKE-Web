@@ -20,9 +20,6 @@ public class Project {
      @Column(nullable = false, unique = true, updatable = false)
      private UUID uuid = UUID.randomUUID();
 
-    @Column(nullable = false, columnDefinition = "boolean default true")
-    private boolean published = true;
-
     private String title;
     private long budget;
     @Lob

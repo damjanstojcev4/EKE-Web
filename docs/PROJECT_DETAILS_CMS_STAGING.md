@@ -1,166 +1,151 @@
-# Project Details CMS integration — staging
+# Projects CMS: static staging integration
 
-## Audit (28 November 2026)
+## Scope and audit (28 November 2026)
 
-Feature branch `codex/project-details-cms` starts at remote staging revision
-`4e7559453b29d7312cc5f40595f67fc7787c5d54`, verified through GitHub's API.
-The original dirty checkout is untouched. No Opportunities refactor commits,
-production configuration, existing workflows, shared styles, or visual baselines
-are included.
+Compared f118e52a9b064f949960a7e03cf2726363464657 with staging
+4e7559453b29d7312cc5f40595f67fc7787c5d54 in the existing clean
+codex/project-details-cms worktree. The unrelated main checkout was untouched.
+Next 16.4.6, React 19, Tailwind 4, Spring Boot 3.5.4, Java target 17
+(local checks use Java 21), and H2 remain unchanged.
 
-The staging code already provided `/api/projects/public`,
-`/api/projects/slug/{slug}`, multipart project CRUD, supporting media uploads,
-all design detail fields, and a Tailwind-based CMS renderer. The actual backend
-is Spring Boot **3.5.4**, targeting Java **17** (also tested on Java 21), rather
-than the versions in the brief. No dependency upgrade was needed.
+Staging already has the listing filter, public client renderer, all detail fields,
+DTO mapping, multipart CRUD, supporting-media uploader, JWT/cookie-CSRF protection,
+and admin editors. News demonstrates the existing client-fetch/static-export pattern.
+The missing arbitrary-slug routing was caused by the projectHref manifest allowlist.
+No new API client, CMS, server, service, port or deployment pipeline is needed.
 
-The missing pieces were a manifest allowlist containing only `unavailable`,
-disabled links for other slugs, generic static detail metadata, static HTTP 200
-responses for API misses, and no Project publication field or admin control.
-The hosted frontend is a static export. It cannot render arbitrary new slugs or
-fresh metadata at request time. The user authorized preparing a staging-only
-serving change; deployment and merging remain unauthorized.
+## Cleanup of PR #17
 
-## Implementation
+Removed the tracked project-details-runtime application (layout, dynamic page,
+error boundary, Next/PostCSS/TypeScript configuration and generated type entry),
+scripts/build-project-details.mjs, build:project-details command, runtime ignore
+and TypeScript entries, runtime asset prefix/environment variables/proxy code,
+and runtime startup in full-stack QA. Removed the SSR detail page/error boundary
+and server-only API-client origin logic. Restored the shared useApi utility.
 
-- Reuse the existing slug endpoint, DTO, media validation, API client, detail
-  renderer, SEO helpers, Header/Footer and Tailwind classes. No replacement CMS
-  or API client was introduced.
-- Add `published` through entity, request binding, response mapping, and admin
-  form. New admin entries start as drafts; legacy API clients retain their prior
-  default visibility. Anonymous listing, recent, slug, UUID and title aliases
-  all exclude drafts. Authenticated administrators can still list drafts.
-  The title alias now returns the DTO instead of the persistence entity.
-- Migration `005-project-publication.sql` adds one boolean with default TRUE,
-  retaining existing records, UUIDs, slugs, associations and files. Apply it
-  before starting the new backend; Hibernate remains in `validate` mode.
-- Listing links accept valid CMS slugs and use document navigation across the
-  static/runtime boundary. Detail pages receive their initial CMS record from
-  the server, with dynamic title, description, canonical and Open Graph tags.
-  API 404 becomes page HTTP 404; service outages remain errors with retry UI.
-- Keep the main export's configuration unchanged. A small, separate Next app
-  under `Frontend/ece-website/project-details-runtime` reuses the same layout
-  and detail page, with an explicitly dynamic route. Its own asset prefix
-  prevents runtime JS/CSS from colliding with the static site's build.
-- Preserve current detail styling. Add a Back to Projects link and a cover-image
-  fallback when no dedicated logo is supplied; guard missing partner arrays and
-  invalid reference entries. No new custom CSS.
+Removed migration 005-project-publication.sql, Project.published and its DTO/request
+mapping, project visibility filters, project publication tests and admin draft/publish
+controls. Restored the original project visibility and authentication filter.
+Removed runtime/service activation proposals and publication-only documentation.
+No systemd definition was added in the prior commit; its proposed service instructions
+have been removed. The prior runtime Nginx proxy is replaced with a static-only snippet.
 
-## APIs and media
+Migrations 001-004 and every pre-existing staging service, field, config and workflow
+are retained byte-for-byte. No production or unrelated page source changes.
+PR #17 was still draft, unmerged and based on staging at inspection; the old commit's
+PR CI succeeded. Repository evidence shows deployment workflows require staging/main,
+not this feature branch. This supports the prior no-deployment report, but cannot
+prove VPS state. No VPS connection or live data write was made.
 
-No new backend endpoints. Public reads use GET `/api/projects/public` and
-GET `/api/projects/slug/{slug}`. Existing POST `/api/projects`, PUT/DELETE
-`/api/projects/{uuid}`, POST `/api/projects/media` and managed
-`/api/uploads/images/...` / `/api/uploads/pdf/...` remain in use.
-ADMIN writes and cookie CSRF protection remain enforced.
-Supporting project media retains its established public-upload behavior; this
-change does not turn uploads into private draft attachments.
+## Final implementation
+
+- Listing retains its design, data from GET /api/projects/public, filters and pagination.
+  Every valid backend slug gets a document link; no source allowlist applies.
+- /projects/details/ is one exported client shell. It reads the browser pathname
+  after hydration and fetches GET /api/projects/slug/{slug} with the existing client.
+  Existing manifest-generated project routes remain for compatibility, using the same shell.
+- Cards use ordinary anchors so arbitrary slugs never require unexported Next RSC files.
+  The optional staging Nginx location serves that shell for /projects/{slug}/,
+  preserving the URL, direct access and refresh. Dotted files such as
+  /projects/index.txt bypass the fallback, preserving listing navigation/RSC assets.
+  The local static preview implements the same narrow fallback against out/.
+  /projects/details/?slug={slug} also works without the clean-URL Nginx adjustment.
+- Existing Tailwind renderer displays persisted summary, facts, content blocks,
+  partners/logos, links, cover/logo, PDF and resources. Optional/malformed references
+  are guarded. Loading, timed-out/unavailable API, retry, missing/invalid/deleted
+  project and return-navigation states are explicit.
+- Existing admin fields/uploads/relationships remain. Logo reference is loaded for
+  review. Optional dates/grant can now be cleared. Checkboxes detach cover/logo/PDF
+  references on PUT without deleting shared/legacy files; replacement uploads win.
+  Existing resources/partner JSON can be added, edited or cleared.
+- Only demonstrated backend gaps change: optional PUT flags removeImage, removeLogo,
+  removePdf, clearGrantValue; explicit empty dates clear persisted dates. Missing
+  flags/parameters retain prior client behavior. No entity/schema changes remain.
+
+Reused endpoints: GET /api/projects/public, GET /api/projects/slug/{slug},
+POST /api/projects, PUT/DELETE /api/projects/{uuid}, POST /api/projects/media,
+and existing /api/uploads/images|pdf/... handlers. JWT, ADMIN authorization,
+validation and cookie-CSRF mechanisms are unchanged.
 
 ## Validation
 
-Use the existing commands from `Frontend/ece-website`:
+Commands from Frontend/ece-website:
 
-```sh
-npm ci
-npm run lint
-npm run test:seo
-npm run build
-npm run build:project-details
-npm run typecheck
-npm run verify:seo
-npm test
-PROJECT_DETAILS_QA=true node scripts/full-stack-qa.mjs
-```
+    npm run lint
+    npm run typecheck
+    npm run test:seo
+    npm run build
+    npm run verify:seo
+    npm test
+    node scripts/full-stack-qa.mjs
 
-Backend: from `Backend/ece-website`, run `./mvnw -B -ntp verify`.
-The full-stack command uses random local credentials and a temporary file H2
-database; it never targets staging. The opt-in flag starts the dynamic runtime
-and a local proxy matching the proposed Nginx split. The regular full-stack
-command retains its previous static-only behavior.
+Backend: from Backend/ece-website, ./mvnw -B -ntp clean verify.
 
-Checks performed during implementation:
+Local results: 16 backend/API/migration tests; 23 browser integration tests;
+4 SEO unit tests; static production build and SEO export validation passed.
+The build retains two existing unrelated escaped-media-query CSS warnings.
+The sandbox blocked Java test-agent attachment and the first build's generated
+folder write; approved local runs completed. A fresh build cleared one incremental
+webpack-cache failure. No dependency or baseline changes were used to pass checks.
 
-- Both Next production builds; ESLint; TypeScript; SEO unit/export checks.
-- 18 backend tests, including draft visibility across all public aliases,
-  publish/edit/unpublish/delete, optional content and repeated additive migration
-  with legacy data and schema validation.
-- Existing browser integration suite (21 cases), plus a focused admin
-  draft/publish/unpublish test.
-- Real Spring/H2/browser lifecycle with a slug created after the build, rendered
-  HTML metadata, invalid/missing/unpublished/deleted page HTTP 404, updated content
-  after refresh, managed image/PDF reads and persistent H2 restart.
-- Responsive overflow checks at 390, 768 and 1440 pixels. Local screenshots:
-  `Frontend/ece-website/test-results/full-stack/project-details-{width}.png`.
+Real Spring Boot + temporary file H2 + generated static out/ lifecycle passed:
+admin login/create with a random slug generated AFTER the build, every detail field,
+cover/logo/PDF/supporting media, listing click, direct URL, refresh, query fallback,
+optional/missing/invalid states, edit, clear media/dates/grant, delete, and database
+restart in validate mode. Unauthenticated writes return 401; cookie writes without
+CSRF return 403. News and the other existing module integration checks still pass.
+The preview server only hosts the static export/API relay for tests; it is not
+staging infrastructure. Temporary DB/files and local processes are cleaned up.
 
-The historical Project Details raster runner requires access to the staging API;
-that endpoint was unreachable from this environment. Its old visual baselines
-and thresholds were not changed. Local screenshots are evidence of responsive
-rendering, not a claim of exact parity with that historical fixture matrix.
+Responsive checks at 390/768/1440 have no horizontal overflow. Screenshots are in
+Frontend/ece-website/test-results/full-stack/: projects-list-{width}.png,
+project-details-{width}.png, project-admin.png. Captures scroll through existing
+reveal animations first. Baselines/thresholds are unchanged. The historical pinned
+pixel runner was attempted but refused to run because approved Edge 158.0.4370.33
+is absent; exact historical raster parity is therefore unverified. Native Nginx
+syntax/host validation remains an activation check, not a claimed local result.
 
-## Staging activation — requires separate approval
+## Staging activation (instructions only; nothing deployed)
 
-**Backend deployment is required**, together with migration 005. A static-only
-frontend deployment is insufficient for arbitrary new CMS slugs. The existing
-workflow intentionally does not activate this new runtime automatically.
+Backend deployment IS required for clearing fields/removing media. No new database
+migration is required; preserve existing H2 and uploads. If the host predates the
+baseline's schema, follow the existing 001-004 migration procedure independently.
+Do not run the removed 005 migration or change Hibernate to create/create-drop.
 
-1. Back up staging H2 and uploads using the existing maintenance procedure.
-   Stop the staging backend before opening its file H2 database with a migration
-   tool. Apply migrations through 005 in order if any earlier ones are missing;
-   never reset the database or enable create/create-drop on staging.
-2. Deploy the verified backend release through the existing staging process and
-   confirm `/api/projects/public` and the existing health checks. Existing rows
-   should remain visible. Verify a known project without editing live content.
-3. Prepare a separate, versioned runtime release from a clean Linux checkout.
-   Use Node 22 and `npm ci`, then build the static site normally and run
-   `npm run build:project-details`. Keep installed runtime dependencies and
-   `project-details-runtime/.next-details` together in the release. Run the
-   full-stack check before activation. Do not ship the Windows dependency
-   junction or local generated build directories.
-4. Start the Next production server as a dedicated unprivileged staging service,
-   with working directory `Frontend/ece-website` in that runtime release:
+After separate release authorization:
 
-   ```sh
-   NODE_ENV=production SEO_ENVIRONMENT=staging \
-   PRODUCTION_SITE_URL=https://ekebitola.org \
-   API_PROXY_TARGET=http://127.0.0.1:18081 \
-   node node_modules/next/dist/bin/next start project-details-runtime \
-     --hostname 127.0.0.1 --port 3101
-   ```
+1. Record current frontend/backend release targets and back up staging H2/uploads
+   using the established maintenance procedure. Retain the existing Nginx backup.
+2. Release through the existing Deploy staging workflow after approved merge into
+   staging: select staging and deploy_backend=true. Keep the existing infrastructure,
+   backend-enabled and pipeline gates. No new workflow/service configuration is needed.
+3. Once out/projects/details/index.html is present in the active static release,
+   copy deploy/staging/eke-staging-project-details.conf to
+   /etc/nginx/snippets/eke-staging-project-details.conf. Add this include ONLY
+   inside the existing preview.ekebitola.org HTTPS server, alongside current
+   API/static rules (do not replace them):
 
-   Preserve the existing configured production canonical origin if it differs
-   from the example. Do not give this public-read service admin credentials.
-   Ensure only loopback can access port 3101. Use the normal supervised service,
-   versioned-release and health-check conventions of the staging host.
-5. Install `deploy/staging/eke-staging-project-details.conf` as an optional
-   include **only in the preview.ekebitola.org HTTPS server**, backing up its
-   configuration first. Keep existing static/API rules. Run `nginx -t` and
-   reload only on success. The include proxies one project path segment to 3101
-   and maps the isolated asset prefix to that runtime. It preserves backend
-   404/500 responses and adds no-store and noindex headers.
-6. Activate the matching static frontend release through the existing staging
-   workflow. Verify an existing project, its image/PDF, direct refresh, return
-   navigation, metadata and noindex. Perform any live create/publish/unpublish
-   smoke test only with explicit approval; no staging test data was created here.
+       include /etc/nginx/snippets/eke-staging-project-details.conf;
 
-The existing production/staging workflows and secrets are unchanged. Staging
-remains noindex, including dynamic details. The existing production canonical
-configuration is reused rather than changed globally.
+   Inspect existing exact/^~ project locations for precedence conflicts. Run
+   sudo nginx -t, then sudo systemctl reload nginx only on success. Keep the
+   existing server root, backend port, TLS, noindex and API proxy unchanged.
+4. Read-only smoke-check an existing record via listing, clean detail URL, direct
+   refresh, return link, images/documents and News. Verify /projects/index.txt is
+   still an RSC/static payload. Live temporary-data CRUD requires its own approval.
 
-## Rollback
-
-Keep the previous static release, runtime release and Nginx backup. Restore the
-previous frontend/runtime or remove the optional staging include and reload only
-after `nginx -t`. Leave the additive column in place; do not drop tables or
-restore a stale H2 backup over newer CMS edits.
-
-Prefer retaining the new backend visibility guard during a frontend rollback.
-Rolling back to the old backend while drafts exist would expose those drafts,
-because the old code has no publication rule. A backend rollback therefore
-requires an explicit content-visibility plan before proceeding. Removing the
-runtime restores the old static host's manifest limitation for new slugs.
+Rollback: restore the recorded frontend/backend releases with the existing release
+rollback procedure; no schema rollback is needed. Restore the previous staging
+Nginx config/remove only the new include, nginx -t, then reload. Do not delete H2,
+uploads or restore a stale database over newer edits. Removing the static fallback
+restores the old clean-URL limitation; the query shell works while its frontend
+release remains active. No additional running services are required.
 
 ## Limits
 
-No deployment, merge, live CMS write, production change or secret update has
-been performed. Local lifecycle verification is complete; actual staging
-activation, Nginx validation on its host, and live verification remain required.
+HTML metadata stays generic/project-list based and noindex for these detail shells;
+server-rendered per-project SEO is unavailable with this static architecture.
+Client not-found states normally have HTTP 200 at clean detail URLs; API misses
+still return 404. Query URLs need no Nginx change. No merge, deployment, VPS access,
+production change or live staging CRUD occurred. GitHub CI status is recorded in
+the PR/final handoff after pushing the corrected commit.

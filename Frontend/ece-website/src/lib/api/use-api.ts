@@ -1,14 +1,13 @@
 "use client";
 import { useEffect, useState } from "react";
 import { apiRequest } from "./client";
-export function useApi<T>(path: string, initialData?: T) {
+export function useApi<T>(path: string) {
   const [state, setState] = useState<{
     path: string;
     data?: T;
     error?: string;
-  }>({ path, data: initialData });
+  }>({ path });
   useEffect(() => {
-    if (initialData !== undefined) return;
     let active = true;
     apiRequest<T>(path)
       .then((data) => {
@@ -20,8 +19,6 @@ export function useApi<T>(path: string, initialData?: T) {
     return () => {
       active = false;
     };
-  }, [path, initialData]);
-  return initialData !== undefined
-    ? { path, data: initialData, error: undefined }
-    : state.path === path ? state : { path };
+  }, [path]);
+  return state.path === path ? state : { path };
 }

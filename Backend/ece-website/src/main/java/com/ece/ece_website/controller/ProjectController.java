@@ -39,16 +39,15 @@ public class ProjectController {
     }
     @GetMapping("/public")
     public List<ProjectResponseDTO> publicProjects(@RequestParam(required=false) ProjectStatus status) {
-        return projectService.findAll().stream().filter(Project::isPublished).filter(p -> status == null || status == p.getStatus())
+        return projectService.findAll().stream().filter(p -> status == null || status == p.getStatus())
             .sorted(java.util.Comparator.comparing(Project::getId).reversed()).map(ProjectMapper::toDTO).toList();
     }
     @GetMapping("/slug/{slug}")
     public ProjectResponseDTO bySlug(@PathVariable String slug) {
-        return projectService.findAll().stream().filter(Project::isPublished).filter(p -> slug.equals(p.getSlug())).findFirst().map(ProjectMapper::toDTO)
+        return projectService.findAll().stream().filter(p -> slug.equals(p.getSlug())).findFirst().map(ProjectMapper::toDTO)
             .orElseThrow(() -> new org.springframework.web.server.ResponseStatusException(org.springframework.http.HttpStatus.NOT_FOUND,"Project unavailable"));
     }
     private void details(Project project, com.ece.ece_website.dto.ProjectDetailsRequest r) {
-        if (r.published()!=null) project.setPublished(r.published());
         if (r.slug()!=null && !r.slug().isBlank()) project.setSlug(validation.slug(r.slug()));
         if (project.getSlug()==null) project.setSlug("project-"+project.getUuid());
         if (projectService.findAll().stream().anyMatch(p -> p.getId()!=project.getId() && project.getSlug().equals(p.getSlug()))) throw new org.springframework.web.server.ResponseStatusException(org.springframework.http.HttpStatus.CONFLICT,"Slug already exists");
@@ -70,25 +69,22 @@ public class ProjectController {
         if(project.getStartDate()!=null && project.getEndDate()!=null && project.getEndDate().isBefore(project.getStartDate())) validation.fail("End date precedes start date");
     }
     @GetMapping("/")
-    List<ProjectResponseDTO> getAllProjects(org.springframework.security.core.Authentication authentication) {
-        boolean admin = authentication != null && authentication.getAuthorities().stream().anyMatch(a -> "ADMIN".equals(a.getAuthority()));
+    List<ProjectResponseDTO> getAllProjects() {
         return projectService.findAll()
-                .stream().filter(p -> admin || p.isPublished())
+                .stream()
                 .map(ProjectMapper::toDTO)
                 .collect(Collectors.toList());
     }
 
     @GetMapping(value = "/{title}")
-    public ProjectResponseDTO getProjectByTitle(@PathVariable String title) {
-        Project project = projectService.findByName(title);
-        if (!project.isPublished()) throw new org.springframework.web.server.ResponseStatusException(org.springframework.http.HttpStatus.NOT_FOUND, "Project unavailable");
-        return ProjectMapper.toDTO(project);
+    public Project getProjectByTitle(@PathVariable String title) {
+        return projectService.findByName(title);
     }
 
     @GetMapping("/recent")
     public List<ProjectResponseDTO> getRecentProjects() {
-        return projectService.findAll()
-                .stream().filter(Project::isPublished).sorted(java.util.Comparator.comparing(Project::getDate, java.util.Comparator.nullsLast(java.util.Comparator.reverseOrder()))).limit(3)
+        return projectService.latestProject()
+                .stream()
                 .map(ProjectMapper::toDTO)
                 .collect(Collectors.toList());
     }
@@ -96,7 +92,6 @@ public class ProjectController {
     @GetMapping("/get/{uuid}")
     public ResponseEntity<ProjectResponseDTO> getProjectByUuid(@PathVariable UUID uuid) {
         ProjectResponseDTO projectResponseDTO = projectService.findByUuid(uuid);
-        if (!projectResponseDTO.isPublished()) throw new org.springframework.web.server.ResponseStatusException(org.springframework.http.HttpStatus.NOT_FOUND, "Project unavailable");
         return ResponseEntity.ok(projectResponseDTO);
     }
 
@@ -104,6 +99,10 @@ public class ProjectController {
     @PutMapping(value = "/{uuid}", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
     public ResponseEntity<ProjectResponseDTO> updateProject(
             @PathVariable UUID uuid,
+            @RequestParam(defaultValue = "false") boolean removeImage,
+            @RequestParam(defaultValue = "false") boolean removeLogo,
+            @RequestParam(defaultValue = "false") boolean removePdf,
+            @RequestParam(defaultValue = "false") boolean clearGrantValue,
             @RequestParam("title") String title,
             @RequestParam("budget") long budget,
             @RequestParam("description") String description,
@@ -124,11 +123,14 @@ public class ProjectController {
         existing.setDescription(description);
         existing.setQuickSummary(quickSummary);
 
-        // Safe parsing for LocalDate
-        if (startDate != null && !startDate.isBlank())
-            existing.setStartDate(LocalDate.parse(startDate));
-        if (endDate != null && !endDate.isBlank())
-            existing.setEndDate(LocalDate.parse(endDate));
+        // Missing parameters preserve values; explicit empty fields clear them.
+        if (startDate != null) existing.setStartDate(startDate.isBlank() ? null : LocalDate.parse(startDate));
+        if (endDate != null) existing.setEndDate(endDate.isBlank() ? null : LocalDate.parse(endDate));
+        if (clearGrantValue) existing.setGrantValue(null);
+        // Detach references only: shared or legacy files must not be deleted.
+        if (removeImage) existing.setImageFilePath(null);
+        if (removeLogo) existing.setLogoFilePath(null);
+        if (removePdf) existing.setPdfFilePath(null);
 
         // ✅ IMPORTANT: keep collection mutable and handle null (deleted all partners)
         existing.getPartners().clear();

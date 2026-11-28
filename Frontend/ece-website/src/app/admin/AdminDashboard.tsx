@@ -23,6 +23,7 @@ import {
 
 type Section = "projects" | "news" | "opportunities" | "training";
 type Entry = {
+  logo: string;
   placement: string;
   mediaKind: string;
   mediaUrl: string;
@@ -66,6 +67,7 @@ type Entry = {
 type ProjectRecord = import("@/lib/api/projects").ProjectRecord;
 type DeleteTarget = { id: string; kind: Section; label: string };
 const blank: Entry = {
+  logo: "",
   placement: "LATEST",
   mediaKind: "",
   mediaUrl: "",
@@ -113,7 +115,7 @@ function projectEntry(project: ProjectRecord): Entry {
     resourcesJson: project.resourcesJson || "[]",
     partnerMediaJson: project.partnerMediaJson || "[]",
     slug: project.slug || "",
-    publication: project.published === false ? "draft" : "published",
+    logo: project.logoFilePath ? `/api/uploads/images/${encodeURIComponent(project.logoFilePath)}` : "",
     contentJson: project.contentJson || "[]",
     imageAlt: project.imageAlt || "",
     programme: project.programme == null ? "" : String(project.programme),
@@ -224,6 +226,7 @@ export default function AdminDashboard() {
   const [error, setError] = useState("");
   const [busy, setBusy] = useState(false);
   const [imageFile, setImageFile] = useState<File | null>(null);
+  const [removedMedia, setRemovedMedia] = useState<string[]>([]);
   const [logoFile, setLogoFile] = useState<File | null>(null);
   const [heroFile, setHeroFile] = useState<File | null>(null);
   const [pdfFile, setPdfFile] = useState<File | null>(null);
@@ -318,6 +321,7 @@ export default function AdminDashboard() {
     setPdfFile(null);
     setHeroFile(null);
     setLogoFile(null);
+    setRemovedMedia([]);
   }
   async function navigate(next: Section) {
     if (busy || (editor && !window.confirm("Discard your unsaved changes?")))
@@ -426,8 +430,9 @@ export default function AdminDashboard() {
         if (editor[key] !== "" || key !== "grantValue")
           data.append(key, editor[key]);
       if (logoFile) data.append("logo", logoFile);
+      for (const key of removedMedia) data.append(key, "true");
+      data.append("clearGrantValue", String(editor.grantValue === ""));
       data.append("title", editor.title.trim());
-      data.append("published", String(editor.publication === "published"));
       data.append("quickSummary", editor.summary.trim());
       data.append("description", editor.description.trim());
       data.append("budget", editor.budget);
@@ -819,7 +824,7 @@ export default function AdminDashboard() {
                       />
                       <span>
                         {section === "projects"
-                          ? "Leave blank for an automatic slug. Published projects are available immediately when the Project Details runtime is enabled."
+                          ? "Leave blank for an automatic slug. Saved projects are available immediately."
                           : "Leave blank for an automatic slug. New URLs require a route-manifest refresh and site rebuild."}
                       </span>
                     </label>
@@ -1062,6 +1067,17 @@ export default function AdminDashboard() {
                             }
                           />
                         </label>
+                        {editor.logo && <a href={editor.logo} target="_blank" rel="noopener noreferrer">View current logo ↗</a>}
+                        {editor.id && [
+                          ["removeImage", "cover image"],
+                          ["removeLogo", "logo"],
+                          ["removePdf", "PDF document"],
+                        ].map(([key, label]) => (
+                          <label key={key}>
+                            <input type="checkbox" checked={removedMedia.includes(key)} onChange={event => setRemovedMedia(current => event.target.checked ? [...current, key] : current.filter(item => item !== key))} />
+                            Remove current {label}
+                          </label>
+                        ))}
                         <label className={s.full}>
                           Description *
                           <textarea
@@ -1092,13 +1108,6 @@ export default function AdminDashboard() {
                           >
                             <option value="ongoing">Ongoing</option>
                             <option value="completed">Past</option>
-                          </select>
-                        </label>
-                        <label>
-                          Publication status
-                          <select value={editor.publication} onChange={(e) => field("publication", e.target.value)}>
-                            <option value="draft">Draft (unpublished)</option>
-                            <option value="published">Published</option>
                           </select>
                         </label>
                         <label>

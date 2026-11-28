@@ -23,5 +23,3 @@ out/
 dist/
 test-results/
 playwright-report/
-
-.next-details/

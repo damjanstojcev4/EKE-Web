@@ -1,5 +1,4 @@
 export type ProjectRecord = {
-  published: boolean;
   resourcesJson: string | null;
   partnerMediaJson: string | null;
   uuid: string;

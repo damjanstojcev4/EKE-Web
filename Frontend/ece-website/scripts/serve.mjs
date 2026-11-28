@@ -6,28 +6,11 @@ import path from 'node:path';
 const root = path.resolve('out');
 // Optional local development proxy. Hosted staging uses Nginx, not this server.
 const backend = process.env.API_PROXY_TARGET ? new URL(process.env.API_PROXY_TARGET) : null;
-const details = process.env.PROJECT_DETAILS_TARGET ? new URL(process.env.PROJECT_DETAILS_TARGET) : null;
-if (details && (details.protocol !== 'http:' || details.hostname !== '127.0.0.1' || details.username || details.password || details.pathname !== '/' || details.search || details.hash)) {
-  throw new Error('PROJECT_DETAILS_TARGET must be a loopback HTTP origin.');
-}
 if (backend && (!['http:', 'https:'].includes(backend.protocol) || !['127.0.0.1', 'localhost', '[::1]'].includes(backend.hostname) || backend.username || backend.password || backend.pathname !== '/' || backend.search || backend.hash)) {
   throw new Error('API_PROXY_TARGET must be a loopback HTTP(S) origin.');
 }
 const types = { '.html':'text/html', '.js':'text/javascript', '.css':'text/css', '.svg':'image/svg+xml', '.png':'image/png', '.jpg':'image/jpeg', '.webp':'image/webp', '.woff2':'font/woff2', '.ttf':'font/ttf', '.txt':'text/plain', '.json':'application/json', '.pdf':'application/pdf' };
 const server = http.createServer(async (req,res) => {
-  // Optional local equivalent of the staging-only Project Details Nginx include.
-  if (details && (/^\/projects\/[^/?]+\/?(?:\?|$)/.test(req.url || '') || req.url?.startsWith('/_next-details/'))) {
-    const upstream = http.request({ hostname: details.hostname, port: details.port, method: req.method,
-      path: req.url.replace(/^\/_next-details\//, '/'), headers: { ...req.headers, cookie: '', authorization: '' } }, response => {
-      res.writeHead(response.statusCode || 502, { ...response.headers, 'cache-control': 'no-store' });
-      response.pipe(res);
-    });
-    upstream.setTimeout(30000, () => upstream.destroy(new Error('Project runtime timed out')));
-    upstream.on('error', () => { if (!res.headersSent) res.writeHead(502); res.end('Project runtime unavailable'); });
-    req.on('aborted', () => upstream.destroy());
-    req.pipe(upstream);
-    return;
-  }
   if (req.url?.startsWith('/api/')) {
     if (!backend) {
       res.writeHead(503, { 'Content-Type': 'application/json', 'Cache-Control': 'no-store' }).end(JSON.stringify({ message: 'Configure API_PROXY_TARGET to connect the local backend.' }));
@@ -49,7 +32,9 @@ const server = http.createServer(async (req,res) => {
   }
   try {
     const pathname = decodeURIComponent(new URL(req.url, 'http://localhost').pathname);
-    let file = path.resolve(root, '.' + pathname);
+    // Match staging Nginx: only a single project path segment uses the static shell.
+    const projectPage = /^\/projects\/[^/.]+\/?$/.test(pathname);
+    let file = projectPage ? path.join(root, 'projects/details/index.html') : path.resolve(root, '.' + pathname);
     if (!file.startsWith(root + path.sep) && file !== root) { res.writeHead(403).end(); return; }
     if ((await stat(file)).isDirectory()) file = path.join(file,'index.html');
     const data = await readFile(file);

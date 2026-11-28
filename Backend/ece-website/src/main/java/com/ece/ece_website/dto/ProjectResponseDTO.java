@@ -12,7 +12,6 @@ import java.util.UUID;
 @Data
 @AllArgsConstructor
 public class ProjectResponseDTO {
-    private boolean published;
     private String slug;
     private String programme;
     private java.math.BigDecimal grantValue;

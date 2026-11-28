@@ -5,8 +5,8 @@ import Footer from "@/components/layout/Footer";
 import { Stripe } from "@/components/ui";
 import ArticleContent from "@/components/news/ArticleContent";
 import { articleBlocks } from "@/lib/api/news";
-import { useApi } from "@/lib/api/use-api";
-import { externalUrl, mediaUrl } from "@/lib/api/client";
+import { useEffect, useState } from "react";
+import { apiRequest, ApiError, externalUrl, mediaUrl } from "@/lib/api/client";
 import type { ProjectRecord } from "@/lib/api/projects";
 import styles from "@/components/project-details/project-detail.module.css";
 const factCellClasses = [
@@ -15,11 +15,24 @@ const factCellClasses = [
   "[@media(max-width:1100px)]:[padding:0_0_0_24px] [@media(max-width:1100px)]:first:pl-[24px] [@media(max-width:1100px)]:[border:0] [@media(max-width:1100px)]:min-h-0 [@media(max-width:1100px)]:before:left-0 [@media(max-width:1100px)]:before:top-[6px] [@media(max-width:1100px)]:before:size-[10px]",
 ].join(" ");
 
-export default function PublicProject({ slug, initialProject }: { slug: string; initialProject?: ProjectRecord }) {
-  const { data: p, error } = useApi<ProjectRecord>(
-    `/projects/slug/${encodeURIComponent(slug)}`,
-    initialProject,
-  );
+export default function PublicProject({ slug }: { slug: string | null }) {
+  const [attempt, setAttempt] = useState(0);
+  const [state, setState] = useState<{ data?: ProjectRecord; status?: number }>({});
+  const valid = slug !== null && /^[a-z0-9]+(?:-[a-z0-9]+)*$/.test(slug);
+  useEffect(() => {
+    if (!valid || slug === null) return;
+    let active = true;
+    const controller = new AbortController();
+    const timeout = setTimeout(() => controller.abort(), 15000);
+    apiRequest<ProjectRecord>(`/projects/slug/${encodeURIComponent(slug)}`, { signal: controller.signal })
+      .then(data => { if (active) setState({ data }); })
+      .catch(error => { if (active) setState({ status: error instanceof ApiError ? error.status : 0 }); })
+      .finally(() => clearTimeout(timeout));
+    return () => { active = false; controller.abort(); clearTimeout(timeout); };
+  }, [slug, valid, attempt]);
+  const p = state.data;
+  const missing = slug !== null && (!valid || state.status === 404);
+  const error = missing || state.status !== undefined;
   const logo = p?.logoFilePath
     ? mediaUrl(`/api/uploads/images/${encodeURIComponent(p.logoFilePath)}`)
     : mediaUrl(p?.image);
@@ -48,8 +61,9 @@ export default function PublicProject({ slug, initialProject }: { slug: string; 
               "min-h-[65vh] [padding:180px_24px_100px] [&_h1]:text-[38px] [&_p]:[margin:24px_0]! [&_a]:underline!"
             }
           >
-            <h1>Project unavailable</h1>
-            <p role="alert">{error}</p>
+            <h1>{missing ? "Project not found" : "Project unavailable"}</h1>
+            <p role="alert">{missing ? "This project may have been removed or its address changed." : "We could not load this project. Please try again shortly."}</p>
+            {!missing && <button className="underline mr-6" onClick={() => { setState({}); setAttempt(value => value + 1); }}>Try again</button>}
             <Link href="/projects/">Back to Projects</Link>
           </div>
         ) : !p ? (
@@ -110,7 +124,7 @@ export default function PublicProject({ slug, initialProject }: { slug: string; 
                     ["End date", p.endDate],
                     [
                       "Grant",
-                      p.grantValue === null
+                      p.grantValue == null
                         ? null
                         : `${p.grantValue} ${p.currency || ""}`,
                     ],
