@@ -295,6 +295,11 @@ try {
       await page.locator("main").waitFor();
       await page.waitForLoadState("networkidle");
       if (route === "/projects/" || route === `/projects/${projectSlug}/`) {
+        if (route === `/projects/${projectSlug}/`) {
+          const topics = await page.getByText("Education", { exact: true }).boundingBox();
+          const summary = await page.getByRole("heading", { name: "Summary", exact: true }).locator("xpath=ancestor::section").boundingBox();
+          expect(topics.y + topics.height).toBeLessThanOrEqual(summary.y);
+        }
         // Trigger the existing scroll-reveal animations before full-page capture.
         for (let y = 0; y < await page.evaluate(() => document.documentElement.scrollHeight); y += 600) {
           await page.evaluate(y => window.scrollTo(0, y), y);

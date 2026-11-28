@@ -72,35 +72,37 @@ export default function PublicProject({ slug }: { slug: string | null }) {
           <>
             <section
               className={[
-                "h-[calc(1387*var(--u))] relative [padding:calc(246*var(--u))_calc(80*var(--u))_0] isolate",
-                "[@media(max-width:1100px)]:h-auto [@media(max-width:1100px)]:[padding:150px_32px_60px]",
+                "min-h-[calc(1387*var(--u))] relative [padding:calc(246*var(--u))_calc(80*var(--u))_calc(70*var(--u))] isolate",
+                "[@media(max-width:1100px)]:min-h-0 [@media(max-width:1100px)]:[padding:150px_32px_60px]",
                 "[@media(max-width:700px)]:[padding:140px_24px_50px]",
               ].join(" ")}
             >
               <div className={styles.artwork} aria-hidden="true">
                 <img src="/assets/project-details/Group.svg" alt="" />
               </div>
-              <p
-                className={
-                  "text-[length:calc(22*var(--u))] leading-[calc(72*var(--u))] font-bold uppercase [@media(max-width:1100px)]:text-[18px] [@media(max-width:1100px)]:leading-[1.4]"
-                }
-              >
-                Project details
-              </p>
-              <h1
-                className={[
-                  "[margin:calc(5*var(--u))_0_0_calc(-4*var(--u))]! w-[calc(1410*var(--u))] text-[length:calc(110*var(--u)_-_2px)] leading-[calc(110*var(--u))] font-bold",
-                  "[@media(max-width:1100px)]:text-[length:calc(clamp(42px,_5.73vw,_70px)_-_2px)] [@media(max-width:1100px)]:leading-none [@media(max-width:1100px)]:w-[min(100%,850px)] [@media(max-width:1100px)]:[margin:20px_0_70px]!",
-                  "[@media(max-width:700px)]:text-[42px] [@media(max-width:700px)]:leading-[1.08] [@media(max-width:700px)]:mb-[48px]! [@media(max-width:700px)]:[overflow-wrap:anywhere]",
-                ].join(" ")}
-              >
-                {p.title}
-              </h1>
+              <div className="min-h-[calc(476*var(--u))] [@media(max-width:1100px)]:min-h-0">
+                <p
+                  className={
+                    "text-[length:calc(22*var(--u))] leading-[calc(72*var(--u))] font-bold uppercase [@media(max-width:1100px)]:text-[18px] [@media(max-width:1100px)]:leading-[1.4]"
+                  }
+                >
+                  Project details
+                </p>
+                <h1
+                  className={[
+                    "[margin:calc(5*var(--u))_0_0_calc(-4*var(--u))]! w-[calc(1410*var(--u))] text-[length:calc(110*var(--u)_-_2px)] leading-[calc(110*var(--u))] font-bold",
+                    "[@media(max-width:1100px)]:text-[length:calc(clamp(42px,_5.73vw,_70px)_-_2px)] [@media(max-width:1100px)]:leading-none [@media(max-width:1100px)]:w-[min(100%,850px)] [@media(max-width:1100px)]:[margin:20px_0_70px]!",
+                    "[@media(max-width:700px)]:text-[42px] [@media(max-width:700px)]:leading-[1.08] [@media(max-width:700px)]:mb-[48px]! [@media(max-width:700px)]:[overflow-wrap:anywhere]",
+                  ].join(" ")}
+                >
+                  {p.title}
+                </h1>
+              </div>
               <div
                 className={[
                   styles.facts,
                   [
-                    "absolute top-[calc(722*var(--u))] left-[calc(80*var(--u))] right-[calc(81*var(--u))] text-[length:calc(24*var(--u))] leading-[calc(32*var(--u))] [&_dd]:font-bold [&_dd]:whitespace-pre-line",
+                    "relative text-[length:calc(24*var(--u))] leading-[calc(32*var(--u))] [&_dd]:font-bold [&_dd]:whitespace-pre-line",
                     "[@media(max-width:1100px)]:relative [@media(max-width:1100px)]:inset-auto [@media(max-width:1100px)]:text-[17px] [@media(max-width:1100px)]:leading-[1.45]",
                   ].join(" "),
                 ].join(" ")}
@@ -188,7 +190,7 @@ export default function PublicProject({ slug }: { slug: string | null }) {
             </section>
             <section
               className={[
-                "h-[calc(393*var(--u))] bg-brand-navy text-white [padding:calc(30*var(--u))_calc(42*var(--u))_calc(30*var(--u))_calc(48*var(--u))]",
+                "min-h-[calc(393*var(--u))] bg-brand-navy text-white [padding:calc(30*var(--u))_calc(42*var(--u))_calc(30*var(--u))_calc(48*var(--u))]",
                 "[@media(max-width:1100px)]:h-auto [@media(max-width:1100px)]:p-[24px]",
                 "[@media(max-width:700px)]:p-[16px]",
               ].join(" ")}
@@ -197,7 +199,7 @@ export default function PublicProject({ slug }: { slug: string | null }) {
                 className={[
                   styles.summaryInner,
                   [
-                    "h-full [border:1px_solid_var(--light-blue)] rounded-[calc(28*var(--u))] grid [grid-template-columns:calc(345*var(--u))_1fr] gap-[calc(75*var(--u))] p-[calc(28*var(--u))] items-center",
+                    "min-h-[calc(333*var(--u))] [border:1px_solid_var(--light-blue)] rounded-[calc(28*var(--u))] grid [grid-template-columns:calc(345*var(--u))_1fr] gap-[calc(75*var(--u))] p-[calc(28*var(--u))] items-center",
                     "[@media(max-width:1100px)]:p-[24px] [@media(max-width:1100px)]:[grid-template-columns:180px_1fr] [@media(max-width:1100px)]:gap-[32px] [@media(max-width:1100px)]:rounded-[20px]",
                     "[@media(max-width:700px)]:[grid-template-columns:1fr] [@media(max-width:700px)]:gap-[24px]",
                   ].join(" "),
@@ -231,8 +233,8 @@ export default function PublicProject({ slug }: { slug: string | null }) {
             </section>
             <div
               className={[
-                "h-[calc(1592*var(--u))] [padding:calc(151*var(--u))_calc(80*var(--u))_calc(145*var(--u))]",
-                "[@media(max-width:1100px)]:h-auto [@media(max-width:1100px)]:[padding:72px_32px]",
+                "min-h-[calc(1592*var(--u))] [padding:calc(151*var(--u))_calc(80*var(--u))_calc(145*var(--u))]",
+                "[@media(max-width:1100px)]:min-h-0 [@media(max-width:1100px)]:[padding:72px_32px]",
                 "[@media(max-width:700px)]:[padding:56px_24px]",
               ].join(" ")}
             >
@@ -240,7 +242,7 @@ export default function PublicProject({ slug }: { slug: string | null }) {
             </div>
             <div
               className={[
-                "h-[calc(382*var(--u))] bg-brand-navy text-white [padding:calc(23*var(--u))_calc(40*var(--u))_calc(26*var(--u))_calc(38*var(--u))] grid [grid-template-columns:900fr_921fr] gap-[calc(21*var(--u))]",
+                "min-h-[calc(382*var(--u))] bg-brand-navy text-white [padding:calc(23*var(--u))_calc(40*var(--u))_calc(26*var(--u))_calc(38*var(--u))] grid [grid-template-columns:900fr_921fr] gap-[calc(21*var(--u))]",
                 "[&_h2]:text-brand-blue [&_h2]:text-[length:calc(34*var(--u)_-_2px)] [&_h2]:leading-[calc(42*var(--u))] [&_h2]:font-bold [&_p]:text-[length:calc(20*var(--u))] [&_p]:leading-[calc(32*var(--u))]",
                 "[@media(max-width:1100px)]:h-auto [@media(max-width:1100px)]:p-[24px] [@media(max-width:1100px)]:[grid-template-columns:1fr] [@media(max-width:1100px)]:gap-[24px] [@media(max-width:1100px)]:[&_h2]:text-[26px] [@media(max-width:1100px)]:[&_h2]:leading-[1.3] [@media(max-width:1100px)]:[&_p]:text-[17px] [@media(max-width:1100px)]:[&_p]:leading-[1.6]",
                 "[@media(max-width:700px)]:p-[16px]",

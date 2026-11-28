@@ -54,6 +54,8 @@ prove VPS state. No VPS connection or live data write was made.
   partners/logos, links, cover/logo, PDF and resources. Optional/malformed references
   are guarded. Loading, timed-out/unavailable API, retry, missing/invalid/deleted
   project and return-navigation states are explicit.
+  The fact hero and content/resources sections grow for populated fields so
+  wrapped facts/topics and longer CMS content do not overlap subsequent sections.
 - Existing admin fields/uploads/relationships remain. Logo reference is loaded for
   review. Optional dates/grant can now be cleared. Checkboxes detach cover/logo/PDF
   references on PUT without deleting shared/legacy files; replacement uploads win.
