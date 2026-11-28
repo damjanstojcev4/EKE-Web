@@ -20,13 +20,13 @@ class FullMigrationTests {
    s.execute("CREATE TABLE project_partners (project_id BIGINT NOT NULL, partners VARCHAR(255))");
    s.execute("INSERT INTO projects(id,uuid,title,budget,description,image_file_path,pdf_file_path,status) VALUES(41,'"+uuid+"','Legacy project',123,'Legacy description','old.png','old.pdf','PAST')");
    s.execute("INSERT INTO project_partners VALUES(41,'Verified partner')");
-   for(int pass=0;pass<2;pass++) for(String script:new String[]{"003-project-details.sql","004-opportunities-training.sql"})
+   for(int pass=0;pass<2;pass++) for(String script:new String[]{"003-project-details.sql","004-opportunities-training.sql","005-project-publication.sql"})
     ScriptUtils.executeSqlScript(c,new FileSystemResource(Path.of("..","..","deploy","staging","migrations",script)));
    var registry=new StandardServiceRegistryBuilder().applySetting("jakarta.persistence.jdbc.url",url).applySetting("jakarta.persistence.jdbc.user","sa").applySetting("hibernate.hbm2ddl.auto","validate").build();
    try(var factory=new MetadataSources(registry).addAnnotatedClass(Project.class).addAnnotatedClass(Opportunity.class).addAnnotatedClass(TrainingSession.class).getMetadataBuilder().applyPhysicalNamingStrategy(new CamelCaseToUnderscoresNamingStrategy()).build().buildSessionFactory()) {
     factory.inTransaction(session->{
      Project p=session.find(Project.class,41L);
-     assertThat(p.getUuid()).isEqualTo(uuid);assertThat(p.getSlug()).isEqualTo("project-"+uuid);
+     assertThat(p.isPublished()).isTrue();assertThat(p.getUuid()).isEqualTo(uuid);assertThat(p.getSlug()).isEqualTo("project-"+uuid);
      assertThat(p.getImageFilePath()).isEqualTo("old.png");assertThat(p.getPdfFilePath()).isEqualTo("old.pdf");assertThat(p.getPartners()).containsExactly("Verified partner");assertThat(p.getBudget()).isEqualTo(123);
      var opportunity=new Opportunity();opportunity.setSlug("local-only");opportunity.setTitle("Local test");opportunity.setAvailability("OPEN");session.persist(opportunity);
      var training=new TrainingSession();training.setSlug("local-training");training.setTitle("Local test");training.setAvailability("OPEN");session.persist(training);

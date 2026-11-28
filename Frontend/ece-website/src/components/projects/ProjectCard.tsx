@@ -1,4 +1,3 @@
-import Link from "next/link";
 import { mediaUrl } from "@/lib/api/client";
 import { projectHref, type ProjectRecord } from "@/lib/api/projects";
 export default function ProjectCard({
@@ -45,12 +44,12 @@ export default function ProjectCard({
           {p.quickSummary || p.description}
         </p>
         {href ? (
-          <Link
+          <a
             className="flex items-center gap-[calc(18*var(--u))] [border:0] bg-transparent text-brand-navy! uppercase font-bold text-[length:calc(20*var(--u))] leading-[calc(30*var(--u))] [padding:0] self-end [@media(max-width:1100px)]:text-[14px] [@media(max-width:1100px)]:leading-[24px] [@media(max-width:700px)]:text-[16px]"
             href={href}
           >
             Project Details
-          </Link>
+          </a>
         ) : (
           <p className="[overflow-wrap:anywhere] text-[length:calc(20*var(--u))] leading-[calc(32*var(--u))] [@media(max-width:1100px)]:text-[15px] [@media(max-width:1100px)]:leading-[1.5] [@media(max-width:700px)]:text-[17px]">
             Detail page awaiting the next site update.

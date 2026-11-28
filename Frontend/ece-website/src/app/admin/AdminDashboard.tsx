@@ -113,6 +113,7 @@ function projectEntry(project: ProjectRecord): Entry {
     resourcesJson: project.resourcesJson || "[]",
     partnerMediaJson: project.partnerMediaJson || "[]",
     slug: project.slug || "",
+    publication: project.published === false ? "draft" : "published",
     contentJson: project.contentJson || "[]",
     imageAlt: project.imageAlt || "",
     programme: project.programme == null ? "" : String(project.programme),
@@ -426,6 +427,7 @@ export default function AdminDashboard() {
           data.append(key, editor[key]);
       if (logoFile) data.append("logo", logoFile);
       data.append("title", editor.title.trim());
+      data.append("published", String(editor.publication === "published"));
       data.append("quickSummary", editor.summary.trim());
       data.append("description", editor.description.trim());
       data.append("budget", editor.budget);
@@ -816,8 +818,9 @@ export default function AdminDashboard() {
                         onChange={(e) => field("slug", e.target.value)}
                       />
                       <span>
-                        Leave blank for an automatic slug. New URLs require a
-                        route-manifest refresh and site rebuild.
+                        {section === "projects"
+                          ? "Leave blank for an automatic slug. Published projects are available immediately when the Project Details runtime is enabled."
+                          : "Leave blank for an automatic slug. New URLs require a route-manifest refresh and site rebuild."}
                       </span>
                     </label>
                     {section === "news" && (
@@ -1089,6 +1092,13 @@ export default function AdminDashboard() {
                           >
                             <option value="ongoing">Ongoing</option>
                             <option value="completed">Past</option>
+                          </select>
+                        </label>
+                        <label>
+                          Publication status
+                          <select value={editor.publication} onChange={(e) => field("publication", e.target.value)}>
+                            <option value="draft">Draft (unpublished)</option>
+                            <option value="published">Published</option>
                           </select>
                         </label>
                         <label>

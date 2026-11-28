@@ -22,6 +22,13 @@ const scratch = await mkdtemp(path.join(tmpdir(), "eke-full-qa-"));
 const backendPort = await freePort(),
   frontendPort = await freePort();
 const origin = `http://127.0.0.1:${frontendPort}`;
+const detailsPort = process.env.PROJECT_DETAILS_QA === 'true' ? await freePort() : null;
+const detailsRuntime = detailsPort ? spawn(process.execPath, ['node_modules/next/dist/bin/next', 'start', 'project-details-runtime', '--hostname', '127.0.0.1', '--port', String(detailsPort)], {
+  cwd: frontend, windowsHide: true, stdio: ['ignore', 'pipe', 'pipe'],
+  env: { ...process.env, PROJECT_DETAILS_SERVER: 'true', SEO_ENVIRONMENT: 'staging', PRODUCTION_SITE_URL: 'https://ekebitola.org', API_PROXY_TARGET: `http://127.0.0.1:${backendPort}` },
+}) : null;
+detailsRuntime?.stdout.resume();
+detailsRuntime?.stderr.on("data", chunk => process.stderr.write(chunk));
 const username = "local-qa-admin",
   password = randomBytes(24).toString("hex");
 const env = {
@@ -60,17 +67,20 @@ const server = spawn(process.execPath, ["scripts/serve.mjs"], {
     ...process.env,
     PORT: String(frontendPort),
     API_PROXY_TARGET: `http://127.0.0.1:${backendPort}`,
+    PROJECT_DETAILS_TARGET: detailsPort ? `http://127.0.0.1:${detailsPort}` : '',
   },
 });
 server.stdout.resume();
 server.stderr.resume();
 async function ready() {
-  for (let i = 0; i < 120; i++) {
+  for (let i = 0; i < 60; i++) {
     if (backend.exitCode !== null) throw Error("Local backend exited");
+    if (detailsRuntime && detailsRuntime.exitCode !== null) throw Error("Local details runtime exited");
     if (
       await fetch(`${origin}/api/news/homepage`)
         .then((r) => r.ok)
-        .catch(() => false)
+        .catch(() => false) &&
+      (!detailsPort || await fetch(`http://127.0.0.1:${detailsPort}/projects/missing-project/`).then(r => r.status === 404).catch(() => false))
     )
       return;
     await new Promise((r) => setTimeout(r, 500));
@@ -163,11 +173,13 @@ try {
   await expect(
     page.getByText("Local QA full article", { exact: true }),
   ).toBeVisible();
+  const projectSlug = detailsPort ? "fresh-cms-project-outside-manifest" : "unavailable";
   const project = await write("/projects", {
     method: "POST",
     multipart: {
       title: "Local QA project",
-      slug: "unavailable",
+      slug: projectSlug,
+      published: "true",
       description: "Local QA project details",
       quickSummary: "Local QA project summary",
       budget: "0",
@@ -181,6 +193,37 @@ try {
       },
     },
   });
+  if (detailsPort) {
+    const detailPath = '/projects/' + projectSlug + '/';
+    const response = await anon.get(detailPath);
+    expect(response.status()).toBe(200);
+    const html = await response.text();
+    expect(html).toContain('<title>Local QA project | EKE</title>');
+    expect(html).toContain('name="description" content="Local QA project summary"');
+    expect(html).toContain('property="og:title" content="Local QA project | EKE"');
+    expect(html).toContain('https://ekebitola.org' + detailPath);
+    expect(html).toContain('noindex');
+    expect((await anon.get('/projects/invalid_identifier/')).status()).toBe(404);
+    expect((await anon.get('/projects/not-a-real-project/')).status()).toBe(404);
+    const update = { title: 'Updated local project', description: 'CMS edit reaches public details', quickSummary: 'Edited CMS summary', budget: '0', status: 'ON_GOING' };
+    await write('/projects/' + project.uuid, { method: 'PUT', multipart: { ...update, published: 'false' } });
+    expect((await anon.get(detailPath)).status()).toBe(404);
+    expect((await anon.get('/api/projects/slug/' + projectSlug)).status()).toBe(404);
+    await write('/projects/' + project.uuid, { method: 'PUT', multipart: { ...update, published: 'true' } });
+    await page.goto(origin + detailPath);
+    await expect(page.getByRole('heading', { name: update.title, exact: true })).toBeVisible();
+    await page.reload();
+    await expect(page.getByText(update.description, { exact: true })).toBeVisible();
+    await expect(page).toHaveTitle('Updated local project | EKE');
+    // Restore the original fixture for the existing broad browser checks below.
+    await write('/projects/' + project.uuid, { method: 'PUT', multipart: { ...update, title: 'Local QA project', description: 'Local QA project details', quickSummary: 'Local QA project summary', published: 'true' } });
+    const minimal = await write('/projects', { method: 'POST', multipart: { title: 'Minimal CMS project', slug: 'minimal-cms-project', budget: '0', description: '', quickSummary: '', published: 'true' } });
+    await page.goto(origin + '/projects/minimal-cms-project/');
+    await expect(page.getByRole('heading', { name: 'Minimal CMS project', exact: true })).toBeVisible();
+    await expect(page.getByRole('link', { name: 'Back to Projects' })).toBeVisible();
+    await write('/projects/' + minimal.uuid, { method: 'DELETE' });
+    expect((await anon.get('/projects/minimal-cms-project/')).status()).toBe(404);
+  }
   expect((await anon.get(project.image)).status()).toBe(200);
   expect((await anon.get(project.pdfUrl)).headers()["content-type"]).toContain(
     "application/pdf",
@@ -255,10 +298,11 @@ try {
   await mkdir("test-results/full-stack", { recursive: true });
   for (const width of [390, 768, 1440]) {
     await page.setViewportSize({ width, height: 900 });
-    for (const route of ["/", "/news/", "/news/unavailable/", "/projects/", "/projects/unavailable/", "/opportunities/", "/training/"]) {
+    for (const route of ["/", "/news/", "/news/unavailable/", "/projects/", `/projects/${projectSlug}/`, "/opportunities/", "/training/"]) {
       await page.goto(`${origin}${route}`);
       await page.locator("main").waitFor();
       await page.waitForLoadState("networkidle");
+      if (detailsPort && route === `/projects/${projectSlug}/`) await page.screenshot({ path: `test-results/full-stack/project-details-${width}.png`, fullPage: true });
       expect(await page.evaluate(() => document.documentElement.scrollWidth <= window.innerWidth + 1), `${route} overflows at ${width}px`).toBe(true);
     }
     const trainingHeading = page.getByRole("heading", {name:"Local QA training"});
@@ -279,7 +323,7 @@ try {
     news.id,
   );
   expect(
-    (await (await anon.get("/api/projects/slug/unavailable")).json()).uuid,
+    (await (await anon.get(`/api/projects/slug/${projectSlug}`)).json()).uuid,
   ).toBe(project.uuid);
   expect(
     (await (await anon.get("/api/opportunities/public")).json())[0].title,
@@ -306,6 +350,7 @@ try {
   await context?.close();
   await browser?.close();
   await stop(server);
+  if (detailsRuntime) await stop(detailsRuntime);
   await stop(backend);
   await rm(scratch, { recursive: true, force: true });
 }

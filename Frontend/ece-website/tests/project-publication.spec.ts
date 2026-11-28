@@ -1,0 +1,42 @@
+import { test, expect } from "@playwright/test";
+
+test("project editor saves draft, publishes, and unpublishes independently of project status", async ({ page }) => {
+  let records: Record<string, unknown>[] = [];
+  const writes: Record<string, string>[] = [];
+  await page.route("**/api/**", async route => {
+    const path = new URL(route.request().url()).pathname;
+    if (path === "/api/auth/me") return route.fulfill({ json: { username: "editor", role: "ADMIN" } });
+    if (path === "/api/auth/csrf") return route.fulfill({ json: { token: "test-csrf", headerName: "X-XSRF-TOKEN" } });
+    if (route.request().method() === "GET") return route.fulfill({ json: path.startsWith("/api/projects") ? records : [] });
+    expect(route.request().headers()["x-xsrf-token"]).toBe("test-csrf");
+    const fields = Object.fromEntries([...route.request().postData()!.matchAll(/name="([^"]+)"\r\n\r\n([^\r]*)/g)].map(m => [m[1], m[2]]));
+    writes.push(fields);
+    const saved = { ...fields, uuid: "test-project", published: fields.published === "true", budget: 0, partners: [] };
+    records = [saved];
+    return route.fulfill({ json: saved });
+  });
+  await page.goto("/admin/");
+  await page.getByRole("navigation", { name: "Admin navigation" }).getByRole("button", { name: /^Projects/ }).click();
+  await page.getByRole("button", { name: "Add project", exact: true }).click();
+  await page.getByLabel("Title *", { exact: true }).fill("CMS publication test");
+  await page.getByLabel("Quick summary").fill("Persisted summary");
+  await page.getByLabel("Description *", { exact: true }).fill("Persisted project description");
+  await page.getByLabel("Budget (€) *", { exact: true }).fill("0");
+  const save = () => page.getByRole("button", { name: "Save changes", exact: true }).click();
+  const edit = () => page.getByRole("button", { name: "Edit CMS publication test", exact: true }).click();
+  await save();
+  await expect(page.getByRole("heading", { name: "CMS publication test", exact: true })).toBeVisible();
+  expect(writes[0].published).toBe("false");
+  await edit();
+  await page.getByLabel("Publication status").selectOption("published");
+  await save();
+  await expect(page.getByRole("heading", { name: "CMS publication test", exact: true })).toBeVisible();
+  expect(writes[1].published).toBe("true");
+  expect(writes[1].status).toBe("ON_GOING");
+  await edit();
+  await expect(page.getByLabel("Publication status")).toHaveValue("published");
+  await page.getByLabel("Publication status").selectOption("draft");
+  await save();
+  await expect(page.getByRole("heading", { name: "CMS publication test", exact: true })).toBeVisible();
+  expect(writes[2].published).toBe("false");
+});

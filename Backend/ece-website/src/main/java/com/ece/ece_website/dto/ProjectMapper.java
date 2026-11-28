@@ -15,6 +15,7 @@ public class ProjectMapper {
                 : null;
 
         return new ProjectResponseDTO(
+                project.isPublished(),
                 project.getSlug(),
                 project.getProgramme(),
                 project.getGrantValue(),

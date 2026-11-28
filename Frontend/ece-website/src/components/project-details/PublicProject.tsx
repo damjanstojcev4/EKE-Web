@@ -15,13 +15,14 @@ const factCellClasses = [
   "[@media(max-width:1100px)]:[padding:0_0_0_24px] [@media(max-width:1100px)]:first:pl-[24px] [@media(max-width:1100px)]:[border:0] [@media(max-width:1100px)]:min-h-0 [@media(max-width:1100px)]:before:left-0 [@media(max-width:1100px)]:before:top-[6px] [@media(max-width:1100px)]:before:size-[10px]",
 ].join(" ");
 
-export default function PublicProject({ slug }: { slug: string }) {
+export default function PublicProject({ slug, initialProject }: { slug: string; initialProject?: ProjectRecord }) {
   const { data: p, error } = useApi<ProjectRecord>(
     `/projects/slug/${encodeURIComponent(slug)}`,
+    initialProject,
   );
-  const logo =
-    p?.logoFilePath &&
-    mediaUrl(`/api/uploads/images/${encodeURIComponent(p.logoFilePath)}`);
+  const logo = p?.logoFilePath
+    ? mediaUrl(`/api/uploads/images/${encodeURIComponent(p.logoFilePath)}`)
+    : mediaUrl(p?.image);
   function references(value: string | null | undefined): {
     name?: string;
     title?: string;
@@ -31,7 +32,7 @@ export default function PublicProject({ slug }: { slug: string }) {
   }[] {
     try {
       const items = JSON.parse(value || "[]");
-      return Array.isArray(items) ? items : [];
+      return Array.isArray(items) ? items.filter((item) => item && typeof item === "object" && typeof item.url === "string") : [];
     } catch {
       return [];
     }
@@ -40,6 +41,7 @@ export default function PublicProject({ slug }: { slug: string }) {
     <div className={`${styles.page} bg-surface-muted overflow-clip`}>
       <Header />
       <main id="main">
+        {p && <Link className="absolute top-[100px] left-[24px] z-10 underline" href="/projects/">Back to Projects</Link>}
         {error ? (
           <div
             className={
@@ -51,7 +53,7 @@ export default function PublicProject({ slug }: { slug: string }) {
             <Link href="/projects/">Back to Projects</Link>
           </div>
         ) : !p ? (
-          <p role="status">Loading project…</p>
+          <p className="min-h-[65vh] px-[24px] pt-[180px]" role="status">Loading project…</p>
         ) : (
           <>
             <section
@@ -241,7 +243,7 @@ export default function PublicProject({ slug }: { slug: string }) {
                 >
                   <h2>Partners</h2>
                   <ul>
-                    {p.partners.map((partner) => (
+                    {(p.partners || []).map((partner) => (
                       <li key={partner}>{partner}</li>
                     ))}
                   </ul>

@@ -1,5 +1,5 @@
-import manifest from "@/content/route-manifest.json";
 export type ProjectRecord = {
+  published: boolean;
   resourcesJson: string | null;
   partnerMediaJson: string | null;
   uuid: string;
@@ -28,7 +28,7 @@ export type ProjectRecord = {
   downloadDescription: string | null;
 };
 export function projectHref(slug: string) {
-  return manifest.projects.includes(slug)
+  return /^[a-z0-9]+(?:-[a-z0-9]+)*$/.test(slug)
     ? `/projects/${encodeURIComponent(slug)}/`
     : undefined;
 }

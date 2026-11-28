@@ -19,7 +19,13 @@ function failure(status: number): string {
 async function request(path: string, init: RequestInit): Promise<Response> {
   let response: Response;
   try {
-    response = await fetch(`/api${path}`, { ...init, credentials: "same-origin", cache: "no-store" });
+    let origin = "";
+    if (typeof window === "undefined") {
+      const backend = new URL(process.env.API_PROXY_TARGET || "http://127.0.0.1:18081");
+      if (!["http:", "https:"].includes(backend.protocol) || !["127.0.0.1", "localhost", "[::1]"].includes(backend.hostname) || backend.username || backend.password || backend.pathname !== "/" || backend.search || backend.hash) throw new Error("Invalid backend origin");
+      origin = backend.origin;
+    }
+    response = await fetch(`${origin}/api${path}`, { ...init, credentials: "same-origin", cache: "no-store", signal: init.signal || (typeof window === "undefined" ? AbortSignal.timeout(15000) : undefined) });
   } catch {
     throw new ApiError(0, "Unable to connect to the server. Check your connection and try again.");
   }
