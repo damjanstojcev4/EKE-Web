@@ -5,8 +5,8 @@ import Footer from "@/components/layout/Footer";
 import { Stripe } from "@/components/ui";
 import ArticleContent from "@/components/news/ArticleContent";
 import { articleBlocks } from "@/lib/api/news";
-import { useApi } from "@/lib/api/use-api";
-import { externalUrl, mediaUrl } from "@/lib/api/client";
+import { useEffect, useState } from "react";
+import { apiRequest, ApiError, externalUrl, mediaUrl } from "@/lib/api/client";
 import type { ProjectRecord } from "@/lib/api/projects";
 import styles from "@/components/project-details/project-detail.module.css";
 const factCellClasses = [
@@ -15,13 +15,27 @@ const factCellClasses = [
   "[@media(max-width:1100px)]:[padding:0_0_0_24px] [@media(max-width:1100px)]:first:pl-[24px] [@media(max-width:1100px)]:[border:0] [@media(max-width:1100px)]:min-h-0 [@media(max-width:1100px)]:before:left-0 [@media(max-width:1100px)]:before:top-[6px] [@media(max-width:1100px)]:before:size-[10px]",
 ].join(" ");
 
-export default function PublicProject({ slug }: { slug: string }) {
-  const { data: p, error } = useApi<ProjectRecord>(
-    `/projects/slug/${encodeURIComponent(slug)}`,
-  );
-  const logo =
-    p?.logoFilePath &&
-    mediaUrl(`/api/uploads/images/${encodeURIComponent(p.logoFilePath)}`);
+export default function PublicProject({ slug }: { slug: string | null }) {
+  const [attempt, setAttempt] = useState(0);
+  const [state, setState] = useState<{ data?: ProjectRecord; status?: number }>({});
+  const valid = slug !== null && /^[a-z0-9]+(?:-[a-z0-9]+)*$/.test(slug);
+  useEffect(() => {
+    if (!valid || slug === null) return;
+    let active = true;
+    const controller = new AbortController();
+    const timeout = setTimeout(() => controller.abort(), 15000);
+    apiRequest<ProjectRecord>(`/projects/slug/${encodeURIComponent(slug)}`, { signal: controller.signal })
+      .then(data => { if (active) setState({ data }); })
+      .catch(error => { if (active) setState({ status: error instanceof ApiError ? error.status : 0 }); })
+      .finally(() => clearTimeout(timeout));
+    return () => { active = false; controller.abort(); clearTimeout(timeout); };
+  }, [slug, valid, attempt]);
+  const p = state.data;
+  const missing = slug !== null && (!valid || state.status === 404);
+  const error = missing || state.status !== undefined;
+  const logo = p?.logoFilePath
+    ? mediaUrl(`/api/uploads/images/${encodeURIComponent(p.logoFilePath)}`)
+    : mediaUrl(p?.image);
   function references(value: string | null | undefined): {
     name?: string;
     title?: string;
@@ -31,7 +45,7 @@ export default function PublicProject({ slug }: { slug: string }) {
   }[] {
     try {
       const items = JSON.parse(value || "[]");
-      return Array.isArray(items) ? items : [];
+      return Array.isArray(items) ? items.filter((item) => item && typeof item === "object" && typeof item.url === "string") : [];
     } catch {
       return [];
     }
@@ -40,51 +54,55 @@ export default function PublicProject({ slug }: { slug: string }) {
     <div className={`${styles.page} bg-surface-muted overflow-clip`}>
       <Header />
       <main id="main">
+        {p && <Link className="absolute top-[100px] left-[24px] z-10 underline" href="/projects/">Back to Projects</Link>}
         {error ? (
           <div
             className={
               "min-h-[65vh] [padding:180px_24px_100px] [&_h1]:text-[38px] [&_p]:[margin:24px_0]! [&_a]:underline!"
             }
           >
-            <h1>Project unavailable</h1>
-            <p role="alert">{error}</p>
+            <h1>{missing ? "Project not found" : "Project unavailable"}</h1>
+            <p role="alert">{missing ? "This project may have been removed or its address changed." : "We could not load this project. Please try again shortly."}</p>
+            {!missing && <button className="underline mr-6" onClick={() => { setState({}); setAttempt(value => value + 1); }}>Try again</button>}
             <Link href="/projects/">Back to Projects</Link>
           </div>
         ) : !p ? (
-          <p role="status">Loading project…</p>
+          <p className="min-h-[65vh] px-[24px] pt-[180px]" role="status">Loading project…</p>
         ) : (
           <>
             <section
               className={[
-                "h-[calc(1387*var(--u))] relative [padding:calc(246*var(--u))_calc(80*var(--u))_0] isolate",
-                "[@media(max-width:1100px)]:h-auto [@media(max-width:1100px)]:[padding:150px_32px_60px]",
+                "min-h-[calc(1387*var(--u))] relative [padding:calc(246*var(--u))_calc(80*var(--u))_calc(70*var(--u))] isolate",
+                "[@media(max-width:1100px)]:min-h-0 [@media(max-width:1100px)]:[padding:150px_32px_60px]",
                 "[@media(max-width:700px)]:[padding:140px_24px_50px]",
               ].join(" ")}
             >
               <div className={styles.artwork} aria-hidden="true">
                 <img src="/assets/project-details/Group.svg" alt="" />
               </div>
-              <p
-                className={
-                  "text-[length:calc(22*var(--u))] leading-[calc(72*var(--u))] font-bold uppercase [@media(max-width:1100px)]:text-[18px] [@media(max-width:1100px)]:leading-[1.4]"
-                }
-              >
-                Project details
-              </p>
-              <h1
-                className={[
-                  "[margin:calc(5*var(--u))_0_0_calc(-4*var(--u))]! w-[calc(1410*var(--u))] text-[length:calc(110*var(--u)_-_2px)] leading-[calc(110*var(--u))] font-bold",
-                  "[@media(max-width:1100px)]:text-[length:calc(clamp(42px,_5.73vw,_70px)_-_2px)] [@media(max-width:1100px)]:leading-none [@media(max-width:1100px)]:w-[min(100%,850px)] [@media(max-width:1100px)]:[margin:20px_0_70px]!",
-                  "[@media(max-width:700px)]:text-[42px] [@media(max-width:700px)]:leading-[1.08] [@media(max-width:700px)]:mb-[48px]! [@media(max-width:700px)]:[overflow-wrap:anywhere]",
-                ].join(" ")}
-              >
-                {p.title}
-              </h1>
+              <div className="min-h-[calc(476*var(--u))] [@media(max-width:1100px)]:min-h-0">
+                <p
+                  className={
+                    "text-[length:calc(22*var(--u))] leading-[calc(72*var(--u))] font-bold uppercase [@media(max-width:1100px)]:text-[18px] [@media(max-width:1100px)]:leading-[1.4]"
+                  }
+                >
+                  Project details
+                </p>
+                <h1
+                  className={[
+                    "[margin:calc(5*var(--u))_0_0_calc(-4*var(--u))]! w-[calc(1410*var(--u))] text-[length:calc(110*var(--u)_-_2px)] leading-[calc(110*var(--u))] font-bold",
+                    "[@media(max-width:1100px)]:text-[length:calc(clamp(42px,_5.73vw,_70px)_-_2px)] [@media(max-width:1100px)]:leading-none [@media(max-width:1100px)]:w-[min(100%,850px)] [@media(max-width:1100px)]:[margin:20px_0_70px]!",
+                    "[@media(max-width:700px)]:text-[42px] [@media(max-width:700px)]:leading-[1.08] [@media(max-width:700px)]:mb-[48px]! [@media(max-width:700px)]:[overflow-wrap:anywhere]",
+                  ].join(" ")}
+                >
+                  {p.title}
+                </h1>
+              </div>
               <div
                 className={[
                   styles.facts,
                   [
-                    "absolute top-[calc(722*var(--u))] left-[calc(80*var(--u))] right-[calc(81*var(--u))] text-[length:calc(24*var(--u))] leading-[calc(32*var(--u))] [&_dd]:font-bold [&_dd]:whitespace-pre-line",
+                    "relative text-[length:calc(24*var(--u))] leading-[calc(32*var(--u))] [&_dd]:font-bold [&_dd]:whitespace-pre-line",
                     "[@media(max-width:1100px)]:relative [@media(max-width:1100px)]:inset-auto [@media(max-width:1100px)]:text-[17px] [@media(max-width:1100px)]:leading-[1.45]",
                   ].join(" "),
                 ].join(" ")}
@@ -108,7 +126,7 @@ export default function PublicProject({ slug }: { slug: string }) {
                     ["End date", p.endDate],
                     [
                       "Grant",
-                      p.grantValue === null
+                      p.grantValue == null
                         ? null
                         : `${p.grantValue} ${p.currency || ""}`,
                     ],
@@ -172,7 +190,7 @@ export default function PublicProject({ slug }: { slug: string }) {
             </section>
             <section
               className={[
-                "h-[calc(393*var(--u))] bg-brand-navy text-white [padding:calc(30*var(--u))_calc(42*var(--u))_calc(30*var(--u))_calc(48*var(--u))]",
+                "min-h-[calc(393*var(--u))] bg-brand-navy text-white [padding:calc(30*var(--u))_calc(42*var(--u))_calc(30*var(--u))_calc(48*var(--u))]",
                 "[@media(max-width:1100px)]:h-auto [@media(max-width:1100px)]:p-[24px]",
                 "[@media(max-width:700px)]:p-[16px]",
               ].join(" ")}
@@ -181,7 +199,7 @@ export default function PublicProject({ slug }: { slug: string }) {
                 className={[
                   styles.summaryInner,
                   [
-                    "h-full [border:1px_solid_var(--light-blue)] rounded-[calc(28*var(--u))] grid [grid-template-columns:calc(345*var(--u))_1fr] gap-[calc(75*var(--u))] p-[calc(28*var(--u))] items-center",
+                    "min-h-[calc(333*var(--u))] [border:1px_solid_var(--light-blue)] rounded-[calc(28*var(--u))] grid [grid-template-columns:calc(345*var(--u))_1fr] gap-[calc(75*var(--u))] p-[calc(28*var(--u))] items-center",
                     "[@media(max-width:1100px)]:p-[24px] [@media(max-width:1100px)]:[grid-template-columns:180px_1fr] [@media(max-width:1100px)]:gap-[32px] [@media(max-width:1100px)]:rounded-[20px]",
                     "[@media(max-width:700px)]:[grid-template-columns:1fr] [@media(max-width:700px)]:gap-[24px]",
                   ].join(" "),
@@ -215,8 +233,8 @@ export default function PublicProject({ slug }: { slug: string }) {
             </section>
             <div
               className={[
-                "h-[calc(1592*var(--u))] [padding:calc(151*var(--u))_calc(80*var(--u))_calc(145*var(--u))]",
-                "[@media(max-width:1100px)]:h-auto [@media(max-width:1100px)]:[padding:72px_32px]",
+                "min-h-[calc(1592*var(--u))] [padding:calc(151*var(--u))_calc(80*var(--u))_calc(145*var(--u))]",
+                "[@media(max-width:1100px)]:min-h-0 [@media(max-width:1100px)]:[padding:72px_32px]",
                 "[@media(max-width:700px)]:[padding:56px_24px]",
               ].join(" ")}
             >
@@ -224,7 +242,7 @@ export default function PublicProject({ slug }: { slug: string }) {
             </div>
             <div
               className={[
-                "h-[calc(382*var(--u))] bg-brand-navy text-white [padding:calc(23*var(--u))_calc(40*var(--u))_calc(26*var(--u))_calc(38*var(--u))] grid [grid-template-columns:900fr_921fr] gap-[calc(21*var(--u))]",
+                "min-h-[calc(382*var(--u))] bg-brand-navy text-white [padding:calc(23*var(--u))_calc(40*var(--u))_calc(26*var(--u))_calc(38*var(--u))] grid [grid-template-columns:900fr_921fr] gap-[calc(21*var(--u))]",
                 "[&_h2]:text-brand-blue [&_h2]:text-[length:calc(34*var(--u)_-_2px)] [&_h2]:leading-[calc(42*var(--u))] [&_h2]:font-bold [&_p]:text-[length:calc(20*var(--u))] [&_p]:leading-[calc(32*var(--u))]",
                 "[@media(max-width:1100px)]:h-auto [@media(max-width:1100px)]:p-[24px] [@media(max-width:1100px)]:[grid-template-columns:1fr] [@media(max-width:1100px)]:gap-[24px] [@media(max-width:1100px)]:[&_h2]:text-[26px] [@media(max-width:1100px)]:[&_h2]:leading-[1.3] [@media(max-width:1100px)]:[&_p]:text-[17px] [@media(max-width:1100px)]:[&_p]:leading-[1.6]",
                 "[@media(max-width:700px)]:p-[16px]",
@@ -241,7 +259,7 @@ export default function PublicProject({ slug }: { slug: string }) {
                 >
                   <h2>Partners</h2>
                   <ul>
-                    {p.partners.map((partner) => (
+                    {(p.partners || []).map((partner) => (
                       <li key={partner}>{partner}</li>
                     ))}
                   </ul>

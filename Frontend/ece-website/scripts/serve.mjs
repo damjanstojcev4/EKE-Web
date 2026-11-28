@@ -32,7 +32,9 @@ const server = http.createServer(async (req,res) => {
   }
   try {
     const pathname = decodeURIComponent(new URL(req.url, 'http://localhost').pathname);
-    let file = path.resolve(root, '.' + pathname);
+    // Match staging Nginx: only a single project path segment uses the static shell.
+    const projectPage = /^\/projects\/[^/.]+\/?$/.test(pathname);
+    let file = projectPage ? path.join(root, 'projects/details/index.html') : path.resolve(root, '.' + pathname);
     if (!file.startsWith(root + path.sep) && file !== root) { res.writeHead(403).end(); return; }
     if ((await stat(file)).isDirectory()) file = path.join(file,'index.html');
     const data = await readFile(file);

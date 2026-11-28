@@ -99,6 +99,10 @@ public class ProjectController {
     @PutMapping(value = "/{uuid}", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
     public ResponseEntity<ProjectResponseDTO> updateProject(
             @PathVariable UUID uuid,
+            @RequestParam(defaultValue = "false") boolean removeImage,
+            @RequestParam(defaultValue = "false") boolean removeLogo,
+            @RequestParam(defaultValue = "false") boolean removePdf,
+            @RequestParam(defaultValue = "false") boolean clearGrantValue,
             @RequestParam("title") String title,
             @RequestParam("budget") long budget,
             @RequestParam("description") String description,
@@ -119,11 +123,14 @@ public class ProjectController {
         existing.setDescription(description);
         existing.setQuickSummary(quickSummary);
 
-        // Safe parsing for LocalDate
-        if (startDate != null && !startDate.isBlank())
-            existing.setStartDate(LocalDate.parse(startDate));
-        if (endDate != null && !endDate.isBlank())
-            existing.setEndDate(LocalDate.parse(endDate));
+        // Missing parameters preserve values; explicit empty fields clear them.
+        if (startDate != null) existing.setStartDate(startDate.isBlank() ? null : LocalDate.parse(startDate));
+        if (endDate != null) existing.setEndDate(endDate.isBlank() ? null : LocalDate.parse(endDate));
+        if (clearGrantValue) existing.setGrantValue(null);
+        // Detach references only: shared or legacy files must not be deleted.
+        if (removeImage) existing.setImageFilePath(null);
+        if (removeLogo) existing.setLogoFilePath(null);
+        if (removePdf) existing.setPdfFilePath(null);
 
         // ✅ IMPORTANT: keep collection mutable and handle null (deleted all partners)
         existing.getPartners().clear();
